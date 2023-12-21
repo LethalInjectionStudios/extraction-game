@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjrido4tn0mpu"]
+
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_22f01"]
+[ext_resource type="Texture2D" uid="uid://1x8iunp515ge" path="res://icon.svg" id="1_h761s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
+size = Vector2(129, 127)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_22f01")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h761s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_wvhi0")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="HungerTimer" type="Timer" parent="Timers"]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="ThirstTimer" type="Timer" parent="Timers"]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]
+[connection signal="timeout" from="Timers/ThirstTimer" to="." method="_on_thirst_timer_timeout"]
