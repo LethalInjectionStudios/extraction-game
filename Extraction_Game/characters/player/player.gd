@@ -17,7 +17,11 @@ func _ready():
 	thirst = MAX_THIRST
 	
 func _process(delta):
-	pass
+	$WeaponSprite.look_at(get_global_mouse_position())	
+	if get_global_mouse_position().x < $WeaponSprite.global_position.x:
+		$WeaponSprite.flip_v = true
+	else:
+		$WeaponSprite.flip_v = false
 
 func _physics_process(_delta):
 
