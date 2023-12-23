@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjrido4tn0mpu"]
+[gd_scene load_steps=6 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_22f01"]
 [ext_resource type="Texture2D" uid="uid://1x8iunp515ge" path="res://icon.svg" id="1_h761s"]
 [ext_resource type="Texture2D" uid="uid://dbprku8vlbr00" path="res://_dev/dev_gun.png" id="3_2m7bf"]
+[ext_resource type="AudioStream" uid="uid://dt424b3ls1plt" path="res://_dev/dev_gunshot.wav" id="4_7jyks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
 size = Vector2(129, 127)
@@ -35,6 +36,11 @@ autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="GunshotAudio" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("4_7jyks")
 
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="Timers/ThirstTimer" to="." method="_on_thirst_timer_timeout"]
