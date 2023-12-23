@@ -38,13 +38,10 @@ autostart = true
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
 
-[node name="Audio" type="Node" parent="."]
+[node name="Audio" type="Node" parent="Camera2D"]
 
-[node name="GunshotAudio" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="GunshotAudio" type="AudioStreamPlayer2D" parent="Camera2D/Audio"]
 stream = ExtResource("4_7jyks")
-
-[node name="AudioListener2D" type="AudioListener2D" parent="Audio"]
-current = true
 
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="Timers/ThirstTimer" to="." method="_on_thirst_timer_timeout"]

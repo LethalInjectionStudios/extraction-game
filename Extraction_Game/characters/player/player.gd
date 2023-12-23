@@ -34,10 +34,7 @@ func _process(_delta):
 		bullet.global_rotation = $WeaponSprite.rotation
 		bullet.direction = gun_direction
 		fire.emit(bullet)
-		$Audio/GunshotAudio.play()
-		
-	print("Player Transform: " + str(position))
-	print("Audio Transform: " + str($Audio/GunshotAudio.global_position))
+		$Camera2D/Audio/GunshotAudio.play()
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
