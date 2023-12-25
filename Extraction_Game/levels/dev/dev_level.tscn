@@ -13,6 +13,6 @@ position = Vector2(511, 221)
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="DevDummy" parent="." instance=ExtResource("3_0ism8")]
-position = Vector2(841, 215)
+position = Vector2(624, 178)
 
 [connection signal="fire" from="Player" to="." method="_on_player_fire"]

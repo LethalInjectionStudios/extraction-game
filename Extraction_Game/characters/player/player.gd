@@ -11,7 +11,7 @@ var bullet_scene: PackedScene = preload("res://objects/projectiles/bullet.tscn")
 const MAX_HEALTH: int = 100
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
-const SPEED: float = 300.0
+const SPEED: float = 100.0
 
 signal fire(projectile)
 
@@ -21,17 +21,21 @@ func _ready():
 	thirst = MAX_THIRST
 	
 func _process(_delta):
-	$WeaponSprite.look_at(get_global_mouse_position())	
-	if get_global_mouse_position().x < $WeaponSprite.global_position.x:
-		$WeaponSprite.flip_v = true
+	$PlayerSprite/WeaponSprite.look_at(get_global_mouse_position())	
+
+	if get_global_mouse_position().x < position.x:
+		$PlayerSprite.flip_h = true
+		$PlayerSprite/WeaponSprite.flip_v = true
 	else:
-		$WeaponSprite.flip_v = false
+		$PlayerSprite.flip_h = false
+		$PlayerSprite/WeaponSprite.flip_v = false
+		
 		
 	if Input.is_action_just_pressed("fire"):
 		var bullet = bullet_scene.instantiate() as Projectile
-		var gun_direction = (get_global_mouse_position() - $WeaponSprite.global_position).normalized()
+		var gun_direction = (get_global_mouse_position() - $PlayerSprite/WeaponSprite.global_position).normalized()
 		bullet.global_position = position
-		bullet.global_rotation = $WeaponSprite.rotation
+		bullet.global_rotation = $PlayerSprite/WeaponSprite.rotation
 		bullet.direction = gun_direction
 		fire.emit(bullet)
 		$Camera2D/Audio/GunshotAudio.play()

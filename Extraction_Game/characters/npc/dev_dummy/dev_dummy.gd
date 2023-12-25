@@ -11,4 +11,4 @@ func hit() -> void:
 
 func _on_timer_timeout():
 	$AudioStreamPlayer2D.play()
-	$Timer.start()
+	#$Timer.start()
