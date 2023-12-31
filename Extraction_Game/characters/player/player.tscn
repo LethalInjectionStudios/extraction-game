@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_22f01"]
 [ext_resource type="Texture2D" uid="uid://btlsd8f4vno7w" path="res://_dev/art/dev_player.png" id="2_nd5hl"]
-[ext_resource type="Texture2D" uid="uid://dbprku8vlbr00" path="res://_dev/art/dev_gun.png" id="3_2m7bf"]
 [ext_resource type="AudioStream" uid="uid://dt424b3ls1plt" path="res://_dev/audio/dev_gunshot.wav" id="4_7jyks"]
+[ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://Components/weapon_component.tscn" id="4_7oy8x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
 size = Vector2(8, 14)
@@ -17,11 +17,6 @@ shape = SubResource("RectangleShape2D_wvhi0")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_nd5hl")
-
-[node name="WeaponSprite" type="Sprite2D" parent="PlayerSprite"]
-position = Vector2(0, 2)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_2m7bf")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -44,6 +39,8 @@ metadata/_edit_lock_ = true
 
 [node name="GunshotAudio" type="AudioStreamPlayer2D" parent="Camera2D/Audio"]
 stream = ExtResource("4_7jyks")
+
+[node name="WeaponSlot" parent="." instance=ExtResource("4_7oy8x")]
 
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="Timers/ThirstTimer" to="." method="_on_thirst_timer_timeout"]

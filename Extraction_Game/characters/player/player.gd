@@ -21,37 +21,34 @@ func _ready():
 	thirst = MAX_THIRST
 	
 func _process(_delta):
-	$PlayerSprite/WeaponSprite.look_at(get_global_mouse_position())	
-
 	if get_global_mouse_position().x < position.x:
 		$PlayerSprite.flip_h = true
-		$PlayerSprite/WeaponSprite.flip_v = true
 	else:
 		$PlayerSprite.flip_h = false
-		$PlayerSprite/WeaponSprite.flip_v = false
 		
 		
-	if Input.is_action_just_pressed("fire"):
-		var bullet = bullet_scene.instantiate() as Projectile
-		var gun_direction = (get_global_mouse_position() - $PlayerSprite/WeaponSprite.global_position).normalized()
-		bullet.global_position = position
-		bullet.global_rotation = $PlayerSprite/WeaponSprite.rotation
-		bullet.direction = gun_direction
-		fire.emit(bullet)
-		$Camera2D/Audio/GunshotAudio.play()
+	#if Input.is_action_just_pressed("fire"):
+		#var bullet = bullet_scene.instantiate() as Projectile
+		#var gun_direction = (get_global_mouse_position() - $PlayerSprite/WeaponSprite.global_position).normalized()
+		#bullet.global_position = position
+		#bullet.global_rotation = $PlayerSprite/WeaponSprite.rotation
+		#bullet.direction = gun_direction
+		#bullet.ownerActor = self
+		#fire.emit(bullet)
+		#$Camera2D/Audio/GunshotAudio.play()
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * SPEED
 	move_and_slide()
 
+func hit() -> void:
+	pass
 
 func _on_hunger_timer_timeout():
 	hunger -= 1
-	print("Hunger: " + str(hunger))
 	$Timers/HungerTimer.start()
 
 func _on_thirst_timer_timeout():
 	thirst -= 1
-	print("Thirst: " + str(thirst))
 	$Timers/ThirstTimer.start()
