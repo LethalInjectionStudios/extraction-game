@@ -4,7 +4,6 @@ extends Node2D
 signal weapon_fired(projectile)
 
 const BULLET_SCENE: PackedScene = preload("res://objects/projectiles/bullet.tscn")
-var test: int
 
 var durability: float
 var max_durabiity: float = 100.0
