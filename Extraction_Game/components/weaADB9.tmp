@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjvu6egrx3dx1"]
 
-[ext_resource type="Script" path="res://Components/weapon_component.gd" id="1_6yg8v"]
+[ext_resource type="Script" path="res://components/weapon_component.gd" id="1_vyvcj"]
 [ext_resource type="Texture2D" uid="uid://dbprku8vlbr00" path="res://_dev/art/dev_gun.png" id="2_462b6"]
 [ext_resource type="Texture2D" uid="uid://c2wpevyu1idh4" path="res://_dev/art/dev_pistol_suppressor.png" id="3_ieud8"]
 [ext_resource type="AudioStream" uid="uid://dt424b3ls1plt" path="res://_dev/audio/dev_gunshot.wav" id="4_624wg"]
@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://6l8cccx3mtjr" path="res://_dev/audio/dev_reload.wav" id="6_srdcw"]
 
 [node name="WeaponComponent" type="Node2D" groups=["Weapon"]]
-script = ExtResource("1_6yg8v")
+script = ExtResource("1_vyvcj")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

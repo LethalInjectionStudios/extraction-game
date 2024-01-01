@@ -52,10 +52,6 @@ func _ready():
 	muzzle_sprite.position = _muzzle_position
 
 
-func _process(delta):
-	pass
-
-
 #TODO: Move bullet creation logic to its own function
 func fire_weapon(target) -> void:
 	if not _can_fire:
@@ -63,16 +59,7 @@ func fire_weapon(target) -> void:
 		
 	if magazine_count > 0:
 		_can_fire = false
-		var bullet = BULLET_SCENE.instantiate() as Projectile
-		var gun_direction = (target - gun_sprite.global_position).normalized()
-		bullet.global_position = bullet_location.global_position
-		bullet.global_rotation = gun_sprite.rotation
-		bullet.direction = gun_direction
-		bullet.owner_actor = owning_actor
-		weapon_fired.emit(bullet)
-		gunshot_audio.play()
-		rate_of_fire_timer.start()
-		magazine_count -= 1
+		_create_bullet(target)
 	else:
 		if not empty_magazine_audio.playing:
 			empty_magazine_audio.play()
@@ -85,6 +72,19 @@ func reload_weapon() -> void:
 		_can_fire = false
 		reload_audio.play()
 		reload_timer.start()
+
+
+func _create_bullet(target) -> void:
+	var bullet = BULLET_SCENE.instantiate() as Projectile
+	var gun_direction = (target - gun_sprite.global_position).normalized()
+	bullet.global_position = bullet_location.global_position
+	bullet.global_rotation = gun_sprite.rotation
+	bullet.direction = gun_direction
+	bullet.owner_actor = owning_actor
+	weapon_fired.emit(bullet)
+	gunshot_audio.play()
+	rate_of_fire_timer.start()
+	magazine_count -= 1
 
 
 func _on_rate_of_fire_timeout():

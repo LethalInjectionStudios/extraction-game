@@ -4,7 +4,7 @@ extends Area2D
 var damage: int = 50
 var armor_penetration: int = 0
 var speed: int = 500
-var range: int = 100
+var range: int = 250
 var recoil: int
 var direction: Vector2 = Vector2.UP
 var owner_actor
