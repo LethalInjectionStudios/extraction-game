@@ -1,7 +1,8 @@
+class_name  Trail
 extends Line2D
 
-
 @export var length = 10
+
 var point = Vector2()
 
 func _process(delta):

@@ -1,14 +1,46 @@
 extends CharacterBody2D
 
+signal fire(projectile)
 
+var enteredBody = null
+var bullet_scene: PackedScene = preload("res://objects/projectiles/bullet.tscn")
 var health: int = 100
 
-func hit() -> void:
+@onready var character_sprite: Sprite2D = $CharacterSprite
+@onready var weapon_component: WeaponComponent = $WeaponComponent
+
+func _process(delta):
+	if enteredBody != null:
+		_update_sprites()
+		
+		if weapon_component.magazine_count > 0 and not weapon_component.reload_audio.playing:
+			weapon_component.fire_weapon(enteredBody.position)
+
+		if weapon_component.magazine_count == 0 and not weapon_component.reload_audio.playing:
+			weapon_component.reload_weapon()
+
+
+func hit(damage, armor_penetration) -> void:
 	health -= 50
 	
 	if health <= 0:
 		queue_free()
 
-func _on_timer_timeout():
-	$AudioStreamPlayer2D.play()
-	#$Timer.start()
+
+func _update_sprites() -> void:	
+	weapon_component.gun_sprite.look_at(enteredBody.global_position)
+	
+	if enteredBody.global_position.x < position.x:
+		character_sprite.flip_h = true
+		weapon_component.gun_sprite.scale.y = -0.5
+	else:
+		character_sprite.flip_h = false
+		weapon_component.gun_sprite.scale.y = 0.5
+
+
+func _on_area_2d_body_entered(body):
+	enteredBody = body
+
+
+func _on_area_2d_body_exited(body):
+	enteredBody = null

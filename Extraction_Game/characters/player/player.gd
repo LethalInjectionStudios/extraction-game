@@ -1,57 +1,66 @@
+class_name Player
 extends CharacterBody2D
-
-var health: int
-var hunger: int
-var thirst: int
-
-var inRaid: bool = false
-
-var bullet_scene: PackedScene = preload("res://objects/projectiles/bullet.tscn")
 
 const MAX_HEALTH: int = 100
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
-const SPEED: float = 100.0
 
-signal fire(projectile)
+var _health: int
+var _hunger: int
+var _thirst: int
+var _inRaid: bool = false
+var _speed: float = 100.0
+
+@onready var player_sprite: Sprite2D = $PlayerSprite
+@onready var hunger_timer: Timer = $Timers/HungerTimer
+@onready var thirst_timer: Timer = $Timers/ThirstTimer
+@onready var weapon_component: WeaponComponent = $WeaponComponent
 
 func _ready():
-	health = MAX_HEALTH
-	hunger = MAX_HUNGER
-	thirst = MAX_THIRST
-	
-func _process(_delta):
-	$PlayerSprite/WeaponSprite.look_at(get_global_mouse_position())	
+	_health = MAX_HEALTH
+	_hunger = MAX_HUNGER
+	_thirst = MAX_THIRST
 
-	if get_global_mouse_position().x < position.x:
-		$PlayerSprite.flip_h = true
-		$PlayerSprite/WeaponSprite.flip_v = true
-	else:
-		$PlayerSprite.flip_h = false
-		$PlayerSprite/WeaponSprite.flip_v = false
-		
-		
-	if Input.is_action_just_pressed("fire"):
-		var bullet = bullet_scene.instantiate() as Projectile
-		var gun_direction = (get_global_mouse_position() - $PlayerSprite/WeaponSprite.global_position).normalized()
-		bullet.global_position = position
-		bullet.global_rotation = $PlayerSprite/WeaponSprite.rotation
-		bullet.direction = gun_direction
-		fire.emit(bullet)
-		$Camera2D/Audio/GunshotAudio.play()
+
+func _process(_delta):
+	_update_sprites()
+	_get_input()
+
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * SPEED
+	velocity = direction * _speed
 	move_and_slide()
 
 
+func hit(damage, armor_penetration) -> void:
+	pass
+
+
+func _update_sprites() -> void:	
+	if get_global_mouse_position().x < position.x:
+		player_sprite.flip_h = true
+		weapon_component.gun_sprite.scale.y = -0.5
+	else:
+		player_sprite.flip_h = false
+		weapon_component.gun_sprite.scale.y = 0.5
+		
+	weapon_component.gun_sprite.look_at(get_global_mouse_position())
+
+
+func _get_input() -> void:
+	if Input.is_action_pressed("fire"):
+		weapon_component.fire_weapon(get_global_mouse_position())
+		
+	if Input.is_action_just_released("reload"):
+		weapon_component.reload_weapon()
+
+
 func _on_hunger_timer_timeout():
-	hunger -= 1
-	print("Hunger: " + str(hunger))
-	$Timers/HungerTimer.start()
+	_hunger -= 1
+	hunger_timer.start()
+
 
 func _on_thirst_timer_timeout():
-	thirst -= 1
-	print("Thirst: " + str(thirst))
-	$Timers/ThirstTimer.start()
+	_thirst -= 1
+	thirst_timer.start()
