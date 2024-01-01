@@ -1,26 +1,26 @@
+class_name DevLevel
 extends Node2D
-
-@onready var tilemap = $TileMap
 
 const MAP_SIZE = Vector2(128, 128)
 const LAND_CAP = 0.1
 
+@onready var tilemap = $TileMap
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_world()
 	
 	for actor in get_tree().get_nodes_in_group("Weapon"):
-		actor.connect("fire", _on_weapon_fired)
+		actor.connect("weapon_fired", _on_weapon_fired)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
+
 func _on_weapon_fired(projectile) -> void:
 	$Projectiles.add_child(projectile)
-	
+
+
 func generate_world() -> void:
 	var noise = FastNoiseLite.new()
 	noise.seed = randi()

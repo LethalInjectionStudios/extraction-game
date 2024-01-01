@@ -3,45 +3,44 @@ extends CharacterBody2D
 signal fire(projectile)
 
 var enteredBody = null
-var fired: bool = false
 var bullet_scene: PackedScene = preload("res://objects/projectiles/bullet.tscn")
-
 var health: int = 100
+
+@onready var character_sprite: Sprite2D = $CharacterSprite
+@onready var weapon_component: WeaponComponent = $WeaponComponent
 
 func _process(delta):
 	if enteredBody != null:
-		#$CharacterSprite/WeaponSprite.look_at(enteredBody.global_position)
+		_update_sprites()
 		
-		if enteredBody.global_position.x < position.x:
-			$CharacterSprite.flip_h = true
-			#$CharacterSprite/WeaponSprite.flip_v = true	
-		else:
-			$CharacterSprite.flip_h = false
-			#$CharacterSprite/WeaponSprite.flip_v = false
-			
-		if not fired:	
-			var bullet = bullet_scene.instantiate() as Projectile
-			var gun_direction = (enteredBody.position - $CharacterSprite/WeaponSprite.global_position).normalized()
-			bullet.global_position = position
-			bullet.global_rotation = $CharacterSprite/WeaponSprite.rotation
-			bullet.direction = gun_direction
-			bullet.ownerActor = self
-			fire.emit(bullet)
-			$AudioStreamPlayer2D.play()
-			fired = true
-			$Timer.start()
+		if weapon_component.magazine_count > 0 and not weapon_component.reload_audio.playing:
+			weapon_component.fire_weapon(enteredBody.position)
 
-func hit() -> void:
+		if weapon_component.magazine_count == 0 and not weapon_component.reload_audio.playing:
+			weapon_component.reload_weapon()
+
+
+func hit(damage, armor_penetration) -> void:
 	health -= 50
 	
 	if health <= 0:
 		queue_free()
 
-func _on_timer_timeout():
-	fired = false
+
+func _update_sprites() -> void:	
+	weapon_component.gun_sprite.look_at(enteredBody.global_position)
+	
+	if enteredBody.global_position.x < position.x:
+		character_sprite.flip_h = true
+		weapon_component.gun_sprite.scale.y = -0.5
+	else:
+		character_sprite.flip_h = false
+		weapon_component.gun_sprite.scale.y = 0.5
+
 
 func _on_area_2d_body_entered(body):
 	enteredBody = body
+
 
 func _on_area_2d_body_exited(body):
 	enteredBody = null

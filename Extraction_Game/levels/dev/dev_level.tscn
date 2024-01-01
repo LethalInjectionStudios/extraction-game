@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://levels/dev/dev_level.gd" id="1_p4cvd"]
 [ext_resource type="Texture2D" uid="uid://14c0gd6wbim7" path="res://_dev/art/dev_tilemap.png" id="2_0775a"]
 [ext_resource type="PackedScene" uid="uid://bjrido4tn0mpu" path="res://characters/player/player.tscn" id="2_sqe81"]
-[ext_resource type="PackedScene" uid="uid://b1cj32ehpe4ue" path="res://characters/npc/dev_dummy/dev_dummy.tscn" id="3_0ism8"]
+[ext_resource type="PackedScene" uid="uid://b1cj32ehpe4ue" path="res://characters/npc/dev_dummy/dev_dummy.tscn" id="4_y11se"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q05g7"]
 texture = ExtResource("2_0775a")
@@ -49,10 +49,5 @@ position = Vector2(185, 141)
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="DevDummy" parent="." instance=ExtResource("3_0ism8")]
-position = Vector2(360, 229)
-
-[node name="DevDummy2" parent="." instance=ExtResource("3_0ism8")]
-position = Vector2(186, 258)
-
-[connection signal="fire" from="Player" to="." method="_on_player_fire"]
+[node name="DevDummy" parent="." instance=ExtResource("4_y11se")]
+position = Vector2(347, 78)
