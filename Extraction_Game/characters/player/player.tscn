@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjrido4tn0mpu"]
+[gd_scene load_steps=6 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_22f01"]
 [ext_resource type="Texture2D" uid="uid://btlsd8f4vno7w" path="res://_dev/art/dev_player.png" id="2_nd5hl"]
 [ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component.tscn" id="4_3pkde"]
+[ext_resource type="PackedScene" uid="uid://bapo66esnpgr5" path="res://interface/heads_up_display.tscn" id="4_yjbq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
 size = Vector2(8, 14)
@@ -37,5 +38,12 @@ metadata/_edit_lock_ = true
 [node name="WeaponComponent" parent="." instance=ExtResource("4_3pkde")]
 position = Vector2(0, 2)
 
+[node name="HeadsUpDisplay" parent="." instance=ExtResource("4_yjbq6")]
+offset_left = -192.0
+offset_top = -108.0
+offset_right = 190.0
+offset_bottom = 108.0
+
+[connection signal="ui_changed" from="." to="HeadsUpDisplay" method="_on_player_ui_changed"]
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]
 [connection signal="timeout" from="Timers/ThirstTimer" to="." method="_on_thirst_timer_timeout"]

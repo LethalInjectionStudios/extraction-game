@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://bapo66esnpgr5"]
+
+[ext_resource type="Script" path="res://interface/heads_up_display.gd" id="1_x2tdc"]
+[ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://_dev/font/slkscr.ttf" id="2_bkdod"]
+
+[node name="HeadsUpDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x2tdc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AmmoText" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -191.0
+offset_top = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_bkdod")
+theme_override_font_sizes/font_size = 16
+text = "<magazine_count / magazine_capacity>"
+horizontal_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 44.0
+offset_bottom = 40.0
+
+[node name="HealthText" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bkdod")
+theme_override_font_sizes/font_size = 16
+text = "<health>"
+
+[node name="HungerText" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bkdod")
+theme_override_font_sizes/font_size = 16
+text = "<hunger>"
+
+[node name="ThristText" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bkdod")
+theme_override_font_sizes/font_size = 16
+text = "<thirst>"
