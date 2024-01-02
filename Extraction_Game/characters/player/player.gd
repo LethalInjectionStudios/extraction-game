@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal ui_changed()
+
 const MAX_HEALTH: int = 100
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
@@ -15,11 +17,14 @@ var _speed: float = 100.0
 @onready var hunger_timer: Timer = $Timers/HungerTimer
 @onready var thirst_timer: Timer = $Timers/ThirstTimer
 @onready var weapon_component: WeaponComponent = $WeaponComponent
+@onready var ui: HeadsUpDisplay = $HeadsUpDisplay
 
 func _ready():
 	_health = MAX_HEALTH
 	_hunger = MAX_HUNGER
 	_thirst = MAX_THIRST
+	
+	ui_changed.emit()
 
 
 func _process(_delta):
@@ -34,7 +39,8 @@ func _physics_process(_delta):
 
 
 func hit(damage, armor_penetration) -> void:
-	pass
+	_health -= damage
+	ui_changed.emit()
 
 
 func _update_sprites() -> void:	
@@ -51,16 +57,20 @@ func _update_sprites() -> void:
 func _get_input() -> void:
 	if Input.is_action_pressed("fire"):
 		weapon_component.fire_weapon(get_global_mouse_position())
+		ui_changed.emit()
 		
 	if Input.is_action_just_released("reload"):
 		weapon_component.reload_weapon()
+		ui_changed.emit()
 
 
 func _on_hunger_timer_timeout():
 	_hunger -= 1
+	ui_changed.emit()
 	hunger_timer.start()
 
 
 func _on_thirst_timer_timeout():
 	_thirst -= 1
+	ui_changed.emit()
 	thirst_timer.start()
