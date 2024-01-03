@@ -6,8 +6,9 @@
 script = ExtResource("1_ewu1r")
 name = "Dev Gun"
 sprite = "res://_dev/art/dev_gun.png"
-rate_of_fire = 0.05
+rate_of_fire = 0.5
 firing_mode = 0
+ammo_type = 0
 stock_position = Vector2(0, 0)
 grip_position = Vector2(0, 0)
 barrel_position = Vector2(0, 0)

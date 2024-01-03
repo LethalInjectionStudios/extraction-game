@@ -2,6 +2,7 @@ class_name WeaponComponent
 extends Node2D
 
 signal weapon_fired(projectile)
+signal noise_emitted(location)
 
 const BULLET_SCENE: PackedScene = preload("res://objects/projectiles/bullet.tscn")
 
@@ -60,6 +61,7 @@ func fire_weapon(target) -> void:
 		
 	if magazine_count > 0:
 		_can_fire = false
+		noise_emitted.emit(global_position)
 		_create_bullet(target)
 	else:
 		if not empty_magazine_audio.playing:

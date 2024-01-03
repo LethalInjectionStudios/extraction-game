@@ -23,4 +23,4 @@ width = 1.0
 width_curve = SubResource("Curve_nytk0")
 script = ExtResource("3_aw0th")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

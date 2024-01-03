@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-signal fire(projectile)
-
 var enteredBody = null
 var bullet_scene: PackedScene = preload("res://objects/projectiles/bullet.tscn")
 var health: int = 100

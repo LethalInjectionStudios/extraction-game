@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dftd2vf2itifk"]
+[gd_scene load_steps=9 format=3 uid="uid://dftd2vf2itifk"]
 
 [ext_resource type="Texture2D" uid="uid://cnrqkss3asie6" path="res://_dev/art/dev_zombie.png" id="1_mwymj"]
+[ext_resource type="Script" path="res://characters/npc/zombie/zombie.gd" id="1_sy7sg"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="2_d0wex"]
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="3_6hq8e"]
+[ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://components/detection_component/detection_component.tscn" id="5_ruhmd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obvnu"]
 size = Vector2(8, 14)
@@ -10,9 +12,13 @@ size = Vector2(8, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4angs"]
 size = Vector2(8, 14)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rswf"]
+radius = 141.089
+
 [node name="Zombie" type="CharacterBody2D"]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_sy7sg")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_obvnu")
@@ -30,3 +36,10 @@ health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 shape = SubResource("RectangleShape2D_4angs")
+
+[node name="DetectionComponent" parent="." instance=ExtResource("5_ruhmd")]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionComponent"]
+shape = SubResource("CircleShape2D_0rswf")

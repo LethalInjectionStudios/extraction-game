@@ -32,7 +32,6 @@ stream = ExtResource("4_6q0ny")
 [node name="Timers" type="Node" parent="."]
 
 [node name="RateOfFire" type="Timer" parent="Timers"]
-wait_time = 0.05
 one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="Timers"]

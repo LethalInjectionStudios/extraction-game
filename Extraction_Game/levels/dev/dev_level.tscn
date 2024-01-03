@@ -50,3 +50,4 @@ position = Vector2(157, 89)
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Zombie" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(310, 139)

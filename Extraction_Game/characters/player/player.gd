@@ -3,11 +3,9 @@ extends CharacterBody2D
 
 signal ui_changed()
 
-const MAX_HEALTH: int = 100
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
 
-var _health: int
 var _hunger: int
 var _thirst: int
 var _inRaid: bool = false
@@ -17,10 +15,10 @@ var _speed: float = 100.0
 @onready var hunger_timer: Timer = $Timers/HungerTimer
 @onready var thirst_timer: Timer = $Timers/ThirstTimer
 @onready var weapon_component: WeaponComponent = $WeaponComponent
+@onready var health_component: HealthComponent = $HealthComponent
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
 
 func _ready():
-	_health = MAX_HEALTH
 	_hunger = MAX_HUNGER
 	_thirst = MAX_THIRST
 	
@@ -37,10 +35,10 @@ func _physics_process(_delta):
 	velocity = direction * _speed
 	move_and_slide()
 
-
-func hit(damage, armor_penetration) -> void:
-	_health -= damage
-	ui_changed.emit()
+#
+#func hit(damage, armor_penetration) -> void:
+	#_health -= damage
+	#ui_changed.emit()
 
 
 func _update_sprites() -> void:	
