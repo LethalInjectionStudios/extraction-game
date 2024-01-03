@@ -13,8 +13,15 @@ func _process(delta):
 	position += direction * speed * delta
 
 
-func _on_body_entered(body):
-	if "hit" in body:
-		if body != owner_actor:
-			body.hit(damage, armor_penetration)
-			queue_free()
+func _on_area_entered(area):
+	if area.get_parent() == owner_actor:
+		return
+	
+	if area is HitBoxComponent:
+		print("HitBoxComponent")
+		if area.get_parent() != owner_actor:
+			var hitbox: HitBoxComponent = area
+			hitbox.hit(self)
+			
+	queue_free()	
+	

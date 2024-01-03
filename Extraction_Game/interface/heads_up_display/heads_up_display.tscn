@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bapo66esnpgr5"]
 
-[ext_resource type="Script" path="res://interface/heads_up_display.gd" id="1_x2tdc"]
+[ext_resource type="Script" path="res://interface/heads_up_display/heads_up_display.gd" id="1_x2tdc"]
 [ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://_dev/font/slkscr.ttf" id="2_bkdod"]
 
 [node name="HeadsUpDisplay" type="Control"]
@@ -50,3 +50,21 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bkdod")
 theme_override_font_sizes/font_size = 16
 text = "<thirst>"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="FPSText" type="Label" parent="CanvasLayer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bkdod")
+text = "<FPS COUNTER>"
+
+[node name="PlayerPosText" type="Label" parent="CanvasLayer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bkdod")
+text = "<PLAYER POSITION>"

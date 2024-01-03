@@ -3,11 +3,9 @@ extends CharacterBody2D
 
 signal ui_changed()
 
-const MAX_HEALTH: int = 100
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
 
-var _health: int
 var _hunger: int
 var _thirst: int
 var _inRaid: bool = false
@@ -17,10 +15,10 @@ var _speed: float = 100.0
 @onready var hunger_timer: Timer = $Timers/HungerTimer
 @onready var thirst_timer: Timer = $Timers/ThirstTimer
 @onready var weapon_component: WeaponComponent = $WeaponComponent
+@onready var health_component: HealthComponent = $HealthComponent
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
 
 func _ready():
-	_health = MAX_HEALTH
 	_hunger = MAX_HUNGER
 	_thirst = MAX_THIRST
 	
@@ -37,21 +35,21 @@ func _physics_process(_delta):
 	velocity = direction * _speed
 	move_and_slide()
 
-
-func hit(damage, armor_penetration) -> void:
-	_health -= damage
-	ui_changed.emit()
+#
+#func hit(damage, armor_penetration) -> void:
+	#_health -= damage
+	#ui_changed.emit()
 
 
 func _update_sprites() -> void:	
 	if get_global_mouse_position().x < position.x:
 		player_sprite.flip_h = true
-		weapon_component.gun_sprite.scale.y = -0.5
+		weapon_component.weapon_sprite.scale.y = -0.5
 	else:
 		player_sprite.flip_h = false
-		weapon_component.gun_sprite.scale.y = 0.5
+		weapon_component.weapon_sprite.scale.y = 0.5
 		
-	weapon_component.gun_sprite.look_at(get_global_mouse_position())
+	weapon_component.weapon_sprite.look_at(get_global_mouse_position())
 
 
 func _get_input() -> void:
@@ -62,6 +60,12 @@ func _get_input() -> void:
 	if Input.is_action_just_released("reload"):
 		weapon_component.reload_weapon()
 		ui_changed.emit()
+		
+	if Input.is_key_pressed(KEY_Q):
+		weapon_component.equip_weapon("res://resources/weapons/dev_gun.tres")
+		
+	if Input.is_key_pressed(KEY_E):
+		weapon_component.unequip_weapon()
 
 
 func _on_hunger_timer_timeout():

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://characters/npc/dev_dummy/dev_dummy.gd" id="1_7yrjl"]
 [ext_resource type="Texture2D" uid="uid://by0lqbv6cnya7" path="res://_dev/art/dev_enemy.png" id="2_hjvni"]
-[ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component.tscn" id="3_go3vs"]
+[ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component/weapon_component.tscn" id="3_go3vs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l4c1"]
 size = Vector2(8, 14)

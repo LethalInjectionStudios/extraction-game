@@ -1,15 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjrido4tn0mpu"]
+[gd_scene load_steps=9 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_22f01"]
 [ext_resource type="Texture2D" uid="uid://btlsd8f4vno7w" path="res://_dev/art/dev_player.png" id="2_nd5hl"]
-[ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component.tscn" id="4_3pkde"]
-[ext_resource type="PackedScene" uid="uid://bapo66esnpgr5" path="res://interface/heads_up_display.tscn" id="4_yjbq6"]
+[ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component/weapon_component.tscn" id="4_3pkde"]
+[ext_resource type="PackedScene" uid="uid://bapo66esnpgr5" path="res://interface/heads_up_display/heads_up_display.tscn" id="4_yjbq6"]
+[ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="5_u3kc5"]
+[ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="6_xtdws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
 size = Vector2(8, 14)
 
-[node name="Player" type="CharacterBody2D"]
-collision_mask = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5stfm"]
+size = Vector2(8, 14)
+
+[node name="Player" type="CharacterBody2D" groups=["Character"]]
+collision_mask = 7
 script = ExtResource("1_22f01")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -43,6 +48,15 @@ offset_left = -192.0
 offset_top = -108.0
 offset_right = 190.0
 offset_bottom = 108.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_u3kc5")]
+MAX_HEALTH = 100
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("6_xtdws")]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("RectangleShape2D_5stfm")
 
 [connection signal="ui_changed" from="." to="HeadsUpDisplay" method="_on_player_ui_changed"]
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]
