@@ -14,7 +14,8 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if "hit" in body:
-		if body != owner_actor:
-			body.hit(damage, armor_penetration)
+	if body is HitBoxComponent:
+		if body.get_parent() != owner_actor:
+			var hit_object : HitBoxComponent = body
+			hit_object.hit(self)
 			queue_free()
