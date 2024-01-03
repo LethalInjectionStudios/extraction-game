@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dftd2vf2itifk"]
+
+[ext_resource type="Texture2D" uid="uid://cnrqkss3asie6" path="res://_dev/art/dev_zombie.png" id="1_mwymj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obvnu"]
+size = Vector2(8, 14)
+
+[node name="Zombie" type="CharacterBody2D"]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_obvnu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_mwymj")
