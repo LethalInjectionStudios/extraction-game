@@ -14,14 +14,9 @@ func _process(delta):
 
 
 func _on_area_entered(area):
-	if area.get_parent() == owner_actor:
-		return
-	
 	if area is HitBoxComponent:
-		print("HitBoxComponent")
 		if area.get_parent() != owner_actor:
 			var hitbox: HitBoxComponent = area
 			hitbox.hit(self)
-			
-	queue_free()	
+			queue_free()	
 	

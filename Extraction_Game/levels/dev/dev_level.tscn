@@ -51,3 +51,45 @@ position = Vector2(157, 89)
 
 [node name="Zombie" parent="." instance=ExtResource("4_hyn2e")]
 position = Vector2(310, 139)
+
+[node name="Zombie2" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(310, 139)
+
+[node name="Zombie3" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(58, 457)
+
+[node name="Zombie4" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(-87, 328)
+
+[node name="Zombie5" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(599, 135)
+
+[node name="Zombie6" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(510, -21)
+
+[node name="Zombie7" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(494, 269)
+
+[node name="Zombie8" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(424, 414)
+
+[node name="Zombie9" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(246, 377)
+
+[node name="Zombie10" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(81, 298)
+
+[node name="Zombie11" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(144, 151)
+
+[node name="Zombie12" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(191, -12)
+
+[node name="Zombie13" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(61, -7)
+
+[node name="Zombie14" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(-31, -10)
+
+[node name="Zombie15" parent="." instance=ExtResource("4_hyn2e")]
+position = Vector2(-23, 182)

@@ -5,6 +5,7 @@ signal ui_changed()
 
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
+const FACTION: Globals.Factions = Globals.Factions.PLAYER
 
 var _hunger: int
 var _thirst: int

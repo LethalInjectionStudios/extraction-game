@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dftd2vf2itifk"]
+[gd_scene load_steps=13 format=3 uid="uid://dftd2vf2itifk"]
 
 [ext_resource type="Texture2D" uid="uid://cnrqkss3asie6" path="res://_dev/art/dev_zombie.png" id="1_mwymj"]
 [ext_resource type="Script" path="res://characters/npc/zombie/zombie.gd" id="1_sy7sg"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="2_d0wex"]
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="3_6hq8e"]
 [ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://components/detection_component/detection_component.tscn" id="5_ruhmd"]
+[ext_resource type="PackedScene" uid="uid://dp6ou45cf0br8" path="res://states/state_machine.tscn" id="6_dm7d5"]
+[ext_resource type="PackedScene" uid="uid://gslebhebt2g5" path="res://states/zombie/idle_zombie.tscn" id="7_p7snb"]
+[ext_resource type="PackedScene" uid="uid://dyepxm8msjib8" path="res://states/zombie/wander_zombie.tscn" id="8_nsnqc"]
+[ext_resource type="PackedScene" uid="uid://dynr6jujjdfll" path="res://states/zombie/follow_zombie.tscn" id="9_jj103"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obvnu"]
 size = Vector2(8, 14)
@@ -19,6 +23,7 @@ radius = 141.089
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_sy7sg")
+move_speed = 25.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_obvnu")
@@ -43,3 +48,17 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionComponent"]
 shape = SubResource("CircleShape2D_0rswf")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_dm7d5")]
+initial_state = NodePath("Idle Zombie")
+
+[node name="Idle Zombie" parent="StateMachine" node_paths=PackedStringArray("detection_component") instance=ExtResource("7_p7snb")]
+detection_component = NodePath("../../DetectionComponent")
+
+[node name="Wander Zombie" parent="StateMachine" node_paths=PackedStringArray("owner_actor", "detection_component") instance=ExtResource("8_nsnqc")]
+owner_actor = NodePath("../..")
+detection_component = NodePath("../../DetectionComponent")
+
+[node name="Follow Zombie" parent="StateMachine" node_paths=PackedStringArray("detection_component", "owning_actor") instance=ExtResource("9_jj103")]
+detection_component = NodePath("../../DetectionComponent")
+owning_actor = NodePath("../..")

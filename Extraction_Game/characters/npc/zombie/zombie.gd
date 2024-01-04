@@ -1,12 +1,12 @@
 class_name Zombie
 extends CharacterBody2D
 
+@export var move_speed: float = 100.0
+
+const faction: Globals.Factions = Globals.Factions.ZOMBIE
+
 var entered_body
 var noise_heard: bool = false
-var direction: Vector2
-var speed: int = 25
-
-@onready var detection_component: DetectionComponent = $DetectionComponent
 
 func _ready():
 	for actor in get_tree().get_nodes_in_group("Weapon"):
@@ -14,16 +14,14 @@ func _ready():
 
 	
 func _process(delta):
-	if not entered_body and not noise_heard:
-		direction = Vector2.ZERO
-		
-	if detection_component.entered_body:
-		direction = (detection_component.entered_body.global_position - position).normalized()
-		
-	velocity = direction * speed
+	pass
+
+	
+func _physics_process(delta):
 	move_and_slide()
 		
 		
 func _on_weapon_fired(location):
-	if not entered_body:
-		direction = (location - position).normalized()
+	pass
+	#if not entered_body:
+		#direction = (location - position).normalized()
