@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyepxm8msjib8"]
+
+[ext_resource type="Script" path="res://states/zombie/wander_zombie.gd" id="1_gxmhp"]
+
+[node name="Wander Zombie" type="Node"]
+script = ExtResource("1_gxmhp")
+
+[node name="WanderTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]

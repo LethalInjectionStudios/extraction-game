@@ -1,12 +1,18 @@
 class_name DetectionComponent
 extends Area2D
 
-var entered_body
+signal actor_entered(actor)
+signal actor_left(actor)
+
+@export var parent: Character
+
 
 func _on_body_entered(body):
-	if body != get_parent():
-		entered_body = body
+	if body != parent:
+		if body is Character:
+			if body.faction != parent.faction:
+				actor_entered.emit(body)
 
 
 func _on_body_exited(body):
-	entered_body = null
+	actor_left.emit(body)

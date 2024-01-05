@@ -13,7 +13,7 @@ func _ready():
 		actor.connect("weapon_fired", _on_weapon_fired)
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -25,7 +25,7 @@ func generate_world() -> void:
 	var noise = FastNoiseLite.new()
 	noise.seed = randi()
 	
-	var cells = []
+	#var cells = []
 	
 	for x in MAP_SIZE.x:
 		for y in MAP_SIZE.y:

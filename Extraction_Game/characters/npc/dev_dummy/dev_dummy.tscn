@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1cj32ehpe4ue"]
+[gd_scene load_steps=8 format=3 uid="uid://b1cj32ehpe4ue"]
 
 [ext_resource type="Script" path="res://characters/npc/dev_dummy/dev_dummy.gd" id="1_7yrjl"]
 [ext_resource type="Texture2D" uid="uid://by0lqbv6cnya7" path="res://_dev/art/dev_enemy.png" id="2_hjvni"]
 [ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component/weapon_component.tscn" id="3_go3vs"]
+[ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="4_i3g8g"]
+[ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="5_n4lio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l4c1"]
 size = Vector2(8, 14)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ldw3c"]
-radius = 157.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_myotb"]
+size = Vector2(8, 14)
 
 [node name="DevDummy" type="CharacterBody2D"]
 collision_layer = 2
@@ -21,13 +23,18 @@ shape = SubResource("RectangleShape2D_7l4c1")
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_hjvni")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_ldw3c")
-
 [node name="WeaponComponent" parent="." instance=ExtResource("3_go3vs")]
 position = Vector2(0, 2)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="Components" type="Node2D" parent="."]
+
+[node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("4_i3g8g")]
+parent = NodePath("../..")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
+shape = SubResource("RectangleShape2D_myotb")
+
+[node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_n4lio")]
+parent = NodePath("../..")
+MAX_HEALTH = 100

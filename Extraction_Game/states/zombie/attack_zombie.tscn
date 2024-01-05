@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cws53007gh2tq"]
+
+[ext_resource type="Script" path="res://states/zombie/attack_zombie.gd" id="1_3kv8j"]
+
+[node name="Attack Zombie" type="Node"]
+script = ExtResource("1_3kv8j")
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
