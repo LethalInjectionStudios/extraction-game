@@ -36,11 +36,9 @@ one_shot = true
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
-
-[node name="WeaponComponent" parent="." instance=ExtResource("4_3pkde")]
-position = Vector2(0, 2)
 
 [node name="HeadsUpDisplay" parent="." instance=ExtResource("4_yjbq6")]
 offset_left = -192.0
@@ -48,13 +46,22 @@ offset_top = -108.0
 offset_right = 190.0
 offset_bottom = 108.0
 
-[node name="HealthComponent" parent="." instance=ExtResource("5_u3kc5")]
+[node name="Components" type="Node2D" parent="."]
+
+[node name="WeaponComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("4_3pkde")]
+position = Vector2(0, 2)
+parent = NodePath("../..")
+
+[node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_u3kc5")]
+parent = NodePath("../..")
 MAX_HEALTH = 100
 
-[node name="HitBoxComponent" parent="." instance=ExtResource("6_xtdws")]
+[node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("6_xtdws")]
 collision_mask = 4
+parent = NodePath("../..")
+health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
 shape = SubResource("RectangleShape2D_5stfm")
 
 [connection signal="ui_changed" from="." to="HeadsUpDisplay" method="_on_player_ui_changed"]

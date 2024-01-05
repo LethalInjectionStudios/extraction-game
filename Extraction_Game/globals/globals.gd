@@ -12,5 +12,6 @@ enum Caliber {
 
 enum Factions {
 	PLAYER,
-	ZOMBIE
+	ZOMBIE,
+	SCAVENGERS
 }

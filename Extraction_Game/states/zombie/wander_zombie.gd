@@ -1,7 +1,7 @@
 class_name WanderZombie
 extends State
 
-@export var owner_actor: CharacterBody2D
+@export var parent: CharacterBody2D
 @export var detection_component: DetectionComponent
 
 var move_direction: Vector2
@@ -19,7 +19,7 @@ func enter():
 
 func exit():
 	wander_timer.stop()
-	owner_actor.velocity = Vector2.ZERO
+	parent.velocity = Vector2.ZERO
 	
 
 func update(delta: float):
@@ -27,8 +27,8 @@ func update(delta: float):
 
 
 func physics_update(delta: float):
-	if owner_actor:
-		owner_actor.velocity = move_direction * owner_actor.move_speed
+	if parent:
+		parent.velocity = move_direction * parent.move_speed
 
 
 func randomize_wander():

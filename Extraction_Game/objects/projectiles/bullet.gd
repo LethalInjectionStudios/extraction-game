@@ -6,7 +6,7 @@ var armor_penetration: int = 0
 var speed: int = 500
 var recoil: int
 var direction: Vector2 = Vector2.UP
-var owner_actor
+var parent
 
 
 func _process(delta):
@@ -15,7 +15,7 @@ func _process(delta):
 
 func _on_area_entered(area):
 	if area is HitBoxComponent:
-		if area.get_parent() != owner_actor:
+		if area.parent != parent:
 			var hitbox: HitBoxComponent = area
 			hitbox.hit(self)
 			queue_free()	

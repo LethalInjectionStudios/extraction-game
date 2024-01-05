@@ -1,4 +1,5 @@
-extends CharacterBody2D
+class_name DevDummy
+extends Character
 
 var enteredBody = null
 var bullet_scene: PackedScene = preload("res://objects/projectiles/bullet.tscn")
@@ -8,7 +9,8 @@ var health: int = 100
 @onready var weapon_component: WeaponComponent = $WeaponComponent
 
 func _ready():
-	pass #weapon_component.equip("res://resources/weapons/dev_gun.tres")
+	faction = Globals.Factions.SCAVENGERS
+	#weapon_component.equip("res://resources/weapons/dev_gun.tres")
 
 func _process(delta):
 	if enteredBody != null:
@@ -21,13 +23,6 @@ func _process(delta):
 			weapon_component.reload_weapon()
 
 
-func hit(damage, armor_penetration) -> void:
-	health -= damage
-	
-	if health <= 0:
-		queue_free()
-
-
 func _update_sprites() -> void:	
 	weapon_component.weapon_sprite.look_at(enteredBody.global_position)
 	
@@ -37,11 +32,3 @@ func _update_sprites() -> void:
 	else:
 		character_sprite.flip_h = false
 		weapon_component.weapon_sprite.scale.y = 0.5
-
-
-func _on_area_2d_body_entered(body):
-	enteredBody = body
-
-
-func _on_area_2d_body_exited(body):
-	enteredBody = null
