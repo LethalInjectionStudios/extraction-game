@@ -7,5 +7,3 @@ script = ExtResource("1_gxmhp")
 
 [node name="WanderTimer" type="Timer" parent="."]
 one_shot = true
-
-[connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://14c0gd6wbim7" path="res://_dev/art/dev_tilemap.png" id="2_0775a"]
 [ext_resource type="PackedScene" uid="uid://bjrido4tn0mpu" path="res://characters/player/player.tscn" id="2_sqe81"]
 [ext_resource type="PackedScene" uid="uid://dftd2vf2itifk" path="res://characters/npc/zombie/zombie.tscn" id="4_hyn2e"]
-[ext_resource type="PackedScene" uid="uid://b1cj32ehpe4ue" path="res://characters/npc/dev_dummy/dev_dummy.tscn" id="5_02qg4"]
+[ext_resource type="PackedScene" uid="uid://c02f4in5i58d0" path="res://characters/npc/enemy_base.tscn" id="5_flx4m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q05g7"]
 texture = ExtResource("2_0775a")
@@ -46,13 +46,13 @@ format = 2
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_sqe81")]
-position = Vector2(289, 229)
+position = Vector2(275, 241)
 
 [node name="Projectiles" type="Node2D" parent="."]
-
-[node name="DevDummy" parent="." instance=ExtResource("5_02qg4")]
-position = Vector2(288, 298)
 
 [node name="Zombie2" parent="." instance=ExtResource("4_hyn2e")]
 position = Vector2(287, 451)
 move_speed = 100.0
+
+[node name="Enemy Base" parent="." instance=ExtResource("5_flx4m")]
+position = Vector2(430, 235)

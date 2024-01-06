@@ -1,0 +1,66 @@
+[gd_scene load_steps=13 format=3 uid="uid://c02f4in5i58d0"]
+
+[ext_resource type="Script" path="res://characters/npc/enemy_base.gd" id="1_1iiva"]
+[ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="2_jcvyi"]
+[ext_resource type="PackedScene" uid="uid://dp6ou45cf0br8" path="res://states/state_machine.tscn" id="2_up2yn"]
+[ext_resource type="Texture2D" uid="uid://by0lqbv6cnya7" path="res://_dev/art/dev_enemy.png" id="2_vg1w8"]
+[ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component/weapon_component.tscn" id="3_l3eid"]
+[ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="4_a2pal"]
+[ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://components/detection_component/detection_component.tscn" id="5_canff"]
+[ext_resource type="PackedScene" uid="uid://b8i8pjaicg6s5" path="res://states/enemy/idle.tscn" id="8_txjwp"]
+[ext_resource type="PackedScene" uid="uid://d107dhbctc3u4" path="res://states/enemy/wander.tscn" id="9_fnlxg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_artlf"]
+size = Vector2(8, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfgd4"]
+size = Vector2(8, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_82km4"]
+radius = 104.043
+
+[node name="Enemy Base" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_1iiva")
+move_speed = 50.0
+faction = 3
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_artlf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_vg1w8")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("2_jcvyi")]
+parent = NodePath("../..")
+MAX_HEALTH = 100
+
+[node name="WeaponComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("3_l3eid")]
+position = Vector2(0, 2)
+parent = NodePath("../..")
+
+[node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("4_a2pal")]
+parent = NodePath("../..")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
+shape = SubResource("RectangleShape2D_hfgd4")
+
+[node name="DetectionComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_canff")]
+parent = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/DetectionComponent"]
+shape = SubResource("CircleShape2D_82km4")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_up2yn")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("detection_component") instance=ExtResource("8_txjwp")]
+detection_component = NodePath("../../Components/DetectionComponent")
+
+[node name="Wander" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("9_fnlxg")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/DetectionComponent")

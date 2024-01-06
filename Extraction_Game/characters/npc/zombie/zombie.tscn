@@ -36,26 +36,6 @@ shape = SubResource("RectangleShape2D_obvnu")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_mwymj")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_dm7d5")]
-initial_state = NodePath("Idle Zombie")
-
-[node name="Idle Zombie" parent="StateMachine" node_paths=PackedStringArray("detection_component") instance=ExtResource("7_p7snb")]
-detection_component = NodePath("../../Components/FollowDetectionComponent")
-
-[node name="Wander Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("8_nsnqc")]
-parent = NodePath("../..")
-detection_component = NodePath("../../Components/FollowDetectionComponent")
-
-[node name="Follow Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component", "fight_component") instance=ExtResource("9_jj103")]
-parent = NodePath("../..")
-detection_component = NodePath("../../Components/FollowDetectionComponent")
-fight_component = NodePath("../../Components/FightDetectionComponent")
-
-[node name="Attack Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("11_q204b")]
-parent = NodePath("../..")
-detection_component = NodePath("../../Components/FightDetectionComponent")
-damage = 50
-
 [node name="Components" type="Node2D" parent="."]
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("2_d0wex")]
@@ -64,7 +44,7 @@ MAX_HEALTH = 100
 
 [node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("3_6hq8e")]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 4
 parent = NodePath("../..")
 health_component = NodePath("../HealthComponent")
 
@@ -86,3 +66,23 @@ parent = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/FightDetectionComponent"]
 shape = SubResource("RectangleShape2D_nq3n4")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_dm7d5")]
+initial_state = NodePath("Idle Zombie")
+
+[node name="Idle Zombie" parent="StateMachine" node_paths=PackedStringArray("detection_component") instance=ExtResource("7_p7snb")]
+detection_component = NodePath("../../Components/FollowDetectionComponent")
+
+[node name="Wander Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("8_nsnqc")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/FollowDetectionComponent")
+
+[node name="Follow Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component", "fight_component") instance=ExtResource("9_jj103")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/FollowDetectionComponent")
+fight_component = NodePath("../../Components/FightDetectionComponent")
+
+[node name="Attack Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("11_q204b")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/FightDetectionComponent")
+damage = 50

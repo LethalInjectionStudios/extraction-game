@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d107dhbctc3u4"]
+
+[ext_resource type="Script" path="res://states/enemy/wander.gd" id="1_whgcu"]
+
+[node name="Wander" type="Node"]
+script = ExtResource("1_whgcu")
+
+[node name="WanderTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]

@@ -11,6 +11,7 @@ enum Caliber {
 }
 
 enum Factions {
+	NONE_ASSIGNED,
 	PLAYER,
 	ZOMBIE,
 	SCAVENGERS

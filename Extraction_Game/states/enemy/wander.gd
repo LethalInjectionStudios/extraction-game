@@ -1,7 +1,7 @@
-class_name WanderZombie
+class_name Wander
 extends State
 
-@export var parent: Zombie
+@export var parent: Character
 @export var detection_component: DetectionComponent
 
 var move_direction: Vector2
@@ -15,6 +15,7 @@ func _ready():
 
 func enter():
 	randomize_wander()
+	print("wander start")
 
 
 func exit():
@@ -43,8 +44,8 @@ func _on_wander_timer_timeout():
 	if rand:
 		randomize_wander()
 	else:
-		transitioned.emit(self, "idle zombie")
+		transitioned.emit(self, "idle")
 		
 
 func _actor_entered_nearby(body):
-	transitioned.emit(self, "follow zombie")
+	pass #transitioned.emit(self, "follow zombie")
