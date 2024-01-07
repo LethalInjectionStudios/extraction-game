@@ -34,7 +34,7 @@ func physics_update(delta: float):
 func randomize_wander():
 	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 	wander_timer.wait_time = randf_range(1, 3)
-	wander_timer.start()
+	#wander_timer.start()
 	
 	
 func _on_wander_timer_timeout():

@@ -11,8 +11,6 @@ func _ready():
 
 func enter():
 	set_wait_timer()
-	idle_timer.start()
-	print("idle start")
 
 
 func exit():

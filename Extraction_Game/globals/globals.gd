@@ -16,3 +16,6 @@ enum Factions {
 	ZOMBIE,
 	SCAVENGERS
 }
+
+var negative_weapon_component_scale: float = -0.5
+var positive_weapon_component_scale: float = 0.5

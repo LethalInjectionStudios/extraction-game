@@ -44,7 +44,6 @@ func _find_closest_target():
 
 func _add_nearby_actor(body):
 	nearby_actors[body.name.to_lower()] = body
-	print(body.name)
 	transitioned.emit(self, "follow zombie")
 	
 func _remove_nearby_actor(body):

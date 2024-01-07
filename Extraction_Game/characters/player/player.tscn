@@ -14,8 +14,9 @@ size = Vector2(8, 14)
 size = Vector2(8, 14)
 
 [node name="Player" type="CharacterBody2D" groups=["Character"]]
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_22f01")
+faction = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wvhi0")
@@ -54,7 +55,7 @@ parent = NodePath("../..")
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_u3kc5")]
 parent = NodePath("../..")
-MAX_HEALTH = 100
+MAX_HEALTH = 1000000
 
 [node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("6_xtdws")]
 collision_mask = 4

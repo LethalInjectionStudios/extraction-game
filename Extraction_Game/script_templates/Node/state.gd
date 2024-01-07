@@ -1,6 +1,8 @@
 #class_name <class_name>
 extends State
 
+@export var parent: #<parent class>
+
 func enter():
 	pass
 

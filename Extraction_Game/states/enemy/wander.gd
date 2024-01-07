@@ -15,7 +15,6 @@ func _ready():
 
 func enter():
 	randomize_wander()
-	print("wander start")
 
 
 func exit():
@@ -48,4 +47,5 @@ func _on_wander_timer_timeout():
 		
 
 func _actor_entered_nearby(body):
-	pass #transitioned.emit(self, "follow zombie")
+	print("Engaged")
+	transitioned.emit(self, "engaged")

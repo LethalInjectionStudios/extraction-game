@@ -44,10 +44,10 @@ func _physics_process(_delta):
 func _update_sprites() -> void:	
 	if get_global_mouse_position().x < position.x:
 		player_sprite.flip_h = true
-		weapon_component.weapon_sprite.scale.y = -0.5
+		weapon_component.weapon_sprite.scale.y = Globals.negative_weapon_component_scale
 	else:
 		player_sprite.flip_h = false
-		weapon_component.weapon_sprite.scale.y = 0.5
+		weapon_component.weapon_sprite.scale.y = Globals.positive_weapon_component_scale
 		
 	weapon_component.weapon_sprite.look_at(get_global_mouse_position())
 

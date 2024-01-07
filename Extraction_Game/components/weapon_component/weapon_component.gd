@@ -12,7 +12,7 @@ var durability: float
 var max_durabiity: float = 100.0
 var weapon_range: int
 var rate_of_fire: float
-var firing_mode
+var firing_mode: Globals.FireMode
 var caliber
 var loaded_ammo
 var accuracy

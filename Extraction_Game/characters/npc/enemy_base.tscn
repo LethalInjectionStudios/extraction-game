@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c02f4in5i58d0"]
+[gd_scene load_steps=14 format=3 uid="uid://c02f4in5i58d0"]
 
 [ext_resource type="Script" path="res://characters/npc/enemy_base.gd" id="1_1iiva"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="2_jcvyi"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://components/detection_component/detection_component.tscn" id="5_canff"]
 [ext_resource type="PackedScene" uid="uid://b8i8pjaicg6s5" path="res://states/enemy/idle.tscn" id="8_txjwp"]
 [ext_resource type="PackedScene" uid="uid://d107dhbctc3u4" path="res://states/enemy/wander.tscn" id="9_fnlxg"]
+[ext_resource type="PackedScene" uid="uid://h5j6ugdpn6l6" path="res://states/enemy/engaged.tscn" id="10_d14tt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_artlf"]
 size = Vector2(8, 14)
@@ -43,6 +44,8 @@ position = Vector2(0, 2)
 parent = NodePath("../..")
 
 [node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("4_a2pal")]
+collision_layer = 2
+collision_mask = 3
 parent = NodePath("../..")
 health_component = NodePath("../HealthComponent")
 
@@ -50,6 +53,8 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("RectangleShape2D_hfgd4")
 
 [node name="DetectionComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_canff")]
+collision_layer = 2
+collision_mask = 3
 parent = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/DetectionComponent"]
@@ -64,3 +69,8 @@ detection_component = NodePath("../../Components/DetectionComponent")
 [node name="Wander" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("9_fnlxg")]
 parent = NodePath("../..")
 detection_component = NodePath("../../Components/DetectionComponent")
+
+[node name="Engaged" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component", "weapon_component") instance=ExtResource("10_d14tt")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/DetectionComponent")
+weapon_component = NodePath("../../Components/WeaponComponent")
