@@ -15,5 +15,5 @@ func update(_delta: float):
 	pass
 
 	
-func process_update(_delta: float):
+func physics_update(_delta: float):
 	pass

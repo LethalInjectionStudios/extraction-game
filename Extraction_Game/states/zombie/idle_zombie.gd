@@ -1,10 +1,10 @@
 class_name IdleZombie
 extends State
 
-@export var detection_component: DetectionComponent
+const WANDER_STATE: String = "wander zombie"
+const FOLLOW_STATE: String = "follow zombie"
 
-var wander_state: String = "wander zombie"
-var follow_state: String = "follow zombie"
+@export var detection_component: DetectionComponent
 
 @onready var idle_timer: Timer = $IdleTimer
 
@@ -34,7 +34,7 @@ func _on_idle_timer_timeout():
 	if rand:
 		set_wait_timer()
 	else:
-		transitioned.emit(self, wander_state)
+		transitioned.emit(self, WANDER_STATE)
 
 
 func set_wait_timer():
@@ -43,4 +43,4 @@ func set_wait_timer():
 	
 
 func _actor_entered_nearby(body):
-	transitioned.emit(self, follow_state)
+	transitioned.emit(self, FOLLOW_STATE)

@@ -1,15 +1,16 @@
 class_name FollowZombie
 extends State
 
+const WANDER_STATE: String = "wander zombie"
+const FOLLOW_STATE: String = "follow zombie"
+const ATTACK_STATE: String = "attack zombie"
+
 @export var parent: Zombie
 @export var detection_component : DetectionComponent
 @export var fight_component : DetectionComponent
 
 var nearby_actors: Dictionary = {}
 var target: Character
-var wander_state: String = "wander zombie"
-var follow_state: String = "follow zombie"
-var attack_state: String = "attack zombie"
 
 func _ready():
 	if detection_component:
@@ -47,20 +48,20 @@ func _find_closest_target():
 			distance = target.position.distance_to(parent.position)
 			
 	if nearby_actors.size() == 0:
-		transitioned.emit(self, wander_state)
+		transitioned.emit(self, WANDER_STATE)
 
 
 func _add_nearby_actor(body):
 	nearby_actors[body.name.to_lower()] = body
-	transitioned.emit(self, follow_state)
+	transitioned.emit(self, FOLLOW_STATE)
 	
 	
 func _remove_nearby_actor(body):
 	nearby_actors.erase(body.name.to_lower())
 	
 	if nearby_actors.size() <= 0:
-		transitioned.emit(self, wander_state)
+		transitioned.emit(self, WANDER_STATE)
 	
 		
 func _fight_nearby_actor(body):
-	transitioned.emit(self, attack_state)
+	transitioned.emit(self, ATTACK_STATE)

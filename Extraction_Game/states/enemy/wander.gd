@@ -1,12 +1,13 @@
 class_name Wander
 extends State
 
+const IDLE_STATE: String = "idle"
+const ENGAGED_STATE: String = "engaged"
+
 @export var parent: Character
 @export var detection_component: DetectionComponent
 
 var move_direction: Vector2
-var idle_state: String = "idle"
-var engaged_state: String = "engaged"
 
 @onready var wander_timer: Timer = $WanderTimer
 
@@ -44,8 +45,8 @@ func _on_wander_timer_timeout():
 	if rand:
 		randomize_wander()
 	else:
-		transitioned.emit(self, idle_state)
+		transitioned.emit(self, IDLE_STATE)
 		
 
 func _actor_entered_nearby(body):
-	transitioned.emit(self, engaged_state)
+	transitioned.emit(self, ENGAGED_STATE)

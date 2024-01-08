@@ -1,6 +1,9 @@
 class_name Engaged
 extends State
 
+const ENGAGED_STATE: String = "engaged"
+const WANDER_STATE: String = "wander"
+
 @export var parent: EnemyBase
 @export var detection_component: DetectionComponent
 @export var weapon_component: WeaponComponent
@@ -9,8 +12,6 @@ var nearby_actors: Dictionary = {}
 var target: Character
 var move_direction: Vector2
 var can_fire: bool = true
-var engaged_state: String = "engaged"
-var wander_state: String = "wander"
 
 @onready var wander_timer: Timer = $Timers/WanderTimer
 @onready var attack_timer: Timer = $Timers/AttackTimer
@@ -50,7 +51,7 @@ func update(_delta):
 		_find_closest_target()
 
 	
-func process_update(_delta):
+func physics_update(_delta):
 	if parent:
 		parent.velocity = move_direction * parent.move_speed
 
@@ -71,12 +72,12 @@ func randomize_wander():
 
 func _add_nearby_actor(body):
 	nearby_actors[body.name.to_lower()] = body
-	transitioned.emit(self, engaged_state)
+	transitioned.emit(self, ENGAGED_STATE)
 
 
 func _remove_nearby_actor(body):
 	nearby_actors.erase(body.name.to_lower())
 	
 	if nearby_actors.size() <= 0:
-		transitioned.emit(self, wander_state)
+		transitioned.emit(self, WANDER_STATE)
 		
