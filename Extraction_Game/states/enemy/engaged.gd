@@ -9,6 +9,8 @@ var nearby_actors: Dictionary = {}
 var target: Character
 var move_direction: Vector2
 var can_fire: bool = true
+var engaged_state: String = "engaged"
+var wander_state: String = "wander"
 
 @onready var wander_timer: Timer = $Timers/WanderTimer
 @onready var attack_timer: Timer = $Timers/AttackTimer
@@ -31,19 +33,20 @@ func exit():
 	
 func update(_delta):
 	if is_instance_valid(target):
-		print("have targeta")
 		if target.position.x < 0:
 			parent.sprite.flip_h = true
-			weapon_component.weapon_sprite.scale.x = Globals.negative_weapon_component_scale
+			weapon_component.weapon_sprite.scale.y = Globals.negative_weapon_component_scale
 		else:
 			parent.sprite.flip_h = false
-			weapon_component.weapon_sprite.scale.x = Globals.positive_weapon_component_scale
+			weapon_component.weapon_sprite.scale.y = Globals.positive_weapon_component_scale
 			
 		weapon_component.weapon_sprite.look_at(target.position)
 		weapon_component.fire_weapon(target.position)
 		
+		if weapon_component.magazine_count == 0:
+			weapon_component.reload_weapon()
+		
 	if !target:
-		print("target not found")
 		_find_closest_target()
 
 	
@@ -59,7 +62,6 @@ func _find_closest_target():
 		if actor.position.distance_to(parent.position):
 			target = actor
 			distance = target.position.distance_to(parent.position)
-	print("Closest Target: " + target.name)
 			
 			
 func randomize_wander():
@@ -68,13 +70,13 @@ func randomize_wander():
 
 
 func _add_nearby_actor(body):
-	print("Adding: " + str(body.name))
 	nearby_actors[body.name.to_lower()] = body
-	transitioned.emit(self, "engaged")
-	
+	transitioned.emit(self, engaged_state)
+
+
 func _remove_nearby_actor(body):
 	nearby_actors.erase(body.name.to_lower())
 	
 	if nearby_actors.size() <= 0:
-		transitioned.emit(self, "wander")
+		transitioned.emit(self, wander_state)
 		

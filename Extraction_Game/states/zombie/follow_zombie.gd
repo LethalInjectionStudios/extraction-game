@@ -7,6 +7,9 @@ extends State
 
 var nearby_actors: Dictionary = {}
 var target: Character
+var wander_state: String = "wander zombie"
+var follow_state: String = "follow zombie"
+var attack_state: String = "attack zombie"
 
 func _ready():
 	if detection_component:
@@ -29,6 +32,7 @@ func update(_delta: float):
 	if !target:
 		_find_closest_target()	
 
+
 func physics_update(_delta: float):
 	if parent and target:
 		parent.velocity = (target.position - parent.position).normalized() * parent.move_speed
@@ -41,16 +45,22 @@ func _find_closest_target():
 		if actor.position.distance_to(parent.position):
 			target = actor
 			distance = target.position.distance_to(parent.position)
+			
+	if nearby_actors.size() == 0:
+		transitioned.emit(self, wander_state)
+
 
 func _add_nearby_actor(body):
 	nearby_actors[body.name.to_lower()] = body
-	transitioned.emit(self, "follow zombie")
+	transitioned.emit(self, follow_state)
+	
 	
 func _remove_nearby_actor(body):
 	nearby_actors.erase(body.name.to_lower())
 	
 	if nearby_actors.size() <= 0:
-		transitioned.emit(self, "wander zombie")
+		transitioned.emit(self, wander_state)
+	
 		
 func _fight_nearby_actor(body):
-	transitioned.emit(self, "attack zombie")
+	transitioned.emit(self, attack_state)

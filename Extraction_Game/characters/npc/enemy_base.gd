@@ -24,6 +24,6 @@ func update_sprites():
 		
 	if $StateMachine.current_state.name.to_lower() != "engaged":
 		if velocity.x < 0:
-			weapon_component.weapon_sprite.scale.x = Globals.negative_weapon_component_scale
+			weapon_component.weapon_sprite.scale.y = Globals.negative_weapon_component_scale
 		if velocity.x > 0:
-			weapon_component.weapon_sprite.scale.x = Globals.positive_weapon_component_scale
+			weapon_component.weapon_sprite.scale.y = Globals.positive_weapon_component_scale

@@ -3,6 +3,9 @@ extends State
 
 @export var detection_component: DetectionComponent
 
+var wander_state: String = "wander zombie"
+var follow_state: String = "follow zombie"
+
 @onready var idle_timer: Timer = $IdleTimer
 
 func _ready():
@@ -31,7 +34,7 @@ func _on_idle_timer_timeout():
 	if rand:
 		set_wait_timer()
 	else:
-		transitioned.emit(self, "wander zombie")
+		transitioned.emit(self, wander_state)
 
 
 func set_wait_timer():
@@ -40,4 +43,4 @@ func set_wait_timer():
 	
 
 func _actor_entered_nearby(body):
-	transitioned.emit(self, "follow zombie")
+	transitioned.emit(self, follow_state)

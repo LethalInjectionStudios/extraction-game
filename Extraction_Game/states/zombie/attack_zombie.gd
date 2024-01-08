@@ -9,6 +9,8 @@ var nearby_actors: Dictionary = {}
 var target: Character
 var can_attack: bool = true
 var hitbox_node_path: String = 'Components/HitBoxComponent'
+var attack_state: String = "attack zombie"
+var wander_state: String = "wander zombie"
 
 @onready var attack_timer: Timer = $AttackTimer
 
@@ -40,8 +42,6 @@ func update(_delta: float):
 			hitbox.zombie_hit(damage)
 			can_attack = false
 			attack_timer.start()
-			print(target.name)
-			print("Zombie Attack")
 				
 
 func physics_update(_delta: float):
@@ -56,14 +56,14 @@ func _pick_random_target():
 
 func _add_nearby_actor(body):
 	nearby_actors[body.name.to_lower()] = body
-	transitioned.emit(self, "attack zombie")
+	transitioned.emit(self, attack_state)
 	
 
 func _remove_nearby_actor(body):
 	nearby_actors.erase(body.name.to_lower())
 	
 	if nearby_actors.size() <= 0:
-		transitioned.emit(self, "follow zombie")
+		transitioned.emit(self, wander_state)
 
 
 func _on_attack_timer_timeout():
