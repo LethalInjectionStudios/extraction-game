@@ -5,7 +5,12 @@ extends Character
 @onready var sprite = $Sprite
 
 func _ready():	
-	weapon_component.equip_weapon("res://resources/weapons/dev_gun.tres")
+	var rand = randi() % 2
+	
+	if rand:
+		weapon_component.equip_weapon("res://resources/weapons/dev_gun.tres")
+	else:
+		weapon_component.equip_weapon("res://resources/weapons/ar.tres")
 
 	
 func _process(_delta):
