@@ -34,7 +34,7 @@ func exit():
 	
 func update(_delta):
 	if is_instance_valid(target):
-		if target.position.x < 0:
+		if target.position.x < parent.position.x:
 			parent.sprite.flip_h = true
 			weapon_component.weapon_sprite.scale.y = Globals.negative_weapon_component_scale
 		else:

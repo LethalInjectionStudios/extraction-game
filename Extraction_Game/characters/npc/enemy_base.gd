@@ -16,14 +16,11 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 
-func update_sprites():
-	if velocity.x < 0:
-		$Sprite.flip_h = true
-	if velocity.x > 0:
-		$Sprite.flip_h = false
-		
-	if $StateMachine.current_state.name.to_lower() != "engaged":
+func update_sprites():			
+	if $StateMachine.current_state.name.to_lower() != "engaged":	
 		if velocity.x < 0:
+			$Sprite.flip_h = true
 			weapon_component.weapon_sprite.scale.y = Globals.negative_weapon_component_scale
 		if velocity.x > 0:
+			$Sprite.flip_h = false
 			weapon_component.weapon_sprite.scale.y = Globals.positive_weapon_component_scale
