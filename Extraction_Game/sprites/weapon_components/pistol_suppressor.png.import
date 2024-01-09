@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbprku8vlbr00"
-path="res://.godot/imported/dev_gun.png-efd2eeb1507a2e9c805bacc42c08f2c8.ctex"
+uid="uid://c2wpevyu1idh4"
+path="res://.godot/imported/pistol_suppressor.png-4852ffde61439bf7951cd891b3c383e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_dev/art/dev_gun.png"
-dest_files=["res://.godot/imported/dev_gun.png-efd2eeb1507a2e9c805bacc42c08f2c8.ctex"]
+source_file="res://sprites/weapon_components/pistol_suppressor.png"
+dest_files=["res://.godot/imported/pistol_suppressor.png-4852ffde61439bf7951cd891b3c383e3.ctex"]
 
 [params]
 

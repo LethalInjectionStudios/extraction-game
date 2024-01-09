@@ -31,7 +31,7 @@ func exit():
 	
 func update(_delta: float):
 	if !target:
-		_find_closest_target()	
+		_find_closest_target()
 
 
 func physics_update(_delta: float):

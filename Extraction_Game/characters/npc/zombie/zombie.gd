@@ -7,7 +7,10 @@ func _ready():
 
 	
 func _process(_delta):
-	pass
+	if velocity.x < 0:
+		$Sprite.flip_h = true
+	if velocity.x > 0:
+		$Sprite.flip_h = false
 
 	
 func _physics_process(_delta):

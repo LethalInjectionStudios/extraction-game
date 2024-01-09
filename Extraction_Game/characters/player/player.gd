@@ -35,11 +35,6 @@ func _physics_process(_delta):
 	velocity = direction * move_speed
 	move_and_slide()
 
-#
-#func hit(damage, armor_penetration) -> void:
-	#_health -= damage
-	#ui_changed.emit()
-
 
 func _update_sprites() -> void:	
 	if get_global_mouse_position().x < position.x:

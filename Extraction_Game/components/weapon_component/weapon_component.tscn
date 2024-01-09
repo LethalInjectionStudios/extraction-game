@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjvu6egrx3dx1"]
 
 [ext_resource type="Script" path="res://components/weapon_component/weapon_component.gd" id="1_a0voh"]
-[ext_resource type="AudioStream" uid="uid://dt424b3ls1plt" path="res://_dev/audio/dev_gunshot.wav" id="2_gu0ph"]
-[ext_resource type="AudioStream" uid="uid://dfo2fwa6ru6dm" path="res://_dev/audio/dev_empty_mag.wav" id="3_7bs6k"]
-[ext_resource type="AudioStream" uid="uid://6l8cccx3mtjr" path="res://_dev/audio/dev_reload.wav" id="4_6q0ny"]
+[ext_resource type="AudioStream" uid="uid://dt424b3ls1plt" path="res://audio/dev_gunshot.wav" id="4_c07hk"]
+[ext_resource type="AudioStream" uid="uid://dfo2fwa6ru6dm" path="res://audio/dev_empty_mag.wav" id="5_l61ex"]
+[ext_resource type="AudioStream" uid="uid://6l8cccx3mtjr" path="res://audio/dev_reload.wav" id="6_6gnoj"]
 
 [node name="WeaponComponent" type="Node2D" groups=["Weapon"]]
 script = ExtResource("1_a0voh")
@@ -12,7 +12,7 @@ script = ExtResource("1_a0voh")
 scale = Vector2(0.5, 0.5)
 
 [node name="MuzzleSprite" type="Sprite2D" parent="GunSprite"]
-position = Vector2(6, -2.5)
+position = Vector2(5.5, -2.5)
 offset = Vector2(3, 0)
 
 [node name="BulletLocation" type="Marker2D" parent="GunSprite"]
@@ -21,13 +21,13 @@ position = Vector2(6, -2.5)
 [node name="Audio" type="Node" parent="."]
 
 [node name="GunshotAudio" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("2_gu0ph")
+stream = ExtResource("4_c07hk")
 
 [node name="EmptyMagazineAudio" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("3_7bs6k")
+stream = ExtResource("5_l61ex")
 
 [node name="ReloadAudio" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("4_6q0ny")
+stream = ExtResource("6_6gnoj")
 
 [node name="Timers" type="Node" parent="."]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://dftd2vf2itifk"]
 
-[ext_resource type="Texture2D" uid="uid://cnrqkss3asie6" path="res://_dev/art/dev_zombie.png" id="1_mwymj"]
 [ext_resource type="Script" path="res://characters/npc/zombie/zombie.gd" id="1_sy7sg"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="2_d0wex"]
+[ext_resource type="Texture2D" uid="uid://xl30b4lhv0aa" path="res://sprites/characters/zombie.png" id="2_rv5qx"]
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="3_6hq8e"]
 [ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://components/detection_component/detection_component.tscn" id="5_ruhmd"]
 [ext_resource type="PackedScene" uid="uid://dp6ou45cf0br8" path="res://states/state_machine.tscn" id="6_dm7d5"]
@@ -34,7 +34,7 @@ faction = 1
 shape = SubResource("RectangleShape2D_obvnu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_mwymj")
+texture = ExtResource("2_rv5qx")
 
 [node name="Components" type="Node2D" parent="."]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bapo66esnpgr5"]
 
 [ext_resource type="Script" path="res://interface/heads_up_display/heads_up_display.gd" id="1_x2tdc"]
-[ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://_dev/font/slkscr.ttf" id="2_bkdod"]
+[ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://font/slkscr.ttf" id="2_bkdod"]
 
 [node name="HeadsUpDisplay" type="Control"]
 layout_mode = 3

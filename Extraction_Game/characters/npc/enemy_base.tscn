@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://c02f4in5i58d0"]
 
 [ext_resource type="Script" path="res://characters/npc/enemy_base.gd" id="1_1iiva"]
+[ext_resource type="Texture2D" uid="uid://dpo32atkvcjv6" path="res://sprites/characters/enemy.png" id="2_3dbfo"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="2_jcvyi"]
 [ext_resource type="PackedScene" uid="uid://dp6ou45cf0br8" path="res://states/state_machine.tscn" id="2_up2yn"]
-[ext_resource type="Texture2D" uid="uid://by0lqbv6cnya7" path="res://_dev/art/dev_enemy.png" id="2_vg1w8"]
 [ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component/weapon_component.tscn" id="3_l3eid"]
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="4_a2pal"]
 [ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://components/detection_component/detection_component.tscn" id="5_canff"]
@@ -31,7 +31,7 @@ faction = 3
 shape = SubResource("RectangleShape2D_artlf")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_vg1w8")
+texture = ExtResource("2_3dbfo")
 
 [node name="Components" type="Node2D" parent="."]
 

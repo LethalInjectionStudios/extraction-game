@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2wpevyu1idh4"
-path="res://.godot/imported/dev_pistol_suppressor.png-9e2cfd9e16a386e1ebc68b3993035383.ctex"
+uid="uid://xl30b4lhv0aa"
+path="res://.godot/imported/zombie.png-f8b39459464d0c70b8b9c5b57fc10052.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_dev/art/dev_pistol_suppressor.png"
-dest_files=["res://.godot/imported/dev_pistol_suppressor.png-9e2cfd9e16a386e1ebc68b3993035383.ctex"]
+source_file="res://sprites/characters/zombie.png"
+dest_files=["res://.godot/imported/zombie.png-f8b39459464d0c70b8b9c5b57fc10052.ctex"]
 
 [params]
 
