@@ -1,8 +1,8 @@
-class_name IdleZombie
+class_name Idle
 extends State
 
-const WANDER_STATE: String = "wander zombie"
-const FOLLOW_STATE: String = "follow zombie"
+const WANDER_STATE: String = "wander"
+const ENGAGED_STATE: String = "engaged"
 
 @export var detection_component: DetectionComponent
 
@@ -43,4 +43,4 @@ func set_wait_timer():
 	
 
 func _actor_entered_nearby(body):
-	transitioned.emit(self, FOLLOW_STATE)
+	transitioned.emit(self, ENGAGED_STATE)

@@ -20,8 +20,8 @@ func damage(projectile: Projectile) -> void:
 	if _health <= 0:
 		parent.queue_free()
 		
-func zombie_damage(damage: int):
-	_health -= damage
+func zombie_damage(_damage: int):
+	_health -= _damage
 	
 	if parent is Player:
 		var player: Player = parent

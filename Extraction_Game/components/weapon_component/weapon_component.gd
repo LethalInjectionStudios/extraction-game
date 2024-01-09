@@ -12,7 +12,7 @@ var durability: float
 var max_durabiity: float = 100.0
 var weapon_range: int
 var rate_of_fire: float
-var firing_mode
+var firing_mode: Globals.FireMode
 var caliber
 var loaded_ammo
 var accuracy
@@ -57,22 +57,21 @@ func _ready():
 
 #TODO: Move bullet creation logic to its own function
 func fire_weapon(target) -> void:
-	if not _can_fire or not weapon:
-		return
-		
-	if magazine_count > 0:
-		_can_fire = false
-		noise_emitted.emit(global_position)
-		_create_bullet(target)
-	else:
-		if not empty_magazine_audio.playing:
-			empty_magazine_audio.play()
+	if _can_fire and weapon:		
+		if magazine_count > 0:
+			_can_fire = false
+			noise_emitted.emit(global_position)
+			_create_bullet(target)
+		else:
+			if not empty_magazine_audio.playing:
+				empty_magazine_audio.play()
 
 
 func equip_weapon(_weapon: String):
 	weapon = load(_weapon) as Weapon
 	weapon_sprite.texture = load(weapon.sprite)
-	rate_of_fire_timer.wait_time = weapon.rate_of_fire
+	rate_of_fire = weapon.rate_of_fire
+	rate_of_fire_timer.wait_time = rate_of_fire
 	
 func unequip_weapon():
 	weapon = null

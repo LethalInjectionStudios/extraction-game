@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_22f01"]
-[ext_resource type="Texture2D" uid="uid://btlsd8f4vno7w" path="res://_dev/art/dev_player.png" id="2_nd5hl"]
+[ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://sprites/characters/player.png" id="2_euh4x"]
 [ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component/weapon_component.tscn" id="4_3pkde"]
 [ext_resource type="PackedScene" uid="uid://bapo66esnpgr5" path="res://interface/heads_up_display/heads_up_display.tscn" id="4_yjbq6"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="5_u3kc5"]
@@ -14,14 +14,15 @@ size = Vector2(8, 14)
 size = Vector2(8, 14)
 
 [node name="Player" type="CharacterBody2D" groups=["Character"]]
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_22f01")
+faction = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wvhi0")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_nd5hl")
+texture = ExtResource("2_euh4x")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -54,7 +55,7 @@ parent = NodePath("../..")
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_u3kc5")]
 parent = NodePath("../..")
-MAX_HEALTH = 100
+MAX_HEALTH = 1000000
 
 [node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("6_xtdws")]
 collision_mask = 4

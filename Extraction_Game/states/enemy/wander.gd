@@ -1,10 +1,10 @@
-class_name WanderZombie
+class_name Wander
 extends State
 
-const IDLE_STATE: String = "idle zombie"
-const FOLLOW_STATE: String = "follow zombie"
+const IDLE_STATE: String = "idle"
+const ENGAGED_STATE: String = "engaged"
 
-@export var parent: Zombie
+@export var parent: Character
 @export var detection_component: DetectionComponent
 
 var move_direction: Vector2
@@ -49,4 +49,4 @@ func _on_wander_timer_timeout():
 		
 
 func _actor_entered_nearby(body):
-	transitioned.emit(self, FOLLOW_STATE)
+	transitioned.emit(self, ENGAGED_STATE)
