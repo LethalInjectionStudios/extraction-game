@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Extraction_Game"
-run/main_scene="res://levels/dev/dev_level.tscn"
+run/main_scene="res://levels/hideout.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -70,6 +70,7 @@ reload={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Projectile"
+2d_physics/layer_4="Enviroment"
 
 [rendering]
 

@@ -17,6 +17,7 @@ var _inRaid: bool = false
 @onready var weapon_component: WeaponComponent = $Components/WeaponComponent
 @onready var health_component: HealthComponent = $Components/HealthComponent
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
+@onready var audio_listener: AudioListener2D = $AudioListener2D
 
 func _ready():
 	_hunger = MAX_HUNGER
@@ -24,8 +25,8 @@ func _ready():
 	
 	ui_changed.emit()
 
-
 func _process(_delta):
+	audio_listener.global_position = global_position
 	_update_sprites()
 	_get_input()
 
@@ -57,7 +58,7 @@ func _get_input() -> void:
 		ui_changed.emit()
 		
 	if Input.is_key_pressed(KEY_Q):
-		weapon_component.equip_weapon("res://resources/weapons/dev_gun.tres")
+		weapon_component.equip_weapon("res://resources/weapons/ar.tres")
 		
 	if Input.is_key_pressed(KEY_E):
 		weapon_component.unequip_weapon()

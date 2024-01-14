@@ -22,6 +22,7 @@ position = Vector2(6, -2.5)
 
 [node name="GunshotAudio" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("4_c07hk")
+max_distance = 50.0
 
 [node name="EmptyMagazineAudio" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("5_l61ex")
