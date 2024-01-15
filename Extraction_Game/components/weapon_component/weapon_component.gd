@@ -45,6 +45,7 @@ var _light_position: Vector2
 @onready var weapon_sprite: Sprite2D = $GunSprite
 @onready var muzzle_sprite: Sprite2D  = $GunSprite/MuzzleSprite
 @onready var bullet_location: Marker2D  = $GunSprite/BulletLocation
+@onready var audio_node: Node2D = $Audio
 @onready var gunshot_audio: AudioStreamPlayer2D = $Audio/GunshotAudio
 @onready var empty_magazine_audio: AudioStreamPlayer2D = $Audio/EmptyMagazineAudio
 @onready var reload_audio: AudioStreamPlayer2D = $Audio/ReloadAudio
@@ -53,6 +54,9 @@ var _light_position: Vector2
 
 func _ready():
 	pass
+
+func _process(delta):
+	audio_node.global_position = owner.global_position
 
 
 #TODO: Move bullet creation logic to its own function

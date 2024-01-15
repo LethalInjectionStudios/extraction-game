@@ -13,10 +13,15 @@ func _process(delta):
 	position += direction * speed * delta
 
 
-func _on_area_entered(area):
+func _on_area_entered(area):	
 	if area is HitBoxComponent:
 		if area.parent != parent:
 			var hitbox: HitBoxComponent = area
 			hitbox.hit(self)
 			queue_free()	
 	
+
+
+func _on_body_entered(body:Node2D):
+	if body.is_in_group("Tilemap"):
+		queue_free()

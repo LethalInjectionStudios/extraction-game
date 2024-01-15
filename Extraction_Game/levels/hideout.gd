@@ -1,10 +1,11 @@
 class_name Hideout
 extends Level
 
-var selected_raid : String = "res://levels/dev/dev_level.tscn"
+var selected_raid : String = "res://levels/forest.tscn"
 
 func _ready():
 	super._ready()
+	audio_listener.make_current()
 
 
 func _process(delta):

@@ -1,6 +1,9 @@
 class_name Level
 extends Node2D
 
+@onready var player : Character = $Player
+@onready var audio_listener : AudioListener2D = $AudioListener
+
 
 func _ready():
 	for weapon in get_tree().get_nodes_in_group("Weapon"):
