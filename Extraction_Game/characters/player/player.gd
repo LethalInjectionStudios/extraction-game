@@ -24,7 +24,6 @@ func _ready():
 	
 	ui_changed.emit()
 
-
 func _process(_delta):
 	_update_sprites()
 	_get_input()
@@ -57,7 +56,7 @@ func _get_input() -> void:
 		ui_changed.emit()
 		
 	if Input.is_key_pressed(KEY_Q):
-		weapon_component.equip_weapon("res://resources/weapons/dev_gun.tres")
+		weapon_component.equip_weapon("res://resources/weapons/ar.tres")
 		
 	if Input.is_key_pressed(KEY_E):
 		weapon_component.unequip_weapon()

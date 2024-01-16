@@ -40,7 +40,7 @@ texture = ExtResource("2_rv5qx")
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("2_d0wex")]
 parent = NodePath("../..")
-MAX_HEALTH = 100
+MAX_HEALTH = 1000000
 
 [node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("3_6hq8e")]
 collision_layer = 2

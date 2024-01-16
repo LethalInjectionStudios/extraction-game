@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://rgumhnym5ugn"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_fwc7w"]
+[ext_resource type="PackedScene" uid="uid://bjrido4tn0mpu" path="res://characters/player/player.tscn" id="2_0xa8u"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_fwc7w")
+
+[node name="TileMap" type="TileMap" parent="." groups=["Tilemap"]]
+format = 2
+
+[node name="POI" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_0xa8u")]
+collision_mask = 11
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="AudioListener" type="AudioListener2D" parent="."]
+current = true

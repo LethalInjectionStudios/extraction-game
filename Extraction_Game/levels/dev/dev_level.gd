@@ -35,3 +35,12 @@ func generate_world() -> void:
 			tilemap.set_cell(0, Vector2(x,y), 0, Vector2(randi_range(0,1),0), 0)
 				
 	#tilemap.set_cells_terrain_connect(0, cells, 0, 0)
+	
+	
+func _load_scene() -> void:	
+		get_tree().change_scene_to_packed(load("res://levels/hideout.tscn"))
+	
+	
+func _on_area_2d_body_entered(body):
+	if body == $Player:
+		call_deferred("_load_scene")

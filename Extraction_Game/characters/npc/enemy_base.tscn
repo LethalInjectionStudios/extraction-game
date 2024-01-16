@@ -37,7 +37,7 @@ texture = ExtResource("2_3dbfo")
 
 [node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("2_jcvyi")]
 parent = NodePath("../..")
-MAX_HEALTH = 100
+MAX_HEALTH = 1000000
 
 [node name="WeaponComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("3_l3eid")]
 position = Vector2(0, 2)
