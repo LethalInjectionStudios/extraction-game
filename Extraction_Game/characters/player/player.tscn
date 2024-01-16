@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjrido4tn0mpu"]
+[gd_scene load_steps=10 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_22f01"]
 [ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://sprites/characters/player.png" id="2_euh4x"]
@@ -6,9 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bapo66esnpgr5" path="res://interface/heads_up_display/heads_up_display.tscn" id="4_yjbq6"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="5_u3kc5"]
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="6_xtdws"]
+[ext_resource type="PackedScene" uid="uid://bvu8recokdwk6" path="res://components/inventory_component/inventory_component.tscn" id="7_gtiva"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
-size = Vector2(8, 14)
+size = Vector2(8, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5stfm"]
 size = Vector2(8, 14)
@@ -19,6 +20,7 @@ script = ExtResource("1_22f01")
 faction = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_wvhi0")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -37,6 +39,7 @@ one_shot = true
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -63,6 +66,9 @@ health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
 shape = SubResource("RectangleShape2D_5stfm")
+
+[node name="InventoryComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("7_gtiva")]
+parent = NodePath("../..")
 
 [connection signal="ui_changed" from="." to="HeadsUpDisplay" method="_on_player_ui_changed"]
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]

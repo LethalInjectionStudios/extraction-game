@@ -5,17 +5,20 @@ signal ui_changed()
 
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
-const FACTION: Globals.Factions = Globals.Factions.PLAYER
+const FACTION: Globals.Faction = Globals.Faction.PLAYER
 
 var _hunger: int
 var _thirst: int
 var _inRaid: bool = false
+
+var test : InventoryItem = InventoryItem.new()
 
 @onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var hunger_timer: Timer = $Timers/HungerTimer
 @onready var thirst_timer: Timer = $Timers/ThirstTimer
 @onready var weapon_component: WeaponComponent = $Components/WeaponComponent
 @onready var health_component: HealthComponent = $Components/HealthComponent
+@onready var inventory_component: InventoryComponent = $Components/InventoryComponent
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
 
 func _ready():
@@ -73,5 +76,5 @@ func _on_thirst_timer_timeout():
 	ui_changed.emit()
 	thirst_timer.start()
 	
-func get_faction() -> Globals.Factions:
+func get_faction() -> Globals.Faction:
 	return FACTION

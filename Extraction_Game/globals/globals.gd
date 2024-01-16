@@ -10,11 +10,16 @@ enum Caliber {
 	SEVEN_SIX_TWO_X_THIRTYNINE_MM
 }
 
-enum Factions {
+enum Faction {
 	NONE_ASSIGNED,
 	PLAYER,
 	ZOMBIE,
 	SCAVENGERS
+}
+
+enum Item_Type {
+	JUNK,
+	WEAPON
 }
 
 var negative_weapon_component_scale: float = -0.5
