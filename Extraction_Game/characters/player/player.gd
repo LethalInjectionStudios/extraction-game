@@ -59,7 +59,12 @@ func _get_input() -> void:
 		ui_changed.emit()
 		
 	if Input.is_key_pressed(KEY_Q):
-		weapon_component.equip_weapon("res://resources/weapons/ar.tres")
+		if inventory_component.inventory.size() > 0:
+			var item = inventory_component.inventory[0]
+			if item.item_type == Globals.Item_Type.WEAPON:
+				var weapon = item as InventoryItemWeapon
+				weapon_component.equip_weapon(weapon)
+				
 		
 	if Input.is_key_pressed(KEY_E):
 		weapon_component.unequip_weapon()

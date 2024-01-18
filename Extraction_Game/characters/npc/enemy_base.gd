@@ -7,10 +7,10 @@ extends Character
 func _ready():	
 	var rand = randi() % 2
 	
-	if rand:
-		weapon_component.equip_weapon("res://resources/weapons/dev_gun.tres")
-	else:
-		weapon_component.equip_weapon("res://resources/weapons/ar.tres")
+	#if rand:
+		#weapons_component.equip_weapon("res://resources/weapons/dev_gun.tres")
+	#else:
+		#weapon_component.equip_weapon("res://resources/weapons/ar.tres")
 
 	
 func _process(_delta):

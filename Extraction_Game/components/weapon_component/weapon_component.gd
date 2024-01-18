@@ -70,16 +70,18 @@ func fire_weapon(target) -> void:
 			if not empty_magazine_audio.playing:
 				empty_magazine_audio.play()
 
-
-func equip_weapon(_weapon: String):
-	weapon = load(_weapon) as Weapon
+	
+func equip_weapon(_weapon: InventoryItemWeapon):
+	weapon = load(_weapon.weapon_resource_path) as Weapon
 	weapon_sprite.texture = load(weapon.sprite)
+	muzzle_sprite.texture = load(_weapon.muzzle)
 	rate_of_fire = weapon.rate_of_fire
 	rate_of_fire_timer.wait_time = rate_of_fire
 	
 func unequip_weapon():
 	weapon = null
 	weapon_sprite.texture = null
+	muzzle_sprite.texture = null
 	rate_of_fire_timer.wait_time = 1.0
 	
 	

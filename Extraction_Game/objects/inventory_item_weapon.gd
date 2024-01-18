@@ -3,6 +3,7 @@ extends InventoryItem
 
 var weapon_resource_path: String
 
+var muzzle: String
 
 
 func _ready():
