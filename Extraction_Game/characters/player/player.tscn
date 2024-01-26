@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjrido4tn0mpu"]
+[gd_scene load_steps=11 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_22f01"]
-[ext_resource type="Texture2D" uid="uid://c4m706srdfd7x" path="res://sprites/characters/player_2.png" id="2_d06cl"]
+[ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://sprites/characters/player.png" id="2_17e6u"]
 [ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component/weapon_component.tscn" id="4_3pkde"]
 [ext_resource type="PackedScene" uid="uid://bapo66esnpgr5" path="res://interface/heads_up_display/heads_up_display.tscn" id="4_yjbq6"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="5_u3kc5"]
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="6_xtdws"]
 [ext_resource type="PackedScene" uid="uid://bvu8recokdwk6" path="res://components/inventory_component/inventory_component.tscn" id="7_gtiva"]
+[ext_resource type="Resource" uid="uid://co8eiy0244g5u" path="res://components/inventory_component/player_inventory.tres" id="8_bim32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
 size = Vector2(8, 9)
@@ -15,7 +16,7 @@ size = Vector2(8, 9)
 size = Vector2(8, 14)
 
 [node name="Player" type="CharacterBody2D" groups=["Character"]]
-collision_mask = 3
+collision_mask = 19
 script = ExtResource("1_22f01")
 faction = 1
 
@@ -24,7 +25,7 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_wvhi0")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_d06cl")
+texture = ExtResource("2_17e6u")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -69,6 +70,7 @@ shape = SubResource("RectangleShape2D_5stfm")
 
 [node name="InventoryComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("7_gtiva")]
 parent = NodePath("../..")
+inventory = ExtResource("8_bim32")
 
 [connection signal="ui_changed" from="." to="HeadsUpDisplay" method="_on_player_ui_changed"]
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]

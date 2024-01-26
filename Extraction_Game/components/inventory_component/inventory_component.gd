@@ -3,14 +3,15 @@ extends Node
 
 @export var parent: Character
 
-var inventory: Array[InventoryItem]
+@export var inventory: Inventory
 
-func get_inventory() -> Array[InventoryItem]:
+func get_inventory() -> Inventory:
 	return inventory
 	
 	
 func _add_to_inventory(item: InventoryItem):
-	inventory.append(item)
+	inventory.inventory.append(item)
+	print(inventory.inventory.size())
 	
 	
 func _remove_from_inventory(item: InventoryItem):

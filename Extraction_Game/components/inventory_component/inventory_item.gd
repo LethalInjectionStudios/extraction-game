@@ -1,5 +1,5 @@
 class_name InventoryItem
-extends Node
+extends Resource
 
 var item_name: String
 var item_type: Globals.Item_Type

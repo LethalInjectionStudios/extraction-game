@@ -26,6 +26,7 @@ func _ready():
 	_thirst = MAX_THIRST
 	
 	ui_changed.emit()
+	_load_character_data()
 
 func _process(_delta):
 	_update_sprites()
@@ -59,15 +60,17 @@ func _get_input() -> void:
 		ui_changed.emit()
 		
 	if Input.is_key_pressed(KEY_Q):
-		if inventory_component.inventory.size() > 0:
-			var item = inventory_component.inventory[0]
+		if inventory_component.inventory.inventory.size() > 0:
+			var item = inventory_component.inventory.inventory[0]
 			if item.item_type == Globals.Item_Type.WEAPON:
 				var weapon = item as InventoryItemWeapon
 				weapon_component.equip_weapon(weapon)
-				
 		
 	if Input.is_key_pressed(KEY_E):
 		weapon_component.unequip_weapon()
+		
+	if Input.is_key_pressed(KEY_P):
+		_save()
 
 
 func _on_hunger_timer_timeout():
@@ -83,3 +86,20 @@ func _on_thirst_timer_timeout():
 	
 func get_faction() -> Globals.Faction:
 	return FACTION
+	
+	
+func _save() -> void:
+	var save_path = "user://inventory.tres"
+	var ok = ResourceSaver.save(inventory_component.inventory, save_path)
+	if not ok:
+		print("Error Saving")
+	else:
+		print("File Saved")
+	
+func _load_character_data():
+	var save_path = "user://inventory.tres"
+	if ResourceLoader.exists(save_path):
+		var inventory = ResourceLoader.load(save_path) as Inventory
+		inventory_component.inventory = inventory
+	return null
+
