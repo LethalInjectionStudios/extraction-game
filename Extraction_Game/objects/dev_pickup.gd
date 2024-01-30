@@ -5,12 +5,14 @@ var item: InventoryItemWeapon = InventoryItemWeapon.new()
 var texture: = "res://sprites/weapon_components/pistol_suppressor.png"
 
 func _ready():
-	item.weapon_resource_path = "res://resources/weapons/ar.tres"
+	item.item_name = "Assault Rifle"
 	item.item_type = Globals.Item_Type.WEAPON
+	item.item_path = "res://resources/weapons/ar.tres"
+
 	item.muzzle = "res://sprites/weapon_components/pistol_suppressor.png"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 

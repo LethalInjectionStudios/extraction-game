@@ -28,6 +28,7 @@ position = Vector2(40, 94)
 
 [node name="Player" parent="." index="3"]
 position = Vector2(209, 179)
+move_speed = null
 
 [node name="Zombie" parent="." index="6" instance=ExtResource("5_m62k7")]
 position = Vector2(304, 106)

@@ -11,10 +11,9 @@ func get_inventory() -> Inventory:
 	
 func _add_to_inventory(item: InventoryItem):
 	inventory.inventory.append(item)
-	print(inventory.inventory.size())
 	
 	
-func _remove_from_inventory(item: InventoryItem):
-	pass
+# func _remove_from_inventory(item: InventoryItem):
+# 	pass
 	
 

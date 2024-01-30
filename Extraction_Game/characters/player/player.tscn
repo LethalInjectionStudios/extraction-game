@@ -18,6 +18,7 @@ size = Vector2(8, 14)
 [node name="Player" type="CharacterBody2D" groups=["Character"]]
 collision_mask = 19
 script = ExtResource("1_22f01")
+move_speed = null
 faction = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -45,10 +46,10 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="HeadsUpDisplay" parent="." instance=ExtResource("4_yjbq6")]
-offset_left = -192.0
-offset_top = -108.0
-offset_right = 190.0
-offset_bottom = 108.0
+offset_left = -253.0
+offset_top = -134.0
+offset_right = 129.0
+offset_bottom = 82.0
 
 [node name="Components" type="Node2D" parent="."]
 

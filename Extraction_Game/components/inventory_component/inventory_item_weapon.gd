@@ -5,11 +5,15 @@ var weapon_resource_path: String
 
 var muzzle: String
 
+func to_dictionary() -> Dictionary:
+	var base_date = super.to_dictionary()
+	base_date["muzzle"] = muzzle
+	return base_date
 
-func _ready():
-	item_type = Globals.Item_Type.WEAPON
+func from_dictionary(data: Dictionary):
+	super.from_dictionary(data)
+	muzzle = data["muzzle"]
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func test():
+	super.test()
+	print("Hello from weapon item")

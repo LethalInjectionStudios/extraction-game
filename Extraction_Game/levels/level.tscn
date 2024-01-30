@@ -13,6 +13,7 @@ format = 2
 
 [node name="Player" parent="." instance=ExtResource("2_0xa8u")]
 collision_mask = 11
+move_speed = null
 
 [node name="Projectiles" type="Node2D" parent="."]
 

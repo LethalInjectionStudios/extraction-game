@@ -9,7 +9,7 @@ const FACTION: Globals.Faction = Globals.Faction.PLAYER
 
 var _hunger: int
 var _thirst: int
-var _inRaid: bool = false
+#var _inRaid: bool = false
 
 var test : InventoryItem = InventoryItem.new()
 
@@ -27,6 +27,7 @@ func _ready():
 	
 	ui_changed.emit()
 	_load_character_data()
+
 
 func _process(_delta):
 	_update_sprites()
@@ -89,17 +90,31 @@ func get_faction() -> Globals.Faction:
 	
 	
 func _save() -> void:
-	var save_path = "user://inventory.tres"
-	var ok = ResourceSaver.save(inventory_component.inventory, save_path)
-	if not ok:
-		print("Error Saving")
-	else:
-		print("File Saved")
+	var save_path = "user://inventory.save"
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+
+	if file:
+		for item in inventory_component.inventory.inventory:
+			if item.item_type == Globals.Item_Type.WEAPON:
+				var save_item = item as InventoryItemWeapon
+				file.store_line(JSON.stringify((save_item.to_dictionary())))
+		file.close()
 	
 func _load_character_data():
-	var save_path = "user://inventory.tres"
-	if ResourceLoader.exists(save_path):
-		var inventory = ResourceLoader.load(save_path) as Inventory
-		inventory_component.inventory = inventory
-	return null
+	inventory_component.inventory.inventory.clear()
+
+	var save_path = "user://inventory.save"
+	var file = FileAccess.open(save_path, FileAccess.READ)
+
+	if file:
+		while file.get_position() < file.get_length():
+			var content = file.get_line()
+			var item_data = JSON.parse_string(content)
+			var _item_instance = null
+			if item_data["item_type"] == Globals.Item_Type.WEAPON:
+				_item_instance = InventoryItemWeapon.new()
+				_item_instance.from_dictionary(item_data)
+				inventory_component._add_to_inventory(_item_instance)
+	else:
+		print("File not found")
 
