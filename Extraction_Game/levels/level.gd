@@ -13,7 +13,7 @@ func _ready():
 		poi.connect("poi_created", _on_poi_created)
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 	
 	

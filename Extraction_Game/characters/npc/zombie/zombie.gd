@@ -3,7 +3,7 @@ extends Character
 
 func _ready():	
 	move_speed = 25.0
-	faction = Globals.Factions.ZOMBIE
+	faction = Globals.Faction.ZOMBIE
 
 	
 func _process(_delta):

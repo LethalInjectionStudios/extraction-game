@@ -50,6 +50,7 @@ format = 2
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_sqe81")]
+move_speed = null
 
 [node name="Projectiles" type="Node2D" parent="."]
 

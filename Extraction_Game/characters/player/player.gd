@@ -5,17 +5,20 @@ signal ui_changed()
 
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
-const FACTION: Globals.Factions = Globals.Factions.PLAYER
+const FACTION: Globals.Faction = Globals.Faction.PLAYER
 
 var _hunger: int
 var _thirst: int
-var _inRaid: bool = false
+#var _inRaid: bool = false
+
+var test : InventoryItem = InventoryItem.new()
 
 @onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var hunger_timer: Timer = $Timers/HungerTimer
 @onready var thirst_timer: Timer = $Timers/ThirstTimer
 @onready var weapon_component: WeaponComponent = $Components/WeaponComponent
 @onready var health_component: HealthComponent = $Components/HealthComponent
+@onready var inventory_component: InventoryComponent = $Components/InventoryComponent
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
 
 func _ready():
@@ -23,6 +26,8 @@ func _ready():
 	_thirst = MAX_THIRST
 	
 	ui_changed.emit()
+	_load_character_data()
+
 
 func _process(_delta):
 	_update_sprites()
@@ -56,10 +61,17 @@ func _get_input() -> void:
 		ui_changed.emit()
 		
 	if Input.is_key_pressed(KEY_Q):
-		weapon_component.equip_weapon("res://resources/weapons/ar.tres")
+		if inventory_component.inventory.inventory.size() > 0:
+			var item = inventory_component.inventory.inventory[0]
+			if item.item_type == Globals.Item_Type.WEAPON:
+				var weapon = item as InventoryItemWeapon
+				weapon_component.equip_weapon(weapon)
 		
 	if Input.is_key_pressed(KEY_E):
 		weapon_component.unequip_weapon()
+		
+	if Input.is_key_pressed(KEY_P):
+		_save()
 
 
 func _on_hunger_timer_timeout():
@@ -73,5 +85,36 @@ func _on_thirst_timer_timeout():
 	ui_changed.emit()
 	thirst_timer.start()
 	
-func get_faction() -> Globals.Factions:
+func get_faction() -> Globals.Faction:
 	return FACTION
+	
+	
+func _save() -> void:
+	var save_path = "user://inventory.save"
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+
+	if file:
+		for item in inventory_component.inventory.inventory:
+			if item.item_type == Globals.Item_Type.WEAPON:
+				var save_item = item as InventoryItemWeapon
+				file.store_line(JSON.stringify((save_item.to_dictionary())))
+		file.close()
+	
+func _load_character_data():
+	inventory_component.inventory.inventory.clear()
+
+	var save_path = "user://inventory.save"
+	var file = FileAccess.open(save_path, FileAccess.READ)
+
+	if file:
+		while file.get_position() < file.get_length():
+			var content = file.get_line()
+			var item_data = JSON.parse_string(content)
+			var _item_instance = null
+			if item_data["item_type"] == Globals.Item_Type.WEAPON:
+				_item_instance = InventoryItemWeapon.new()
+				_item_instance.from_dictionary(item_data)
+				inventory_component._add_to_inventory(_item_instance)
+	else:
+		print("File not found")
+

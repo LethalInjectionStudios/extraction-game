@@ -32,15 +32,15 @@ var foregrip
 var light
 
 var _can_fire: bool = true
-var _stock_position: Vector2
-var _grip_position: Vector2
-var _handguard_position: Vector2
-var _barrel_position: Vector2
-var _magazine_position: Vector2
-var _muzzle_position: Vector2 = Vector2(6, -2.5)
-var _scope_position: Vector2
-var _foregrip_position: Vector2
-var _light_position: Vector2
+# var _stock_position: Vector2
+# var _grip_position: Vector2
+# var _handguard_position: Vector2
+# var _barrel_position: Vector2
+# var _magazine_position: Vector2
+# var _muzzle_position: Vector2 = Vector2(6, -2.5)
+# var _scope_position: Vector2
+# var _foregrip_position: Vector2
+# var _light_position: Vector2
 
 @onready var weapon_sprite: Sprite2D = $GunSprite
 @onready var muzzle_sprite: Sprite2D  = $GunSprite/MuzzleSprite
@@ -55,7 +55,7 @@ var _light_position: Vector2
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	audio_node.global_position = owner.global_position
 
 
@@ -70,16 +70,19 @@ func fire_weapon(target) -> void:
 			if not empty_magazine_audio.playing:
 				empty_magazine_audio.play()
 
-
-func equip_weapon(_weapon: String):
-	weapon = load(_weapon) as Weapon
+	
+func equip_weapon(_weapon: InventoryItemWeapon):
+	weapon = load(_weapon.item_path) as Weapon
 	weapon_sprite.texture = load(weapon.sprite)
+	muzzle_sprite.texture = load(_weapon.muzzle)
 	rate_of_fire = weapon.rate_of_fire
 	rate_of_fire_timer.wait_time = rate_of_fire
+
 	
 func unequip_weapon():
 	weapon = null
 	weapon_sprite.texture = null
+	muzzle_sprite.texture = null
 	rate_of_fire_timer.wait_time = 1.0
 	
 	
