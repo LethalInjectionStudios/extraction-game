@@ -24,7 +24,7 @@ func _ready():
 func enter():
 	_find_closest_target()
 	randomize_wander()
-	attack_timer.wait_time = weapon_component.rate_of_fire
+	#attack_timer.wait_time = weapon_component.rate_of_fire
 
 	
 func exit():
@@ -57,12 +57,12 @@ func physics_update(_delta):
 
 
 func _find_closest_target():
-	var distance = 100000000000
+	var _distance = 100000000000
 	for key in nearby_actors:
 		var actor = nearby_actors[key]
 		if actor.position.distance_to(parent.position):
 			target = actor
-			distance = target.position.distance_to(parent.position)
+			_distance = target.position.distance_to(parent.position)
 			
 			
 func randomize_wander():

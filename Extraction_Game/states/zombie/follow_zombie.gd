@@ -40,12 +40,12 @@ func physics_update(_delta: float):
 	
 	
 func _find_closest_target():
-	var distance = 100000000000
+	var _distance = 100000000000
 	for key in nearby_actors:
 		var actor = nearby_actors[key]
 		if actor.position.distance_to(parent.position):
 			target = actor
-			distance = target.position.distance_to(parent.position)
+			_distance = target.position.distance_to(parent.position)
 			
 	if nearby_actors.size() == 0:
 		transitioned.emit(self, WANDER_STATE)
@@ -63,5 +63,5 @@ func _remove_nearby_actor(body):
 		transitioned.emit(self, WANDER_STATE)
 	
 		
-func _fight_nearby_actor(body):
+func _fight_nearby_actor(_body):
 	transitioned.emit(self, ATTACK_STATE)

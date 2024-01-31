@@ -4,8 +4,9 @@ extends Character
 @onready var weapon_component = $Components/WeaponComponent
 @onready var sprite = $Sprite
 
-func _ready():	
-	var rand = randi() % 2
+func _ready():
+	pass	
+	#var rand = randi() % 2
 	
 	#if rand:
 		#weapons_component.equip_weapon("res://resources/weapons/dev_gun.tres")

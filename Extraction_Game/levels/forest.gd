@@ -12,7 +12,7 @@ func _ready():
 	audio_listener.make_current()
 
 
-func _process(delta):
+func _process(_delta):
 	audio_listener.global_position = player.global_position
 
 

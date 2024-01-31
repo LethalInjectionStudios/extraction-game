@@ -20,11 +20,11 @@ func exit():
 	idle_timer.stop()
 	
 
-func update(delta: float):
+func update(_delta: float):
 	pass
 	
 	
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	pass
 	
 
@@ -42,5 +42,5 @@ func set_wait_timer():
 	idle_timer.start()
 	
 
-func _actor_entered_nearby(body):
+func _actor_entered_nearby(_body):
 	transitioned.emit(self, ENGAGED_STATE)

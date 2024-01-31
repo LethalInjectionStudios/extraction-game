@@ -25,11 +25,11 @@ func exit():
 	parent.velocity = Vector2.ZERO
 	
 
-func update(delta: float):
+func update(_delta: float):
 	pass
 
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	if parent:
 		parent.velocity = move_direction * parent.move_speed
 
@@ -48,5 +48,5 @@ func _on_wander_timer_timeout():
 		transitioned.emit(self, IDLE_STATE)
 		
 
-func _actor_entered_nearby(body):
+func _actor_entered_nearby(_body):
 	transitioned.emit(self, ENGAGED_STATE)
