@@ -13,7 +13,8 @@ func _add_to_inventory(item: InventoryItem):
 	inventory.inventory.append(item)
 	
 	
-# func _remove_from_inventory(item: InventoryItem):
-# 	pass
+func _remove_from_inventory(item: InventoryItem):
+	var item_index = inventory.inventory.find(item)
+	inventory.inventory.remove_at(item_index)
 	
 

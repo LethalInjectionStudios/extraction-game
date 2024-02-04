@@ -2,12 +2,12 @@ class_name DevItemPickup
 extends Node2D
 
 var item: InventoryItemWeapon = InventoryItemWeapon.new()
-var texture: = "res://sprites/weapon_components/pistol_suppressor.png"
 
 func _ready():
 	item.item_name = "Assault Rifle"
 	item.item_type = Globals.Item_Type.WEAPON
 	item.item_path = "res://resources/weapons/ar.tres"
+	item.item_icon = "res://sprites/weapons/assault_rifle.png"
 
 	item.muzzle = "res://sprites/weapon_components/pistol_suppressor.png"
 

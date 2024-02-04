@@ -13,14 +13,10 @@ func _process(_delta):
 	pass
 
 
-func _on_body_entered(_body):
-	pass # Replace with function body.
+func _on_body_entered(body):
+	if body is Player:
+		call_deferred("_load_scene")
 		
 	
 func _load_scene() -> void:
 	get_tree().change_scene_to_packed(load(selected_raid))
-
-func _on_area_2d_body_entered(body):
-	if body is Player:
-		print("Extraction")
-		call_deferred("_load_scene")
