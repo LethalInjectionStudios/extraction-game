@@ -5,10 +5,12 @@ signal equip_weapon(item: InventoryItemWeapon)
 signal unequip_weapon()
 
 @onready var parent: Player = get_parent()
-@onready var player_sprite: Sprite2D = $CanvasLayer/Control/PlayerSprite
 @onready var container: VBoxContainer = $CanvasLayer/Inventory
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var equipped_weapon: InventoryUIButton = $CanvasLayer/EquippedGear/EquippedWeapon
+
+@onready var player_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite
+@onready var weapon_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite/WeaponSprite
 
 
 func _ready():
@@ -17,6 +19,12 @@ func _ready():
 
 func open_inventory():
 	player_sprite.texture = parent.player_sprite.texture
+	
+	if parent.weapon_component.weapon:
+		weapon_sprite.texture = parent.weapon_component.weapon_sprite.texture
+	else:
+		weapon_sprite.texture = null
+		
 
 	var label = Label.new()
 	label.text = "Inventory"

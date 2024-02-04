@@ -4,12 +4,10 @@ extends Node2D
 var item: InventoryItemWeapon = InventoryItemWeapon.new()
 
 func _ready():
-	item.item_name = "Assault Rifle"
+	item.item_name = "Pistol"
 	item.item_type = Globals.Item_Type.WEAPON
-	item.item_path = "res://resources/weapons/ar.tres"
-	item.item_icon = "res://sprites/weapons/assault_rifle.png"
-
-	item.muzzle = "res://sprites/weapon_components/pistol_suppressor.png"
+	item.item_path = "res://resources/weapons/dev_gun.tres"
+	item.item_icon = "res://sprites/weapons/gun.png"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
