@@ -20,7 +20,7 @@ var recoil
 var ergonomics
 var magazine_capacity: int = 30
 var magazine_count: int = 30
-var weapon
+var weapon: Weapon
 var stock
 var grip
 var handguard
@@ -32,6 +32,7 @@ var foregrip
 var light
 
 var _can_fire: bool = true
+var _inventory_item: InventoryItemWeapon
 # var _stock_position: Vector2
 # var _grip_position: Vector2
 # var _handguard_position: Vector2
@@ -59,7 +60,6 @@ func _process(_delta):
 	audio_node.global_position = owner.global_position
 
 
-#TODO: Move bullet creation logic to its own function
 func fire_weapon(target) -> void:
 	if _can_fire and weapon:		
 		if magazine_count > 0:
@@ -72,14 +72,20 @@ func fire_weapon(target) -> void:
 
 	
 func equip_weapon(_weapon: InventoryItemWeapon):
+	if weapon:
+		unequip_weapon()
+	
+	_inventory_item = _weapon
 	weapon = load(_weapon.item_path) as Weapon
 	weapon_sprite.texture = load(weapon.sprite)
-	muzzle_sprite.texture = load(_weapon.muzzle)
+	if _weapon.muzzle:
+		muzzle_sprite.texture = load(_weapon.muzzle)
 	rate_of_fire = weapon.rate_of_fire
 	rate_of_fire_timer.wait_time = rate_of_fire
 
 	
 func unequip_weapon():
+	_inventory_item = null
 	weapon = null
 	weapon_sprite.texture = null
 	muzzle_sprite.texture = null
