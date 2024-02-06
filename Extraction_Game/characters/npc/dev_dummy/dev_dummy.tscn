@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1cj32ehpe4ue"]
 
 [ext_resource type="Script" path="res://characters/npc/dev_dummy/dev_dummy.gd" id="1_7yrjl"]
-[ext_resource type="Texture2D" uid="uid://by0lqbv6cnya7" path="res://_dev/art/dev_enemy.png" id="2_hjvni"]
+[ext_resource type="Texture2D" uid="uid://dpo32atkvcjv6" path="res://sprites/characters/enemy.png" id="2_mbxjd"]
 [ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component/weapon_component.tscn" id="3_go3vs"]
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="4_i3g8g"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="5_n4lio"]
@@ -21,7 +21,7 @@ script = ExtResource("1_7yrjl")
 shape = SubResource("RectangleShape2D_7l4c1")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_hjvni")
+texture = ExtResource("2_mbxjd")
 
 [node name="WeaponComponent" parent="." instance=ExtResource("3_go3vs")]
 position = Vector2(0, 2)
@@ -35,6 +35,4 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
 shape = SubResource("RectangleShape2D_myotb")
 
-[node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_n4lio")]
-parent = NodePath("../..")
-MAX_HEALTH = 100
+[node name="HealthComponent" parent="Components" instance=ExtResource("5_n4lio")]

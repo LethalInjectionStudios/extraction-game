@@ -2,8 +2,8 @@ class_name Zombie
 extends Character
 
 func _ready():	
-	move_speed = 25.0
-	faction = Globals.Faction.ZOMBIE
+	_move_speed = 25.0
+	_faction = Globals.Faction.ZOMBIE
 
 	
 func _process(_delta):

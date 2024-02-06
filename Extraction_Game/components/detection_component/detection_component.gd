@@ -10,7 +10,7 @@ signal actor_left(actor)
 func _on_body_entered(body):
 	if body != parent:
 		if body is Character:
-			if body.faction != parent.faction:
+			if body._faction != parent._faction:
 				actor_entered.emit(body)
 
 

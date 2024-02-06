@@ -13,10 +13,12 @@ func _ready():
 		detection_component.actor_entered.connect(_actor_entered_nearby)
 
 func enter():
+	print("Idle Start")
 	set_wait_timer()
 
 
 func exit():
+	print("Idle Stop")
 	idle_timer.stop()
 	
 

@@ -21,10 +21,12 @@ func _ready():
 		fight_component.actor_entered.connect(_fight_nearby_actor)
 
 func enter():
+	print("Follow Start")
 	_find_closest_target()
 	
 
 func exit():
+	print("Follow End")
 	parent.velocity = Vector2.ZERO
 	target = null
 	
@@ -36,7 +38,7 @@ func update(_delta: float):
 
 func physics_update(_delta: float):
 	if parent and target:
-		parent.velocity = (target.position - parent.position).normalized() * parent.move_speed
+		parent.velocity = (target.position - parent.position).normalized() * parent._move_speed
 	
 	
 func _find_closest_target():
