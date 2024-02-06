@@ -4,8 +4,6 @@ extends Node2D
 signal weapon_fired(projectile)
 signal noise_emitted(location)
 
-@export var parent: Character
-
 const BULLET_SCENE: PackedScene = preload("res://objects/projectiles/bullet.tscn")
 
 var durability: float
@@ -107,7 +105,6 @@ func _create_bullet(target) -> void:
 	bullet.global_position = bullet_location.global_position
 	bullet.global_rotation = weapon_sprite.rotation
 	bullet.direction = weapon_direction
-	bullet.parent = parent
 	weapon_fired.emit(bullet)
 	gunshot_audio.play()
 	rate_of_fire_timer.start()

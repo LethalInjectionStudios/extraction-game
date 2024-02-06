@@ -27,8 +27,6 @@ size = Vector2(10, 16)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_sy7sg")
-move_speed = 25.0
-faction = 1
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_obvnu")
@@ -38,8 +36,7 @@ texture = ExtResource("2_rv5qx")
 
 [node name="Components" type="Node2D" parent="."]
 
-[node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("2_d0wex")]
-parent = NodePath("../..")
+[node name="HealthComponent" parent="Components" instance=ExtResource("2_d0wex")]
 MAX_HEALTH = 1000000
 
 [node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("3_6hq8e")]

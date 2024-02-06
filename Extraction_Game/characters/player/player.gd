@@ -17,9 +17,12 @@ var test : InventoryItem = InventoryItem.new()
 @onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var hunger_timer: Timer = $Timers/HungerTimer
 @onready var thirst_timer: Timer = $Timers/ThirstTimer
+
 @onready var weapon_component: WeaponComponent = $Components/WeaponComponent
 @onready var health_component: HealthComponent = $Components/HealthComponent
 @onready var inventory_component: InventoryComponent = $Components/InventoryComponent
+@onready var hitbox_component: HitBoxComponent = $Components/HitBoxComponent
+
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
 @onready var inventory_ui: InventoryUI = $Inventory
 
@@ -40,19 +43,21 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * move_speed
+	velocity = direction * _move_speed
 	move_and_slide()
 
 
-func _update_sprites() -> void:	
-	if get_global_mouse_position().x < position.x:
-		player_sprite.flip_h = true
-		weapon_component.weapon_sprite.scale.y = Globals.negative_weapon_component_scale
-	else:
-		player_sprite.flip_h = false
-		weapon_component.weapon_sprite.scale.y = Globals.positive_weapon_component_scale
-		
-	weapon_component.weapon_sprite.look_at(get_global_mouse_position())
+func get_faction() -> Globals.Faction:
+	return _faction
+
+
+func _connect_signals() -> void:
+	inventory_ui.connect("weapon_equipped", weapon_component.equip_weapon)
+	inventory_ui.connect("weapon_unequipped", weapon_component.unequip_weapon)
+	hitbox_component.connect("hit_taken", health_component.damage)
+	hitbox_component.connect("zombie_hit_taken", health_component.zombie_damage)
+	health_component.connect("damage_taken", ui.update_display)
+	health_component.connect("destroyed", _player_death)
 
 
 func _get_input() -> void:
@@ -78,6 +83,17 @@ func _get_input() -> void:
 			inventory_ui.close_inventory()
 
 
+func _update_sprites() -> void:	
+	if get_global_mouse_position().x < position.x:
+		player_sprite.flip_h = true
+		weapon_component.weapon_sprite.scale.y = Globals.negative_weapon_component_scale
+	else:
+		player_sprite.flip_h = false
+		weapon_component.weapon_sprite.scale.y = Globals.positive_weapon_component_scale
+		
+	weapon_component.weapon_sprite.look_at(get_global_mouse_position())
+
+
 func _on_hunger_timer_timeout():
 	_hunger -= 1
 	ui_changed.emit()
@@ -88,10 +104,6 @@ func _on_thirst_timer_timeout():
 	_thirst -= 1
 	ui_changed.emit()
 	thirst_timer.start()
-	
-
-func get_faction() -> Globals.Faction:
-	return FACTION
 	
 	
 func _save() -> void:
@@ -125,7 +137,5 @@ func _load_character_data():
 		print("File not found")
 
 
-
-func _connect_signals() -> void:
-	inventory_ui.connect("equip_weapon", weapon_component.equip_weapon)
-	inventory_ui.connect("unequip_weapon", weapon_component.unequip_weapon)
+func _player_death():
+	get_tree().change_scene_to_packed(load("res://levels/hideout.tscn"))

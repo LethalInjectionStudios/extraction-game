@@ -3,6 +3,7 @@ extends State
 
 const ATTACK_STATE: String = "attack zombie"
 const WANDER_STATE: String = "wander zombie"
+const FOLLOW_STATE: String = "follow zombie"
 
 @export var parent: Zombie
 @export var detection_component : DetectionComponent
@@ -22,6 +23,7 @@ func _ready():
 
 
 func enter():
+	print("Attack Start")
 	for actor in detection_component.get_overlapping_bodies():
 		if actor != parent:
 			nearby_actors[actor.name.to_lower()] = actor
@@ -30,6 +32,8 @@ func enter():
 	
 
 func exit():
+	print("Attack End")
+	attack_timer.stop()
 	target = null
 	
 	
@@ -64,7 +68,7 @@ func _remove_nearby_actor(body):
 	nearby_actors.erase(body.name.to_lower())
 	
 	if nearby_actors.size() <= 0:
-		transitioned.emit(self, WANDER_STATE)
+		transitioned.emit(self, FOLLOW_STATE)
 
 
 func _on_attack_timer_timeout():

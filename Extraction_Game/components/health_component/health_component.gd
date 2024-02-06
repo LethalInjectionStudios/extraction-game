@@ -1,8 +1,10 @@
 class_name HealthComponent
 extends Node2D
 
-@export var parent: Character
-@export var MAX_HEALTH: int
+signal damage_taken()
+signal destroyed()
+
+@export var MAX_HEALTH: int = 100
 
 var _health: int
 
@@ -11,21 +13,18 @@ func _ready():
 
 
 func damage(projectile: Projectile) -> void:
-	_health -= projectile.damage
-	
-	if parent is Player:
-		var player: Player = parent
-		player.ui.update_display()
-	
-	if _health <= 0:
-		parent.queue_free()
-		
+	_health -= projectile.damage	
+	check_health()
+
+
 func zombie_damage(_damage: int):
 	_health -= _damage
-	
-	if parent is Player:
-		var player: Player = parent
-		player.ui.update_display()
-	
+	check_health()
+
+
+func check_health():
+	if _health > 0:
+		damage_taken.emit()
+
 	if _health <= 0:
-		parent.queue_free()
+		destroyed.emit()

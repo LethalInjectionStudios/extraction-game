@@ -7,7 +7,7 @@ const FOLLOW_STATE: String = "follow zombie"
 @export var parent: Zombie
 @export var detection_component: DetectionComponent
 
-var move_direction: Vector2
+var _move_direction: Vector2
 
 @onready var wander_timer: Timer = $WanderTimer
 
@@ -17,10 +17,12 @@ func _ready():
 		
 
 func enter():
+	print("Wander Start")
 	randomize_wander()
 
 
 func exit():
+	print("Wander End")
 	wander_timer.stop()
 	parent.velocity = Vector2.ZERO
 	
@@ -31,11 +33,11 @@ func update(_delta: float):
 
 func physics_update(_delta: float):
 	if parent:
-		parent.velocity = move_direction * parent.move_speed
+		parent.velocity = _move_direction * parent._move_speed
 
 
 func randomize_wander():
-	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+	_move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 	wander_timer.wait_time = randf_range(1, 3)
 	
 	

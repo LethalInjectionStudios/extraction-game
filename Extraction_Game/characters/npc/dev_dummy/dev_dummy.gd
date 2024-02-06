@@ -3,16 +3,15 @@ extends Character
 
 var enteredBody = null
 var bullet_scene: PackedScene = preload("res://objects/projectiles/bullet.tscn")
-var health: int = 100
 
 @onready var character_sprite: Sprite2D = $CharacterSprite
 @onready var weapon_component: WeaponComponent = $WeaponComponent
 
 func _ready():
-	faction = Globals.Factions.SCAVENGERS
+	_faction = Globals.Factions.SCAVENGERS
 	#weapon_component.equip("res://resources/weapons/dev_gun.tres")
 
-func _process(delta):
+func _process(_delta):
 	if enteredBody != null:
 		_update_sprites()
 		
