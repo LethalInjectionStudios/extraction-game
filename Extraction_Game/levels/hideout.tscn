@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgx3nex6k6fbw"]
+[gd_scene load_steps=9 format=3 uid="uid://dgx3nex6k6fbw"]
 
 [ext_resource type="PackedScene" uid="uid://rgumhnym5ugn" path="res://levels/level.tscn" id="1_rl74n"]
 [ext_resource type="Script" path="res://levels/hideout.gd" id="2_btv65"]
 [ext_resource type="Texture2D" uid="uid://cfu46nc1stox3" path="res://tilemaps/dev_bunker_tilemap.png" id="3_lumjq"]
 [ext_resource type="PackedScene" uid="uid://dt20ohfksg7as" path="res://objects/dev_pickup.tscn" id="4_apwoy"]
+[ext_resource type="PackedScene" uid="uid://s1jcl8s5r7el" path="res://objects/stash/stash.tscn" id="5_da1ny"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ieb7m"]
 texture = ExtResource("3_lumjq")
@@ -54,7 +55,10 @@ position = Vector2(39, -39)
 [node name="DevPickup4" parent="." index="5" instance=ExtResource("4_apwoy")]
 position = Vector2(-39, -39)
 
-[node name="Player" parent="." index="6"]
+[node name="Stash" parent="Objects" index="0" instance=ExtResource("5_da1ny")]
+position = Vector2(0, -40)
+
+[node name="Player" parent="." index="7"]
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="." index="8"]

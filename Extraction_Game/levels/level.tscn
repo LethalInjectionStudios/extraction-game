@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://rgumhnym5ugn"]
+[gd_scene load_steps=5 format=3 uid="uid://rgumhnym5ugn"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_fwc7w"]
 [ext_resource type="PackedScene" uid="uid://bjrido4tn0mpu" path="res://characters/player/player.tscn" id="2_0xa8u"]
+[ext_resource type="PackedScene" uid="uid://miigpbg6n0xu" path="res://interface/inventory/inventory.tscn" id="3_4to8e"]
+[ext_resource type="PackedScene" uid="uid://lnpyq0wr320h" path="res://interface/inventory/loot_menu.tscn" id="4_re2f6"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_fwc7w")
@@ -11,6 +13,8 @@ format = 2
 
 [node name="POI" type="Node2D" parent="."]
 
+[node name="Objects" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("2_0xa8u")]
 collision_mask = 11
 
@@ -18,3 +22,13 @@ collision_mask = 11
 
 [node name="AudioListener" type="AudioListener2D" parent="."]
 current = true
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Inventory" parent="Menu" instance=ExtResource("3_4to8e")]
+
+[node name="LootMenu" parent="Menu" instance=ExtResource("4_re2f6")]

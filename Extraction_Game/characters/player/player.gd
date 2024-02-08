@@ -2,17 +2,19 @@ class_name Player
 extends Character
 
 signal ui_changed()
+signal inventory_toggled(player: Player)
+signal interacted_with_lootable(player: Player, loot: Loot)
 
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
 const FACTION: Globals.Faction = Globals.Faction.PLAYER
 
+var menu_open = false
+
 var _hunger: int
 var _thirst: int
-#var _inRaid: bool = false
-var _menu_open = false
-
-var test : InventoryItem = InventoryItem.new()
+var _in_raid: bool
+var _interacting_object : Interactable
 
 @onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var hunger_timer: Timer = $Timers/HungerTimer
@@ -22,9 +24,9 @@ var test : InventoryItem = InventoryItem.new()
 @onready var health_component: HealthComponent = $Components/HealthComponent
 @onready var inventory_component: InventoryComponent = $Components/InventoryComponent
 @onready var hitbox_component: HitBoxComponent = $Components/HitBoxComponent
+@onready var interaction_component: DetectionComponent = $Components/InteractionDetectionComponent
 
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
-@onready var inventory_ui: InventoryUI = $Inventory
 
 func _ready():
 	_hunger = MAX_HUNGER
@@ -52,35 +54,37 @@ func get_faction() -> Globals.Faction:
 
 
 func _connect_signals() -> void:
-	inventory_ui.connect("weapon_equipped", weapon_component.equip_weapon)
-	inventory_ui.connect("weapon_unequipped", weapon_component.unequip_weapon)
+	weapon_component.connect("weapon_added_to_inventory", inventory_component._add_to_inventory)
+	weapon_component.connect("weapon_removed_from_inventory", inventory_component._remove_from_inventory)
 	hitbox_component.connect("hit_taken", health_component.damage)
 	hitbox_component.connect("zombie_hit_taken", health_component.zombie_damage)
 	health_component.connect("damage_taken", ui.update_display)
 	health_component.connect("destroyed", _player_death)
+	interaction_component.connect("actor_entered", _start_interacting)
+	interaction_component.connect("actor_left", _stop_interacting)
 
 
 func _get_input() -> void:
-	if Input.is_action_pressed("fire") and !_menu_open:
+	if Input.is_action_pressed("fire") and !menu_open:
 		weapon_component.fire_weapon(get_global_mouse_position())
 		ui_changed.emit()
 		
-	if Input.is_action_just_released("reload") and !_menu_open:
+	if Input.is_action_just_released("reload") and !menu_open:
 		weapon_component.reload_weapon()
 		ui_changed.emit()
 		
 	if Input.is_key_pressed(KEY_P):
 		_save()
 
+	
+	if Input.is_action_just_pressed("interact"):
+		if _interacting_object:
+			if _interacting_object is Loot:
+				var _lootbox = _interacting_object as Loot
+				interacted_with_lootable.emit(self, _lootbox)
+
 	if Input.is_action_just_pressed("inventory"):
-		if !_menu_open:
-			_menu_open = true
-			inventory_ui.show_window()
-			inventory_ui.open_inventory()
-		else:
-			_menu_open = false
-			inventory_ui.hide_window()
-			inventory_ui.close_inventory()
+		inventory_toggled.emit(self)
 
 
 func _update_sprites() -> void:	
@@ -94,15 +98,42 @@ func _update_sprites() -> void:
 	weapon_component.weapon_sprite.look_at(get_global_mouse_position())
 
 
+func _start_interacting(body):
+	if body != self and body is Interactable:
+		_interacting_object = body
+
+
+func _stop_interacting(_body):
+	_interacting_object = null
+
+
+func equip_weapon(weapon: InventoryItemWeapon):
+	weapon_component.equip_weapon(weapon)
+
+
+func unequip_weapon():
+	weapon_component.unequip_weapon()
+
+
+func add_item_to_inventory(item: InventoryItem) -> void:
+	inventory_component._add_to_inventory(item)
+
+
+func remove_item_from_inventory(item: InventoryItem) -> void:
+	inventory_component._remove_from_inventory(item)
+
+
 func _on_hunger_timer_timeout():
-	_hunger -= 1
-	ui_changed.emit()
+	if _in_raid:
+		_hunger -= 1
+		ui_changed.emit()
 	hunger_timer.start()
 
 
 func _on_thirst_timer_timeout():
-	_thirst -= 1
-	ui_changed.emit()
+	if _in_raid:
+		_thirst -= 1
+		ui_changed.emit()
 	thirst_timer.start()
 	
 	

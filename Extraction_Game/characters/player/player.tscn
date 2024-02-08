@@ -1,14 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjrido4tn0mpu"]
+[gd_scene load_steps=13 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_22f01"]
 [ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://sprites/characters/player.png" id="2_17e6u"]
 [ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://components/weapon_component/weapon_component.tscn" id="4_3pkde"]
-[ext_resource type="PackedScene" uid="uid://miigpbg6n0xu" path="res://interface/inventory/inventory.tscn" id="4_ilri6"]
 [ext_resource type="PackedScene" uid="uid://bapo66esnpgr5" path="res://interface/heads_up_display/heads_up_display.tscn" id="4_yjbq6"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://components/health_component/health_component.tscn" id="5_u3kc5"]
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="6_xtdws"]
 [ext_resource type="PackedScene" uid="uid://bvu8recokdwk6" path="res://components/inventory_component/inventory_component.tscn" id="7_gtiva"]
 [ext_resource type="Resource" uid="uid://co8eiy0244g5u" path="res://components/inventory_component/player_inventory.tres" id="8_bim32"]
+[ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://components/detection_component/detection_component.tscn" id="10_26xm4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
 size = Vector2(8, 9)
@@ -16,8 +16,12 @@ size = Vector2(8, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5stfm"]
 size = Vector2(8, 14)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ljbj2"]
+radius = 7.0
+height = 20.0
+
 [node name="Player" type="CharacterBody2D" groups=["Character"]]
-collision_mask = 19
+collision_mask = 51
 script = ExtResource("1_22f01")
 _faction = 1
 
@@ -51,11 +55,6 @@ offset_top = -134.0
 offset_right = 129.0
 offset_bottom = 82.0
 
-[node name="Inventory" parent="." instance=ExtResource("4_ilri6")]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="Components" type="Node2D" parent="."]
 
 [node name="WeaponComponent" parent="Components" instance=ExtResource("4_3pkde")]
@@ -75,6 +74,11 @@ shape = SubResource("RectangleShape2D_5stfm")
 [node name="InventoryComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("7_gtiva")]
 parent = NodePath("../..")
 inventory = ExtResource("8_bim32")
+
+[node name="InteractionDetectionComponent" parent="Components" instance=ExtResource("10_26xm4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/InteractionDetectionComponent"]
+shape = SubResource("CapsuleShape2D_ljbj2")
 
 [connection signal="ui_changed" from="." to="HeadsUpDisplay" method="_on_player_ui_changed"]
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]
