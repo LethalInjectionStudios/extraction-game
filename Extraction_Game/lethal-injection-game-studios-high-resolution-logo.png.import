@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0ig1n17wo057"
-path="res://.godot/imported/lethal-injection-games-high-resolution-logo.png-4c8cb3afa9a1793733bfb9942db25e0e.ctex"
+uid="uid://qyys6n1h63gb"
+path="res://.godot/imported/lethal-injection-game-studios-high-resolution-logo.png-9ea62e23aa09c1c2c85f6122bee20ab8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lethal-injection-games-high-resolution-logo.png"
-dest_files=["res://.godot/imported/lethal-injection-games-high-resolution-logo.png-4c8cb3afa9a1793733bfb9942db25e0e.ctex"]
+source_file="res://lethal-injection-game-studios-high-resolution-logo.png"
+dest_files=["res://.godot/imported/lethal-injection-game-studios-high-resolution-logo.png-9ea62e23aa09c1c2c85f6122bee20ab8.ctex"]
 
 [params]
 

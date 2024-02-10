@@ -13,8 +13,8 @@ config_version=5
 config/name="Extraction_Game"
 run/main_scene="res://levels/hideout.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/image="res://lethal-injection-games-high-resolution-logo.png"
-config/icon="res://lethal-injection-games-favicon-color.png"
+boot_splash/image="res://lethal-injection-game-studios-high-resolution-logo.png"
+config/icon="res://lethal-injection-game-studios-high-resolution-logo-transparent.png"
 
 [autoload]
 
