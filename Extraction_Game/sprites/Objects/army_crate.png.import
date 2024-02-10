@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0ig1n17wo057"
-path="res://.godot/imported/lethal-injection-games-high-resolution-logo.png-4c8cb3afa9a1793733bfb9942db25e0e.ctex"
+uid="uid://ddkdwvt4fc4nr"
+path="res://.godot/imported/army_crate.png-d8f5cfbf605612768a37f8b60b71a65a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lethal-injection-games-high-resolution-logo.png"
-dest_files=["res://.godot/imported/lethal-injection-games-high-resolution-logo.png-4c8cb3afa9a1793733bfb9942db25e0e.ctex"]
+source_file="res://sprites/Objects/army_crate.png"
+dest_files=["res://.godot/imported/army_crate.png-d8f5cfbf605612768a37f8b60b71a65a.ctex"]
 
 [params]
 

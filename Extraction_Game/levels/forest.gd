@@ -8,8 +8,13 @@ const LAND_CAP = 0.1
 
 func _ready():
 	super._ready()
+	_connect_signals()
 	generate_world()
 	audio_listener.make_current()
+
+
+func _connect_signals() -> void:
+	super._connect_signals()
 
 
 func _process(_delta):

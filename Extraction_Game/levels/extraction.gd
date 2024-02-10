@@ -15,6 +15,10 @@ func _process(_delta):
 
 func _on_body_entered(body):
 	if body is Player:
+		var _player = body as Player
+		if _player.weapon_component.weapon:
+			_player.unequip_weapon()
+		_player._save()
 		call_deferred("_load_scene")
 		
 	

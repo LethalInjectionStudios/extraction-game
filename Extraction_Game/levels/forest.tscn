@@ -25,7 +25,7 @@ tile_set = SubResource("TileSet_hf26m")
 [node name="Extraction" parent="Extractions" index="0" instance=ExtResource("6_7u723")]
 position = Vector2(40, 94)
 
-[node name="Player" parent="." index="3"]
+[node name="Player" parent="." index="4"]
 position = Vector2(209, 179)
 
 [node name="Zombie" parent="." index="6" instance=ExtResource("5_m62k7")]

@@ -3,6 +3,8 @@ extends Node2D
 
 signal weapon_fired(projectile)
 signal noise_emitted(location)
+signal weapon_added_to_inventory(weapon: InventoryItemWeapon)
+signal weapon_removed_from_inventory(weapon: InventoryComponent)
 
 const BULLET_SCENE: PackedScene = preload("res://objects/projectiles/bullet.tscn")
 
@@ -73,6 +75,7 @@ func equip_weapon(_weapon: InventoryItemWeapon):
 	if weapon:
 		unequip_weapon()
 	
+	weapon_removed_from_inventory.emit(_weapon)
 	_inventory_item = _weapon
 	weapon = load(_weapon.item_path) as Weapon
 	weapon_sprite.texture = load(weapon.sprite)
@@ -83,6 +86,7 @@ func equip_weapon(_weapon: InventoryItemWeapon):
 
 	
 func unequip_weapon():
+	weapon_added_to_inventory.emit(_inventory_item)
 	_inventory_item = null
 	weapon = null
 	weapon_sprite.texture = null
