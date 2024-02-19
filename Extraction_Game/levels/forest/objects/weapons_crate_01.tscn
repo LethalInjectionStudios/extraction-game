@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmbet5yq7ojww"]
+
+[ext_resource type="PackedScene" uid="uid://bc2dvwv57unpv" path="res://objects/interactable/random_lootable.tscn" id="1_jc6yx"]
+[ext_resource type="Texture2D" uid="uid://dmqvrigirf1fn" path="res://levels/forest/spritesheets/army_camp.png" id="2_3vqge"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puonk"]
+atlas = ExtResource("2_3vqge")
+region = Rect2(32, 48, 32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6udkl"]
+size = Vector2(32, 16)
+
+[node name="WeaponsCrate" instance=ExtResource("1_jc6yx")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_puonk")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_6udkl")

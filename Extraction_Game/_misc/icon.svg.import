@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkdwvt4fc4nr"
-path="res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"
+uid="uid://1x8iunp515ge"
+path="res://.godot/imported/icon.svg-515b579a3b680554532a9d9650d3e8a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/army_crate.png"
-dest_files=["res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"]
+source_file="res://_misc/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-515b579a3b680554532a9d9650d3e8a8.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

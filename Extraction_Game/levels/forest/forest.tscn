@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7a54rewno75x"]
+
+[ext_resource type="PackedScene" uid="uid://rgumhnym5ugn" path="res://levels/_base/level.tscn" id="1_4akbe"]
+[ext_resource type="Script" path="res://levels/forest/forest.gd" id="2_x65p0"]
+[ext_resource type="Texture2D" uid="uid://14c0gd6wbim7" path="res://tilemaps/dev_tilemap.png" id="3_7tjwt"]
+[ext_resource type="PackedScene" uid="uid://dftd2vf2itifk" path="res://characters/npc/zombie/zombie.tscn" id="5_m62k7"]
+[ext_resource type="PackedScene" uid="uid://cmln60m2krjjt" path="res://levels/_base/extraction.tscn" id="6_7u723"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvdaq"]
+texture = ExtResource("3_7tjwt")
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hf26m"]
+sources/0 = SubResource("TileSetAtlasSource_xvdaq")
+
+[node name="Level" instance=ExtResource("1_4akbe")]
+z_as_relative = false
+script = ExtResource("2_x65p0")
+metadata/_edit_lock_ = true
+
+[node name="TileMap" parent="." index="0"]
+tile_set = SubResource("TileSet_hf26m")
+metadata/_edit_lock_ = true
+
+[node name="Extractions" type="Node2D" parent="." index="1"]
+metadata/_edit_lock_ = true
+
+[node name="Extraction" parent="Extractions" index="0" instance=ExtResource("6_7u723")]
+position = Vector2(40, 94)
+
+[node name="POI" parent="." index="2"]
+metadata/_edit_lock_ = true
+
+[node name="Scenery" parent="." index="4"]
+z_as_relative = false
+
+[node name="Projectiles" parent="." index="5"]
+metadata/_edit_lock_ = true
+
+[node name="Zombie" parent="." index="6" instance=ExtResource("5_m62k7")]
+position = Vector2(424, 131)
+
+[node name="AudioListener" parent="." index="7"]
+metadata/_edit_lock_ = true
+
+[node name="Menu" parent="." index="8"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Inventory" parent="Menu" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="LootMenu" parent="Menu" index="1"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints" index="0"]
+position = Vector2(96, 57)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkdwvt4fc4nr"
-path="res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"
+uid="uid://dmqvrigirf1fn"
+path="res://.godot/imported/army_camp.png-663122fe58e2d3e3aeb51967a228d6cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/army_crate.png"
-dest_files=["res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"]
+source_file="res://levels/forest/spritesheets/army_camp.png"
+dest_files=["res://.godot/imported/army_camp.png-663122fe58e2d3e3aeb51967a228d6cf.ctex"]
 
 [params]
 

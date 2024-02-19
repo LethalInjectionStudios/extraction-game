@@ -22,10 +22,8 @@ radius = 104.043
 
 [node name="Enemy Base" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 15
 script = ExtResource("1_1iiva")
-move_speed = 50.0
-faction = 3
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_artlf")
@@ -35,13 +33,11 @@ texture = ExtResource("2_3dbfo")
 
 [node name="Components" type="Node2D" parent="."]
 
-[node name="HealthComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("2_jcvyi")]
-parent = NodePath("../..")
+[node name="HealthComponent" parent="Components" instance=ExtResource("2_jcvyi")]
 MAX_HEALTH = 1000000
 
-[node name="WeaponComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("3_l3eid")]
+[node name="WeaponComponent" parent="Components" instance=ExtResource("3_l3eid")]
 position = Vector2(0, 2)
-parent = NodePath("../..")
 
 [node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("4_a2pal")]
 collision_layer = 2
@@ -52,10 +48,9 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
 shape = SubResource("RectangleShape2D_hfgd4")
 
-[node name="DetectionComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_canff")]
+[node name="DetectionComponent" parent="Components" instance=ExtResource("5_canff")]
 collision_layer = 2
 collision_mask = 3
-parent = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/DetectionComponent"]
 shape = SubResource("CircleShape2D_82km4")

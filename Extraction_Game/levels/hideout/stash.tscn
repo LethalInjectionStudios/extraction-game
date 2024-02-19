@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvmvpvrkv07j1"]
+
+[ext_resource type="PackedScene" uid="uid://chugnt2esttqd" path="res://objects/interactable/lootable.tscn" id="1_x6chj"]
+[ext_resource type="Texture2D" uid="uid://ddkdwvt4fc4nr" path="res://sprites/objects/army_crate.png" id="2_1227d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j2ad"]
+size = Vector2(32, 16)
+
+[node name="Stash" instance=ExtResource("1_x6chj")]
+collision_layer = 9
+collision_mask = 15
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_1227d")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_0j2ad")
