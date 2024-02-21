@@ -1,0 +1,151 @@
+[gd_scene load_steps=12 format=3 uid="uid://bdu8juv6et4g"]
+
+[ext_resource type="PackedScene" uid="uid://dcl4tdb6fvlkp" path="res://objects/poi.tscn" id="1_nvvdf"]
+[ext_resource type="Script" path="res://levels/forest/poi/army_camp.gd" id="2_2y7yx"]
+[ext_resource type="Texture2D" uid="uid://dmqvrigirf1fn" path="res://levels/forest/spritesheets/army_camp.png" id="2_kc6th"]
+[ext_resource type="PackedScene" uid="uid://cmbet5yq7ojww" path="res://levels/forest/objects/weapons_crate_01.tscn" id="3_vn8qn"]
+[ext_resource type="PackedScene" uid="uid://b2ous8w7xxvxh" path="res://objects/scenery/sandbag.tscn" id="4_ro6bi"]
+[ext_resource type="PackedScene" uid="uid://bur48tdj8wnns" path="res://characters/npc/military/military_grunt.tscn" id="6_sw8nv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx6jw"]
+size = Vector2(160, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gt1w"]
+size = Vector2(32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyoru"]
+atlas = ExtResource("2_kc6th")
+region = Rect2(48, 0, 32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct5ie"]
+size = Vector2(48, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tqy0"]
+atlas = ExtResource("2_kc6th")
+region = Rect2(0, 0, 48, 48)
+
+[node name="ArmyCamp" instance=ExtResource("1_nvvdf")]
+script = ExtResource("2_2y7yx")
+
+[node name="Area2D" parent="." index="0"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_bx6jw")
+
+[node name="Tent" type="StaticBody2D" parent="." index="1"]
+position = Vector2(1, 0)
+collision_layer = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tent" index="0"]
+position = Vector2(38, -22.5)
+shape = SubResource("RectangleShape2D_4gt1w")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tent" index="1"]
+position = Vector2(38, -30)
+texture = SubResource("AtlasTexture_fyoru")
+
+[node name="Tent2" type="StaticBody2D" parent="." index="2"]
+position = Vector2(34, 0)
+collision_layer = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tent2" index="0"]
+position = Vector2(38, -22.5)
+shape = SubResource("RectangleShape2D_4gt1w")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tent2" index="1"]
+position = Vector2(38, -30)
+texture = SubResource("AtlasTexture_fyoru")
+
+[node name="WatchTower" type="StaticBody2D" parent="." index="3"]
+scale = Vector2(1, 0.996332)
+collision_layer = 8
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WatchTower" index="0"]
+position = Vector2(-30, -20)
+shape = SubResource("RectangleShape2D_ct5ie")
+
+[node name="Sprite2D" type="Sprite2D" parent="WatchTower" index="1"]
+position = Vector2(-30, -30)
+texture = SubResource("AtlasTexture_2tqy0")
+
+[node name="WeaponsCrate" parent="." index="4" instance=ExtResource("3_vn8qn")]
+position = Vector2(14, -22)
+rotation = 1.5708
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sandbag" parent="." index="5" instance=ExtResource("4_ro6bi")]
+position = Vector2(-51, 10)
+rotation = 3.14159
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sandbag2" parent="." index="6" instance=ExtResource("4_ro6bi")]
+position = Vector2(-51, 42)
+rotation = 3.14159
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sandbag3" parent="." index="7" instance=ExtResource("4_ro6bi")]
+position = Vector2(-32, 55)
+rotation = 1.5708
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sandbag5" parent="." index="8" instance=ExtResource("4_ro6bi")]
+position = Vector2(34, 55)
+rotation = 1.5708
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sandbag6" parent="." index="9" instance=ExtResource("4_ro6bi")]
+position = Vector2(66, 55)
+rotation = 1.5708
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sandbag7" parent="." index="10" instance=ExtResource("4_ro6bi")]
+position = Vector2(85, 10)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sandbag8" parent="." index="11" instance=ExtResource("4_ro6bi")]
+position = Vector2(85, 42)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="SpawnPoints" type="Node2D" parent="." index="12"]
+metadata/_edit_lock_ = true
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints" index="0"]
+position = Vector2(-36, 24)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints" index="1"]
+position = Vector2(-14, 40)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints" index="2"]
+position = Vector2(-13, 3)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPoints" index="3"]
+position = Vector2(52, 2)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPoints" index="4"]
+position = Vector2(70, 22)
+
+[node name="Marker2D6" type="Marker2D" parent="SpawnPoints" index="5"]
+position = Vector2(44, 40)
+
+[node name="Marker2D7" type="Marker2D" parent="SpawnPoints" index="6"]
+position = Vector2(14, 21)
+
+[node name="Enemy Base" parent="." index="13" instance=ExtResource("6_sw8nv")]
+position = Vector2(-6, 21)

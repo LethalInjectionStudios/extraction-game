@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="Extraction_Game"
-run/main_scene="res://levels/hideout.tscn"
+config/version="0.0.1"
+run/main_scene="res://levels/hideout/hideout.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/image="res://misc/lethal-injection-game-studios-high-resolution-logo.png"
-config/icon="res://misc/lethal-injection-game-studios-high-resolution-logo-transparent.png"
+boot_splash/image="res://_misc/logo_highres.png"
+config/icon="res://_misc/logo_profile.png"
 
 [autoload]
 
@@ -22,6 +23,8 @@ Globals="*res://globals/globals.gd"
 
 [debug]
 
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
 shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
 
 [display]
@@ -87,8 +90,9 @@ interact={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Projectile"
-2d_physics/layer_4="Enviroment"
+2d_physics/layer_4="Environment"
 2d_physics/layer_5="Extraction"
+2d_physics/layer_6="POI"
 
 [rendering]
 

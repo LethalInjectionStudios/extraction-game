@@ -14,7 +14,8 @@ enum Faction {
 	NONE_ASSIGNED,
 	PLAYER,
 	ZOMBIE,
-	SCAVENGERS
+	SCAVENGERS,
+	MILITARY
 }
 
 enum Item_Type {

@@ -18,7 +18,7 @@ func _ready():
 	_setup_signals()
 
 
-func _toggle_loot_menu(player: Player, lootbox: Loot) -> void:
+func _toggle_loot_menu(player: Player, lootbox: Lootable) -> void:
 
 	if !_is_menu_open:
 		_lootbox = lootbox.get_path()
@@ -37,11 +37,11 @@ func _setup_signals() -> void:
 	pass
 
 
-func _open_menu(player: Player, lootbox: Loot) -> void:
+func _open_menu(player: Player, lootbox: Lootable) -> void:
 	var player_label = Label.new()
 	player_label.text = "Inventory"
 	player_container.add_child(player_label)
-	for item in player.inventory_component.inventory.inventory:
+	for item in player.inventory_component.inventory:
 		var button = InventoryUIButton.new()
 		button.text = item.item_name
 		button.item = item
@@ -52,7 +52,7 @@ func _open_menu(player: Player, lootbox: Loot) -> void:
 	var lootbox_label = Label.new()
 	lootbox_label.text = "Loot Box"
 	lootbox_container.add_child(lootbox_label)
-	for item in lootbox.inventory_component.inventory.inventory:
+	for item in lootbox.inventory_component.inventory:
 		var button = InventoryUIButton.new()
 		button.text = item.item_name
 		button.item = item

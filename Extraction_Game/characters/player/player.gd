@@ -3,7 +3,7 @@ extends Character
 
 signal ui_changed()
 signal inventory_toggled(player: Player)
-signal interacted_with_lootable(player: Player, loot: Loot)
+signal interacted_with_lootable(player: Player, loot: Lootable)
 
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
@@ -16,7 +16,7 @@ var _thirst: int
 var _in_raid: bool
 var _interacting_object : Interactable
 
-@onready var player_sprite: Sprite2D = $PlayerSprite
+@onready var player_sprite: Sprite2D = $Sprite
 @onready var hunger_timer: Timer = $Timers/HungerTimer
 @onready var thirst_timer: Timer = $Timers/ThirstTimer
 
@@ -41,6 +41,7 @@ func _ready():
 func _process(_delta):
 	_update_sprites()
 	_get_input()
+	z_index = position.y as int
 
 
 func _physics_process(_delta):
@@ -79,8 +80,8 @@ func _get_input() -> void:
 	
 	if Input.is_action_just_pressed("interact"):
 		if _interacting_object:
-			if _interacting_object is Loot:
-				var _lootbox = _interacting_object as Loot
+			if _interacting_object is Lootable:
+				var _lootbox = _interacting_object as Lootable
 				interacted_with_lootable.emit(self, _lootbox)
 
 	if Input.is_action_just_pressed("inventory"):
@@ -138,19 +139,21 @@ func _on_thirst_timer_timeout():
 	
 	
 func _save() -> void:
+	print("save")
 	var save_path = "user://inventory.save"
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
-
+	print(file)
 	if file:
-		for item in inventory_component.inventory.inventory:
+		for item in inventory_component.inventory:
 			if item.item_type == Globals.Item_Type.WEAPON:
 				var save_item = item as InventoryItemWeapon
+				print(JSON.stringify(save_item.to_dictionary()))
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 		file.close()
 
 	
 func _load_character_data():
-	inventory_component.inventory.inventory.clear()
+	inventory_component.inventory.clear()
 
 	var save_path = "user://inventory.save"
 	var file = FileAccess.open(save_path, FileAccess.READ)

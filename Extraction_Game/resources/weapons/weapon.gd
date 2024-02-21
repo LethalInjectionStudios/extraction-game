@@ -1,9 +1,7 @@
 class_name Weapon
-extends Resource
+extends Item
 
-@export var name: String
 
-@export var sprite: String
 #@export var range
 @export var rate_of_fire: float
 @export var firing_mode: Globals.FireMode

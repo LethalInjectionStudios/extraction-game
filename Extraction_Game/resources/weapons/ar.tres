@@ -4,8 +4,6 @@
 
 [resource]
 script = ExtResource("1_8eguu")
-name = "AR"
-sprite = "res://sprites/weapons/assault_rifle.png"
 rate_of_fire = 0.25
 firing_mode = 0
 ammo_type = 0
@@ -16,3 +14,6 @@ muzzle_position = Vector2(0, 0)
 magazine_position = Vector2(0, 0)
 scope_position = Vector2(0, 0)
 light_position = Vector2(0, 0)
+name = "AR"
+type = 1
+sprite = "res://sprites/weapons/assault_rifle.png"

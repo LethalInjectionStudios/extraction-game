@@ -1,8 +1,6 @@
 class_name InventoryItemWeapon
 extends InventoryItem
 
-var weapon_resource_path: String
-
 var muzzle: String
 
 func to_dictionary() -> Dictionary:

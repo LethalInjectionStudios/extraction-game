@@ -49,7 +49,7 @@ func open_inventory(_player: Player):
 	var label = Label.new()
 	label.text = "Inventory"
 	container.add_child(label)
-	for item in _player.inventory_component.inventory.inventory:
+	for item in _player.inventory_component.inventory:
 		var button = InventoryUIButton.new()
 		button.text = item.item_name
 		button.item = item
