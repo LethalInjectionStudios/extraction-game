@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Zomclave"
+config/name="Extraction_Game"
 config/version="0.0.1"
 run/main_scene="res://levels/hideout/hideout.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")

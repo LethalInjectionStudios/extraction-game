@@ -22,7 +22,6 @@ height = 20.0
 [node name="Player" type="CharacterBody2D" groups=["Character"]]
 collision_mask = 31
 script = ExtResource("1_22f01")
-_move_speed = null
 _faction = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

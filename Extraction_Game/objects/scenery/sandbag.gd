@@ -9,7 +9,7 @@ func _on_area_2d_area_entered(area:Area2D) -> void:
     
     var dot_product = bullet_direciton.dot(self_direction)
 
-    if(dot_product > 0.25):
+    if(dot_product > 0.15):
         print("Pass Through")
     else:
         area.queue_free()

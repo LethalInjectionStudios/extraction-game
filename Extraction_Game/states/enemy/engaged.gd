@@ -5,21 +5,17 @@ const ENGAGED_STATE: String = "engaged"
 const WANDER_STATE: String = "wander"
 
 @export var parent: EnemyBase
-@export var detection_component: DetectionComponent
 @export var weapon_component: WeaponComponent
+@export var wander_timer: Timer
+@export var attack_timer: Timer
 
 var nearby_actors: Dictionary = {}
 var target: Character
 var move_direction: Vector2
 var can_fire: bool = true
 
-@onready var wander_timer: Timer = $Timers/WanderTimer
-@onready var attack_timer: Timer = $Timers/AttackTimer
-
 func _ready():
-	if detection_component:
-		detection_component.actor_entered.connect(_add_nearby_actor)
-		detection_component.actor_left.connect(_remove_nearby_actor)
+	pass
 
 func enter():
 	_find_closest_target()
@@ -53,7 +49,7 @@ func update(_delta):
 	
 func physics_update(_delta):
 	if parent:
-		parent.velocity = move_direction * parent.move_speed
+		parent.velocity = move_direction * parent._move_speed
 
 
 func _find_closest_target():
@@ -70,9 +66,11 @@ func randomize_wander():
 	wander_timer.wait_time = randf_range(1, 3)
 
 
-func _add_nearby_actor(body):
-	nearby_actors[body.name.to_lower()] = body
-	transitioned.emit(self, ENGAGED_STATE)
+func _add_nearby_actor(body: Node2D) -> void:
+	print("Engaged" + str(body))
+	if body is Character:
+		nearby_actors[body.name.to_lower()] = body
+		transitioned.emit(self, ENGAGED_STATE)
 
 
 func _remove_nearby_actor(body):

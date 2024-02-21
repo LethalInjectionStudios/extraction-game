@@ -139,13 +139,15 @@ func _on_thirst_timer_timeout():
 	
 	
 func _save() -> void:
+	print("save")
 	var save_path = "user://inventory.save"
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
-
+	print(file)
 	if file:
 		for item in inventory_component.inventory:
 			if item.item_type == Globals.Item_Type.WEAPON:
 				var save_item = item as InventoryItemWeapon
+				print(JSON.stringify(save_item.to_dictionary()))
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 		file.close()
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7a54rewno75x"]
+[gd_scene load_steps=7 format=3 uid="uid://b7a54rewno75x"]
 
 [ext_resource type="PackedScene" uid="uid://rgumhnym5ugn" path="res://levels/_base/level.tscn" id="1_4akbe"]
 [ext_resource type="Script" path="res://levels/forest/forest.gd" id="2_x65p0"]
 [ext_resource type="Texture2D" uid="uid://14c0gd6wbim7" path="res://tilemaps/dev_tilemap.png" id="3_7tjwt"]
-[ext_resource type="PackedScene" uid="uid://dftd2vf2itifk" path="res://characters/npc/zombie/zombie.tscn" id="5_m62k7"]
 [ext_resource type="PackedScene" uid="uid://cmln60m2krjjt" path="res://levels/_base/extraction.tscn" id="6_7u723"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvdaq"]
@@ -38,13 +37,10 @@ z_as_relative = false
 [node name="Projectiles" parent="." index="5"]
 metadata/_edit_lock_ = true
 
-[node name="Zombie" parent="." index="6" instance=ExtResource("5_m62k7")]
-position = Vector2(424, 131)
-
-[node name="AudioListener" parent="." index="7"]
+[node name="AudioListener" parent="." index="6"]
 metadata/_edit_lock_ = true
 
-[node name="Menu" parent="." index="8"]
+[node name="Menu" parent="." index="7"]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 

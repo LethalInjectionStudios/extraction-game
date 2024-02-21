@@ -11,7 +11,7 @@ region = Rect2(0, 57, 32, 7)
 size = Vector2(6, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcyjn"]
-size = Vector2(4, 32)
+size = Vector2(4, 34)
 
 [node name="Sandbag" type="StaticBody2D"]
 collision_layer = 8
@@ -22,6 +22,7 @@ rotation = -1.5708
 texture = SubResource("AtlasTexture_hfcsm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_luq15")
 
 [node name="Area2D" type="Area2D" parent="."]
