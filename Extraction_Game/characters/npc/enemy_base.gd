@@ -7,7 +7,11 @@ extends Character
 
 @export var engaged_state: Engaged
 
+@onready var state:Label = $Label
+@onready var sm:StateMachine = $StateMachine
+
 func _ready() -> void:
+	_move_speed = 25.0
 	detection_component.connect("actor_entered", _on_actor_entered_detection_component)
 	detection_component.connect("actor_left", _on_actor_left_detection_component)
 
@@ -33,7 +37,7 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	update_sprites()
-
+	state.text = sm.current_state.to_string()
 	
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -55,5 +59,4 @@ func _on_actor_entered_detection_component(body: Node2D) -> void:
 
 
 func _on_actor_left_detection_component(body: Node2D) -> void:
-	print(body)
-	#engaged_state._remove_nearby_actor(body)
+	engaged_state._remove_nearby_actor(body)

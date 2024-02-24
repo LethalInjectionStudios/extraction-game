@@ -13,9 +13,12 @@ texture = ExtResource("3_7tjwt")
 [sub_resource type="TileSet" id="TileSet_hf26m"]
 sources/0 = SubResource("TileSetAtlasSource_xvdaq")
 
-[node name="Level" instance=ExtResource("1_4akbe")]
+[node name="Level" node_paths=PackedStringArray("point_of_interests", "tilemap", "scenery") instance=ExtResource("1_4akbe")]
 z_as_relative = false
 script = ExtResource("2_x65p0")
+point_of_interests = NodePath("PointOfInterests")
+tilemap = NodePath("TileMap")
+scenery = NodePath("Scenery")
 metadata/_edit_lock_ = true
 
 [node name="TileMap" parent="." index="0"]
@@ -27,9 +30,6 @@ metadata/_edit_lock_ = true
 
 [node name="Extraction" parent="Extractions" index="0" instance=ExtResource("6_7u723")]
 position = Vector2(40, 94)
-
-[node name="POI" parent="." index="2"]
-metadata/_edit_lock_ = true
 
 [node name="Scenery" parent="." index="4"]
 z_as_relative = false

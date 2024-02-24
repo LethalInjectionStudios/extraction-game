@@ -67,7 +67,6 @@ func randomize_wander():
 
 
 func _add_nearby_actor(body: Node2D) -> void:
-	print("Engaged" + str(body))
 	if body is Character:
 		nearby_actors[body.name.to_lower()] = body
 		transitioned.emit(self, ENGAGED_STATE)

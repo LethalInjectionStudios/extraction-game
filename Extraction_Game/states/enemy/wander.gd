@@ -18,6 +18,7 @@ func _ready():
 
 func enter():
 	randomize_wander()
+	wander_timer.start()
 
 
 func exit():
@@ -29,9 +30,9 @@ func update(_delta: float):
 	pass
 
 
-func physics_update(_delta: float):
+func physics_update(delta: float):
 	if parent:
-		parent.velocity = move_direction * parent.move_speed
+		parent.velocity = move_direction * parent._move_speed
 
 
 func randomize_wander():
@@ -40,12 +41,12 @@ func randomize_wander():
 	
 	
 func _on_wander_timer_timeout():
-	var rand = randi() % 2
-	
-	if rand:
-		randomize_wander()
-	else:
-		transitioned.emit(self, IDLE_STATE)
+	#var rand = randi() % 2
+	#
+	#if rand:
+		#randomize_wander()
+	#else:
+	transitioned.emit(self, IDLE_STATE)
 		
 
 func _actor_entered_nearby(_body):

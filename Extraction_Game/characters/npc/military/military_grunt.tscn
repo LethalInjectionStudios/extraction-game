@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bur48tdj8wnns"]
+[gd_scene load_steps=4 format=3 uid="uid://bur48tdj8wnns"]
 
 [ext_resource type="PackedScene" uid="uid://c02f4in5i58d0" path="res://characters/npc/enemy_base.tscn" id="1_s85xy"]
 [ext_resource type="Texture2D" uid="uid://bp53jr8o5tel" path="res://sprites/characters/npc.png" id="2_ju054"]
+[ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://_font/slkscr.ttf" id="3_23pmw"]
 
 [node name="Enemy Base" node_paths=PackedStringArray("engaged_state") instance=ExtResource("1_s85xy")]
 engaged_state = NodePath("StateMachine/Engaged")
@@ -9,3 +10,11 @@ _faction = 4
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource("2_ju054")
+
+[node name="Label" type="Label" parent="." index="4"]
+offset_left = -20.0
+offset_top = -32.0
+offset_right = 20.0
+offset_bottom = -9.0
+theme_override_fonts/font = ExtResource("3_23pmw")
+text = "TEST"
