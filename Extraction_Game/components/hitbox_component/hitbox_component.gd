@@ -8,6 +8,7 @@ signal zombie_hit_taken(damage: int)
 @export var health_component: HealthComponent
 
 func hit(projectile: Projectile):
+	print("Hit taken")
 	hit_taken.emit(projectile)
 
 func zombie_hit(damage: int):

@@ -13,7 +13,7 @@ func _ready():
 
 
 func damage(projectile: Projectile) -> void:
-	_health -= projectile.damage	
+	_health -= projectile.damage
 	check_health()
 
 

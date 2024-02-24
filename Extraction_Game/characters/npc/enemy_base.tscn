@@ -20,13 +20,16 @@ size = Vector2(8, 14)
 [sub_resource type="CircleShape2D" id="CircleShape2D_82km4"]
 radius = 104.043
 
-[node name="Enemy Base" type="CharacterBody2D" node_paths=PackedStringArray("detection_component", "weapon_component", "sprite")]
+[node name="Enemy Base" type="CharacterBody2D" node_paths=PackedStringArray("detection_component", "hitbox_component", "weapon_component", "health_component", "sprite", "engaged_state")]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_1iiva")
 detection_component = NodePath("Components/DetectionComponent")
+hitbox_component = NodePath("Components/HitBoxComponent")
 weapon_component = NodePath("Components/WeaponComponent")
+health_component = NodePath("Components/HealthComponent")
 sprite = NodePath("Sprite")
+engaged_state = NodePath("StateMachine/Engaged")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_artlf")
@@ -37,7 +40,6 @@ texture = ExtResource("2_3dbfo")
 [node name="Components" type="Node2D" parent="."]
 
 [node name="HealthComponent" parent="Components" instance=ExtResource("2_jcvyi")]
-MAX_HEALTH = 1000000
 
 [node name="WeaponComponent" parent="Components" instance=ExtResource("3_l3eid")]
 position = Vector2(0, 2)
@@ -61,12 +63,10 @@ shape = SubResource("CircleShape2D_82km4")
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_up2yn")]
 initial_state = NodePath("Idle")
 
-[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("detection_component") instance=ExtResource("8_txjwp")]
-detection_component = NodePath("../../Components/DetectionComponent")
+[node name="Idle" parent="StateMachine" instance=ExtResource("8_txjwp")]
 
-[node name="Wander" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("9_fnlxg")]
+[node name="Wander" parent="StateMachine" node_paths=PackedStringArray("parent") instance=ExtResource("9_fnlxg")]
 parent = NodePath("../..")
-detection_component = NodePath("../../Components/DetectionComponent")
 
 [node name="Engaged" parent="StateMachine" node_paths=PackedStringArray("parent", "weapon_component") instance=ExtResource("10_d14tt")]
 parent = NodePath("../..")

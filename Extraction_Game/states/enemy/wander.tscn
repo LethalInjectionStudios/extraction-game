@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" path="res://states/enemy/wander.gd" id="1_whgcu"]
 
-[node name="Wander" type="Node"]
+[node name="Wander" type="Node" node_paths=PackedStringArray("wander_timer")]
 script = ExtResource("1_whgcu")
+wander_timer = NodePath("WanderTimer")
 
 [node name="WanderTimer" type="Timer" parent="."]
 one_shot = true

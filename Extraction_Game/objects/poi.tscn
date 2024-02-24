@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://objects/poi.gd" id="1_5glr1"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["POI"]]
 script = ExtResource("1_5glr1")
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://bp53jr8o5tel" path="res://sprites/characters/npc.png" id="2_ju054"]
 [ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://_font/slkscr.ttf" id="3_23pmw"]
 
-[node name="Enemy Base" node_paths=PackedStringArray("engaged_state") instance=ExtResource("1_s85xy")]
-engaged_state = NodePath("StateMachine/Engaged")
+[node name="Enemy Base" instance=ExtResource("1_s85xy")]
 _faction = 4
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource("2_ju054")
 
 [node name="Label" type="Label" parent="." index="4"]
-offset_left = -20.0
-offset_top = -32.0
-offset_right = 20.0
-offset_bottom = -9.0
+offset_left = -11.0
+offset_top = -17.0
+offset_right = 10.0
+offset_bottom = -8.0
 theme_override_fonts/font = ExtResource("3_23pmw")
+theme_override_font_sizes/font_size = 8
 text = "TEST"

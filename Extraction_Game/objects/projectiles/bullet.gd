@@ -16,6 +16,7 @@ func _process(delta):
 func _on_area_entered(area):	
 	if area is HitBoxComponent:
 		if area.parent != parent:
+			print("Hit")
 			var hitbox: HitBoxComponent = area
 			hitbox.hit(self)
 			queue_free()	
