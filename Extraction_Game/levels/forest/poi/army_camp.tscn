@@ -37,7 +37,8 @@ shape = SubResource("RectangleShape2D_bx6jw")
 
 [node name="Tent" type="StaticBody2D" parent="." index="1"]
 position = Vector2(1, 0)
-collision_layer = 0
+collision_layer = 8
+collision_mask = 7
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -51,7 +52,8 @@ texture = SubResource("AtlasTexture_fyoru")
 
 [node name="Tent2" type="StaticBody2D" parent="." index="2"]
 position = Vector2(34, 0)
-collision_layer = 0
+collision_layer = 8
+collision_mask = 7
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -64,17 +66,18 @@ position = Vector2(38, -30)
 texture = SubResource("AtlasTexture_fyoru")
 
 [node name="WatchTower" type="StaticBody2D" parent="." index="3"]
+position = Vector2(-30, -6)
 scale = Vector2(1, 0.996332)
 collision_layer = 8
-metadata/_edit_lock_ = true
+collision_mask = 7
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WatchTower" index="0"]
-position = Vector2(-30, -20)
+position = Vector2(0, -14.0515)
 shape = SubResource("RectangleShape2D_ct5ie")
 
 [node name="Sprite2D" type="Sprite2D" parent="WatchTower" index="1"]
-position = Vector2(-30, -30)
+position = Vector2(0, -24.0884)
 texture = SubResource("AtlasTexture_2tqy0")
 
 [node name="WeaponsCrate" parent="." index="4" instance=ExtResource("3_vn8qn")]
@@ -148,4 +151,4 @@ position = Vector2(44, 40)
 position = Vector2(14, 21)
 
 [node name="Enemy Base" parent="." index="13" instance=ExtResource("6_sw8nv")]
-position = Vector2(-6, 21)
+position = Vector2(15, -188)

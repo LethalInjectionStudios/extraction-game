@@ -12,7 +12,7 @@ z_index = -1
 z_as_relative = false
 format = 2
 
-[node name="POI" type="Node2D" parent="."]
+[node name="PointOfInterests" type="Node2D" parent="."]
 
 [node name="Objects" type="Node2D" parent="."]
 

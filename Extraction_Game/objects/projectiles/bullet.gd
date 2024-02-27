@@ -9,19 +9,20 @@ var direction: Vector2 = Vector2.UP
 var parent
 
 
-func _process(delta):
+func _process(delta: float) -> void:
 	position += direction * speed * delta
 
 
-func _on_area_entered(area):	
+func _on_area_entered(area: Node2D) -> void:	
 	if area is HitBoxComponent:
 		if area.parent != parent:
+			print("Hit")
 			var hitbox: HitBoxComponent = area
 			hitbox.hit(self)
 			queue_free()	
 	
 
 
-func _on_body_entered(body:Node2D):
+func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Tilemap"):
 		queue_free()

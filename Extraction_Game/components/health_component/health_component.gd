@@ -8,21 +8,21 @@ signal destroyed()
 
 var _health: int
 
-func _ready():
+func _ready() -> void:
 	_health = MAX_HEALTH
 
 
 func damage(projectile: Projectile) -> void:
-	_health -= projectile.damage	
+	_health -= projectile.damage
 	check_health()
 
 
-func zombie_damage(_damage: int):
-	_health -= _damage
+func zombie_damage(damage: int) -> void:
+	_health -= damage
 	check_health()
 
 
-func check_health():
+func check_health() -> void:
 	if _health > 0:
 		damage_taken.emit()
 

@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" path="res://states/enemy/idle.gd" id="1_8eub5"]
 
-[node name="Idle" type="Node"]
+[node name="Idle" type="Node" node_paths=PackedStringArray("idle_timer")]
 script = ExtResource("1_8eub5")
+idle_timer = NodePath("IdleTimer")
 
 [node name="IdleTimer" type="Timer" parent="."]
 one_shot = true
