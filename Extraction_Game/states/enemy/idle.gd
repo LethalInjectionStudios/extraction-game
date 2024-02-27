@@ -4,10 +4,12 @@ extends State
 const WANDER_STATE: String = "wander"
 const ENGAGED_STATE: String = "engaged"
 
-@onready var idle_timer: Timer = $IdleTimer
+@export var detection_component: DetectionComponent
+@export var idle_timer: Timer
 
 func _ready() -> void:
-	pass
+	if detection_component:
+		detection_component.actor_entered.connect(_actor_entered_nearby)
 
 func enter() -> void:
 	set_wait_timer()

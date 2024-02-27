@@ -6,7 +6,6 @@ extends Character
 @export var weapon_component: WeaponComponent
 @export var hitbox_component: HitBoxComponent
 @export var detection_component: DetectionComponent
-@export var engaged_state: Engaged
 
 @onready var state:Label = $Label
 @onready var sm:StateMachine = $StateMachine
@@ -14,7 +13,6 @@ extends Character
 func _ready() -> void:
 	_move_speed = 25.0
 	_connect_signals()
-	print(health_component._health)
 
 	var weapon: InventoryItemWeapon = InventoryItemWeapon.new()
 	
@@ -47,30 +45,19 @@ func _physics_process(_delta: float) -> void:
 func _update_sprites() -> void:			
 	if $StateMachine.current_state.name.to_lower() != "engaged":	
 		if velocity.x < 0:
-			$Sprite.flip_h = true
-			weapon_component.weapon_sprite.scale.y = Globals.negative_weapon_component_scale
+			sprite.flip_h = true
+			weapon_component.weapon_sprite.flip_h = true
 		if velocity.x > 0:
-			$Sprite.flip_h = false
-			weapon_component.weapon_sprite.scale.y = Globals.positive_weapon_component_scale
+			sprite.flip_h = false
+			weapon_component.weapon_sprite.flip_h = false
+
+
 
 
 func _connect_signals() -> void:
-	detection_component.connect("actor_entered", _on_actor_entered_detection_component)
-	detection_component.connect("actor_left", _on_actor_left_detection_component)
 	hitbox_component.connect("hit_taken", health_component.damage)
 	hitbox_component.connect("zombie_hit_taken", health_component.zombie_damage)
 	health_component.connect("destroyed", _on_actor_death)
-
-
-
-func _on_actor_entered_detection_component(body: Node2D) -> void:
-	if body != self:
-		print(body)
-		engaged_state._add_nearby_actor(body)
-
-
-func _on_actor_left_detection_component(body: Node2D) -> void:
-	engaged_state._remove_nearby_actor(body)
 
 
 func _on_actor_death() -> void:
