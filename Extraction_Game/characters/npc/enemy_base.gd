@@ -37,6 +37,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_update_sprites()
 	state.text = sm.current_state.to_string()
+
 	
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -50,8 +51,6 @@ func _update_sprites() -> void:
 		if velocity.x > 0:
 			sprite.flip_h = false
 			weapon_component.weapon_sprite.flip_h = false
-
-
 
 
 func _connect_signals() -> void:

@@ -104,7 +104,9 @@ func reload_weapon() -> void:
 
 
 func _create_bullet(target) -> void:
+	print("Spawn Bullet")
 	var bullet = BULLET_SCENE.instantiate() as Projectile
+	print(bullet)
 	var weapon_direction = (target - weapon_sprite.global_position).normalized()
 	bullet.global_position = bullet_location.global_position
 	bullet.global_rotation = weapon_sprite.rotation
