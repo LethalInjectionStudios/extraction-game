@@ -26,9 +26,6 @@ func _process(_delta):
 func _connect_signals() -> void:
 	for weapon in get_tree().get_nodes_in_group("Weapon"):
 		weapon.connect("weapon_fired", _on_weapon_fired)
-		
-	for poi in get_tree().get_nodes_in_group("POI"):
-		poi.connect("poi_created", _on_poi_created)
 
 	_player.connect("inventory_toggled", inventory_ui._toggle_inventory_menu)
 	_player.connect("interacted_with_lootable", lootbox_ui._toggle_loot_menu)
