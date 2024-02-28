@@ -110,10 +110,12 @@ func _stop_interacting(_body):
 
 func equip_weapon(weapon: InventoryItemWeapon):
 	weapon_component.equip_weapon(weapon)
+	ui_changed.emit()
 
 
 func unequip_weapon():
 	weapon_component.unequip_weapon()
+	ui_changed.emit()
 
 
 func add_item_to_inventory(item: InventoryItem) -> void:

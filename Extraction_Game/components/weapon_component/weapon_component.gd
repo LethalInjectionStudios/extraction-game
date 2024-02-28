@@ -18,8 +18,8 @@ var loaded_ammo
 var accuracy
 var recoil
 var ergonomics
-var magazine_capacity: int = 30
-var magazine_count: int = 30
+var magazine_capacity: int
+var magazine_count: int
 var weapon: Weapon
 var stock
 var grip
@@ -83,7 +83,8 @@ func equip_weapon(_weapon: InventoryItemWeapon):
 		muzzle_sprite.texture = load(_weapon.muzzle)
 	rate_of_fire = weapon.rate_of_fire
 	rate_of_fire_timer.wait_time = rate_of_fire
-
+	magazine_capacity = weapon.magazine_size
+	magazine_count = weapon.magazine_size
 	
 func unequip_weapon():
 	weapon_added_to_inventory.emit(_inventory_item)
@@ -92,6 +93,8 @@ func unequip_weapon():
 	weapon_sprite.texture = null
 	muzzle_sprite.texture = null
 	rate_of_fire_timer.wait_time = 1.0
+	magazine_capacity = 0
+	magazine_count = 0
 	
 	
 #TODO: Check how much ammo is left in inventory
@@ -104,9 +107,7 @@ func reload_weapon() -> void:
 
 
 func _create_bullet(target) -> void:
-	print("Spawn Bullet")
 	var bullet = BULLET_SCENE.instantiate() as Projectile
-	print(bullet)
 	var weapon_direction = (target - weapon_sprite.global_position).normalized()
 	bullet.global_position = bullet_location.global_position
 	bullet.global_rotation = weapon_sprite.rotation
