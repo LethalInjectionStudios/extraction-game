@@ -15,7 +15,10 @@ func _process(_delta):
 	
 		
 func update_display()-> void:
-	ammo_text.text = str(parent.weapon_component.magazine_count) + "/" + str(parent.weapon_component.magazine_capacity)
+	if parent.weapon_component.magazine_count != 0:
+		ammo_text.text = str(parent.weapon_component.magazine_count) + "/" + str(parent.weapon_component.magazine_capacity)
+	else:
+		ammo_text.text = ""
 	health_text.text = "Health: " + str(parent.health_component._health)
 	hunger_text.text = "Hunger: " + str(parent._hunger)
 	thirst_text.text = "Thirst: " + str(parent._thirst)

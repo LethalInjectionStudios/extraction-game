@@ -7,6 +7,7 @@ script = ExtResource("1_8eguu")
 rate_of_fire = 0.25
 firing_mode = 0
 ammo_type = 0
+magazine_size = 30
 stock_position = Vector2(0, 0)
 grip_position = Vector2(0, 0)
 barrel_position = Vector2(0, 0)
