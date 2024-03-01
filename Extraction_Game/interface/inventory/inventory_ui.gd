@@ -17,8 +17,6 @@ var _is_menu_open: bool = false
 @onready var player_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite
 @onready var weapon_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite/WeaponSprite
 
-
-
 func _ready():
 	_setup_signals()
 

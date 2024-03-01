@@ -15,7 +15,7 @@ func _process(_delta):
 	
 		
 func update_display()-> void:
-	if parent.weapon_component.magazine_count != 0:
+	if parent.weapon_component.magazine_capacity != 0:
 		ammo_text.text = str(parent.weapon_component.magazine_count) + "/" + str(parent.weapon_component.magazine_capacity)
 	else:
 		ammo_text.text = ""

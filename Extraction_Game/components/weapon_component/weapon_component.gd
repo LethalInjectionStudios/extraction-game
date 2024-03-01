@@ -74,8 +74,6 @@ func fire_weapon(target: Vector2) -> void:
 func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 	if weapon:
 		unequip_weapon()
-	print(_weapon.item_name)
-	print(_weapon.item_path)
 	weapon_removed_from_inventory.emit(_weapon)
 	_inventory_item = _weapon
 	weapon = load(_weapon.item_path) as Weapon
@@ -86,9 +84,10 @@ func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 	rate_of_fire_timer.wait_time = rate_of_fire
 	firing_mode = weapon.firing_mode
 	magazine_capacity = weapon.magazine_size
-	magazine_count = weapon.magazine_size
+	magazine_count = _weapon.ammo_count
 	
 func unequip_weapon() -> void:
+	_inventory_item.ammo_count = magazine_count
 	weapon_added_to_inventory.emit(_inventory_item)
 	_inventory_item = null
 	weapon = null
