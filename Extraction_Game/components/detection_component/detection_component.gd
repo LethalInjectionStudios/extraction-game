@@ -6,10 +6,6 @@ signal actor_left(actor: Node2D)
 
 @export var parent: Character
 
-func _ready() -> void:
-	printerr("NPC Detection Component will not work until refactored")
-
-
 func _on_body_entered(body: Node2D) -> void:
 	if body != parent:
 		actor_entered.emit(body)

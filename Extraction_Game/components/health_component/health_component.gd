@@ -17,8 +17,8 @@ func damage(projectile: Projectile) -> void:
 	check_health()
 
 
-func zombie_damage(damage: int) -> void:
-	_health -= damage
+func zombie_damage(damage_value: int) -> void:
+	_health -= damage_value
 	check_health()
 
 

@@ -6,12 +6,12 @@ extends Node2D
 var sprites: Array[Sprite2D]
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	_find_sprites(self)
 	_set_sprite_z_level()
 
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Scenery:
 		body.queue_free()
 

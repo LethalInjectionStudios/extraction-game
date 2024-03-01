@@ -14,7 +14,7 @@ var _lootbox: String
 @onready var player_container: VBoxContainer = $CanvasLayer/PlayerInventory
 @onready var lootbox_container: VBoxContainer = $CanvasLayer/LootInventory
 
-func _ready():
+func _ready() -> void:
 	_setup_signals()
 
 
@@ -38,22 +38,22 @@ func _setup_signals() -> void:
 
 
 func _open_menu(player: Player, lootbox: Lootable) -> void:
-	var player_label = Label.new()
+	var player_label: Label = Label.new()
 	player_label.text = "Inventory"
 	player_container.add_child(player_label)
-	for item in player.inventory_component.inventory:
-		var button = InventoryUIButton.new()
+	for item: InventoryItem in player.inventory_component.inventory:
+		var button: InventoryUIButton = InventoryUIButton.new()
 		button.text = item.item_name
 		button.item = item
 		button.connect("item_selected", _on_move_item_player_to_lootbox)
 		player_container.add_child(button)
 
 
-	var lootbox_label = Label.new()
+	var lootbox_label: Label = Label.new()
 	lootbox_label.text = "Loot Box"
 	lootbox_container.add_child(lootbox_label)
-	for item in lootbox.inventory_component.inventory:
-		var button = InventoryUIButton.new()
+	for item: InventoryItem in lootbox.inventory_component.inventory:
+		var button: InventoryUIButton = InventoryUIButton.new()
 		button.text = item.item_name
 		button.item = item
 		button.connect("item_selected", _on_move_item_lootbox_to_player)
@@ -61,11 +61,11 @@ func _open_menu(player: Player, lootbox: Lootable) -> void:
 
 
 func _close_menu() -> void:
-	for child in player_container.get_children():
+	for child: Node in player_container.get_children():
 		player_container.remove_child(child)
 		child.queue_free()
 
-	for child in lootbox_container.get_children():
+	for child: Node in lootbox_container.get_children():
 		lootbox_container.remove_child(child)
 		child.queue_free()
 
@@ -75,11 +75,11 @@ func _reload_menu() -> void:
 	lootbox_changed.emit(_lootbox)
 
 
-func _on_move_item_player_to_lootbox(item: InventoryItem):
+func _on_move_item_player_to_lootbox(item: InventoryItem) -> void:
 	item_moved_player_to_lootbox.emit(_lootbox, item)
 	_reload_menu()
 
 
-func _on_move_item_lootbox_to_player(item: InventoryItem):
+func _on_move_item_lootbox_to_player(item: InventoryItem) -> void:
 	item_moved_lootbox_to_player.emit(_lootbox, item)
 	_reload_menu()

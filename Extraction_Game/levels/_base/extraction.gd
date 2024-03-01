@@ -3,19 +3,9 @@ extends Area2D
 
 var selected_raid : String = "res://levels/hideout/hideout.tscn"
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
-
-func _on_body_entered(body):
+func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		var _player = body as Player
+		var _player: Player = body as Player
 		if _player.weapon_component.weapon:
 			_player.unequip_weapon()
 		_player._save()

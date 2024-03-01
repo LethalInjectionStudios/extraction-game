@@ -4,13 +4,18 @@ extends Lootable
 @export var drops: Array[String]
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	if !drops.is_empty():
-		for i in range(randi_range(0,5)):
-			var res = load(drops[0])
-			var item = InventoryItem.new()
+		for i: int in range(randi_range(0,5)):
+			var res: Item = load(drops[randi_range(0, drops.size() - 1)])
 
-			item.item_name = res.name
-			item.item_path = drops[0]
+			if res.type == Globals.Item_Type.WEAPON:
+				var item: InventoryItemWeapon = InventoryItemWeapon.new()
 
-			inventory_component._add_to_inventory(item)
+				item.item_name = res.name
+				item.item_path = res.resource_path
+				item.item_type = res.type
+				item.item_icon = res.sprite
+
+
+				inventory_component._add_to_inventory(item)

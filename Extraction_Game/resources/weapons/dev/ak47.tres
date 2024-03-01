@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://bnjbsrwsxd1uy"]
+
+[ext_resource type="Script" path="res://resources/weapons/weapon.gd" id="1_bgrof"]
+
+[resource]
+script = ExtResource("1_bgrof")
+rate_of_fire = 0.1
+firing_mode = 1
+ammo_type = 0
+magazine_size = 30
+stock_position = Vector2(0, 0)
+grip_position = Vector2(0, 0)
+barrel_position = Vector2(0, 0)
+muzzle_position = Vector2(0, 0)
+magazine_position = Vector2(0, 0)
+scope_position = Vector2(0, 0)
+light_position = Vector2(0, 0)
+name = "AK-47"
+type = 1
+sprite = "res://sprites/weapons/doughnutdevguns/AK47.png"
