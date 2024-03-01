@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkdwvt4fc4nr"
-path="res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"
+uid="uid://djncg8oope6uo"
+path="res://.godot/imported/Winchester1897.png-2d122c2381cfa5af4a4289815682936f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/army_crate.png"
-dest_files=["res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"]
+source_file="res://sprites/weapons/doughnutdevguns/Winchester1897.png"
+dest_files=["res://.godot/imported/Winchester1897.png-2d122c2381cfa5af4a4289815682936f.ctex"]
 
 [params]
 

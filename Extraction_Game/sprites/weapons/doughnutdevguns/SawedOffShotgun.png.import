@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkdwvt4fc4nr"
-path="res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"
+uid="uid://d0bxxlnsphhx0"
+path="res://.godot/imported/SawedOffShotgun.png-de025cef1248e610d40c5fc8153da9f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/army_crate.png"
-dest_files=["res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"]
+source_file="res://sprites/weapons/doughnutdevguns/SawedOffShotgun.png"
+dest_files=["res://.godot/imported/SawedOffShotgun.png-de025cef1248e610d40c5fc8153da9f9.ctex"]
 
 [params]
 

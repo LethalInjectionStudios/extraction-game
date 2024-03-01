@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkdwvt4fc4nr"
-path="res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"
+uid="uid://bke8wfxuj8261"
+path="res://.godot/imported/Tokarev.png-662dbd3e02031dad20eff2800f719d57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/army_crate.png"
-dest_files=["res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"]
+source_file="res://sprites/weapons/doughnutdevguns/Tokarev.png"
+dest_files=["res://.godot/imported/Tokarev.png-662dbd3e02031dad20eff2800f719d57.ctex"]
 
 [params]
 

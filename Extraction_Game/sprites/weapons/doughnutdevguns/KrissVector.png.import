@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkdwvt4fc4nr"
-path="res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"
+uid="uid://cqk8i1oxceda2"
+path="res://.godot/imported/KrissVector.png-2a7e5dfbf3e7feba1d98ce39b8a2c9c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/army_crate.png"
-dest_files=["res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"]
+source_file="res://sprites/weapons/doughnutdevguns/KrissVector.png"
+dest_files=["res://.godot/imported/KrissVector.png-2a7e5dfbf3e7feba1d98ce39b8a2c9c4.ctex"]
 
 [params]
 

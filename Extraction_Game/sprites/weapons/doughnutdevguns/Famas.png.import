@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkdwvt4fc4nr"
-path="res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"
+uid="uid://2m36qfq5rpsj"
+path="res://.godot/imported/Famas.png-f4da97cd27df7ddbd40417d481e9687d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/army_crate.png"
-dest_files=["res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"]
+source_file="res://sprites/weapons/doughnutdevguns/Famas.png"
+dest_files=["res://.godot/imported/Famas.png-f4da97cd27df7ddbd40417d481e9687d.ctex"]
 
 [params]
 

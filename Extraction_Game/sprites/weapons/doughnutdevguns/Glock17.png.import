@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkdwvt4fc4nr"
-path="res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"
+uid="uid://c6u6jv7144eaw"
+path="res://.godot/imported/Glock17.png-a900ef9c484aa2d2b4076c193882e13d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/army_crate.png"
-dest_files=["res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"]
+source_file="res://sprites/weapons/doughnutdevguns/Glock17.png"
+dest_files=["res://.godot/imported/Glock17.png-a900ef9c484aa2d2b4076c193882e13d.ctex"]
 
 [params]
 

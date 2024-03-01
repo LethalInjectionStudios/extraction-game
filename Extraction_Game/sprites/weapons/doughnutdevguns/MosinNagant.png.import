@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkdwvt4fc4nr"
-path="res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"
+uid="uid://c7gcy7l8e6cle"
+path="res://.godot/imported/MosinNagant.png-1d9678d18a352984af035e4dc8367419.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/army_crate.png"
-dest_files=["res://.godot/imported/army_crate.png-7c0d40541b183ab4e5b5190fbdfe77eb.ctex"]
+source_file="res://sprites/weapons/doughnutdevguns/MosinNagant.png"
+dest_files=["res://.godot/imported/MosinNagant.png-1d9678d18a352984af035e4dc8367419.ctex"]
 
 [params]
 

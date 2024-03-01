@@ -11,7 +11,7 @@ region = Rect2(49, 148, 13, 12)
 size = Vector2(14, 12)
 
 [node name="StaticBody2D" instance=ExtResource("1_dfn83")]
-drops = Array[String](["res://resources/weapons/dev_gun.tres"])
+drops = Array[String](["res://resources/weapons/dev/ak47.tres", "res://resources/weapons/dev/barrettM82.tres", "res://resources/weapons/dev/famas.tres"])
 
 [node name="Sprite2D" parent="." index="0"]
 texture = SubResource("AtlasTexture_cnowi")

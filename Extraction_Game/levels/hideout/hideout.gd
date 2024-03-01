@@ -14,7 +14,7 @@ func _ready():
 
 
 func _process(_delta):
-	pass
+	audio_listener.global_position = _player.global_position
 
 func _connect_signals() -> void:
 	super._connect_signals()
