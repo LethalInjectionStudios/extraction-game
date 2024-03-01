@@ -3,5 +3,5 @@ extends Node
 
 var interactable_type: Globals.Interactable_Type
 
-func interact():
+func interact() -> void:
 	pass

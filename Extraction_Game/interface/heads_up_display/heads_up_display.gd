@@ -9,7 +9,7 @@ extends Control
 @onready var fps_text: Label = $CanvasLayer/VBoxContainer2/FPSText
 @onready var player_position_text: Label = $CanvasLayer/VBoxContainer2/PlayerPosText
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	fps_text.text = "FPS: " + str(Engine.get_frames_per_second())
 	player_position_text.text = "Player Position: " + str(parent.global_position)
 	
@@ -24,5 +24,5 @@ func update_display()-> void:
 	thirst_text.text = "Thirst: " + str(parent._thirst)
 
 
-func _on_player_ui_changed():
+func _on_player_ui_changed() -> void:
 	update_display()

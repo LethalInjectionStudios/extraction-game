@@ -17,11 +17,11 @@ var _is_menu_open: bool = false
 @onready var player_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite
 @onready var weapon_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite/WeaponSprite
 
-func _ready():
+func _ready() -> void:
 	_setup_signals()
 
 
-func _toggle_inventory_menu(player: Player):
+func _toggle_inventory_menu(player: Player) -> void:
 	if !_is_menu_open:
 		ui_opened.emit()
 		_is_menu_open = true
@@ -35,7 +35,7 @@ func _toggle_inventory_menu(player: Player):
 
 
 
-func open_inventory(_player: Player):
+func open_inventory(_player: Player) -> void:
 	_player.player_sprite.texture = _player.player_sprite.texture
 	
 	if _player.weapon_component.weapon:
@@ -44,11 +44,11 @@ func open_inventory(_player: Player):
 		weapon_sprite.texture = null
 		
 
-	var label = Label.new()
+	var label: Label = Label.new()
 	label.text = "Inventory"
 	container.add_child(label)
-	for item in _player.inventory_component.inventory:
-		var button = InventoryUIButton.new()
+	for item: InventoryItem in _player.inventory_component.inventory:
+		var button: InventoryUIButton = InventoryUIButton.new()
 		button.text = item.item_name
 		button.item = item
 		container.add_child(button)
@@ -62,21 +62,21 @@ func open_inventory(_player: Player):
 		equipped_weapon.hide()
 
 
-func close_inventory():
-	for child in container.get_children():
+func close_inventory() -> void:
+	for child: Node in container.get_children():
 		container.remove_child(child)
 		child.queue_free()
 
 
-func show_window():
+func show_window() -> void:
 	canvas.show()
 
 
-func hide_window():
+func hide_window() -> void:
 	canvas.hide()
 
 
-func _use_item(item: InventoryItem):
+func _use_item(item: InventoryItem) -> void:
 	match item.item_type:
 		Globals.Item_Type.WEAPON:
 			if equipped_weapon.item:
@@ -85,7 +85,7 @@ func _use_item(item: InventoryItem):
 			weapon_equipped.emit(weapon)
 			_reload_inventory()
 
-func _unequip_item(item: InventoryItem):
+func _unequip_item(item: InventoryItem) -> void:
 	match item.item_type:
 		Globals.Item_Type.WEAPON:
 			weapon_unequipped.emit()
@@ -93,10 +93,10 @@ func _unequip_item(item: InventoryItem):
 			_reload_inventory()
 
 
-func _reload_inventory():
+func _reload_inventory() -> void:
 	close_inventory()
 	inventory_changed.emit()
 
 
-func _setup_signals():
+func _setup_signals() -> void:
 	equipped_weapon.connect("item_selected", _unequip_item)

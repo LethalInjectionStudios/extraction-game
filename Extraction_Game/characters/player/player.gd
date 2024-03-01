@@ -38,15 +38,15 @@ func _ready() -> void:
 	_connect_signals()
 
 
-func _process(_delta) -> void:
+func _process(_delta: float) -> void:
 	_update_sprites()
 	_get_input()
 	z_index = position.y as int
 
 
-func _physics_process(_delta) -> void:
+func _physics_process(_delta: float) -> void:
 	if !menu_open:
-		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = direction * _move_speed
 	move_and_slide()
 

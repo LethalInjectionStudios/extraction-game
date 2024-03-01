@@ -1,8 +1,8 @@
 class_name WeaponComponent
 extends Node2D
 
-signal weapon_fired(projectile)
-signal noise_emitted(location)
+signal weapon_fired(projectile: Projectile)
+signal noise_emitted(location: Vector2)
 signal weapon_added_to_inventory(weapon: InventoryItemWeapon)
 signal weapon_removed_from_inventory(weapon: InventoryComponent)
 
@@ -13,23 +13,23 @@ var max_durabiity: float = 100.0
 var weapon_range: int
 var rate_of_fire: float
 var firing_mode: Globals.FireMode
-var caliber
-var loaded_ammo
-var accuracy
-var recoil
-var ergonomics
+# var caliber
+# var loaded_ammo
+# var accuracy
+# var recoil
+# var ergonomics
 var magazine_capacity: int
 var magazine_count: int
 var weapon: Weapon
-var stock
-var grip
-var handguard
-var barrel
-var magazine
-var muzzle
-var scope
-var foregrip
-var light
+# var stock
+# var grip
+# var handguard
+# var barrel
+# var magazine
+# var muzzle
+# var scope
+# var foregrip
+# var light
 
 var _can_fire: bool = true
 var _inventory_item: InventoryItemWeapon

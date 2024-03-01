@@ -10,21 +10,17 @@ const PLAYER: PackedScene = preload("res://characters/player/player.tscn")
 
 var _player: Player
 
-func _ready():
+func _ready() -> void:
 	_player = PLAYER.instantiate() as Player
 	add_child(_player)
-	var _spawn_point = spawn_points.get_child(randi() % spawn_points.get_child_count())
+	var _spawn_point: Node = spawn_points.get_child(randi() % spawn_points.get_child_count())
 	_player.global_position = _spawn_point.global_position
 
 	_player._in_raid = true
 
 
-func _process(_delta):
-	pass
-
-
 func _connect_signals() -> void:
-	for weapon in get_tree().get_nodes_in_group("Weapon"):
+	for weapon: Node in get_tree().get_nodes_in_group("Weapon"):
 		weapon.connect("weapon_fired", _on_weapon_fired)
 
 	_player.connect("inventory_toggled", inventory_ui._toggle_inventory_menu)
@@ -44,11 +40,11 @@ func _connect_signals() -> void:
 
 	
 	
-func _on_weapon_fired(projectile) -> void:
+func _on_weapon_fired(projectile: Projectile) -> void:
 	$Projectiles.add_child(projectile)
 	
 
-func _on_poi_created(poi) -> void:
+func _on_poi_created(poi: POI) -> void:
 	$POI.add_child(poi)
 
 
@@ -64,20 +60,20 @@ func _on_menu_closed() -> void:
 
 
 func _on_item_moved_player_lootbox(lootbox: String, item: InventoryItem) -> void:
-	var _lootbox = get_node(lootbox) as Lootable
+	var _lootbox: Lootable = get_node(lootbox) as Lootable
 
 	_player.remove_item_from_inventory(item)
 	_lootbox.inventory_component._add_to_inventory(item)
 
 
 func _on_item_moved_lootbox_player(lootbox: String, item: InventoryItem) -> void:
-	var _lootbox = get_node(lootbox) as Lootable
+	var _lootbox: Lootable = get_node(lootbox) as Lootable
 
 	_player.add_item_to_inventory(item)
 	_lootbox.inventory_component._remove_from_inventory(item)
 
 
 func _on_lootbox_changed(lootbox: String) -> void:
-	var _lootbox = get_node(lootbox)
+	var _lootbox: Node = get_node(lootbox)
 
 	lootbox_ui._open_menu(_player, _lootbox)

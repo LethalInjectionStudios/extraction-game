@@ -5,7 +5,7 @@ var selected_raid : String = "res://levels/forest/forest.tscn"
 
 @onready var stash: Lootable = $Objects/Stash
 
-func _ready():
+func _ready() -> void:
 	super._ready()
 	_player._in_raid = false
 	_load_stash_data()
@@ -13,7 +13,7 @@ func _ready():
 	_connect_signals()
 
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	audio_listener.global_position = _player.global_position
 
 func _connect_signals() -> void:
@@ -27,35 +27,34 @@ func _load_scene() -> void:
 	_save_stash_data()
 	get_tree().change_scene_to_packed(load(selected_raid))
 
-func _on_area_2d_body_entered(_body):
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	call_deferred("_load_scene")
 
 	
 func _save_stash_data() -> void:
-	var save_path = "user://stash.save"
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	var save_path: String = "user://stash.save"
+	var file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)
 
 	if file:
-		for item in stash.inventory_component.inventory:
+		for item: InventoryItem in stash.inventory_component.inventory:
 			if item.item_type == Globals.Item_Type.WEAPON:
-				var save_item = item as InventoryItemWeapon
+				var save_item: InventoryItemWeapon = item as InventoryItemWeapon
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 		file.close()
 
 	
-func _load_stash_data():
+func _load_stash_data() -> void:
 	stash.inventory_component.inventory.clear()
 
-	var save_path = "user://stash.save"
-	var file = FileAccess.open(save_path, FileAccess.READ)
+	var save_path: String = "user://stash.save"
+	var file: FileAccess = FileAccess.open(save_path, FileAccess.READ)
 
 	if file:
 		while file.get_position() < file.get_length():
-			var content = file.get_line()
-			var item_data = JSON.parse_string(content)
-			var _item_instance = null
+			var content: String = file.get_line()
+			var item_data: Variant = JSON.parse_string(content)
 			if item_data["item_type"] == Globals.Item_Type.WEAPON:
-				_item_instance = InventoryItemWeapon.new()
+				var _item_instance: InventoryItemWeapon = InventoryItemWeapon.new()
 				_item_instance.from_dictionary(item_data)
 				stash.inventory_component._add_to_inventory(_item_instance)
 	else:

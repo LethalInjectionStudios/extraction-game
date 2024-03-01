@@ -1,11 +1,11 @@
 class_name  Trail
 extends Line2D
 
-@export var length = 10
+@export var length: int = 10
 
-var point = Vector2()
+var point: Vector2 = Vector2()
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	global_position = Vector2.ZERO
 	global_rotation = 0
 	

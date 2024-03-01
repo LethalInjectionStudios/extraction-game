@@ -9,12 +9,12 @@ func get_inventory() -> Array[InventoryItem]:
 	return inventory
 	
 	
-func _add_to_inventory(item: InventoryItem):
+func _add_to_inventory(item: InventoryItem) -> void:
 	inventory.append(item)
 	
 	
-func _remove_from_inventory(item: InventoryItem):
-	var item_index = inventory.find(item)
+func _remove_from_inventory(item: InventoryItem) -> void:
+	var item_index: int = inventory.find(item)
 	inventory.remove_at(item_index)
 	
 
