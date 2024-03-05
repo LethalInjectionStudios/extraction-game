@@ -11,6 +11,8 @@ region = Rect2(32, 48, 32, 16)
 size = Vector2(32, 16)
 
 [node name="WeaponsCrate" instance=ExtResource("1_jc6yx")]
+scale = Vector2(1, 1.00262)
+drops = Array[String](["res://resources/weapons/dev/ak47.tres", "res://resources/weapons/dev/barrettM82.tres", "res://resources/consumables/bandage.tres"])
 
 [node name="Sprite2D" parent="." index="0"]
 texture = SubResource("AtlasTexture_puonk")

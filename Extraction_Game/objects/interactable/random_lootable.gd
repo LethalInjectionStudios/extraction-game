@@ -19,3 +19,14 @@ func _ready() -> void:
 
 
 				inventory_component._add_to_inventory(item)
+
+			if res.type == Globals.Item_Type.HEALTH:
+				var item: InventoryItemConsumable = InventoryItemConsumable.new()
+
+				item.item_name = res.name
+				item.item_path = res.resource_path
+				item.item_type = res.type
+				item.item_icon = res.sprite
+
+				inventory_component._add_to_inventory(item)
+

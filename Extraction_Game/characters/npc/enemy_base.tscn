@@ -63,7 +63,8 @@ shape = SubResource("CircleShape2D_82km4")
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_up2yn")]
 initial_state = NodePath("Idle")
 
-[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("detection_component") instance=ExtResource("8_txjwp")]
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("8_txjwp")]
+parent = NodePath("../..")
 detection_component = NodePath("../../Components/DetectionComponent")
 
 [node name="Wander" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("9_fnlxg")]

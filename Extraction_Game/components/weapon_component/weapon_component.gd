@@ -64,6 +64,7 @@ func fire_weapon(target: Vector2) -> void:
 	if _can_fire and weapon:		
 		if magazine_count > 0:
 			_can_fire = false
+			rate_of_fire_timer.start()
 			noise_emitted.emit(global_position)
 			_create_bullet(target)
 		else:

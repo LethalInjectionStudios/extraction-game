@@ -72,8 +72,9 @@ func randomize_wander() -> void:
 
 func _actor_entered_nearby(body: Node2D) -> void:
 	if body is Character and body != self:
-		nearby_actors[body.name.to_lower()] = body
-		transitioned.emit(self, ENGAGED_STATE)
+		if body._faction != parent._faction:
+			nearby_actors[body.name.to_lower()] = body
+			transitioned.emit(self, ENGAGED_STATE)
 
 
 func _actor_left_nearby(body: Node2D) -> void:

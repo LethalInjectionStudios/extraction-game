@@ -22,6 +22,13 @@ func zombie_damage(damage_value: int) -> void:
 	check_health()
 
 
+func heal(health_amount: int) -> void:
+	_health += health_amount
+
+	if _health > MAX_HEALTH:
+		_health = MAX_HEALTH
+
+
 func check_health() -> void:
 	if _health > 0:
 		damage_taken.emit()

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=2 format=3 uid="uid://bpv87nim0kgdh"]
+
+[ext_resource type="Script" path="res://resources/consumables/consumable.gd" id="1_suebl"]
+
+[resource]
+resource_name = "Bandage"
+script = ExtResource("1_suebl")
+restoration_amount = 20
+time_to_use = 0.0
+name = "Bandage"
+type = 2
+sprite = ""
+value = 0

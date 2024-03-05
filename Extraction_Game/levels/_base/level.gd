@@ -31,6 +31,7 @@ func _connect_signals() -> void:
 	inventory_ui.connect("inventory_changed", _on_inventory_ui_changed)
 	inventory_ui.connect("ui_opened", _on_menu_opened)
 	inventory_ui.connect("ui_closed", _on_menu_closed)
+	inventory_ui.connect("consumable_used", _player.use_consumable)
 
 	lootbox_ui.connect("item_moved_player_to_lootbox", _on_item_moved_player_lootbox)
 	lootbox_ui.connect("item_moved_lootbox_to_player", _on_item_moved_lootbox_player)

@@ -4,6 +4,7 @@ extends State
 const WANDER_STATE: String = "wander"
 const ENGAGED_STATE: String = "engaged"
 
+@export var parent: Character
 @export var detection_component: DetectionComponent
 @export var idle_timer: Timer
 
@@ -41,5 +42,7 @@ func set_wait_timer() -> void:
 	idle_timer.start()
 	
 
-func _actor_entered_nearby(_body: Node2D) -> void:
-	transitioned.emit(self, ENGAGED_STATE)
+func _actor_entered_nearby(body: Node2D) -> void:
+	if body is Character and parent != self:
+		if body._faction != parent._faction:
+			transitioned.emit(self, ENGAGED_STATE)

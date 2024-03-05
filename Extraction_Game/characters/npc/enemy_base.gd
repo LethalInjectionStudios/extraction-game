@@ -43,7 +43,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 
-func _update_sprites() -> void:			
+func _update_sprites() -> void:	
+	z_index = global_position.y as int
+			
 	if $StateMachine.current_state.name.to_lower() != "engaged":	
 		if velocity.x < 0:
 			sprite.flip_h = true
@@ -51,6 +53,8 @@ func _update_sprites() -> void:
 		if velocity.x > 0:
 			sprite.flip_h = false
 			weapon_component.weapon_sprite.flip_h = false
+
+	
 
 
 func _connect_signals() -> void:

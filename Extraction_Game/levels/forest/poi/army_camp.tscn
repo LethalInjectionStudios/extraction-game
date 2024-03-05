@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdu8juv6et4g"]
+[gd_scene load_steps=11 format=3 uid="uid://bdu8juv6et4g"]
 
 [ext_resource type="PackedScene" uid="uid://dcl4tdb6fvlkp" path="res://objects/poi.tscn" id="1_nvvdf"]
 [ext_resource type="Script" path="res://levels/forest/poi/army_camp.gd" id="2_2y7yx"]
 [ext_resource type="Texture2D" uid="uid://dmqvrigirf1fn" path="res://levels/forest/spritesheets/army_camp.png" id="2_kc6th"]
 [ext_resource type="PackedScene" uid="uid://cmbet5yq7ojww" path="res://levels/forest/objects/weapons_crate_01.tscn" id="3_vn8qn"]
 [ext_resource type="PackedScene" uid="uid://b2ous8w7xxvxh" path="res://objects/scenery/sandbag.tscn" id="4_ro6bi"]
-[ext_resource type="PackedScene" uid="uid://bur48tdj8wnns" path="res://characters/npc/military/military_grunt.tscn" id="6_sw8nv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx6jw"]
 size = Vector2(160, 114)
@@ -24,8 +23,10 @@ size = Vector2(48, 28)
 atlas = ExtResource("2_kc6th")
 region = Rect2(0, 0, 48, 48)
 
-[node name="ArmyCamp" instance=ExtResource("1_nvvdf")]
+[node name="ArmyCamp" node_paths=PackedStringArray("spawn_points", "characters") instance=ExtResource("1_nvvdf")]
 script = ExtResource("2_2y7yx")
+spawn_points = NodePath("SpawnPoints")
+characters = NodePath("Characters")
 
 [node name="Area2D" parent="." index="0"]
 metadata/_edit_lock_ = true
@@ -150,5 +151,4 @@ position = Vector2(44, 40)
 [node name="Marker2D7" type="Marker2D" parent="SpawnPoints" index="6"]
 position = Vector2(14, 21)
 
-[node name="Enemy Base" parent="." index="13" instance=ExtResource("6_sw8nv")]
-position = Vector2(15, -188)
+[node name="Characters" type="Node2D" parent="." index="13"]

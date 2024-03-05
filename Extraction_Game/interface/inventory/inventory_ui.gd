@@ -6,6 +6,7 @@ signal weapon_unequipped()
 signal inventory_changed()
 signal ui_opened()
 signal ui_closed()
+signal consumable_used(item: InventoryItemConsumable)
 
 
 var _is_menu_open: bool = false
@@ -84,6 +85,12 @@ func _use_item(item: InventoryItem) -> void:
 			var weapon: InventoryItemWeapon = item as InventoryItemWeapon
 			weapon_equipped.emit(weapon)
 			_reload_inventory()
+		Globals.Item_Type.HEALTH:
+			print("Health Used")
+			var health_pack: InventoryItemConsumable = item as InventoryItemConsumable
+			consumable_used.emit(health_pack)
+
+
 
 func _unequip_item(item: InventoryItem) -> void:
 	match item.item_type:

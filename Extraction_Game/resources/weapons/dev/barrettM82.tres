@@ -15,6 +15,6 @@ muzzle_position = Vector2(0, 0)
 magazine_position = Vector2(0, 0)
 scope_position = Vector2(0, 0)
 light_position = Vector2(0, 0)
-name = "Barrett M82"
+name = "Sniper Rifle"
 type = 1
 sprite = "res://sprites/weapons/doughnutdevguns/BerretaM82.png"

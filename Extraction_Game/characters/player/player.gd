@@ -84,7 +84,6 @@ func _get_input() -> void:
 		
 	if Input.is_key_pressed(KEY_P):
 		_save()
-
 	
 	if Input.is_action_just_pressed("interact"):
 		if _interacting_object:
@@ -94,7 +93,6 @@ func _get_input() -> void:
 
 	if Input.is_action_just_pressed("inventory"):
 		inventory_toggled.emit(self)
-
 
 func _update_sprites() -> void:	
 	if get_global_mouse_position().x < position.x:
@@ -134,6 +132,14 @@ func remove_item_from_inventory(item: InventoryItem) -> void:
 	inventory_component._remove_from_inventory(item)
 
 
+func use_consumable(item: InventoryItemConsumable) -> void:
+	if item.item_type == Globals.Item_Type.HEALTH:
+		print("Use Health")
+		var _item: Consumable = load(item.item_path) as Consumable
+		health_component.heal(_item.restoration_amount)
+		ui_changed.emit()
+
+
 func _on_hunger_timer_timeout() -> void:
 	if _in_raid:
 		_hunger -= 1
@@ -159,6 +165,11 @@ func _save() -> void:
 				var save_item: InventoryItemWeapon = item as InventoryItemWeapon
 				print(JSON.stringify(save_item.to_dictionary()))
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
+
+			if item.item_type == Globals.Item_Type.HEALTH:
+				var save_item: InventoryItemConsumable = item as InventoryItemConsumable
+				print(JSON.stringify(save_item.to_dictionary()))
+				file.store_line(JSON.stringify((save_item.to_dictionary())))
 		file.close()
 
 	
@@ -177,6 +188,15 @@ func _load_character_data() -> void:
 				_item_instance.from_dictionary(item_data)
 				inventory_component._add_to_inventory(_item_instance)
 
+			if item_data["item_type"] == Globals.Item_Type.HEALTH:
+				var _item_instance: InventoryItemConsumable = InventoryItemConsumable.new()
+				_item_instance.from_dictionary(item_data)
+				inventory_component._add_to_inventory(_item_instance)
+
 
 func _player_death() -> void:
-	get_tree().change_scene_to_packed(load("res://levels/hideout.tscn"))
+	call_deferred("_return_to_hideout")
+
+
+func _return_to_hideout() -> void:
+	get_tree().change_scene_to_packed(load("res://levels/hideout/hideout.tscn"))

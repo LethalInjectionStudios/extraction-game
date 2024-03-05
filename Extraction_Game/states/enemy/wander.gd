@@ -19,7 +19,6 @@ func _ready() -> void:
 
 func enter() -> void:
 	randomize_wander()
-	wander_timer.start()
 
 
 func exit() -> void:
@@ -39,7 +38,6 @@ func physics_update(_delta: float) -> void:
 func randomize_wander() -> void:
 	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 	wander_timer.wait_time = randf_range(1, 3)
-	wander_timer.start()
 	
 	
 func _on_wander_timer_timeout() -> void:
@@ -52,5 +50,7 @@ func _on_wander_timer_timeout() -> void:
 		transitioned.emit(self, IDLE_STATE)
 		
 
-func _actor_entered_nearby(_body: Node2D) -> void:
-	transitioned.emit(self, ENGAGED_STATE)
+func _actor_entered_nearby(body: Node2D) -> void:
+	if body is Character and parent != self:
+		if body._faction != parent._faction:
+			transitioned.emit(self, ENGAGED_STATE)

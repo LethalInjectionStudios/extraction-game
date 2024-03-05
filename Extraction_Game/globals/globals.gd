@@ -20,11 +20,14 @@ enum Faction {
 
 enum Item_Type {
 	JUNK,
-	WEAPON
+	WEAPON,
+	HEALTH,
+	FOOD,
+	WATER
 }
 
 enum Interactable_Type {
-	Lootable
+	LOOTABLE
 }
 
 var negative_weapon_component_scale: float = -0.5
