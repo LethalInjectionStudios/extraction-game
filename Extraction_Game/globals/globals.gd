@@ -7,7 +7,8 @@ enum FireMode {
 
 enum Caliber {
 	_9MM,
-	_762X39
+	_762X39,
+	_762X51NATO
 }
 
 enum Faction {
