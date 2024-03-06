@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ammunition" load_steps=2 format=3 uid="uid://dahqc55dt3ypg"]
+
+[ext_resource type="Script" path="res://resources/ammunition/ammunition.gd" id="1_gdh7o"]
+
+[resource]
+script = ExtResource("1_gdh7o")
+caliber = 1
+penetration = 31
+damage_modifier = 0
+accuracy_modifier = 0
+recoil_modifier = 0
+durability_penalty = 0
+sound_modifier = 0
+name = "7.62x39"
+type = 2
+sprite = "res://sprites/objects/army_crate.png"
+value = 0
+weight = 0.0
+is_stackable = true
+stack_size = 120

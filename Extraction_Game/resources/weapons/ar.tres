@@ -4,10 +4,11 @@
 
 [resource]
 script = ExtResource("1_8eguu")
+damage = 0
 rate_of_fire = 0.25
-firing_mode = 0
-ammo_type = 0
 magazine_size = 30
+firing_mode = 0
+ammo_type = 1
 stock_position = Vector2(0, 0)
 grip_position = Vector2(0, 0)
 barrel_position = Vector2(0, 0)
@@ -18,3 +19,7 @@ light_position = Vector2(0, 0)
 name = "AR"
 type = 1
 sprite = "res://sprites/weapons/assault_rifle.png"
+value = 0
+weight = 0.0
+is_stackable = false
+stack_size = 0
