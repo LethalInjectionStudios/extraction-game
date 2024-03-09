@@ -137,6 +137,7 @@ func use_consumable(item: InventoryItemConsumable) -> void:
 		print("Use Health")
 		var _item: Consumable = load(item.item_path) as Consumable
 		health_component.heal(_item.restoration_amount)
+		inventory_component._remove_from_inventory(item)
 		ui_changed.emit()
 
 
@@ -158,17 +159,18 @@ func _save() -> void:
 	print("save")
 	var save_path: String = "user://inventory.save"
 	var file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)
-	print(file)
 	if file:
 		for item: InventoryItem in inventory_component.inventory:
 			if item.item_type == Globals.Item_Type.WEAPON:
 				var save_item: InventoryItemWeapon = item as InventoryItemWeapon
-				print(JSON.stringify(save_item.to_dictionary()))
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 
 			if item.item_type == Globals.Item_Type.HEALTH:
 				var save_item: InventoryItemConsumable = item as InventoryItemConsumable
-				print(JSON.stringify(save_item.to_dictionary()))
+				file.store_line(JSON.stringify((save_item.to_dictionary())))
+				
+			if item.item_type == Globals.Item_Type.AMMO:
+				var save_item: InventoryItemAmmo = item as InventoryItemAmmo
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 		file.close()
 
@@ -190,6 +192,11 @@ func _load_character_data() -> void:
 
 			if item_data["item_type"] == Globals.Item_Type.HEALTH:
 				var _item_instance: InventoryItemConsumable = InventoryItemConsumable.new()
+				_item_instance.from_dictionary(item_data)
+				inventory_component._add_to_inventory(_item_instance)
+				
+			if item_data["item_type"] == Globals.Item_Type.AMMO:
+				var _item_instance: InventoryItemAmmo = InventoryItemAmmo.new()
 				_item_instance.from_dictionary(item_data)
 				inventory_component._add_to_inventory(_item_instance)
 

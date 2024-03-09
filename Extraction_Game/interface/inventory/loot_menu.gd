@@ -10,9 +10,11 @@ signal item_moved_lootbox_to_player(lootbox: String, item: InventoryItem)
 var _is_menu_open: bool = false
 var _lootbox: String
 
+const INVENTORY_BUTTON: PackedScene = preload("res://interface/inventory/inventory_button.tscn")
+
 @onready var canvas: CanvasLayer = $CanvasLayer
-@onready var player_container: VBoxContainer = $CanvasLayer/PlayerInventory
-@onready var lootbox_container: VBoxContainer = $CanvasLayer/LootInventory
+@onready var player_container: GridContainer = $CanvasLayer/PlayerInventory
+@onready var lootbox_container: GridContainer = $CanvasLayer/LootInventory
 
 func _ready() -> void:
 	_setup_signals()
@@ -38,24 +40,32 @@ func _setup_signals() -> void:
 
 
 func _open_menu(player: Player, lootbox: Lootable) -> void:
-	var player_label: Label = Label.new()
-	player_label.text = "Inventory"
-	player_container.add_child(player_label)
+	# var player_label: Label = Label.new()
+	# player_label.text = "Inventory"
+	# player_container.add_child(player_label)
 	for item: InventoryItem in player.inventory_component.inventory:
-		var button: InventoryUIButton = InventoryUIButton.new()
-		button.text = item.item_name
+		var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
+		button.icon = load(item.item_icon)
 		button.item = item
+
+		if item is InventoryItemAmmo:
+			button.quantity.text = str(item.quantity)
+
 		button.connect("item_selected", _on_move_item_player_to_lootbox)
 		player_container.add_child(button)
 
 
-	var lootbox_label: Label = Label.new()
-	lootbox_label.text = "Loot Box"
-	lootbox_container.add_child(lootbox_label)
+	# var lootbox_label: Label = Label.new()
+	# lootbox_label.text = "Loot Box"
+	# lootbox_container.add_child(lootbox_label)
 	for item: InventoryItem in lootbox.inventory_component.inventory:
-		var button: InventoryUIButton = InventoryUIButton.new()
-		button.text = item.item_name
+		var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
+		button.icon = load(item.item_icon)
 		button.item = item
+
+		if item is InventoryItemAmmo:
+			button.quantity.text = str(item.quantity)
+			
 		button.connect("item_selected", _on_move_item_lootbox_to_player)
 		lootbox_container.add_child(button)
 

@@ -1,13 +1,12 @@
 class_name Weapon
 extends Item
 
-
-#@export var range
+@export var damage: int
 @export var rate_of_fire: float
+@export var magazine_size: int
 @export var firing_mode: Globals.FireMode
 @export var ammo_type: Globals.Caliber
-@export var magazine_size: int
-#@export var recoil
+@export var sound: int
 
 @export var stock_position: Vector2
 @export var grip_position: Vector2

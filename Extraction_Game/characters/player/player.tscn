@@ -20,10 +20,10 @@ radius = 6.0
 height = 20.0
 
 [node name="Player" type="CharacterBody2D" groups=["Character"]]
-scale = Vector2(0.991289, 1.02362)
+scale = Vector2(0.991289, 1.0267)
 collision_mask = 31
 script = ExtResource("1_22f01")
-_faction = 1
+_faction = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3.5)

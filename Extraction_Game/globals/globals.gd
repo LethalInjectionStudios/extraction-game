@@ -6,8 +6,9 @@ enum FireMode {
 }
 
 enum Caliber {
-	NINE_MM,
-	SEVEN_SIX_TWO_X_THIRTYNINE_MM
+	_9MM,
+	_762X39,
+	_762X51NATO
 }
 
 enum Faction {
@@ -21,6 +22,7 @@ enum Faction {
 enum Item_Type {
 	JUNK,
 	WEAPON,
+	AMMO,
 	HEALTH,
 	FOOD,
 	WATER

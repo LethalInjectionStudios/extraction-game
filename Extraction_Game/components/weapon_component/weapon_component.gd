@@ -21,6 +21,7 @@ var firing_mode: Globals.FireMode
 var magazine_capacity: int
 var magazine_count: int
 var weapon: Weapon
+var ammo: Ammunition
 # var stock
 # var grip
 # var handguard
@@ -54,7 +55,7 @@ var _inventory_item: InventoryItemWeapon
 @onready var reload_timer: Timer = $Timers/ReloadTimer
 
 func _ready() -> void:
-	pass
+	ammo = load("res://resources/ammunition/_762x39.tres")
 
 func _process(_delta: float) -> void:
 	audio_node.global_position = owner.global_position
@@ -111,9 +112,7 @@ func reload_weapon() -> void:
 func _create_bullet(target: Vector2) -> void:
 	var bullet: Projectile = BULLET_SCENE.instantiate() as Projectile
 	var weapon_direction: Vector2 = (target - weapon_sprite.global_position).normalized()
-	bullet.global_position = bullet_location.global_position
-	bullet.global_rotation = weapon_sprite.rotation
-	bullet.direction = weapon_direction
+	bullet.setup(weapon.damage, ammo, bullet_location.global_position, weapon_sprite.rotation, weapon_direction)
 	weapon_fired.emit(bullet)
 	gunshot_audio.play()
 	rate_of_fire_timer.start()

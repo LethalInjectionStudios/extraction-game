@@ -1,7 +1,7 @@
 class_name Projectile
 extends Area2D
 
-var damage: int = 50
+var damage: int
 var armor_penetration: int = 0
 var speed: int = 500
 var recoil: int
@@ -11,6 +11,14 @@ var parent: Character
 
 func _process(delta: float) -> void:
 	position += direction * speed * delta
+
+
+func setup(base_damage: int, bullet: Ammunition, 
+			spawn_position: Vector2, spawn_rotation: float, direction_fired: Vector2, ) -> void:
+	damage = base_damage + (base_damage * bullet.damage_modifier)
+	global_position = spawn_position
+	global_rotation = spawn_rotation
+	direction = direction_fired
 
 
 func _on_area_entered(area: Node2D) -> void:	
