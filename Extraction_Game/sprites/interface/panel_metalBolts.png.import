@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b672grgmu0gki"
-path="res://.godot/imported/AK47.png-07dc0321ac0537b35b6d0da920e9feb0.ctex"
+uid="uid://cgrkw7k580q26"
+path="res://.godot/imported/panel_metalBolts.png-1a4bd756e453dfd42cc6d1a55660628e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/weapons/doughnutdevguns/AK47.png"
-dest_files=["res://.godot/imported/AK47.png-07dc0321ac0537b35b6d0da920e9feb0.ctex"]
+source_file="res://sprites/interface/panel_metalBolts.png"
+dest_files=["res://.godot/imported/panel_metalBolts.png-1a4bd756e453dfd42cc6d1a55660628e.ctex"]
 
 [params]
 

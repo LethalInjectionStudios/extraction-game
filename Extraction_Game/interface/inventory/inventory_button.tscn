@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs8roo38svwit"]
+
+[ext_resource type="Texture2D" uid="uid://cp64pyss8qu8r" path="res://sprites/interface/panel_boltsDetail.png" id="1_y32a3"]
+[ext_resource type="Script" path="res://interface/inventory/inventory_ui_item.gd" id="2_glrbf"]
+
+[node name="Button" type="Button" node_paths=PackedStringArray("quantity", "item_icon")]
+custom_minimum_size = Vector2(75, 75)
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(1, 0.989851)
+icon = ExtResource("1_y32a3")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_glrbf")
+quantity = NodePath("Label")
+item_icon = NodePath("Sprite2D")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(37.5, 37.5)
+scale = Vector2(2, 2)

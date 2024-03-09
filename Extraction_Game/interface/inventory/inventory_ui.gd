@@ -11,12 +11,14 @@ signal consumable_used(item: InventoryItemConsumable)
 
 var _is_menu_open: bool = false
 
-@onready var container: VBoxContainer = $CanvasLayer/Inventory
+@onready var container: GridContainer = $CanvasLayer/ScrollContainer/Inventory
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var equipped_weapon: InventoryUIButton = $CanvasLayer/EquippedGear/EquippedWeapon
 
 @onready var player_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite
 @onready var weapon_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite/WeaponSprite
+
+const INVENTORY_BUTTON: PackedScene = preload("res://interface/inventory/inventory_button.tscn")
 
 func _ready() -> void:
 	_setup_signals()
@@ -44,20 +46,22 @@ func open_inventory(_player: Player) -> void:
 	else:
 		weapon_sprite.texture = null
 		
-
-	var label: Label = Label.new()
-	label.text = "Inventory"
-	container.add_child(label)
-	for item: InventoryItem in _player.inventory_component.inventory:
-		var button: InventoryUIButton = InventoryUIButton.new()
-		button.text = item.item_name
+	for item: InventoryItem in _player.inventory_component.inventory:		
+		var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
+		button.item_icon.texture = load(item.item_icon) as CompressedTexture2D
 		button.item = item
+
+		if item is InventoryItemAmmo:
+			button.quantity.text = str(item.quantity)
+
 		container.add_child(button)
 		button.connect("item_selected", _use_item)
 
 	if _player.weapon_component.weapon:
 		equipped_weapon.item = _player.weapon_component._inventory_item
-		equipped_weapon.text = _player.weapon_component._inventory_item.item_name
+		#equipped_weapon.text = _player.weapon_component._inventory_item.item_name
+		equipped_weapon.icon = load(equipped_weapon.item.item_icon)
+		print(load(equipped_weapon.item.item_icon))
 		equipped_weapon.show()
 	else:
 		equipped_weapon.hide()
@@ -84,12 +88,11 @@ func _use_item(item: InventoryItem) -> void:
 				_unequip_item(equipped_weapon.item)
 			var weapon: InventoryItemWeapon = item as InventoryItemWeapon
 			weapon_equipped.emit(weapon)
-			_reload_inventory()
 		Globals.Item_Type.HEALTH:
 			print("Health Used")
 			var health_pack: InventoryItemConsumable = item as InventoryItemConsumable
 			consumable_used.emit(health_pack)
-
+	_reload_inventory()
 
 
 func _unequip_item(item: InventoryItem) -> void:

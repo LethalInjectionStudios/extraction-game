@@ -19,13 +19,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.313726, 0.313726, 0.313726, 1)
 
-[node name="PlayerInventory" type="VBoxContainer" parent="CanvasLayer"]
+[node name="PlayerInventory" type="GridContainer" parent="CanvasLayer"]
 offset_left = 100.0
 offset_top = 100.0
 offset_right = 144.0
 offset_bottom = 110.0
+columns = 5
 
-[node name="LootInventory" type="VBoxContainer" parent="CanvasLayer"]
+[node name="LootInventory" type="GridContainer" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -34,3 +35,4 @@ offset_top = 100.0
 offset_right = -256.0
 offset_bottom = 110.0
 grow_horizontal = 0
+columns = 5
