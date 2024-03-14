@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8835bxpjms8m"]
+[gd_scene load_steps=10 format=3 uid="uid://c8835bxpjms8m"]
 
 [ext_resource type="Script" path="res://interface/MainMenu/main_menu.gd" id="1_gqq88"]
 [ext_resource type="PackedScene" uid="uid://dgx3nex6k6fbw" path="res://levels/hideout/hideout.tscn" id="2_aa2mw"]
+[ext_resource type="Texture2D" uid="uid://cqbrastis1vpg" path="res://sprites/interface/start.png" id="3_okdih"]
+[ext_resource type="Texture2D" uid="uid://dgebamiuairbm" path="res://sprites/interface/main_menu_logo.png" id="3_u63rl"]
+[ext_resource type="Texture2D" uid="uid://dx3m3hhsy5anx" path="res://sprites/interface/settings.png" id="4_3l847"]
+[ext_resource type="Texture2D" uid="uid://dvptdcmiv1oax" path="res://_misc/logo-white.png" id="4_c1d57"]
+[ext_resource type="Texture2D" uid="uid://d4ki3g6n2406" path="res://sprites/interface/quit.png" id="5_ppe30"]
+[ext_resource type="Texture2D" uid="uid://cmm2wk1vppq3r" path="res://_misc/TwitchGlitchWhite.png" id="7_h3lr6"]
+[ext_resource type="Texture2D" uid="uid://ypmaxe5ij7jy" path="res://_misc/icon_clyde_white_RGB.png" id="8_aoacy"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button")]
 layout_mode = 3
@@ -11,23 +18,97 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gqq88")
-play_button = NodePath("CanvasLayer/Button")
+play_button = NodePath("CanvasLayer/VBoxContainer/Start")
 scene = ExtResource("2_aa2mw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -145.0
-offset_top = -67.0
-offset_right = 115.0
-offset_bottom = 86.0
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Start Game"
+color = Color(0.101961, 0.101961, 0.101961, 1)
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.0
+offset_top = 600.0
+offset_right = -115.0
+offset_bottom = 719.0
+grow_horizontal = 2
+scale = Vector2(3, 3)
+metadata/_edit_group_ = true
+
+[node name="Start" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_okdih")
+icon_alignment = 1
+
+[node name="Settings" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_3l847")
+icon_alignment = 1
+
+[node name="Quit" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("5_ppe30")
+icon_alignment = 1
+
+[node name="Twitter" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -80.0
+offset_right = 176.0
+offset_bottom = 47.9998
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("4_c1d57")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Twitch" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -80.0
+offset_right = 228.0
+offset_bottom = 47.9998
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("7_h3lr6")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Discord" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 152.0
+offset_top = -80.0
+offset_right = 280.0
+offset_bottom = 47.9998
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("8_aoacy")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(960, 270)
+scale = Vector2(10, 10)
+texture = ExtResource("3_u63rl")
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Twitter" to="." method="_on_twitter_pressed"]
+[connection signal="pressed" from="CanvasLayer/Twitch" to="." method="_on_twitch_pressed"]
+[connection signal="pressed" from="CanvasLayer/Discord" to="." method="_on_discord_pressed"]

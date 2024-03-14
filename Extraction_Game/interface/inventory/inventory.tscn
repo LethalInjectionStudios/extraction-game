@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://miigpbg6n0xu"]
+[gd_scene load_steps=5 format=3 uid="uid://miigpbg6n0xu"]
 
 [ext_resource type="Script" path="res://interface/inventory/inventory_ui.gd" id="1_od8su"]
 [ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://sprites/characters/player.png" id="2_5d7hq"]
-[ext_resource type="Script" path="res://interface/inventory/inventory_ui_item.gd" id="2_xvhrm"]
 [ext_resource type="Texture2D" uid="uid://cgrkw7k580q26" path="res://sprites/interface/panel_metalBolts.png" id="3_sprj6"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nc50i"]
-load_path = "res://.godot/imported/AK47.png-07dc0321ac0537b35b6d0da920e9feb0.ctex"
+[ext_resource type="PackedScene" uid="uid://cs8roo38svwit" path="res://interface/inventory/inventory_button.tscn" id="4_f5bdh"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -15,6 +12,7 @@ mouse_filter = 1
 script = ExtResource("1_od8su")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -76,13 +74,8 @@ layout_mode = 2
 text = "Equipped
 "
 
-[node name="EquippedWeapon" type="Button" parent="CanvasLayer/EquippedGear"]
-visible = false
-custom_minimum_size = Vector2(100, 100)
+[node name="EquippedItemButton" parent="CanvasLayer/EquippedGear" instance=ExtResource("4_f5bdh")]
 layout_mode = 2
-icon = SubResource("CompressedTexture2D_nc50i")
-expand_icon = true
-script = ExtResource("2_xvhrm")
 
 [node name="Weight" type="Label" parent="."]
 layout_mode = 0
