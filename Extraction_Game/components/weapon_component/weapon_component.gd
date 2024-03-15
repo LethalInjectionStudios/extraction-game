@@ -2,6 +2,7 @@ class_name WeaponComponent
 extends Node2D
 
 signal weapon_fired(projectile: Projectile)
+signal weapon_reloaded(ammo_type: Ammunition)
 signal noise_emitted(location: Vector2)
 signal weapon_added_to_inventory(weapon: InventoryItemWeapon)
 signal weapon_removed_from_inventory(weapon: InventoryComponent)
@@ -103,6 +104,7 @@ func unequip_weapon() -> void:
 #TODO: Check how much ammo is left in inventory
 func reload_weapon() -> void:
 	if magazine_count < magazine_capacity and not reload_audio.playing and weapon:
+		weapon_reloaded.emit()
 		magazine_count = magazine_capacity
 		_can_fire = false
 		reload_audio.play()

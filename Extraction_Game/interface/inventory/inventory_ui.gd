@@ -13,7 +13,7 @@ var _is_menu_open: bool = false
 
 @onready var container: GridContainer = $CanvasLayer/ScrollContainer/Inventory
 @onready var canvas: CanvasLayer = $CanvasLayer
-@onready var equipped_weapon: InventoryUIButton = $CanvasLayer/EquippedGear/EquippedWeapon
+@onready var equipped_weapon: InventoryUIButton = $CanvasLayer/EquippedGear/EquippedItemButton
 
 @onready var player_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite
 @onready var weapon_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite/WeaponSprite
@@ -48,7 +48,7 @@ func open_inventory(_player: Player) -> void:
 		
 	for item: InventoryItem in _player.inventory_component.inventory:		
 		var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
-		button.item_icon.texture = load(item.item_icon) as CompressedTexture2D
+		button.item_icon.texture = load(item.item_icon)
 		button.item = item
 
 		if item is InventoryItemAmmo:
@@ -59,8 +59,7 @@ func open_inventory(_player: Player) -> void:
 
 	if _player.weapon_component.weapon:
 		equipped_weapon.item = _player.weapon_component._inventory_item
-		#equipped_weapon.text = _player.weapon_component._inventory_item.item_name
-		equipped_weapon.icon = load(equipped_weapon.item.item_icon)
+		equipped_weapon.item_icon.texture = load(equipped_weapon.item.item_icon)
 		print(load(equipped_weapon.item.item_icon))
 		equipped_weapon.show()
 	else:
