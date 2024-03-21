@@ -13,7 +13,7 @@ func get_inventory() -> Array[InventoryItem]:
 	
 func _add_to_inventory(new_item: InventoryItem) -> void:
 
-	var item_data = load(new_item.item_path)
+	var item_data: Resource = load(new_item.item_path)
 
 	if new_item is InventoryItemAmmo:
 		var item_found: bool = false
@@ -35,3 +35,21 @@ func _remove_from_inventory(item: InventoryItem) -> void:
 	var item_index: int = inventory.find(item)
 	inventory.remove_at(item_index)
 	
+
+func remove_ammo(type: Ammunition, amount: int) -> int:
+	for item: InventoryItem in inventory:
+		if item is InventoryItemAmmo:
+			if item.item_name == type.name: #Fix this later
+				if item.quantity >= amount:
+					item.quantity -= amount
+					if item.quantity <= 0:
+						_remove_from_inventory(item)
+
+					return amount
+
+				if item.quantity < amount:
+					amount = item.quantity
+					_remove_from_inventory(item)
+					return amount
+
+	return 0

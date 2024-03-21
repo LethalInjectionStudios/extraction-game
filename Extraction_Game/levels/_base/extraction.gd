@@ -29,12 +29,9 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func _on_timer_timeout() -> void:	
-	if _player.weapon_component.weapon:
-		_player.unequip_weapon()
 	_player._save()
 	call_deferred("_load_scene")
 
 
-	
 func _load_scene() -> void:
 	get_tree().change_scene_to_packed(selected_raid)

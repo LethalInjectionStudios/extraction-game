@@ -3,6 +3,7 @@ extends Control
 
 signal weapon_equipped(item: InventoryItemWeapon)
 signal weapon_unequipped()
+signal weapon_ammo_changed(ammo: InventoryItemAmmo)
 signal inventory_changed()
 signal ui_opened()
 signal ui_closed()
@@ -10,10 +11,12 @@ signal consumable_used(item: InventoryItemConsumable)
 
 
 var _is_menu_open: bool = false
+var player: Player
 
 @onready var container: GridContainer = $CanvasLayer/ScrollContainer/Inventory
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var equipped_weapon: InventoryUIButton = $CanvasLayer/EquippedGear/EquippedItemButton
+@onready var loaded_ammo: Button = $CanvasLayer/Button
 
 @onready var player_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite
 @onready var weapon_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite/WeaponSprite
@@ -28,8 +31,8 @@ func _toggle_inventory_menu(player: Player) -> void:
 	if !_is_menu_open:
 		ui_opened.emit()
 		_is_menu_open = true
-		show_window()
 		open_inventory(player)
+		show_window()
 	else:
 		ui_closed.emit()
 		_is_menu_open = false
@@ -40,6 +43,7 @@ func _toggle_inventory_menu(player: Player) -> void:
 
 func open_inventory(_player: Player) -> void:
 	_player.player_sprite.texture = _player.player_sprite.texture
+	player = _player
 	
 	if _player.weapon_component.weapon:
 		weapon_sprite.texture = _player.weapon_component.weapon_sprite.texture
@@ -58,18 +62,28 @@ func open_inventory(_player: Player) -> void:
 		button.connect("item_selected", _use_item)
 
 	if _player.weapon_component.weapon:
-		equipped_weapon.item = _player.weapon_component._inventory_item
+		equipped_weapon.item = _player.weapon_component._weapon_inventory_item
 		equipped_weapon.item_icon.texture = load(equipped_weapon.item.item_icon)
-		print(load(equipped_weapon.item.item_icon))
+		if !equipped_weapon.item.ammo_type.is_empty():
+			var loaded_ammo_data: Ammunition = load(equipped_weapon.item.ammo_type)
+			loaded_ammo.icon = load(loaded_ammo_data.sprite)
 		equipped_weapon.show()
+		loaded_ammo.show()
 	else:
 		equipped_weapon.hide()
+		loaded_ammo.hide()
 
 
 func close_inventory() -> void:
 	for child: Node in container.get_children():
 		container.remove_child(child)
 		child.queue_free()
+
+	var options: Array[Node] = loaded_ammo.get_children()
+	for child in options:
+		child.queue_free()
+
+	player = null
 
 
 func show_window() -> void:
@@ -78,6 +92,11 @@ func show_window() -> void:
 
 func hide_window() -> void:
 	canvas.hide()
+
+
+func _setup_signals() -> void:
+	equipped_weapon.connect("item_selected", _unequip_item)
+	loaded_ammo.connect("pressed", _on_loaded_ammo_pressed)
 
 
 func _use_item(item: InventoryItem) -> void:
@@ -94,6 +113,30 @@ func _use_item(item: InventoryItem) -> void:
 	_reload_inventory()
 
 
+func _on_loaded_ammo_pressed() -> void:
+	var ammo_options: VBoxContainer = VBoxContainer.new()
+	loaded_ammo.add_child(ammo_options)
+
+	for item: InventoryItem in player.inventory_component.inventory:
+		if item is InventoryItemAmmo:
+			var ammo: Ammunition = load(item.item_path)
+			var weapon: Weapon = load(equipped_weapon.item.item_path)
+			if ammo.caliber == weapon.caliber:
+				var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
+				button.text = item.item_name
+				button.item = item
+				ammo_options.add_child(button)
+				button.connect("item_selected", _on_ammo_type_changed)
+
+
+func _on_ammo_type_changed(item: InventoryItem) -> void:
+	weapon_ammo_changed.emit(item)
+
+	var options: Array[Node] = loaded_ammo.get_children()
+	for child in options:
+		child.queue_free()
+
+
 func _unequip_item(item: InventoryItem) -> void:
 	match item.item_type:
 		Globals.Item_Type.WEAPON:
@@ -105,7 +148,3 @@ func _unequip_item(item: InventoryItem) -> void:
 func _reload_inventory() -> void:
 	close_inventory()
 	inventory_changed.emit()
-
-
-func _setup_signals() -> void:
-	equipped_weapon.connect("item_selected", _unequip_item)

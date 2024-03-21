@@ -2,27 +2,31 @@ class_name WeaponComponent
 extends Node2D
 
 signal weapon_fired(projectile: Projectile)
-signal weapon_reloaded(ammo_type: Ammunition)
+signal weapon_reloaded(ammo_type: Ammunition, magazine_capacity: int)
 signal noise_emitted(location: Vector2)
 signal weapon_added_to_inventory(weapon: InventoryItemWeapon)
 signal weapon_removed_from_inventory(weapon: InventoryComponent)
 
 const BULLET_SCENE: PackedScene = preload("res://objects/projectiles/bullet.tscn")
 
+var weapon: Weapon
+var _weapon_inventory_item: InventoryItemWeapon
+var ammo: Ammunition
+var _ammo_inventory_item: InventoryItemAmmo
+
+
 var durability: float
 var max_durabiity: float = 100.0
 var weapon_range: int
+var caliber: Globals.Caliber
 var rate_of_fire: float
 var firing_mode: Globals.FireMode
-# var caliber
-# var loaded_ammo
+var magazine_capacity: int
+var magazine_count: int
 # var accuracy
 # var recoil
 # var ergonomics
-var magazine_capacity: int
-var magazine_count: int
-var weapon: Weapon
-var ammo: Ammunition
+
 # var stock
 # var grip
 # var handguard
@@ -34,7 +38,7 @@ var ammo: Ammunition
 # var light
 
 var _can_fire: bool = true
-var _inventory_item: InventoryItemWeapon
+
 # var _stock_position: Vector2
 # var _grip_position: Vector2
 # var _handguard_position: Vector2
@@ -56,7 +60,7 @@ var _inventory_item: InventoryItemWeapon
 @onready var reload_timer: Timer = $Timers/ReloadTimer
 
 func _ready() -> void:
-	ammo = load("res://resources/ammunition/_762x39.tres")
+	pass #ammo = load("res://resources/ammunition/_762x39.tres")
 
 func _process(_delta: float) -> void:
 	audio_node.global_position = owner.global_position
@@ -78,21 +82,34 @@ func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 	if weapon:
 		unequip_weapon()
 	weapon_removed_from_inventory.emit(_weapon)
-	_inventory_item = _weapon
+
 	weapon = load(_weapon.item_path) as Weapon
-	weapon_sprite.texture = load(weapon.sprite)
-	if _weapon.muzzle:
-		muzzle_sprite.texture = load(_weapon.muzzle)
+	_weapon_inventory_item = _weapon
+
+	var _ammo_data: Ammunition = load(_weapon.ammo_type)
+	_ammo_inventory_item = InventoryItemAmmo.new()
+	_ammo_inventory_item.item_name = _ammo_data.name
+	_ammo_inventory_item.item_path = _ammo_data.resource_path
+	_ammo_inventory_item.item_type = _ammo_data.type
+	_ammo_inventory_item.item_icon = _ammo_data.sprite
+
 	rate_of_fire = weapon.rate_of_fire
 	rate_of_fire_timer.wait_time = rate_of_fire
 	firing_mode = weapon.firing_mode
 	magazine_capacity = weapon.magazine_size
 	magazine_count = _weapon.ammo_count
+	if !_weapon.ammo_type.is_empty():
+		ammo = load(_weapon.ammo_type)
+	caliber = weapon.caliber
+
+	weapon_sprite.texture = load(weapon.sprite)
+	if _weapon.muzzle:
+		muzzle_sprite.texture = load(_weapon.muzzle)
 	
 func unequip_weapon() -> void:
-	_inventory_item.ammo_count = magazine_count
-	weapon_added_to_inventory.emit(_inventory_item)
-	_inventory_item = null
+	_weapon_inventory_item.ammo_count = magazine_count
+	weapon_added_to_inventory.emit(_weapon_inventory_item)
+	_weapon_inventory_item = null
 	weapon = null
 	weapon_sprite.texture = null
 	muzzle_sprite.texture = null
@@ -101,14 +118,23 @@ func unequip_weapon() -> void:
 	magazine_count = 0
 	
 	
-#TODO: Check how much ammo is left in inventory
 func reload_weapon() -> void:
-	if magazine_count < magazine_capacity and not reload_audio.playing and weapon:
-		weapon_reloaded.emit()
-		magazine_count = magazine_capacity
+	if magazine_count < magazine_capacity and not reload_audio.playing and weapon and ammo:
+		weapon_reloaded.emit(ammo, magazine_capacity - magazine_count)
 		_can_fire = false
 		reload_audio.play()
 		reload_timer.start()
+
+
+func change_ammo(new_ammo: InventoryItemAmmo) -> InventoryItemAmmo:
+	var old_ammo: InventoryItemAmmo =  _ammo_inventory_item
+	old_ammo.quantity = magazine_count
+
+	ammo = load(new_ammo.item_path)
+	_ammo_inventory_item = new_ammo
+
+	reload_weapon()
+	return old_ammo
 
 
 func _create_bullet(target: Vector2) -> void:

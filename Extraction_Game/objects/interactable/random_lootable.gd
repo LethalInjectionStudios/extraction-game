@@ -16,6 +16,7 @@ func _ready() -> void:
 				item.item_path = res.resource_path
 				item.item_type = res.type
 				item.item_icon = res.sprite
+				item.ammo_type = String()
 
 
 				inventory_component._add_to_inventory(item)
