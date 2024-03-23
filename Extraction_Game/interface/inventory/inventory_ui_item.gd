@@ -19,3 +19,4 @@ func _on_button_pressed() -> void:
 
 func _on_mouse_entered() -> void:
 	audio_player.play()
+	

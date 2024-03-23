@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://miigpbg6n0xu"]
+[gd_scene load_steps=5 format=3 uid="uid://miigpbg6n0xu"]
 
 [ext_resource type="Script" path="res://interface/inventory/inventory_ui.gd" id="1_od8su"]
 [ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://sprites/characters/player.png" id="2_5d7hq"]
 [ext_resource type="Texture2D" uid="uid://cgrkw7k580q26" path="res://sprites/interface/panel_metalBolts.png" id="3_sprj6"]
 [ext_resource type="PackedScene" uid="uid://cs8roo38svwit" path="res://interface/inventory/inventory_button.tscn" id="4_f5bdh"]
-[ext_resource type="Texture2D" uid="uid://ti0p02fe0nw5" path="res://sprites/ammunition/bullet.png" id="5_nxkxw"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -83,7 +82,6 @@ offset_left = 1710.0
 offset_top = 133.0
 offset_right = 1760.0
 offset_bottom = 183.0
-icon = ExtResource("5_nxkxw")
 expand_icon = true
 
 [node name="Weight" type="Label" parent="."]

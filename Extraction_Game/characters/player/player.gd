@@ -34,9 +34,9 @@ func _ready() -> void:
 	_thirst = MAX_THIRST
 	
 	ui_changed.emit()
-	_load_character_data()
 
 	_connect_signals()
+	_load_character_data()
 
 
 func _process(_delta: float) -> void:
@@ -171,9 +171,6 @@ func _on_thirst_timer_timeout() -> void:
 	
 	
 func _save() -> void:
-	if weapon_component.weapon:
-		unequip_weapon()
-
 	var save_path: String = "user://inventory.save"
 	var file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)
 	if file:
@@ -189,6 +186,10 @@ func _save() -> void:
 			if item.item_type == Globals.Item_Type.AMMO:
 				var save_item: InventoryItemAmmo = item as InventoryItemAmmo
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
+
+		if weapon_component._weapon_inventory_item:
+			var save_item: InventoryItemWeapon = weapon_component._weapon_inventory_item as InventoryItemWeapon
+			file.store_line(JSON.stringify((save_item.to_dictionary())))
 		file.close()
 
 	
@@ -206,6 +207,9 @@ func _load_character_data() -> void:
 				var _item_instance: InventoryItemWeapon = InventoryItemWeapon.new()
 				_item_instance.from_dictionary(item_data)
 				inventory_component._add_to_inventory(_item_instance)
+
+				if item_data["equipped"]:
+					weapon_component.equip_weapon(_item_instance)
 
 			if item_data["item_type"] == Globals.Item_Type.HEALTH:
 				var _item_instance: InventoryItemConsumable = InventoryItemConsumable.new()

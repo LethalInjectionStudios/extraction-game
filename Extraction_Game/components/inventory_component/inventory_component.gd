@@ -29,7 +29,7 @@ func _add_to_inventory(new_item: InventoryItem) -> void:
 	else:
 		inventory.append(new_item)
 		weight += item_data.weight
-	
+
 	
 func _remove_from_inventory(item: InventoryItem) -> void:
 	var item_index: int = inventory.find(item)

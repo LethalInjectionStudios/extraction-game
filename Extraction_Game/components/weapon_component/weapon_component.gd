@@ -81,6 +81,7 @@ func fire_weapon(target: Vector2) -> void:
 func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 	if weapon:
 		unequip_weapon()
+		
 	weapon_removed_from_inventory.emit(_weapon)
 
 	weapon = load(_weapon.item_path) as Weapon
@@ -89,10 +90,10 @@ func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 	var _ammo_data: Ammunition = load(_weapon.ammo_type)
 	_ammo_inventory_item = InventoryItemAmmo.new()
 	_ammo_inventory_item.item_name = _ammo_data.name
-	_ammo_inventory_item.item_path = _ammo_data.resource_path
+	_ammo_inventory_item.item_path = _ammo_data.resource_path	
 	_ammo_inventory_item.item_type = _ammo_data.type
 	_ammo_inventory_item.item_icon = _ammo_data.sprite
-
+	
 	rate_of_fire = weapon.rate_of_fire
 	rate_of_fire_timer.wait_time = rate_of_fire
 	firing_mode = weapon.firing_mode
@@ -102,12 +103,15 @@ func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 		ammo = load(_weapon.ammo_type)
 	caliber = weapon.caliber
 
+	_weapon_inventory_item.equipped = true
+
 	weapon_sprite.texture = load(weapon.sprite)
 	if _weapon.muzzle:
 		muzzle_sprite.texture = load(_weapon.muzzle)
 	
 func unequip_weapon() -> void:
 	_weapon_inventory_item.ammo_count = magazine_count
+	_weapon_inventory_item.equipped = false
 	weapon_added_to_inventory.emit(_weapon_inventory_item)
 	_weapon_inventory_item = null
 	weapon = null
@@ -129,9 +133,10 @@ func reload_weapon() -> void:
 func change_ammo(new_ammo: InventoryItemAmmo) -> InventoryItemAmmo:
 	var old_ammo: InventoryItemAmmo =  _ammo_inventory_item
 	old_ammo.quantity = magazine_count
-
+ 
 	ammo = load(new_ammo.item_path)
 	_ammo_inventory_item = new_ammo
+	magazine_count = 0
 
 	reload_weapon()
 	return old_ammo

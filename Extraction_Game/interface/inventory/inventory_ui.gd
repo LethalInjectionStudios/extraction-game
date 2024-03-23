@@ -121,7 +121,7 @@ func _on_loaded_ammo_pressed() -> void:
 		if item is InventoryItemAmmo:
 			var ammo: Ammunition = load(item.item_path)
 			var weapon: Weapon = load(equipped_weapon.item.item_path)
-			if ammo.caliber == weapon.caliber:
+			if ammo.caliber == weapon.caliber and item != player.weapon_component._ammo_inventory_item:
 				var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
 				button.text = item.item_name
 				button.item = item
@@ -131,10 +131,12 @@ func _on_loaded_ammo_pressed() -> void:
 
 func _on_ammo_type_changed(item: InventoryItem) -> void:
 	weapon_ammo_changed.emit(item)
-
+	loaded_ammo.icon = load(item.item_icon)
 	var options: Array[Node] = loaded_ammo.get_children()
 	for child in options:
 		child.queue_free()
+
+	_reload_inventory()
 
 
 func _unequip_item(item: InventoryItem) -> void:

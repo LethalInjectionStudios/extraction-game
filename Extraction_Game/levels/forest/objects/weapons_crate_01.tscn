@@ -8,7 +8,7 @@ size = Vector2(32, 16)
 
 [node name="WeaponsCrate" instance=ExtResource("1_jc6yx")]
 scale = Vector2(1, 1.00262)
-drops = Array[String](["res://resources/weapons/dev/ak47.tres", "res://resources/weapons/dev/barrettM82.tres", "res://resources/consumables/bandage.tres", "res://resources/ammunition/_762x39.tres", "res://resources/ammunition/_762x39_HP.tres"])
+drops = Array[String](["res://resources/weapons/dev/ak47.tres", "res://resources/weapons/dev/barrettM82.tres", "res://resources/consumables/bandage.tres", "res://resources/ammunition/_762x39.tres", "res://resources/ammunition/_762x39_HP.tres", "res://resources/ammunition/_762x39_AP.tres"])
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_ecbro")

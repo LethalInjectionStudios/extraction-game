@@ -16,22 +16,14 @@ func _ready() -> void:
 
 	var weapon: InventoryItemWeapon = InventoryItemWeapon.new()
 	
-	if randi() % 2:
-		var weapon_data: Weapon = load("res://resources/weapons/dev_gun.tres")
+	var weapon_data: Weapon = load("res://resources/weapons/dev/ak47.tres")
 
-		weapon.item_name = weapon_data.name
-		weapon.item_type = weapon_data.type
-		weapon.item_path = "res://resources/weapons/dev_gun.tres"
-		
-		weapon_component.equip_weapon(weapon)
-	else:
-		var weapon_data: Weapon = load("res://resources/weapons/ar.tres")
-
-		weapon.item_name = weapon_data.name
-		weapon.item_type = weapon_data.type
-		weapon.item_path = "res://resources/weapons/ar.tres"
-
-		weapon_component.equip_weapon(weapon)
+	weapon.item_name = weapon_data.name
+	weapon.item_type = weapon_data.type
+	weapon.item_path = "res://resources/weapons/dev/ak47.tres"
+	weapon.ammo_type = "res://resources/ammunition/_762x39.tres"
+	
+	weapon_component.equip_weapon(weapon)
 
 	
 func _process(_delta: float) -> void:
