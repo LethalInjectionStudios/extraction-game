@@ -24,7 +24,7 @@ func enter() -> void:
 	_find_closest_target()
 	randomize_wander()
 	weapon_component.weapon_sprite.flip_h = false
-	#attack_timer.wait_time = weapon_component.rate_of_fire
+	attack_timer.wait_time = weapon_component.rate_of_fire
 
 	
 func exit() -> void:
@@ -44,7 +44,8 @@ func update(_delta: float) -> void:
 		weapon_component.weapon_sprite.look_at(target.position)
 		weapon_component.fire_weapon(target.position)
 		
-		if weapon_component.magazine_count == 0:
+		if weapon_component.magazine_count <= 0:
+			print("reloaded")
 			weapon_component.reload_weapon()
 		
 	if !target:

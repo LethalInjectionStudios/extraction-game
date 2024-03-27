@@ -60,19 +60,20 @@ var _can_fire: bool = true
 @onready var reload_timer: Timer = $Timers/ReloadTimer
 
 func _ready() -> void:
-	pass #ammo = load("res://resources/ammunition/_762x39.tres")
+	pass
 
 func _process(_delta: float) -> void:
 	audio_node.global_position = owner.global_position
 
 
 func fire_weapon(target: Vector2) -> void:
-	if _can_fire and weapon:		
+	if _can_fire and weapon:	
 		if magazine_count > 0:
 			_can_fire = false
 			rate_of_fire_timer.start()
 			noise_emitted.emit(global_position)
 			_create_bullet(target)
+
 		else:
 			if not empty_magazine_audio.playing:
 				empty_magazine_audio.play()
@@ -124,10 +125,11 @@ func unequip_weapon() -> void:
 	
 func reload_weapon() -> void:
 	if magazine_count < magazine_capacity and not reload_audio.playing and weapon and ammo:
-		weapon_reloaded.emit(ammo, magazine_capacity - magazine_count)
 		_can_fire = false
 		reload_audio.play()
 		reload_timer.start()
+		weapon_reloaded.emit(ammo, magazine_capacity - magazine_count)
+		_weapon_inventory_item.ammo_count = magazine_count
 
 
 func change_ammo(new_ammo: InventoryItemAmmo) -> InventoryItemAmmo:
@@ -136,6 +138,7 @@ func change_ammo(new_ammo: InventoryItemAmmo) -> InventoryItemAmmo:
  
 	ammo = load(new_ammo.item_path)
 	_ammo_inventory_item = new_ammo
+	_weapon_inventory_item.ammo_type = new_ammo.item_path
 	magazine_count = 0
 
 	reload_weapon()
@@ -150,6 +153,7 @@ func _create_bullet(target: Vector2) -> void:
 	gunshot_audio.play()
 	rate_of_fire_timer.start()
 	magazine_count -= 1
+	_weapon_inventory_item.ammo_count -= 1
 
 
 func _on_rate_of_fire_timeout() -> void:

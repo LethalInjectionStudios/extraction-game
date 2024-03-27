@@ -210,6 +210,7 @@ func _load_character_data() -> void:
 
 				if item_data["equipped"]:
 					weapon_component.equip_weapon(_item_instance)
+					ui_changed.emit()
 
 			if item_data["item_type"] == Globals.Item_Type.HEALTH:
 				var _item_instance: InventoryItemConsumable = InventoryItemConsumable.new()

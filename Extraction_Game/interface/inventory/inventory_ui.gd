@@ -67,7 +67,7 @@ func open_inventory(_player: Player) -> void:
 		if !equipped_weapon.item.ammo_type.is_empty():
 			var loaded_ammo_data: Ammunition = load(equipped_weapon.item.ammo_type)
 			loaded_ammo.icon = load(loaded_ammo_data.sprite)
-		equipped_weapon.show()
+			equipped_weapon.show()
 		loaded_ammo.show()
 	else:
 		equipped_weapon.hide()
@@ -121,10 +121,17 @@ func _on_loaded_ammo_pressed() -> void:
 		if item is InventoryItemAmmo:
 			var ammo: Ammunition = load(item.item_path)
 			var weapon: Weapon = load(equipped_weapon.item.item_path)
-			if ammo.caliber == weapon.caliber and item != player.weapon_component._ammo_inventory_item:
+			if ammo.caliber == weapon.caliber and item.item_name != player.weapon_component._ammo_inventory_item.item_name:
 				var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
 				button.text = item.item_name
-				button.item = item
+				button.item = InventoryItemAmmo.new()
+				
+				button.item.item_name = item.item_name
+				button.item.item_type = item.item_type
+				button.item.item_icon = item.item_icon
+				button.item.item_path = item.item_path	
+				
+				
 				ammo_options.add_child(button)
 				button.connect("item_selected", _on_ammo_type_changed)
 
