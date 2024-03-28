@@ -28,6 +28,7 @@ func _connect_signals() -> void:
 
 	inventory_ui.connect("weapon_equipped", _player.equip_weapon)
 	inventory_ui.connect("weapon_unequipped", _player.unequip_weapon)
+	inventory_ui.connect("weapon_ammo_changed", _player.change_ammo)
 	inventory_ui.connect("inventory_changed", _on_inventory_ui_changed)
 	inventory_ui.connect("ui_opened", _on_menu_opened)
 	inventory_ui.connect("ui_closed", _on_menu_closed)

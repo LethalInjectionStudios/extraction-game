@@ -77,6 +77,13 @@ text = "Equipped
 [node name="EquippedItemButton" parent="CanvasLayer/EquippedGear" instance=ExtResource("4_f5bdh")]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 1710.0
+offset_top = 133.0
+offset_right = 1760.0
+offset_bottom = 183.0
+expand_icon = true
+
 [node name="Weight" type="Label" parent="."]
 layout_mode = 0
 offset_left = 144.0

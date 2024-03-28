@@ -21,8 +21,6 @@ func _connect_signals() -> void:
 
 
 func _load_scene() -> void:
-	if _player.weapon_component.weapon:
-		_player.unequip_weapon()
 	_player._save()
 	_save_stash_data()
 	get_tree().change_scene_to_packed(load(selected_raid))

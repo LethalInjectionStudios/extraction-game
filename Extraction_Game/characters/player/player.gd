@@ -27,15 +27,16 @@ var _interacting_object : Interactable
 @onready var interaction_component: DetectionComponent = $Components/InteractionDetectionComponent
 
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
+@onready var camera: Camera2D = $Camera2D
 
 func _ready() -> void:
 	_hunger = MAX_HUNGER
 	_thirst = MAX_THIRST
 	
 	ui_changed.emit()
-	_load_character_data()
 
 	_connect_signals()
+	_load_character_data()
 
 
 func _process(_delta: float) -> void:
@@ -58,6 +59,7 @@ func get_faction() -> Globals.Faction:
 func _connect_signals() -> void:
 	weapon_component.connect("weapon_added_to_inventory", inventory_component._add_to_inventory)
 	weapon_component.connect("weapon_removed_from_inventory", inventory_component._remove_from_inventory)
+	weapon_component.connect("weapon_reloaded", _on_weapon_reloaded)
 	hitbox_component.connect("hit_taken", health_component.damage)
 	hitbox_component.connect("zombie_hit_taken", health_component.zombie_damage)
 	health_component.connect("damage_taken", ui.update_display)
@@ -127,6 +129,16 @@ func unequip_weapon() -> void:
 	ui_changed.emit()
 
 
+func change_ammo(ammo: InventoryItemAmmo) -> void:
+	add_item_to_inventory(weapon_component.change_ammo(ammo))
+
+
+func _on_weapon_reloaded(ammo: Ammunition, magazine_capacity: int) -> void:
+	var reload_ammo_amount: int = inventory_component.remove_ammo(ammo, magazine_capacity)
+	weapon_component.magazine_count += reload_ammo_amount
+	ui_changed.emit()
+
+
 func add_item_to_inventory(item: InventoryItem) -> void:
 	inventory_component._add_to_inventory(item)
 
@@ -159,7 +171,6 @@ func _on_thirst_timer_timeout() -> void:
 	
 	
 func _save() -> void:
-	print("save")
 	var save_path: String = "user://inventory.save"
 	var file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)
 	if file:
@@ -175,6 +186,14 @@ func _save() -> void:
 			if item.item_type == Globals.Item_Type.AMMO:
 				var save_item: InventoryItemAmmo = item as InventoryItemAmmo
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
+				
+			if item.item_type == Globals.Item_Type.CRAFTING_MATERIAL:
+				var save_item: InventoryItemCraftingMaterial = item as InventoryItemCraftingMaterial
+				file.store_line(JSON.stringify((save_item.to_dictionary())))
+
+		if weapon_component._weapon_inventory_item:
+			var save_item: InventoryItemWeapon = weapon_component._weapon_inventory_item as InventoryItemWeapon
+			file.store_line(JSON.stringify((save_item.to_dictionary())))
 		file.close()
 
 	
@@ -193,6 +212,10 @@ func _load_character_data() -> void:
 				_item_instance.from_dictionary(item_data)
 				inventory_component._add_to_inventory(_item_instance)
 
+				if item_data["equipped"]:
+					weapon_component.equip_weapon(_item_instance)
+					ui_changed.emit()
+
 			if item_data["item_type"] == Globals.Item_Type.HEALTH:
 				var _item_instance: InventoryItemConsumable = InventoryItemConsumable.new()
 				_item_instance.from_dictionary(item_data)
@@ -200,6 +223,11 @@ func _load_character_data() -> void:
 				
 			if item_data["item_type"] == Globals.Item_Type.AMMO:
 				var _item_instance: InventoryItemAmmo = InventoryItemAmmo.new()
+				_item_instance.from_dictionary(item_data)
+				inventory_component._add_to_inventory(_item_instance)
+				
+			if item_data["item_type"] == Globals.Item_Type.CRAFTING_MATERIAL:
+				var _item_instance: InventoryItemCraftingMaterial = InventoryItemCraftingMaterial.new()
 				_item_instance.from_dictionary(item_data)
 				inventory_component._add_to_inventory(_item_instance)
 
