@@ -15,7 +15,7 @@ func _add_to_inventory(new_item: InventoryItem) -> void:
 
 	var item_data: Resource = load(new_item.item_path)
 
-	if new_item is InventoryItemAmmo:
+	if new_item is InventoryItemAmmo or new_item is InventoryItemCraftingMaterial:
 		var item_found: bool = false
 		for item: InventoryItem in inventory:
 			if item.item_name == new_item.item_name && !item_found:

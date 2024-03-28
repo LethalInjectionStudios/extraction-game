@@ -41,4 +41,15 @@ func _ready() -> void:
 				item.quantity = randi_range(50, 100)
 
 				inventory_component._add_to_inventory(item)
+				
+			
+			if res.type == Globals.Item_Type.CRAFTING_MATERIAL:
+				var item: InventoryItemCraftingMaterial = InventoryItemCraftingMaterial.new()
+				
+				item.item_name = res.name
+				item.item_path = res.resource_path
+				item.item_type = res.type
+				item.item_icon = res.sprite
+				item.quantity = randi_range(1, 25)
 
+				inventory_component._add_to_inventory(item)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bmgh07h4do8dx"]
+
+[ext_resource type="Script" path="res://resources/item.gd" id="1_htv4l"]
+
+[resource]
+script = ExtResource("1_htv4l")
+name = "Gunpowder"
+type = 6
+sprite = "res://resources/crafting_material/gunpowder.tres"
+value = 0
+weight = 0.0
+is_stackable = false
+stack_size = 0

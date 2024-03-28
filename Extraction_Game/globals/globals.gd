@@ -25,7 +25,8 @@ enum Item_Type {
 	AMMO,
 	HEALTH,
 	FOOD,
-	WATER
+	WATER,
+	CRAFTING_MATERIAL
 }
 
 enum Interactable_Type {

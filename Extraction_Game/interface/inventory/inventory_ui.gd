@@ -55,7 +55,7 @@ func open_inventory(_player: Player) -> void:
 		button.item_icon.texture = load(item.item_icon)
 		button.item = item
 
-		if item is InventoryItemAmmo:
+		if item is InventoryItemAmmo or item is InventoryItemCraftingMaterial:
 			button.quantity.text = str(item.quantity)
 
 		container.add_child(button)

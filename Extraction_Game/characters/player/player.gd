@@ -186,6 +186,10 @@ func _save() -> void:
 			if item.item_type == Globals.Item_Type.AMMO:
 				var save_item: InventoryItemAmmo = item as InventoryItemAmmo
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
+				
+			if item.item_type == Globals.Item_Type.CRAFTING_MATERIAL:
+				var save_item: InventoryItemCraftingMaterial = item as InventoryItemCraftingMaterial
+				file.store_line(JSON.stringify((save_item.to_dictionary())))
 
 		if weapon_component._weapon_inventory_item:
 			var save_item: InventoryItemWeapon = weapon_component._weapon_inventory_item as InventoryItemWeapon
@@ -219,6 +223,11 @@ func _load_character_data() -> void:
 				
 			if item_data["item_type"] == Globals.Item_Type.AMMO:
 				var _item_instance: InventoryItemAmmo = InventoryItemAmmo.new()
+				_item_instance.from_dictionary(item_data)
+				inventory_component._add_to_inventory(_item_instance)
+				
+			if item_data["item_type"] == Globals.Item_Type.CRAFTING_MATERIAL:
+				var _item_instance: InventoryItemCraftingMaterial = InventoryItemCraftingMaterial.new()
 				_item_instance.from_dictionary(item_data)
 				inventory_component._add_to_inventory(_item_instance)
 
