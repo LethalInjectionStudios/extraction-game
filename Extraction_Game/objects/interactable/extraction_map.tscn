@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfi0fyqp8uday"]
+
+[ext_resource type="Script" path="res://objects/interactable/extraction_map.gd" id="1_vjyl5"]
+[ext_resource type="Texture2D" uid="uid://df667m4wx72x2" path="res://sprites/objects/extraction_map.png" id="2_l303q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gi6vj"]
+size = Vector2(32, 21)
+
+[node name="ExtractionMap" type="StaticBody2D"]
+collision_layer = 8
+script = ExtResource("1_vjyl5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_gi6vj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l303q")

@@ -1,9 +1,35 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgx3nex6k6fbw"]
+[gd_scene load_steps=34 format=3 uid="uid://dgx3nex6k6fbw"]
 
 [ext_resource type="PackedScene" uid="uid://rgumhnym5ugn" path="res://levels/_base/level.tscn" id="1_rl74n"]
 [ext_resource type="Script" path="res://levels/hideout/hideout.gd" id="2_btv65"]
 [ext_resource type="Texture2D" uid="uid://cfu46nc1stox3" path="res://tilemaps/dev_bunker_tilemap.png" id="3_lumjq"]
 [ext_resource type="PackedScene" uid="uid://cvmvpvrkv07j1" path="res://levels/hideout/stash.tscn" id="4_hp52x"]
+[ext_resource type="PackedScene" uid="uid://bfi0fyqp8uday" path="res://objects/interactable/extraction_map.tscn" id="5_it46k"]
+[ext_resource type="PackedScene" uid="uid://c7ykcfshmkwc1" path="res://levels/hideout/objects/bed.tscn" id="6_5ifhv"]
+[ext_resource type="PackedScene" uid="uid://daj68t1o6tbkm" path="res://levels/hideout/objects/locker.tscn" id="6_85q17"]
+[ext_resource type="PackedScene" uid="uid://0xkvnljqxeac" path="res://levels/hideout/objects/bench.tscn" id="7_gidy0"]
+[ext_resource type="PackedScene" uid="uid://vdt3ajpldqqb" path="res://levels/hideout/objects/infirmary/curtain_infirmary_8.tscn" id="8_disrb"]
+[ext_resource type="PackedScene" uid="uid://pdnpwdaxk2sh" path="res://levels/hideout/objects/infirmary/curtain_infirmary_4.tscn" id="9_abxnw"]
+[ext_resource type="PackedScene" uid="uid://bjkl4xk0rot8i" path="res://levels/hideout/objects/bench_2.tscn" id="9_sdgq5"]
+[ext_resource type="PackedScene" uid="uid://dm2m5b37h4gv5" path="res://levels/hideout/objects/infirmary/curtain_infirmary_3.tscn" id="10_etsw5"]
+[ext_resource type="Texture2D" uid="uid://bp53jr8o5tel" path="res://sprites/characters/npc.png" id="11_in70s"]
+[ext_resource type="PackedScene" uid="uid://bm8fmxq00m3w" path="res://levels/hideout/objects/infirmary/curtain_infirmary_1.tscn" id="11_m22lg"]
+[ext_resource type="PackedScene" uid="uid://cr4hn4obc8rdv" path="res://levels/hideout/objects/infirmary/bed_infirmary_1.tscn" id="12_gf2jy"]
+[ext_resource type="PackedScene" uid="uid://5hlbtgoe1r74" path="res://levels/hideout/objects/infirmary/heartrate_monitor.tscn" id="13_m7bh1"]
+[ext_resource type="PackedScene" uid="uid://cycqrmhipx8gm" path="res://levels/hideout/objects/infirmary/iv.tscn" id="14_8p4xy"]
+[ext_resource type="PackedScene" uid="uid://g6o5w0rrx532" path="res://levels/hideout/objects/infirmary/curtain_infirmary_6.tscn" id="15_fcplm"]
+[ext_resource type="PackedScene" uid="uid://dxh0uv2imt7u0" path="res://levels/hideout/objects/infirmary/curtain_infirmary_5.tscn" id="16_vpmp6"]
+[ext_resource type="PackedScene" uid="uid://bj01tsnwosga" path="res://levels/hideout/objects/infirmary/curtain_infirmary_7.tscn" id="17_we2uo"]
+[ext_resource type="PackedScene" uid="uid://cjt0l8gh8k7wb" path="res://levels/hideout/objects/infirmary/curtain_infirmary_10.tscn" id="18_pifnx"]
+[ext_resource type="PackedScene" uid="uid://p1v7cyu6t5ay" path="res://levels/hideout/objects/infirmary/curtain_infirmary_2.tscn" id="19_o5vng"]
+[ext_resource type="PackedScene" uid="uid://od40e24sc4wt" path="res://levels/hideout/objects/infirmary/curtain_infirmary_9.tscn" id="20_6v6nb"]
+[ext_resource type="PackedScene" uid="uid://dvy5h7pc3ysgl" path="res://levels/hideout/objects/infirmary/bed_infirmary_2.tscn" id="21_tu056"]
+[ext_resource type="PackedScene" uid="uid://dmytdbwi4233a" path="res://levels/hideout/objects/infirmary/curtain_infirmary_11.tscn" id="22_25y0a"]
+[ext_resource type="PackedScene" uid="uid://db54goqj1goxv" path="res://levels/hideout/objects/infirmary/curtain_infirmary_12.tscn" id="23_k00ga"]
+[ext_resource type="PackedScene" uid="uid://cv6r83siuox37" path="res://levels/hideout/objects/infirmary/desk_infirmary.tscn" id="27_pgw43"]
+[ext_resource type="PackedScene" uid="uid://b35iijogtb3vj" path="res://levels/hideout/objects/arms_dealer_safe_1.tscn" id="28_8bepx"]
+[ext_resource type="PackedScene" uid="uid://bhnydhllab4mm" path="res://levels/hideout/objects/arms_dealer_safe_2.tscn" id="29_m8t34"]
+[ext_resource type="PackedScene" uid="uid://bp02mu8pcvir1" path="res://levels/hideout/objects/arms_dealer_display.tscn" id="30_cm6hn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ieb7m"]
 texture = ExtResource("3_lumjq")
@@ -25,6 +51,18 @@ texture = ExtResource("3_lumjq")
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+0:4/0 = 0
+0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:4/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_wexep"]
 physics_layer_0/collision_layer = 8
@@ -39,22 +77,210 @@ size = Vector2(30, 7)
 script = ExtResource("2_btv65")
 
 [node name="TileMap" parent="." index="0"]
+position = Vector2(500, 500)
 tile_set = SubResource("TileSet_wexep")
-layer_0/tile_data = PackedInt32Array(1, 196608, 0, 2, 196608, 0, 3, 196608, 0, 4, 196608, 0, 5, 196608, 0, 6, 196608, 0, 65536, 262144, 0, 131072, 262144, 0, 196608, 262144, 0, 65537, 131072, 0, 65538, 131072, 0, 65539, 131072, 0, 65540, 131072, 0, 65541, 131072, 0, 65542, 131072, 0, 131078, 65536, 0, 131077, 65536, 0, 131076, 65536, 0, 131075, 65536, 0, 131074, 65536, 0, 131073, 65536, 0, 196609, 0, 0, 262145, 0, 0, 262146, 0, 0, 196614, 0, 0, 196613, 0, 0, 196612, 0, 0, 196611, 0, 0, 196610, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 327686, 0, 0, 327685, 0, 0, 327684, 0, 0, 327683, 0, 0, 327682, 0, 0, 327681, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 458758, 0, 0, 458757, 0, 0, 458756, 0, 0, 458755, 0, 0, 458754, 0, 0, 458753, 0, 0, 524291, 0, 0, 524292, 0, 0, 524289, 0, 0, 524290, 0, 0, 524293, 0, 0, 524294, 0, 0, 589829, 0, 0, 589828, 0, 0, 589827, 0, 0, 589826, 0, 0, 589825, 0, 0, 589830, 0, 0, 7, 262144, 0, 0, 262144, 0, 262144, 262144, 0, 327680, 262144, 0, 393216, 262144, 0, 458752, 262144, 0, 524288, 262144, 0, 589824, 262144, 0, 65543, 262144, 0, 131079, 262144, 0, 196615, 262144, 0, 262151, 262144, 0, 327687, 262144, 0, 393223, 262144, 0, 458759, 262144, 0, 524295, 262144, 0, 589831, 262144, 0, 655360, 262144, 0, 655361, 262144, 0, 655362, 262144, 0, 655367, 262144, 0, 655366, 262144, 0, 655365, 262144, 0, 655363, 0, 0, 655364, 0, 0)
+layer_0/tile_data = PackedInt32Array(458756, 0, 0, 458755, 0, 0, 524291, 0, 0, 524292, 0, 0, 589828, 0, 0, 589827, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 262144, 0, 655362, 262144, 0, 589829, 262144, 0, 589826, 262144, 0, 524290, 0, 0, 458754, 0, 1, 393221, 262144, 0, 458758, 0, 0, 524294, 0, 0, 589830, 0, 2, 655366, 262144, 0, 655367, 262144, 0, 655368, 262144, 0, 655369, 262144, 0, 589833, 0, 3, 589832, 0, 0, 589831, 0, 0, 524295, 0, 0, 458759, 0, 0, 393223, 0, 0, 393222, 0, 1, 393224, 0, 0, 458760, 0, 0, 458761, 0, 0, 393225, 0, 0, 524296, 0, 0, 524297, 0, 0, 458757, 0, 0, 524293, 0, 0, 327685, 262144, 0, 262149, 262144, 0, 196613, 262144, 0, 196614, 196608, 0, 196615, 196608, 0, 262151, 131072, 0, 262152, 131072, 0, 262153, 131072, 0, 196616, 196608, 0, 196617, 196608, 0, 196618, 262144, 0, 262154, 262144, 0, 327690, 262144, 0, 393226, 262144, 0, 458762, 262144, 0, 524298, 262144, 0, 589834, 262144, 0, 655370, 262144, 0, 327686, 65536, 0, 327687, 65536, 0, 327688, 65536, 0, 327689, 65536, 0, 262150, 131072, 0, 524289, 0, 0, 524288, 0, 0, 589823, 0, 4, 589822, 0, 0, 589821, 0, 0, 589820, 0, 0, 524283, 0, 4, 524282, 0, 0, 589818, 0, 0, 589819, 0, 2, 524284, 0, 0, 524285, 0, 0, 524286, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 589825, 262144, 0, 589824, 262144, 0, 655359, 262144, 0, 655358, 262144, 0, 655357, 262144, 0, 655356, 262144, 0, 655355, 262144, 0, 655354, 262144, 0, 327674, 196608, 0, 327675, 196608, 0, 327676, 196608, 0, 327677, 196608, 0, 327678, 196608, 0, 327679, 196608, 0, 262144, 196608, 0, 262145, 196608, 0, 262146, 262144, 0, 393218, 262144, 0, 393217, 65536, 0, 393216, 65536, 0, 458751, 65536, 0, 458750, 65536, 0, 458749, 65536, 0, 458748, 65536, 0, 458747, 65536, 0, 458746, 65536, 0, 393210, 131072, 0, 393211, 131072, 0, 393212, 131072, 0, 393213, 131072, 0, 393214, 131072, 0, 393215, 131072, 0, 327680, 131072, 0, 327681, 131072, 0, 327682, 262144, 0, 393219, 0, 0, 327683, 0, 0, 262147, 0, 0, 196611, 0, 0, 131075, 0, 0, 65539, 0, 0, 3, 0, 0, 4, 0, 0, 65540, 0, 4, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 393220, 0, 0, -131069, 0, 4, -65533, 0, 1, -65532, 0, 0, -131068, 0, 3, 196610, 262144, 0, 131074, 262144, 0, 65538, 262144, 0, 2, 262144, 0, -65534, 262144, 0, -131070, 262144, 0, -196606, 262144, 0, -196603, 262144, 0, -131067, 262144, 0, -65531, 262144, 0, 5, 262144, 0, 65541, 0, 0, 131077, 0, 0, 589817, 0, 0, 589816, 0, 0, 524281, 0, 0, 524280, 0, 0, 458744, 0, 0, 393208, 0, 0, 327672, 0, 0, 327671, 0, 0, 393207, 0, 0, 458743, 0, 0, 524279, 0, 0, 589815, 0, 0, 458745, 262144, 0, 393209, 262144, 0, 327673, 262144, 0, 327670, 262144, 0, 524278, 262144, 0, 262134, 262144, 0, 262133, 131072, 0, 262132, 131072, 0, 262131, 131072, 0, 262130, 262144, 0, 327666, 262144, 0, 393202, 262144, 0, 458738, 262144, 0, 524274, 262144, 0, 589810, 262144, 0, 589811, 0, 0, 589812, 0, 0, 589813, 0, 0, 589814, 262144, 0, 196595, 196608, 0, 196596, 196608, 0, 196597, 196608, 0, 196598, 262144, 0, 196594, 262144, 0, 327667, 65536, 0, 327668, 65536, 0, 327669, 65536, 0, 393203, 0, 0, 393204, 0, 0, 393205, 0, 0, 458741, 0, 0, 524277, 0, 0, 524276, 0, 0, 458740, 0, 0, 458739, 0, 0, 524275, 0, 0, 458742, 0, 0, 393206, 0, 0, 262135, 0, 0, 196599, 0, 0, 131063, 0, 0, 65527, 0, 0, 262136, 0, 0, 196600, 0, 0, 131064, 0, 0, 65528, 0, 0, 655353, 262144, 0, 655352, 262144, 0, 655351, 262144, 0, 655350, 262144, 0, -9, 0, 0, -65545, 0, 0, -131081, 0, 0, -196617, 0, 0, -262153, 0, 0, -327689, 0, 0, -393225, 0, 0, -458761, 0, 0, -524297, 0, 0, -589833, 0, 0, -655369, 0, 0, -655368, 0, 0, -589832, 0, 0, -524296, 0, 0, -458760, 0, 0, -393224, 0, 0, -327688, 0, 0, -262152, 0, 0, -196616, 0, 0, -131080, 0, 0, -65544, 0, 0, -8, 0, 0, -720904, 0, 0, -786440, 0, 0, -720905, 0, 0, -786441, 0, 0, -720906, 0, 0, -720907, 0, 0, -720908, 0, 0, -720909, 0, 0, -720910, 0, 0, -720911, 0, 0, -720912, 0, 0, -720913, 0, 0, -720914, 0, 0, -720915, 0, 0, -720916, 0, 0, -720917, 0, 0, -786453, 0, 0, -786452, 0, 0, -786451, 0, 0, -786450, 0, 0, -786449, 0, 0, -786448, 0, 0, -786447, 0, 0, -786446, 0, 0, -786445, 0, 0, -786444, 0, 0, -786443, 0, 0, -786442, 0, 0, -851989, 0, 0, -851988, 0, 0, -917524, 0, 0, -917525, 0, 0, -983059, 262144, 0, -983060, 0, 0, -983061, 0, 0, -983062, 262144, 0, -983063, 262144, 0, -983064, 262144, 0, -983065, 262144, 0, -983066, 262144, 0, -983067, 262144, 0, -983068, 262144, 0, -983069, 262144, 0, -1048605, 0, 0, -1114141, 0, 0, -1179677, 0, 0, -1245213, 0, 0, -1310749, 0, 0, -1376285, 0, 0, -1441821, 0, 0, -1507357, 0, 0, -1572893, 0, 0, -1638429, 0, 0, -1638428, 0, 0, -1572892, 0, 0, -1507356, 0, 0, -1441820, 0, 0, -1376284, 0, 0, -1310748, 0, 0, -1245212, 0, 0, -1179676, 0, 0, -1114140, 0, 0, -1048604, 0, 0, -1638427, 0, 0, -1572891, 0, 0, -1507355, 0, 0, -1441819, 0, 0, -1376283, 0, 0, -1310747, 0, 0, -1245211, 0, 0, -1179675, 0, 0, -1114139, 0, 0, -1048603, 0, 0, -1638426, 0, 0, -1572890, 0, 0, -1507354, 0, 0, -1441818, 0, 0, -1376282, 0, 0, -1310746, 0, 0, -1245210, 0, 0, -1179674, 0, 0, -1114138, 0, 0, -1048602, 0, 0, -1638425, 0, 0, -1572889, 0, 0, -1507353, 0, 0, -1441817, 0, 0, -1376281, 0, 0, -1310745, 0, 0, -1245209, 0, 0, -1179673, 0, 0, -1114137, 0, 0, -1048601, 0, 0, -1638424, 0, 0, -1572888, 0, 0, -1507352, 0, 0, -1441816, 0, 0, -1376280, 0, 0, -1310744, 0, 0, -1245208, 0, 0, -1179672, 0, 0, -1114136, 0, 0, -1048600, 0, 0, -1638423, 0, 0, -1572887, 0, 0, -1507351, 0, 0, -1441815, 0, 0, -1376279, 0, 0, -1310743, 0, 0, -1245207, 0, 0, -1179671, 0, 0, -1114135, 0, 0, -1048599, 0, 0, -1638422, 0, 0, -1572886, 0, 0, -1507350, 0, 0, -1441814, 0, 0, -1376278, 0, 0, -1310742, 0, 0, -1245206, 0, 0, -1179670, 0, 0, -1114134, 0, 0, -1048598, 0, 0, -1638421, 0, 0, -1572885, 0, 0, -1507349, 0, 0, -1441813, 0, 0, -1376277, 0, 0, -1310741, 0, 0, -1245205, 0, 0, -1179669, 0, 0, -1114133, 0, 0, -1048597, 0, 0, -1638420, 0, 0, -1572884, 0, 0, -1507348, 0, 0, -1441812, 0, 0, -1376276, 0, 0, -1310740, 0, 0, -1245204, 0, 0, -1179668, 0, 0, -1114132, 0, 0, -1048596, 0, 0, -1638419, 0, 0, -1572883, 0, 0, -1507347, 0, 0, -1441811, 0, 0, -1376275, 0, 0, -1310739, 0, 0, -1245203, 0, 0, -1179667, 0, 0, -1114131, 0, 0, -1048595, 0, 0, -1703965, 65536, 0, -1703964, 65536, 0, -1703963, 65536, 0, -1703962, 65536, 0, -1703961, 65536, 0, -1703960, 65536, 0, -1703959, 65536, 0, -1703958, 65536, 0, -1703957, 65536, 0, -1703956, 65536, 0, -1703955, 65536, 0, -1769495, 131072, 0, -1769492, 131072, 0, -1769490, 262144, 0, -1703954, 262144, 0, -1638418, 262144, 0, -1572882, 262144, 0, -1507346, 262144, 0, -1441810, 262144, 0, -1376274, 262144, 0, -1310738, 262144, 0, -1245202, 262144, 0, -1179666, 262144, 0, -1114130, 262144, 0, -1048594, 262144, 0, -983058, 262144, 0, -983070, 262144, 0, -917526, 262144, 0, -851990, 262144, 0, -786454, 262144, 0, -720918, 262144, 0, -655382, 262144, 0, -655381, 262144, 0, -655380, 262144, 0, -655379, 262144, 0, -655378, 262144, 0, -655377, 262144, 0, -655376, 262144, 0, -655375, 262144, 0, -655374, 262144, 0, -655373, 262144, 0, -655372, 262144, 0, -655371, 262144, 0, -655370, 262144, 0, -589834, 262144, 0, -524298, 262144, 0, -458762, 262144, 0, -393226, 262144, 0, -327690, 262144, 0, -262154, 262144, 0, -196618, 262144, 0, -131082, 262144, 0, -65546, 262144, 0, -10, 262144, 0, 65526, 262144, 0, 131062, 262144, 0, -917523, 262144, 0, -851987, 262144, 0, -851986, 262144, 0, -851985, 262144, 0, -851984, 262144, 0, -851983, 262144, 0, -851982, 262144, 0, -851981, 262144, 0, -851980, 262144, 0, -851979, 262144, 0, -851978, 262144, 0, -851977, 262144, 0, -851976, 262144, 0, -851975, 262144, 0, -786439, 262144, 0, -720903, 262144, 0, -655367, 262144, 0, -589831, 262144, 0, -524295, 262144, 0, -458759, 262144, 0, -393223, 262144, 0, -327687, 262144, 0, -262151, 262144, 0, -196615, 262144, 0, -131079, 262144, 0, -65543, 262144, 0, -7, 262144, 0, 65529, 262144, 0, 131065, 262144, 0, 196601, 262144, 0, 262137, 262144, 0, -1835026, 262144, 0, -1835027, 196608, 0, -1835028, 196608, 0, -1835029, 196608, 0, -1835030, 196608, 0, -1835031, 196608, 0, -1835032, 196608, 0, -1835033, 196608, 0, -1835034, 196608, 0, -1835035, 196608, 0, -1835036, 196608, 0, -1835037, 196608, 0, -1835038, 196608, 0, -1769491, 131072, 0, -1769493, 131072, 0, -1769494, 131072, 0, -1769496, 131072, 0, -1769498, 131072, 0, -1769499, 131072, 0, -1769500, 131072, 0, -1769501, 131072, 0, -1769497, 131072, 0, -1703966, 65536, 0, -1769502, 131072, 0, -1835039, 262144, 0, -1769503, 262144, 0, -1703967, 262144, 0, -1638431, 262144, 0, -1572895, 262144, 0, -1507359, 262144, 0, -1441823, 262144, 0, -1376287, 262144, 0, -1310751, 262144, 0, -1245215, 262144, 0, -1179679, 262144, 0, -1114143, 262144, 0, -1048607, 262144, 0, -983071, 262144, 0, -1638430, 0, 0, -1572894, 0, 0, -1507358, 0, 0, -1441822, 0, 0, -1376286, 0, 0, -1310750, 0, 0, -1245214, 0, 0, -1179678, 0, 0, -1114142, 0, 0, -1048606, 0, 0, 655346, 262144, 0, 655347, 262144, 0, 655348, 262144, 0, 655349, 262144, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 2, -65530, 0, 1, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, 9, 0, 0, 8, 0, 0, 7, 0, 0, 6, 0, 3, -131066, 65536, 0, -131065, 65536, 0, -131064, 65536, 0, -131063, 65536, 0, -196602, 131072, 0, -196601, 131072, 0, -196600, 131072, 0, -196599, 131072, 0, -262138, 196608, 0, -262137, 196608, 0, -262136, 196608, 0, -262135, 196608, 0, -262139, 262144, 0, -262134, 196608, 0, -262133, 196608, 0, -196597, 131072, 0, -131061, 65536, 0, -65525, 0, 0, 11, 0, 0, 65547, 0, 0, 131083, 0, 0, 196619, 262144, 0, -65526, 0, 4, 10, 0, 0, 65546, 0, 0, 131082, 0, 0, -131062, 65536, 0, -196598, 131072, 0, -262132, 262144, 0, -196596, 262144, 0, -131060, 262144, 0, -65524, 262144, 0, 12, 262144, 0, 65548, 262144, 0, 131084, 262144, 0, 196620, 262144, 0)
 
 [node name="Stash" parent="Objects" index="0" instance=ExtResource("4_hp52x")]
-position = Vector2(96, 56)
+position = Vector2(300, 597)
+rotation = -1.5708
 
-[node name="Area2D" type="Area2D" parent="." index="3"]
-position = Vector2(0, 64)
+[node name="Bed" parent="Objects" index="1" instance=ExtResource("6_5ifhv")]
+position = Vector2(308, 635)
+
+[node name="ExtractionMap" parent="Objects" index="2" instance=ExtResource("5_it46k")]
+position = Vector2(628, 583)
+
+[node name="Doctor" type="Sprite2D" parent="Objects" index="3"]
+position = Vector2(196, 92)
+texture = ExtResource("11_in70s")
+
+[node name="Exit" type="Area2D" parent="." index="3"]
+position = Vector2(564, 671)
+metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(64, 107)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" index="0"]
 shape = SubResource("RectangleShape2D_6yupo")
 
 [node name="Scenery" parent="." index="4"]
 metadata/_edit_lock_ = true
+
+[node name="Infirmary" type="Node2D" parent="Scenery" index="0"]
+
+[node name="Curtain2" parent="Scenery/Infirmary" index="0" instance=ExtResource("8_disrb")]
+position = Vector2(156, 220)
+
+[node name="Curtain27" parent="Scenery/Infirmary" index="1" instance=ExtResource("8_disrb")]
+position = Vector2(28, 220)
+
+[node name="Curtain17" parent="Scenery/Infirmary" index="2" instance=ExtResource("8_disrb")]
+position = Vector2(156, 108)
+
+[node name="Curtain4" parent="Scenery/Infirmary" index="3" instance=ExtResource("9_abxnw")]
+position = Vector2(124, 188)
+
+[node name="Curtain5" parent="Scenery/Infirmary" index="4" instance=ExtResource("10_etsw5")]
+position = Vector2(92, 188)
+
+[node name="Curtain6" parent="Scenery/Infirmary" index="5" instance=ExtResource("11_m22lg")]
+position = Vector2(60, 188)
+
+[node name="Curtain7" parent="Scenery/Infirmary" index="6" instance=ExtResource("8_disrb")]
+position = Vector2(92, 108)
+
+[node name="Curtain31" parent="Scenery/Infirmary" index="7" instance=ExtResource("8_disrb")]
+position = Vector2(28, 108)
+
+[node name="Curtain8" parent="Scenery/Infirmary" index="8" instance=ExtResource("8_disrb")]
+position = Vector2(92, 220)
+
+[node name="Bed" parent="Scenery/Infirmary" index="9" instance=ExtResource("12_gf2jy")]
+position = Vector2(126, 228)
+
+[node name="Bed2" parent="Scenery/Infirmary" index="10" instance=ExtResource("12_gf2jy")]
+position = Vector2(63, 228)
+
+[node name="HeartrateMonitor" parent="Scenery/Infirmary" index="11" instance=ExtResource("13_m7bh1")]
+position = Vector2(109, 227)
+
+[node name="HeartrateMonitor2" parent="Scenery/Infirmary" index="12" instance=ExtResource("13_m7bh1")]
+position = Vector2(81, 226)
+
+[node name="HeartrateMonitor3" parent="Scenery/Infirmary" index="13" instance=ExtResource("13_m7bh1")]
+position = Vector2(81, 100)
+
+[node name="HeartrateMonitor4" parent="Scenery/Infirmary" index="14" instance=ExtResource("13_m7bh1")]
+position = Vector2(108, 100)
+
+[node name="Locker" parent="Scenery/Infirmary" index="15" instance=ExtResource("14_8p4xy")]
+position = Vector2(144, 225)
+
+[node name="Locker2" parent="Scenery/Infirmary" index="16" instance=ExtResource("14_8p4xy")]
+position = Vector2(46, 226)
+
+[node name="Locker3" parent="Scenery/Infirmary" index="17" instance=ExtResource("14_8p4xy")]
+position = Vector2(45, 100)
+
+[node name="Locker4" parent="Scenery/Infirmary" index="18" instance=ExtResource("14_8p4xy")]
+position = Vector2(144, 100)
+
+[node name="Curtain10" parent="Scenery/Infirmary" index="19" instance=ExtResource("15_fcplm")]
+position = Vector2(92, 140)
+
+[node name="Curtain15" parent="Scenery/Infirmary" index="20" instance=ExtResource("15_fcplm")]
+position = Vector2(108, 140)
+
+[node name="Curtain20" parent="Scenery/Infirmary" index="21" instance=ExtResource("15_fcplm")]
+position = Vector2(76, 140)
+
+[node name="Curtain11" parent="Scenery/Infirmary" index="22" instance=ExtResource("16_vpmp6")]
+position = Vector2(60, 140)
+
+[node name="Curtain12" parent="Scenery/Infirmary" index="23" instance=ExtResource("17_we2uo")]
+position = Vector2(124, 140)
+
+[node name="Curtain23" parent="Scenery/Infirmary" index="24" instance=ExtResource("18_pifnx")]
+position = Vector2(156, 188)
+
+[node name="Curtain26" parent="Scenery/Infirmary" index="25" instance=ExtResource("18_pifnx")]
+position = Vector2(28, 188)
+
+[node name="Curtain24" parent="Scenery/Infirmary" index="26" instance=ExtResource("19_o5vng")]
+position = Vector2(108, 188)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="Curtain25" parent="Scenery/Infirmary" index="27" instance=ExtResource("19_o5vng")]
+position = Vector2(76, 188)
+
+[node name="Curtain29" parent="Scenery/Infirmary" index="28" instance=ExtResource("20_6v6nb")]
+position = Vector2(28, 140)
+
+[node name="Curtain33" parent="Scenery/Infirmary" index="29" instance=ExtResource("20_6v6nb")]
+position = Vector2(156, 140)
+
+[node name="Bed3" parent="Scenery/Infirmary" index="30" instance=ExtResource("21_tu056")]
+position = Vector2(124, 99)
+
+[node name="Bed4" parent="Scenery/Infirmary" index="31" instance=ExtResource("21_tu056")]
+position = Vector2(63, 99)
+
+[node name="Curtain" parent="Scenery/Infirmary" index="32" instance=ExtResource("22_25y0a")]
+position = Vector2(28, 236)
+
+[node name="Curtain13" parent="Scenery/Infirmary" index="33" instance=ExtResource("22_25y0a")]
+position = Vector2(28, 92)
+scale = Vector2(1, -1)
+
+[node name="Curtain14" parent="Scenery/Infirmary" index="34" instance=ExtResource("22_25y0a")]
+position = Vector2(92, 92)
+scale = Vector2(1, -1)
+
+[node name="Curtain18" parent="Scenery/Infirmary" index="35" instance=ExtResource("22_25y0a")]
+position = Vector2(156, 92)
+scale = Vector2(1, -1)
+
+[node name="Curtain9" parent="Scenery/Infirmary" index="36" instance=ExtResource("22_25y0a")]
+position = Vector2(92, 236)
+
+[node name="Curtain16" parent="Scenery/Infirmary" index="37" instance=ExtResource("22_25y0a")]
+position = Vector2(156, 236)
+
+[node name="Curtain3" parent="Scenery/Infirmary" index="38" instance=ExtResource("23_k00ga")]
+position = Vector2(92, 204)
+
+[node name="Curtain22" parent="Scenery/Infirmary" index="39" instance=ExtResource("23_k00ga")]
+position = Vector2(156, 204)
+
+[node name="Curtain21" parent="Scenery/Infirmary" index="40" instance=ExtResource("23_k00ga")]
+position = Vector2(28, 204)
+
+[node name="Curtain28" parent="Scenery/Infirmary" index="41" instance=ExtResource("23_k00ga")]
+position = Vector2(28, 124)
+scale = Vector2(1, -1)
+
+[node name="Curtain30" parent="Scenery/Infirmary" index="42" instance=ExtResource("23_k00ga")]
+position = Vector2(92, 124)
+scale = Vector2(1, -1)
+
+[node name="Curtain34" parent="Scenery/Infirmary" index="43" instance=ExtResource("23_k00ga")]
+position = Vector2(156, 124)
+scale = Vector2(1, -1)
+
+[node name="Npc2" type="Sprite2D" parent="Scenery/Infirmary" index="44"]
+position = Vector2(63, 96)
+texture = ExtResource("11_in70s")
+
+[node name="Npc3" type="Sprite2D" parent="Scenery/Infirmary" index="45"]
+position = Vector2(63, 229)
+scale = Vector2(1, -1)
+texture = ExtResource("11_in70s")
+
+[node name="Npc4" type="Sprite2D" parent="Scenery/Infirmary" index="46"]
+position = Vector2(126, 229)
+scale = Vector2(1, -1)
+texture = ExtResource("11_in70s")
+
+[node name="Bench2" parent="Scenery/Infirmary" index="47" instance=ExtResource("9_sdgq5")]
+position = Vector2(204, 220)
+
+[node name="Bench3" parent="Scenery/Infirmary" index="48" instance=ExtResource("9_sdgq5")]
+position = Vector2(204, 172)
+
+[node name="Extraction" type="Node2D" parent="Scenery" index="1"]
+
+[node name="Locker" parent="Scenery/Extraction" index="0" instance=ExtResource("6_85q17")]
+position = Vector2(652, 590)
+
+[node name="Locker2" parent="Scenery/Extraction" index="1" instance=ExtResource("6_85q17")]
+position = Vector2(604, 590)
+
+[node name="Bench" parent="Scenery/Extraction" index="2" instance=ExtResource("7_gidy0")]
+position = Vector2(628, 653)
+
+[node name="Bench4" parent="Scenery/Extraction" index="3" instance=ExtResource("27_pgw43")]
+position = Vector2(196, 108)
 
 [node name="Projectiles" parent="." index="5"]
 metadata/_edit_lock_ = true
@@ -67,6 +293,25 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPoints" index="0"]
-position = Vector2(64, 96)
+position = Vector2(374, 629)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="GunSafe" parent="." index="9" instance=ExtResource("28_8bepx")]
+position = Vector2(607, 483)
+
+[node name="GunSafe2" parent="." index="10" instance=ExtResource("28_8bepx")]
+position = Vector2(628, 483)
+
+[node name="Locker" parent="." index="11" instance=ExtResource("29_m8t34")]
+position = Vector2(686, 481)
+
+[node name="Locker2" parent="." index="12" instance=ExtResource("29_m8t34")]
+position = Vector2(686, 497)
+
+[node name="DisplayCase" parent="." index="13" instance=ExtResource("30_cm6hn")]
+position = Vector2(660, 516)
+
+[node name="Npc" type="Sprite2D" parent="." index="14"]
+position = Vector2(672, 512)
+texture = ExtResource("11_in70s")
+
+[connection signal="body_entered" from="Exit" to="." method="_on_area_2d_body_entered"]

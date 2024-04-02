@@ -30,7 +30,8 @@ enum Item_Type {
 }
 
 enum Interactable_Type {
-	LOOTABLE
+	LOOTABLE,
+	MAP
 }
 
 var negative_weapon_component_scale: float = -0.5

@@ -92,6 +92,8 @@ func _get_input() -> void:
 			if _interacting_object is Lootable:
 				var _lootbox: Lootable = _interacting_object as Lootable
 				interacted_with_lootable.emit(self, _lootbox)
+			if _interacting_object is ExtractionMap:
+				print(_interacting_object)
 
 	if Input.is_action_just_pressed("inventory"):
 		inventory_toggled.emit(self)

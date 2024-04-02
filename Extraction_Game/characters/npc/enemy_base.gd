@@ -57,7 +57,7 @@ func _connect_signals() -> void:
 	weapon_component.connect("weapon_reloaded", _on_weapon_reloaded)
 
 
-func _on_weapon_reloaded(ammo: Ammunition, magazine_capacity: int) -> void:
+func _on_weapon_reloaded(_ammo: Ammunition, _magazine_capacity: int) -> void:
 	weapon_component.magazine_count = weapon_component.magazine_capacity
 	
 func _on_actor_death() -> void:

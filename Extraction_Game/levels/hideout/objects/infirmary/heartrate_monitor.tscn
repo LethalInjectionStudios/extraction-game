@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://5hlbtgoe1r74"]
+
+[ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://levels/hideout/spritesheets/bunker_atlas.png" id="1_dnc3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar5js"]
+size = Vector2(14, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3krf"]
+atlas = ExtResource("1_dnc3o")
+region = Rect2(80, 64, 16, 32)
+
+[node name="HeartrateMonitor" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ar5js")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_k3krf")
