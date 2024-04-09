@@ -43,13 +43,14 @@ func _process(_delta: float) -> void:
 	_update_sprites()
 	_get_input()
 	z_index = position.y as int
+	move_and_slide()
 
 
 func _physics_process(_delta: float) -> void:
 	if !menu_open:
 		var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = direction * _move_speed
-	move_and_slide()
+	
 
 
 func get_faction() -> Globals.Faction:
@@ -70,15 +71,16 @@ func _connect_signals() -> void:
 
 func _get_input() -> void:
 
-	if weapon_component.firing_mode == Globals.FireMode.FULL:
-		if Input.is_action_pressed("fire") and !menu_open:
-			weapon_component.fire_weapon(get_global_mouse_position())
-			ui_changed.emit()
+	if _in_raid:
+		if weapon_component.firing_mode == Globals.FireMode.FULL:
+			if Input.is_action_pressed("fire") and !menu_open:
+				weapon_component.fire_weapon(get_global_mouse_position())
+				ui_changed.emit()
 
-	if weapon_component.firing_mode == Globals.FireMode.SEMI:
-		if Input.is_action_just_pressed("fire") and !menu_open:
-			weapon_component.fire_weapon(get_global_mouse_position())
-			ui_changed.emit()
+		if weapon_component.firing_mode == Globals.FireMode.SEMI:
+			if Input.is_action_just_pressed("fire") and !menu_open:
+				weapon_component.fire_weapon(get_global_mouse_position())
+				ui_changed.emit()
 
 	if Input.is_action_just_released("reload") and !menu_open:
 		weapon_component.reload_weapon()

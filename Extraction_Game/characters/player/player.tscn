@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://components/detection_component/detection_component.tscn" id="10_26xm4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
-size = Vector2(8, 7)
+size = Vector2(8, 4.86997)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5stfm"]
 size = Vector2(8, 14)
@@ -26,7 +26,7 @@ script = ExtResource("1_22f01")
 _faction = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3.5)
+position = Vector2(0, -3.40898)
 shape = SubResource("RectangleShape2D_wvhi0")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -51,10 +51,10 @@ zoom = Vector2(5, 5)
 metadata/_edit_group_ = true
 
 [node name="HeadsUpDisplay" parent="." instance=ExtResource("4_yjbq6")]
-offset_left = -253.0
-offset_top = -139.0
-offset_right = 129.0
-offset_bottom = 77.0
+offset_left = -240.091
+offset_top = -120.775
+offset_right = 141.909
+offset_bottom = 95.2247
 
 [node name="Components" type="Node2D" parent="."]
 position = Vector2(0, -7)
@@ -65,10 +65,9 @@ position = Vector2(0, 2)
 [node name="HealthComponent" parent="Components" instance=ExtResource("5_u3kc5")]
 MAX_HEALTH = 1000
 
-[node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("6_xtdws")]
+[node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("6_xtdws")]
 collision_mask = 4
 parent = NodePath("../..")
-health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
 shape = SubResource("RectangleShape2D_5stfm")

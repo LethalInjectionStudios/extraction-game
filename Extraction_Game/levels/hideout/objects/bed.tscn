@@ -2,18 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://levels/hideout/spritesheets/bunker_atlas.png" id="1_hu7da"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_20q2m"]
-size = Vector2(30, 14)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1b53g"]
 atlas = ExtResource("1_hu7da")
 region = Rect2(16, 0, 32, 16)
 
-[node name="Bed" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20q2m"]
+size = Vector2(30, 14)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_20q2m")
+[node name="Bed" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_1b53g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_20q2m")

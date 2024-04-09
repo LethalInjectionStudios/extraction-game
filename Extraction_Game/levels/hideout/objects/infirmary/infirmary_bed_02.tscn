@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmsbo1jkeicww"]
+
+[ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://levels/hideout/spritesheets/bunker_atlas.png" id="1_54rvu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5apel"]
+atlas = ExtResource("1_54rvu")
+region = Rect2(16, 96, 16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdt06"]
+size = Vector2(12, 29)
+
+[node name="Infirmary_Bed_02" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_5apel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_kdt06")
