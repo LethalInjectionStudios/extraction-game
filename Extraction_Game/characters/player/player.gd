@@ -50,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 	if !menu_open:
 		var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = direction * _move_speed
-	
+
 
 
 func get_faction() -> Globals.Faction:
@@ -58,15 +58,30 @@ func get_faction() -> Globals.Faction:
 
 
 func _connect_signals() -> void:
-	weapon_component.connect("weapon_added_to_inventory", inventory_component._add_to_inventory)
-	weapon_component.connect("weapon_removed_from_inventory", inventory_component._remove_from_inventory)
-	weapon_component.connect("weapon_reloaded", _on_weapon_reloaded)
-	hitbox_component.connect("hit_taken", health_component.damage)
-	hitbox_component.connect("zombie_hit_taken", health_component.zombie_damage)
-	health_component.connect("damage_taken", ui.update_display)
-	health_component.connect("destroyed", _player_death)
-	interaction_component.connect("actor_entered", _start_interacting)
-	interaction_component.connect("actor_left", _stop_interacting)
+	if weapon_component:
+		weapon_component.connect("weapon_added_to_inventory", inventory_component._add_to_inventory)
+		weapon_component.connect("weapon_removed_from_inventory", inventory_component._remove_from_inventory)
+		weapon_component.connect("weapon_reloaded", _on_weapon_reloaded)
+	else:
+		push_warning("Missing Weapon Component on: ", self)
+		
+	if hitbox_component:
+		hitbox_component.connect("hit_taken", health_component.damage)
+		hitbox_component.connect("zombie_hit_taken", health_component.zombie_damage)
+	else:
+		push_warning("Missing Hitbox Component on: ", self)
+		
+	if health_component:
+		health_component.connect("damage_taken", ui.update_display)
+		health_component.connect("destroyed", _player_death)
+	else:
+		push_warning("Missing Health Component on: ", self)
+		
+	if interaction_component:
+		interaction_component.connect("actor_entered", _start_interacting)
+		interaction_component.connect("actor_left", _stop_interacting)
+	else:
+		push_warning("Missing Interaction Component on: ", self)
 
 
 func _get_input() -> void:

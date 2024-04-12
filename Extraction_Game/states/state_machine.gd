@@ -15,6 +15,8 @@ func _ready() -> void:
 	if initial_state:
 		initial_state.enter()
 		current_state = initial_state
+	else:
+		push_error("No Initial State Set on: ", self)
 
 
 func _process(delta: float) -> void:

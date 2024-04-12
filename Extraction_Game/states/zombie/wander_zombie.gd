@@ -12,17 +12,14 @@ var _move_direction: Vector2
 @onready var wander_timer: Timer = $WanderTimer
 
 func _ready() -> void:
-	if detection_component:
-		detection_component.actor_entered.connect(_actor_entered_nearby)
+	_connect_signals()
 		
 
 func enter() -> void:
-	print("Wander Start")
 	randomize_wander()
 
 
 func exit() -> void:
-	print("Wander End")
 	wander_timer.stop()
 	parent.velocity = Vector2.ZERO
 	
@@ -38,7 +35,7 @@ func physics_update(_delta: float) -> void:
 
 func randomize_wander() -> void:
 	_move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-	wander_timer.wait_time = randf_range(1, 3)
+	wander_timer.start(randf_range(1, 3))
 	
 	
 func _on_wander_timer_timeout() -> void:
@@ -52,3 +49,13 @@ func _on_wander_timer_timeout() -> void:
 
 func _actor_entered_nearby(_body: Node2D) -> void:
 	transitioned.emit(self, FOLLOW_STATE)
+	
+	
+func _connect_signals() -> void:
+	if !parent:
+		push_error("Missing Parent on: ", self)
+	
+	if detection_component:
+		detection_component.actor_entered.connect(_actor_entered_nearby)
+	else:
+		push_error("Missing Detection Component on: ", self)

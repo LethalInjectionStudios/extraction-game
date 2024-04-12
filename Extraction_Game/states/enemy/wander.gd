@@ -37,16 +37,18 @@ func physics_update(_delta: float) -> void:
 
 func randomize_wander() -> void:
 	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-	wander_timer.wait_time = randf_range(1, 3)
+	#wander_timer.wait_time = randf_range(1, 3)
+	wander_timer.start(randf_range(1, 3))
 	
 	
 func _on_wander_timer_timeout() -> void:
 	var rand: int = randi() % 2
-	
 	print(rand)
 	if rand:
+		print("Rand wander")
 		randomize_wander()
 	else:
+		print("Change to Idle")
 		transitioned.emit(self, IDLE_STATE)
 		
 

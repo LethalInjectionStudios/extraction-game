@@ -1,8 +1,11 @@
 class_name Engaged
 extends State
 
+signal alerted(position: Vector2)
+
 const ENGAGED_STATE: String = "engaged"
-const WANDER_STATE: String = "wander"
+#const WANDER_STATE: String = "wander"
+const ALERT_STATE: String = "alert"
 
 @export var parent: EnemyBase
 @export var weapon_component: WeaponComponent
@@ -82,5 +85,6 @@ func _actor_left_nearby(body: Node2D) -> void:
 	nearby_actors.erase(body.name.to_lower())
 	
 	if nearby_actors.size() <= 0:
-		transitioned.emit(self, WANDER_STATE)
+		alerted.emit(body.global_position)
+		transitioned.emit(self, ALERT_STATE)
 		

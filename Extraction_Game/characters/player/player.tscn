@@ -30,7 +30,7 @@ position = Vector2(0, -3.40898)
 shape = SubResource("RectangleShape2D_wvhi0")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 texture = ExtResource("2_17e6u")
 
 [node name="Timers" type="Node" parent="."]
@@ -52,9 +52,9 @@ metadata/_edit_group_ = true
 
 [node name="HeadsUpDisplay" parent="." instance=ExtResource("4_yjbq6")]
 offset_left = -240.091
-offset_top = -120.775
+offset_top = -116.879
 offset_right = 141.909
-offset_bottom = 95.2247
+offset_bottom = 99.1204
 
 [node name="Components" type="Node2D" parent="."]
 position = Vector2(0, -7)
@@ -79,6 +79,7 @@ parent = NodePath("../..")
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/InteractionDetectionComponent"]
+position = Vector2(0, 0.18204)
 shape = SubResource("CapsuleShape2D_ljbj2")
 
 [connection signal="ui_changed" from="." to="HeadsUpDisplay" method="_on_player_ui_changed"]
