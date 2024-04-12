@@ -27,11 +27,11 @@ func _ready() -> void:
 	_setup_signals()
 
 
-func _toggle_inventory_menu(player: Player) -> void:
+func _toggle_inventory_menu(_player: Player) -> void:
 	if !_is_menu_open:
 		ui_opened.emit()
 		_is_menu_open = true
-		open_inventory(player)
+		open_inventory(_player)
 		show_window()
 	else:
 		ui_closed.emit()
@@ -80,7 +80,7 @@ func close_inventory() -> void:
 		child.queue_free()
 
 	var options: Array[Node] = loaded_ammo.get_children()
-	for child in options:
+	for child: Node in options:
 		child.queue_free()
 
 	player = null
@@ -140,7 +140,7 @@ func _on_ammo_type_changed(item: InventoryItem) -> void:
 	weapon_ammo_changed.emit(item)
 	loaded_ammo.icon = load(item.item_icon)
 	var options: Array[Node] = loaded_ammo.get_children()
-	for child in options:
+	for child: Node in options:
 		child.queue_free()
 
 	_reload_inventory()

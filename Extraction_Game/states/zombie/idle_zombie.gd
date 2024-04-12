@@ -4,21 +4,20 @@ extends State
 const WANDER_STATE: String = "wander zombie"
 const FOLLOW_STATE: String = "follow zombie"
 
+@export var parent: Character
 @export var detection_component: DetectionComponent
 
 @onready var idle_timer: Timer = $IdleTimer
 
 func _ready() -> void:
-	if detection_component:
-		detection_component.actor_entered.connect(_actor_entered_nearby)
+	_connect_signals()
+
 
 func enter() -> void:
-	print("Idle Start")
 	set_wait_timer()
 
 
 func exit() -> void:
-	print("Idle Stop")
 	idle_timer.stop()
 	
 
@@ -44,5 +43,17 @@ func set_wait_timer() -> void:
 	idle_timer.start()
 	
 
-func _actor_entered_nearby(_body: Node2D) -> void:
-	transitioned.emit(self, FOLLOW_STATE)
+func _actor_entered_nearby(body: Node2D) -> void:
+	if body._faction != parent._faction:
+		transitioned.emit(self, FOLLOW_STATE)
+			
+			
+func _connect_signals() -> void:
+	if !parent:
+		push_error("Missing Parent on: ", self)
+	
+	if detection_component:
+		detection_component.actor_entered.connect(_actor_entered_nearby)
+	else:
+		push_error("Missing Detection Component on: ", self)
+	

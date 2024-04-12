@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfi0fyqp8uday"]
+
+[ext_resource type="Script" path="res://objects/interactable/extraction_map.gd" id="1_vjyl5"]
+[ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://levels/hideout/spritesheets/bunker_atlas.png" id="2_6cqk2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boiaj"]
+atlas = ExtResource("2_6cqk2")
+region = Rect2(0, 128, 32, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gi6vj"]
+size = Vector2(32, 22)
+
+[node name="ExtractionMap" type="StaticBody2D"]
+collision_layer = 8
+script = ExtResource("1_vjyl5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_boiaj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_gi6vj")

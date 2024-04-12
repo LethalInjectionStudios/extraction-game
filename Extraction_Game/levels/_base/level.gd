@@ -25,6 +25,7 @@ func _connect_signals() -> void:
 
 	_player.connect("inventory_toggled", inventory_ui._toggle_inventory_menu)
 	_player.connect("interacted_with_lootable", lootbox_ui._toggle_loot_menu)
+	_player.connect("ui_changed", _player.ui.update_display)
 
 	inventory_ui.connect("weapon_equipped", _player.equip_weapon)
 	inventory_ui.connect("weapon_unequipped", _player.unequip_weapon)

@@ -1,8 +1,11 @@
 class_name FollowZombie
 extends State
 
-const WANDER_STATE: String = "wander zombie"
-const FOLLOW_STATE: String = "follow zombie"
+signal alerted(position: Vector2)
+
+#const WANDER_STATE: String = "wander zombie"
+#const FOLLOW_STATE: String = "follow zombie"
+const ALERT_STATE: String = "alert zombie"
 const ATTACK_STATE: String = "attack zombie"
 
 @export var parent: Zombie
@@ -13,20 +16,14 @@ var nearby_actors: Dictionary = {}
 var target: Character
 
 func _ready() -> void:
-	if detection_component:
-		detection_component.actor_entered.connect(_add_nearby_actor)
-		detection_component.actor_left.connect(_remove_nearby_actor)
-		
-	if fight_component:
-		fight_component.actor_entered.connect(_fight_nearby_actor)
+	_connect_signals()
+
 
 func enter() -> void:
-	print("Follow Start")
 	_find_closest_target()
 	
 
 func exit() -> void:
-	print("Follow End")
 	parent.velocity = Vector2.ZERO
 	target = null
 	
@@ -49,21 +46,39 @@ func _find_closest_target() -> void:
 			target = actor
 			_distance = target.position.distance_to(parent.position)
 			
-	if nearby_actors.size() == 0:
-		transitioned.emit(self, WANDER_STATE)
+	#if nearby_actors.size() == 0:
+		#transitioned.emit(self, WANDER_STATE)
 
 
 func _add_nearby_actor(body: Node2D) -> void:
-	nearby_actors[body.name.to_lower()] = body
-	transitioned.emit(self, FOLLOW_STATE)
+	if body._faction != parent._faction:
+		nearby_actors[body.name.to_lower()] = body
 	
 	
-func _remove_nearby_actor(body: Node) -> void:
+func _remove_nearby_actor(body: Node2D) -> void:
 	nearby_actors.erase(body.name.to_lower())
 	
 	if nearby_actors.size() <= 0:
-		transitioned.emit(self, WANDER_STATE)
+		alerted.emit(body.global_position)
+		transitioned.emit(self, ALERT_STATE)
 	
 		
-func _fight_nearby_actor(_body: Node2D) -> void:
-	transitioned.emit(self, ATTACK_STATE)
+func _fight_nearby_actor(body: Node2D) -> void:
+	if body._faction != parent._faction:
+		transitioned.emit(self, ATTACK_STATE)
+	
+
+func _connect_signals() -> void:
+	if !parent:
+		push_error("Missing Parent on: ", self)
+		
+	if detection_component:
+		detection_component.actor_entered.connect(_add_nearby_actor)
+		detection_component.actor_left.connect(_remove_nearby_actor)
+	else:
+		push_error("Missing Detection Component on: ", self)
+		
+	if fight_component:
+		fight_component.actor_entered.connect(_fight_nearby_actor)
+	else:
+		push_error("Missing Fight Component on: ", self)

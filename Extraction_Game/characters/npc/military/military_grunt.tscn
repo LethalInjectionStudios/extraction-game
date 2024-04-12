@@ -1,15 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bur48tdj8wnns"]
+[gd_scene load_steps=5 format=3 uid="uid://bur48tdj8wnns"]
 
 [ext_resource type="PackedScene" uid="uid://c02f4in5i58d0" path="res://characters/npc/enemy_base.tscn" id="1_s85xy"]
 [ext_resource type="Texture2D" uid="uid://bp53jr8o5tel" path="res://sprites/characters/npc.png" id="2_ju054"]
 [ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://_font/slkscr.ttf" id="3_23pmw"]
+[ext_resource type="PackedScene" uid="uid://c8mk0l278efa4" path="res://states/enemy/alert.tscn" id="3_blb6c"]
 
-[node name="Enemy Base" instance=ExtResource("1_s85xy")]
+[node name="Enemy Base" node_paths=PackedStringArray("engaged_state", "alert_state") instance=ExtResource("1_s85xy")]
+engaged_state = NodePath("StateMachine/Engaged")
+alert_state = NodePath("StateMachine/Alert")
 _move_speed = 0.0
 _faction = 4
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource("2_ju054")
+
+[node name="HitBoxComponent" parent="Components" index="2" node_paths=PackedStringArray("parent")]
+parent = NodePath(".")
+
+[node name="Alert" parent="StateMachine" index="3" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("3_blb6c")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/DetectionComponent")
 
 [node name="Label" type="Label" parent="." index="4"]
 offset_left = -11.0

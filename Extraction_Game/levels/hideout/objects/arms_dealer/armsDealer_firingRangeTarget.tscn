@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctcnkaayfwsli"]
+
+[ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://levels/hideout/spritesheets/bunker_atlas.png" id="1_2brxt"]
+[ext_resource type="Script" path="res://levels/hideout/objects/arms_dealer/armsDealer_firingRangeTarget.gd" id="1_kk7b8"]
+[ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://components/hitbox_component/hitbox_component.tscn" id="3_cx7to"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3krf"]
+atlas = ExtResource("1_2brxt")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar5js"]
+size = Vector2(9, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kg4qx"]
+size = Vector2(9, 7)
+
+[node name="ArmsDealer_FiringRangeTarget" type="StaticBody2D" node_paths=PackedStringArray("hitbox_component")]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_kk7b8")
+hitbox_component = NodePath("HitBoxComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_k3krf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ar5js")
+
+[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("3_cx7to")]
+collision_layer = 8
+collision_mask = 4
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(-1, 23)
+shape = SubResource("RectangleShape2D_kg4qx")

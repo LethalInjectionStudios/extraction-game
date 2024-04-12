@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7a54rewno75x"]
+[gd_scene load_steps=10 format=3 uid="uid://b7a54rewno75x"]
 
 [ext_resource type="PackedScene" uid="uid://rgumhnym5ugn" path="res://levels/_base/level.tscn" id="1_4akbe"]
 [ext_resource type="Script" path="res://levels/forest/forest.gd" id="2_x65p0"]
 [ext_resource type="Texture2D" uid="uid://dmqvrigirf1fn" path="res://levels/forest/spritesheets/army_camp.png" id="3_1gseu"]
 [ext_resource type="Texture2D" uid="uid://14c0gd6wbim7" path="res://tilemaps/dev_tilemap.png" id="3_7tjwt"]
+[ext_resource type="PackedScene" uid="uid://dftd2vf2itifk" path="res://characters/npc/zombie/zombie.tscn" id="5_n357o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jg1i1"]
 texture = ExtResource("3_1gseu")
@@ -101,3 +102,6 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(2048, 2048)
 shape = SubResource("RectangleShape2D_40ulr")
+
+[node name="Zombie8" parent="." index="10" instance=ExtResource("5_n357o")]
+position = Vector2(1105, 723)
