@@ -107,7 +107,6 @@ func _use_item(item: InventoryItem) -> void:
 			var weapon: InventoryItemWeapon = item as InventoryItemWeapon
 			weapon_equipped.emit(weapon)
 		Globals.Item_Type.HEALTH:
-			print("Health Used")
 			var health_pack: InventoryItemConsumable = item as InventoryItemConsumable
 			consumable_used.emit(health_pack)
 	_reload_inventory()

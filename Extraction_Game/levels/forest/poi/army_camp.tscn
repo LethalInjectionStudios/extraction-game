@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdu8juv6et4g"]
+[gd_scene load_steps=10 format=3 uid="uid://bdu8juv6et4g"]
 
 [ext_resource type="PackedScene" uid="uid://dcl4tdb6fvlkp" path="res://objects/poi.tscn" id="1_nvvdf"]
 [ext_resource type="Script" path="res://levels/forest/poi/army_camp.gd" id="2_2y7yx"]
 [ext_resource type="Texture2D" uid="uid://dmqvrigirf1fn" path="res://levels/forest/spritesheets/army_camp.png" id="2_kc6th"]
-[ext_resource type="PackedScene" uid="uid://cmbet5yq7ojww" path="res://levels/forest/objects/weapons_crate_01.tscn" id="3_vn8qn"]
 [ext_resource type="PackedScene" uid="uid://b2ous8w7xxvxh" path="res://objects/scenery/sandbag.tscn" id="4_ro6bi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx6jw"]
@@ -81,53 +80,47 @@ shape = SubResource("RectangleShape2D_ct5ie")
 position = Vector2(0, -24.0884)
 texture = SubResource("AtlasTexture_2tqy0")
 
-[node name="WeaponsCrate" parent="." index="4" instance=ExtResource("3_vn8qn")]
-position = Vector2(14, -22)
-rotation = 1.5708
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="Sandbag" parent="." index="5" instance=ExtResource("4_ro6bi")]
+[node name="Sandbag" parent="." index="4" instance=ExtResource("4_ro6bi")]
 position = Vector2(-51, 10)
 rotation = 3.14159
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Sandbag2" parent="." index="6" instance=ExtResource("4_ro6bi")]
+[node name="Sandbag2" parent="." index="5" instance=ExtResource("4_ro6bi")]
 position = Vector2(-51, 42)
 rotation = 3.14159
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Sandbag3" parent="." index="7" instance=ExtResource("4_ro6bi")]
+[node name="Sandbag3" parent="." index="6" instance=ExtResource("4_ro6bi")]
 position = Vector2(-32, 55)
 rotation = 1.5708
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Sandbag5" parent="." index="8" instance=ExtResource("4_ro6bi")]
+[node name="Sandbag5" parent="." index="7" instance=ExtResource("4_ro6bi")]
 position = Vector2(34, 55)
 rotation = 1.5708
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Sandbag6" parent="." index="9" instance=ExtResource("4_ro6bi")]
+[node name="Sandbag6" parent="." index="8" instance=ExtResource("4_ro6bi")]
 position = Vector2(66, 55)
 rotation = 1.5708
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Sandbag7" parent="." index="10" instance=ExtResource("4_ro6bi")]
+[node name="Sandbag7" parent="." index="9" instance=ExtResource("4_ro6bi")]
 position = Vector2(85, 10)
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Sandbag8" parent="." index="11" instance=ExtResource("4_ro6bi")]
+[node name="Sandbag8" parent="." index="10" instance=ExtResource("4_ro6bi")]
 position = Vector2(85, 42)
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="SpawnPoints" type="Node2D" parent="." index="12"]
+[node name="SpawnPoints" type="Node2D" parent="." index="11"]
 metadata/_edit_lock_ = true
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPoints" index="0"]
@@ -151,4 +144,4 @@ position = Vector2(44, 40)
 [node name="Marker2D7" type="Marker2D" parent="SpawnPoints" index="6"]
 position = Vector2(14, 21)
 
-[node name="Characters" type="Node2D" parent="." index="13"]
+[node name="Characters" type="Node2D" parent="." index="12"]

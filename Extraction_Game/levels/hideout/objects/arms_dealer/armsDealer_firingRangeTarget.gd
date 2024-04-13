@@ -11,5 +11,6 @@ func _connect_signals() -> void:
 	hitbox_component.connect("hit_taken", _on_hit_taken)
 	
 	
-func _on_hit_taken(projectile: Projectile) -> void:
-	print(projectile.damage)
+func _on_hit_taken(_projectile: Projectile) -> void:
+	pass
+	#TODO DPS Tracker

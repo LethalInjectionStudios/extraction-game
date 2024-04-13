@@ -41,12 +41,10 @@ func _save_stash_data() -> void:
 				
 			if item.item_type == Globals.Item_Type.HEALTH:
 				var save_item: InventoryItemConsumable = item as InventoryItemConsumable
-				print(JSON.stringify(save_item.to_dictionary()))
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 				
 			if item.item_type == Globals.Item_Type.AMMO:
 				var save_item: InventoryItemAmmo = item as InventoryItemAmmo
-				print(JSON.stringify(save_item.to_dictionary()))
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 		file.close()
 
@@ -75,4 +73,4 @@ func _load_stash_data() -> void:
 				stash.inventory_component._add_to_inventory(_item_instance)
 			
 	else:
-		print("File not found")
+		push_warning("Save File not Found")

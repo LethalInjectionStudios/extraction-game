@@ -43,7 +43,7 @@ func generate_world() -> void:
 	const tree: String = "res://levels/forest/objects/forest_tree_01.tscn"
 	const rock: String = "res://levels/forest/objects/rock_01.tscn"
 	const bush: String = "res://levels/forest/objects/bush_01.tscn"
-	const poi: String = "res://levels/forest/poi/campsite.tscn"
+	#const poi: String = "res://levels/forest/poi/campsite.tscn"
 	const poi2: String = "res://levels/forest/poi/army_camp.tscn"
 
 	for i: int in range(5000):

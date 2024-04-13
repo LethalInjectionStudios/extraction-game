@@ -2,7 +2,6 @@ class_name AttackZombie
 extends State
 
 const ATTACK_STATE: String = "attack zombie"
-const WANDER_STATE: String = "wander zombie"
 const FOLLOW_STATE: String = "follow zombie"
 
 @export var parent: Zombie
@@ -17,22 +16,20 @@ var hitbox_node_path: String = 'Components/HitBoxComponent'
 @onready var attack_timer: Timer = $AttackTimer
 
 func _ready() -> void:
-	if detection_component:
-		detection_component.actor_entered.connect(_add_nearby_actor)
-		detection_component.actor_left.connect(_remove_nearby_actor)
+	_validate()
 
 
 func enter() -> void:
-	print("Attack Start")
+	can_attack = true
 	for actor: Node2D in detection_component.get_overlapping_bodies():
 		if actor != parent:
 			nearby_actors[actor.name.to_lower()] = actor
+			print(actor)
 	parent.velocity = Vector2.ZERO
 	_pick_random_target()
 	
 
 func exit() -> void:
-	print("Attack End")
 	attack_timer.stop()
 	target = null
 	
@@ -40,6 +37,8 @@ func exit() -> void:
 func update(_delta: float) -> void:
 	if !target:
 		_pick_random_target()
+		
+	print(can_attack)
 		
 	if can_attack:
 		if target.has_node(hitbox_node_path):
@@ -61,7 +60,6 @@ func _pick_random_target() -> void:
 
 func _add_nearby_actor(body: Node2D) -> void:
 	nearby_actors[body.name.to_lower()] = body
-	transitioned.emit(self, ATTACK_STATE)
 	
 
 func _remove_nearby_actor(body: Node2D) -> void:
@@ -73,3 +71,15 @@ func _remove_nearby_actor(body: Node2D) -> void:
 
 func _on_attack_timer_timeout() -> void:
 	can_attack = true
+	
+	
+func _validate() -> void:
+	if !parent:
+		push_error("Missing Parent on: ", self)
+		
+	if detection_component:
+		detection_component.actor_entered.connect(_add_nearby_actor)
+		detection_component.actor_left.connect(_remove_nearby_actor)
+	else:
+		push_warning("Missing Detection Component on", self)
+		

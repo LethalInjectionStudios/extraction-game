@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmbet5yq7ojww"]
+[gd_scene load_steps=5 format=3 uid="uid://cmbet5yq7ojww"]
 
 [ext_resource type="PackedScene" uid="uid://bc2dvwv57unpv" path="res://objects/interactable/random_lootable.tscn" id="1_jc6yx"]
-[ext_resource type="Texture2D" uid="uid://snghf8yerdjc" path="res://sprites/objects/army_crate.png" id="2_ecbro"]
+[ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://levels/hideout/spritesheets/bunker_atlas.png" id="2_l2i5q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n00gb"]
+atlas = ExtResource("2_l2i5q")
+region = Rect2(48, 0, 32, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6udkl"]
 size = Vector2(32, 16)
@@ -11,7 +15,7 @@ scale = Vector2(1, 1.00262)
 drops = Array[String](["res://resources/weapons/dev/ak47.tres", "res://resources/weapons/dev/barrettM82.tres", "res://resources/consumables/bandage.tres", "res://resources/ammunition/_762x39.tres", "res://resources/ammunition/_762x39_HP.tres", "res://resources/ammunition/_762x39_AP.tres", "res://resources/crafting_material/gunpowder.tres"])
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_ecbro")
+texture = SubResource("AtlasTexture_n00gb")
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_6udkl")

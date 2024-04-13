@@ -20,12 +20,12 @@ func exit() -> void:
 	pass
 
 	
-func update(_delta) -> void:
+func update(_delta: float) -> void:
 	if target_position.distance_to(parent.global_position) <= 5:
 		transitioned.emit(self, WANDER_STATE)
 
 	
-func physics_update(_delta) -> void:
+func physics_update(_delta: float) -> void:
 	if parent and target_position:
 		parent.velocity = (target_position - parent.global_position).normalized() * parent._move_speed
 	

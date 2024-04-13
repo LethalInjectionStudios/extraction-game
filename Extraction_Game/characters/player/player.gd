@@ -110,7 +110,8 @@ func _get_input() -> void:
 				var _lootbox: Lootable = _interacting_object as Lootable
 				interacted_with_lootable.emit(self, _lootbox)
 			if _interacting_object is ExtractionMap:
-				print(_interacting_object)
+				pass
+				#TODO Interact with Map
 
 	if Input.is_action_just_pressed("inventory"):
 		inventory_toggled.emit(self)
@@ -168,7 +169,6 @@ func remove_item_from_inventory(item: InventoryItem) -> void:
 
 func use_consumable(item: InventoryItemConsumable) -> void:
 	if item.item_type == Globals.Item_Type.HEALTH:
-		print("Use Health")
 		var _item: Consumable = load(item.item_path) as Consumable
 		health_component.heal(_item.restoration_amount)
 		inventory_component._remove_from_inventory(item)

@@ -21,7 +21,3 @@ func from_dictionary(data: Dictionary) -> void:
 	ammo_count = data["ammo"]
 	ammo_type = data["ammo_type"]
 	equipped = data["equipped"]
-
-func test() -> void:
-	super.test()
-	print("Hello from weapon item")

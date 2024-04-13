@@ -43,12 +43,9 @@ func randomize_wander() -> void:
 	
 func _on_wander_timer_timeout() -> void:
 	var rand: int = randi() % 2
-	print(rand)
 	if rand:
-		print("Rand wander")
 		randomize_wander()
 	else:
-		print("Change to Idle")
 		transitioned.emit(self, IDLE_STATE)
 		
 

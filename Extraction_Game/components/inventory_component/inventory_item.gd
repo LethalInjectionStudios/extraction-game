@@ -19,6 +19,3 @@ func from_dictionary(data: Dictionary) -> void:
 	item_type = data["item_type"]
 	item_icon = data["item_icon"]
 	item_path = data["item_path"]
-
-func test() -> void:
-	print("Hello from {0} resource", item_name)
