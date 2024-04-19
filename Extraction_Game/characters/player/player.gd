@@ -38,7 +38,6 @@ func _ready() -> void:
 	_validate()
 	_load_character_data()
 	
-	
 func _process(_delta: float) -> void:
 	_update_sprites()
 	_get_input()
