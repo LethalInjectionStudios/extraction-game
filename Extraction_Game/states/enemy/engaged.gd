@@ -48,7 +48,6 @@ func update(_delta: float) -> void:
 		weapon_component.fire_weapon(target.position)
 		
 		if weapon_component.magazine_count <= 0:
-			print("reloaded")
 			weapon_component.reload_weapon()
 		
 	if !target:

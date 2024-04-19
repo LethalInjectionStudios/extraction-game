@@ -44,7 +44,7 @@ func _connect_signals() -> void:
 	
 	
 func _on_weapon_fired(projectile: Projectile) -> void:
-	$Projectiles.add_child(projectile)
+	$Projectiles.add_child(projectile)	
 	
 
 func _on_poi_created(poi: POI) -> void:

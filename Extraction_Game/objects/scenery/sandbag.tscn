@@ -1,28 +1,28 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2ous8w7xxvxh"]
 
 [ext_resource type="Script" path="res://objects/scenery/sandbag.gd" id="1_j1rq4"]
-[ext_resource type="Texture2D" uid="uid://dmqvrigirf1fn" path="res://levels/forest/spritesheets/army_camp.png" id="1_yj7ty"]
+[ext_resource type="Texture2D" uid="uid://dmqvrigirf1fn" path="res://sprites/objects/army_camp.png" id="2_6xhma"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hfcsm"]
-atlas = ExtResource("1_yj7ty")
-region = Rect2(0, 57, 32, 7)
+atlas = ExtResource("2_6xhma")
+region = Rect2(0, 64, 32, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luq15"]
-size = Vector2(6, 32)
+size = Vector2(32, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcyjn"]
-size = Vector2(4, 34)
+size = Vector2(7, 32)
 
 [node name="Sandbag" type="StaticBody2D"]
 collision_layer = 8
 script = ExtResource("1_j1rq4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -1.5708
+rotation = -0.00153494
 texture = SubResource("AtlasTexture_hfcsm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_luq15")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -30,6 +30,8 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_vcyjn")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

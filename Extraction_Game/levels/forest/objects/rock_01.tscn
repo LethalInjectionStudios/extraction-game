@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2b17"]
 atlas = ExtResource("2_ig5bi")
-region = Rect2(0, 32, 16, 16)
+region = Rect2(0, 128, 16, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cohl8"]
 size = Vector2(16, 5)
@@ -14,7 +14,6 @@ size = Vector2(16, 5)
 collision_mask = 39
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_m2b17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]

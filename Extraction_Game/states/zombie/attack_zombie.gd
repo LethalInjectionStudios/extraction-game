@@ -24,7 +24,6 @@ func enter() -> void:
 	for actor: Node2D in detection_component.get_overlapping_bodies():
 		if actor != parent:
 			nearby_actors[actor.name.to_lower()] = actor
-			print(actor)
 	parent.velocity = Vector2.ZERO
 	_pick_random_target()
 	
@@ -37,8 +36,7 @@ func exit() -> void:
 func update(_delta: float) -> void:
 	if !target:
 		_pick_random_target()
-		
-	print(can_attack)
+	
 		
 	if can_attack:
 		if target.has_node(hitbox_node_path):

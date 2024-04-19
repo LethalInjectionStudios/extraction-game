@@ -35,10 +35,9 @@ func _ready() -> void:
 	
 	ui_changed.emit()
 
-	_connect_signals()
+	_validate()
 	_load_character_data()
-
-
+	
 func _process(_delta: float) -> void:
 	_update_sprites()
 	_get_input()
@@ -57,7 +56,7 @@ func get_faction() -> Globals.Faction:
 	return _faction
 
 
-func _connect_signals() -> void:
+func _validate() -> void:
 	if weapon_component:
 		weapon_component.connect("weapon_added_to_inventory", inventory_component._add_to_inventory)
 		weapon_component.connect("weapon_removed_from_inventory", inventory_component._remove_from_inventory)

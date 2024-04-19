@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dijiimdi8xd7v"]
+
+[ext_resource type="Script" path="res://objects/spawner.gd" id="1_t18u5"]
+
+[node name="Spawner" type="Marker2D" node_paths=PackedStringArray("spawn_timer") groups=["Spawner"]]
+script = ExtResource("1_t18u5")
+spawn_timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]

@@ -20,6 +20,7 @@ config/icon="res://_misc/logo_profile.png"
 [autoload]
 
 Globals="*res://globals/globals.gd"
+System="*res://globals/system.gd"
 
 [debug]
 
