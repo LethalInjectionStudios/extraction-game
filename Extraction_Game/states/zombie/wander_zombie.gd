@@ -46,7 +46,7 @@ func _on_wander_timer_timeout() -> void:
 	else:
 		transitioned.emit(self, IDLE_STATE)
 		
-
+		
 func _actor_entered_nearby(_body: Node2D) -> void:
 	transitioned.emit(self, FOLLOW_STATE)
 	

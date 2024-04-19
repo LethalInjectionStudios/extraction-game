@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr8aqkfw3skhb"]
+[gd_scene load_steps=5 format=3 uid="uid://sujclqsidhmj"]
 
-[ext_resource type="PackedScene" uid="uid://lmb0wtcj55e" path="res://objects/scenery/scenery.tscn" id="1_hmsfw"]
-[ext_resource type="Texture2D" uid="uid://d1s3ks0qd8i4r" path="res://levels/forest/spritesheets/level_forest.png" id="2_nicsu"]
+[ext_resource type="PackedScene" uid="uid://lmb0wtcj55e" path="res://objects/scenery/scenery.tscn" id="1_wqqnd"]
+[ext_resource type="Texture2D" uid="uid://d1s3ks0qd8i4r" path="res://levels/forest/spritesheets/level_forest.png" id="2_psemj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1frhb"]
-atlas = ExtResource("2_nicsu")
-region = Rect2(0, 0, 64, 96)
+atlas = ExtResource("2_psemj")
+region = Rect2(64, 0, 64, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3hk1s"]
 size = Vector2(4, 10)
 
-[node name="Tree_01" instance=ExtResource("1_hmsfw")]
+[node name="Tree_01" instance=ExtResource("1_wqqnd")]
 z_as_relative = false
 collision_mask = 39
 

@@ -1,7 +1,7 @@
 class_name Hideout
 extends Level
 
-var selected_raid : String = "res://levels/forest/forest.tscn"
+var selected_raid : String = "res://levels/loading/loading_scene.tscn"
 
 @onready var stash: Lootable = $Objects/Stash
 
