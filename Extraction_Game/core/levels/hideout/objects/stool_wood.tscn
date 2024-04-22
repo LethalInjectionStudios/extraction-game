@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://1kpj7ygxielf"]
+
+[ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://core/levels/hideout/spritesheets/bunker_atlas.png" id="1_jwcr3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buln4"]
+atlas = ExtResource("1_jwcr3")
+region = Rect2(160, 32, 16, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnpsm"]
+size = Vector2(10, 18)
+
+[node name="stool_wood" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_buln4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_nnpsm")

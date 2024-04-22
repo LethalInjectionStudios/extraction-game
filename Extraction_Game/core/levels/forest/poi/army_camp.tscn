@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdu8juv6et4g"]
+
+[ext_resource type="PackedScene" uid="uid://dcl4tdb6fvlkp" path="res://core/point_of_interests/poi.tscn" id="1_nvvdf"]
+[ext_resource type="Script" path="res://core/levels/forest/poi/army_camp.gd" id="2_2y7yx"]
+[ext_resource type="Texture2D" uid="uid://dmqvrigirf1fn" path="res://core/point_of_interests/army_camp.png" id="3_w5q1u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx6jw"]
+size = Vector2(160, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gt1w"]
+size = Vector2(32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyoru"]
+atlas = ExtResource("3_w5q1u")
+region = Rect2(0, 0, 48, 64)
+
+[node name="ArmyCamp" node_paths=PackedStringArray("spawn_points", "characters") instance=ExtResource("1_nvvdf")]
+script = ExtResource("2_2y7yx")
+spawn_points = NodePath("SpawnPoints")
+characters = NodePath("Characters")
+
+[node name="Area2D" parent="." index="0"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_bx6jw")
+
+[node name="Tent" type="StaticBody2D" parent="." index="1"]
+position = Vector2(1, 0)
+collision_layer = 8
+collision_mask = 7
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tent" index="0"]
+position = Vector2(38, -37)
+rotation = -0.00435247
+shape = SubResource("RectangleShape2D_4gt1w")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tent" index="1"]
+position = Vector2(38, -30)
+texture = SubResource("AtlasTexture_fyoru")
+
+[node name="Tent2" type="StaticBody2D" parent="." index="2"]
+position = Vector2(34, 0)
+collision_layer = 8
+collision_mask = 7
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tent2" index="0"]
+position = Vector2(38, -37)
+shape = SubResource("RectangleShape2D_4gt1w")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tent2" index="1"]
+position = Vector2(38, -30)
+texture = SubResource("AtlasTexture_fyoru")
+
+[node name="SpawnPoints" type="Node2D" parent="." index="3"]
+metadata/_edit_lock_ = true
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints" index="0"]
+position = Vector2(-36, 24)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints" index="1"]
+position = Vector2(-14, 40)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints" index="2"]
+position = Vector2(-13, 3)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPoints" index="3"]
+position = Vector2(52, 2)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPoints" index="4"]
+position = Vector2(70, 22)
+
+[node name="Marker2D6" type="Marker2D" parent="SpawnPoints" index="5"]
+position = Vector2(44, 40)
+
+[node name="Marker2D7" type="Marker2D" parent="SpawnPoints" index="6"]
+position = Vector2(14, 21)
+
+[node name="Characters" type="Node2D" parent="." index="4"]

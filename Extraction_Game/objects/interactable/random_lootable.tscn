@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc2dvwv57unpv"]
-
-[ext_resource type="PackedScene" uid="uid://chugnt2esttqd" path="res://objects/interactable/lootable.tscn" id="1_dbbh1"]
-[ext_resource type="Script" path="res://objects/interactable/random_lootable.gd" id="2_dmf0e"]
-
-[node name="StaticBody2D" instance=ExtResource("1_dbbh1")]
-script = ExtResource("2_dmf0e")
-drops = Array[String](["res://resources/weapons/dev/ak47.tres", "res://resources/weapons/dev/barrettM82.tres"])

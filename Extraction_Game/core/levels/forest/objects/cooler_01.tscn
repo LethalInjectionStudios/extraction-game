@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://vala8kv61myo"]
+
+[ext_resource type="PackedScene" uid="uid://bc2dvwv57unpv" path="res://core/common/lootables/random_lootable.tscn" id="1_dfn83"]
+[ext_resource type="Texture2D" uid="uid://d1s3ks0qd8i4r" path="res://core/levels/forest/spritesheets/level_forest.png" id="2_hoqv5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnowi"]
+atlas = ExtResource("2_hoqv5")
+region = Rect2(49, 148, 13, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7vi5"]
+size = Vector2(14, 12)
+
+[node name="StaticBody2D" instance=ExtResource("1_dfn83")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_cnowi")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_n7vi5")

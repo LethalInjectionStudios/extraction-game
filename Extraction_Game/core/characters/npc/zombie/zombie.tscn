@@ -1,0 +1,104 @@
+[gd_scene load_steps=17 format=3 uid="uid://dftd2vf2itifk"]
+
+[ext_resource type="Script" path="res://core/characters/npc/zombie/zombie.gd" id="1_sy7sg"]
+[ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://core/components/health_component/health_component.tscn" id="2_d0wex"]
+[ext_resource type="Texture2D" uid="uid://xl30b4lhv0aa" path="res://core/characters/npc/zombie.png" id="2_olkfi"]
+[ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://core/components/hitbox_component/hitbox_component.tscn" id="3_6hq8e"]
+[ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://core/components/detection_component/detection_component.tscn" id="5_ruhmd"]
+[ext_resource type="PackedScene" uid="uid://dp6ou45cf0br8" path="res://core/state_machine/state_machine.tscn" id="6_fto4f"]
+[ext_resource type="PackedScene" uid="uid://gslebhebt2g5" path="res://core/state_machine/zombie/idle_zombie.tscn" id="7_kieex"]
+[ext_resource type="PackedScene" uid="uid://dyepxm8msjib8" path="res://core/state_machine/zombie/wander_zombie.tscn" id="8_vo38s"]
+[ext_resource type="PackedScene" uid="uid://dynr6jujjdfll" path="res://core/state_machine/zombie/follow_zombie.tscn" id="9_mvavt"]
+[ext_resource type="PackedScene" uid="uid://cws53007gh2tq" path="res://core/state_machine/zombie/attack_zombie.tscn" id="10_twhba"]
+[ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://font/slkscr.ttf" id="11_aeho0"]
+[ext_resource type="PackedScene" uid="uid://dadvsxcutqbqh" path="res://core/state_machine/zombie/alert_zombie.tscn" id="11_r61gk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obvnu"]
+size = Vector2(8, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4angs"]
+size = Vector2(8, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rswf"]
+radius = 141.089
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq3n4"]
+size = Vector2(10, 16)
+
+[node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hitbox_component", "follow_state", "alert_state")]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_sy7sg")
+health_component = NodePath("Components/HealthComponent")
+hitbox_component = NodePath("Components/HitBoxComponent")
+follow_state = NodePath("StateMachine/Follow Zombie")
+alert_state = NodePath("StateMachine/Alert Zombie")
+_faction = 2
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_obvnu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_olkfi")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="HealthComponent" parent="Components" instance=ExtResource("2_d0wex")]
+
+[node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("3_6hq8e")]
+collision_layer = 2
+collision_mask = 4
+parent = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
+shape = SubResource("RectangleShape2D_4angs")
+
+[node name="FollowDetectionComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_ruhmd")]
+collision_layer = 2
+collision_mask = 3
+parent = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/FollowDetectionComponent"]
+shape = SubResource("CircleShape2D_0rswf")
+
+[node name="FightDetectionComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_ruhmd")]
+collision_layer = 2
+collision_mask = 3
+parent = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/FightDetectionComponent"]
+shape = SubResource("RectangleShape2D_nq3n4")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_fto4f")]
+initial_state = NodePath("Idle Zombie")
+
+[node name="Idle Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("7_kieex")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/FollowDetectionComponent")
+
+[node name="Wander Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("8_vo38s")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/FollowDetectionComponent")
+
+[node name="Follow Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component", "fight_component") instance=ExtResource("9_mvavt")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/FollowDetectionComponent")
+fight_component = NodePath("../../Components/FightDetectionComponent")
+
+[node name="Attack Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("10_twhba")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/FightDetectionComponent")
+damage = 50
+
+[node name="Alert Zombie" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("11_r61gk")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/FollowDetectionComponent")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -11.0
+offset_top = -17.0
+offset_right = 10.0
+offset_bottom = -8.0
+theme_override_fonts/font = ExtResource("11_aeho0")
+theme_override_font_sizes/font_size = 8
+text = "TEST"

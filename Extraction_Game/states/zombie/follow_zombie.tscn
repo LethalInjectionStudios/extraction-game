@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dynr6jujjdfll"]
-
-[ext_resource type="Script" path="res://states/zombie/follow_zombie.gd" id="1_g81on"]
-
-[node name="Follow Zombie" type="Node"]
-script = ExtResource("1_g81on")

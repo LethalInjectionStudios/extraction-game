@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjvu6egrx3dx1"]
+
+[ext_resource type="Script" path="res://core/components/weapon_component/weapon_component.gd" id="1_a0voh"]
+[ext_resource type="AudioStream" uid="uid://dt424b3ls1plt" path="res://audio/dev_gunshot.wav" id="4_c07hk"]
+[ext_resource type="AudioStream" uid="uid://dfo2fwa6ru6dm" path="res://audio/dev_empty_mag.wav" id="5_l61ex"]
+[ext_resource type="AudioStream" uid="uid://6l8cccx3mtjr" path="res://audio/dev_reload.wav" id="6_6gnoj"]
+
+[node name="WeaponComponent" type="Node2D" groups=["Weapon"]]
+script = ExtResource("1_a0voh")
+
+[node name="GunSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="MuzzleSprite" type="Sprite2D" parent="GunSprite"]
+position = Vector2(16, -3)
+offset = Vector2(3, 0)
+
+[node name="BulletLocation" type="Marker2D" parent="GunSprite"]
+position = Vector2(22, -3)
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="GunshotAudio" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("4_c07hk")
+max_distance = 1000.0
+
+[node name="EmptyMagazineAudio" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("5_l61ex")
+max_distance = 10.0
+
+[node name="ReloadAudio" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("6_6gnoj")
+max_distance = 10.0
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="RateOfFire" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[connection signal="timeout" from="Timers/RateOfFire" to="." method="_on_rate_of_fire_timeout"]
+[connection signal="timeout" from="Timers/ReloadTimer" to="." method="_on_reload_timer_timeout"]
