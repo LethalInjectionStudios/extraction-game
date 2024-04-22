@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciy8p8piv0w3r"]
+
+[ext_resource type="Texture2D" uid="uid://bahwv382ly3ob" path="res://core/levels/hideout/spritesheets/bunker_decor_atlas.png" id="1_uyc86"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4er6"]
+atlas = ExtResource("1_uyc86")
+region = Rect2(32, 16, 16, 16)
+
+[node name="Inn_Beer_Empty" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_c4er6")

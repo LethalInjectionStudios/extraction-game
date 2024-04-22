@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://lmb0wtcj55e"]
+
+[ext_resource type="Script" path="res://core/common/scenery.gd" id="1_rn1cr"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_rn1cr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

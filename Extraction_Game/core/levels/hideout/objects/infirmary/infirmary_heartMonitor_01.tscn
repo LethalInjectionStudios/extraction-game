@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://clwk6bl42th4"]
+
+[ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://core/levels/hideout/spritesheets/bunker_atlas.png" id="1_5ljcr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5apel"]
+atlas = ExtResource("1_5ljcr")
+region = Rect2(32, 96, 16, 32)
+
+[node name="Infirmary_HeartMonitor_01" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_5apel")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(2, -16, 2, -11, 7, -11, 7, 16, -7, 16, -7, -11, -2, -11, -2, -16)

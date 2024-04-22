@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnt1rruredrwq"]
+
+[ext_resource type="Script" path="res://core/levels/loading/loading_scene.gd" id="1_niufk"]
+
+[node name="Loading Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_niufk")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 14.0
+offset_right = 164.0
+offset_bottom = 37.0
+text = "Loading"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 102.0
+offset_right = 183.0
+offset_bottom = 129.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

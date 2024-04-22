@@ -1,0 +1,77 @@
+[gd_scene load_steps=14 format=3 uid="uid://c02f4in5i58d0"]
+
+[ext_resource type="Script" path="res://core/characters/npc/enemy_base.gd" id="1_1iiva"]
+[ext_resource type="Texture2D" uid="uid://dpo32atkvcjv6" path="res://core/characters/npc/enemy.png" id="2_3dbfo"]
+[ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://core/components/health_component/health_component.tscn" id="2_jcvyi"]
+[ext_resource type="PackedScene" uid="uid://dp6ou45cf0br8" path="res://core/state_machine/state_machine.tscn" id="2_up2yn"]
+[ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://core/components/weapon_component/weapon_component.tscn" id="3_l3eid"]
+[ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://core/components/hitbox_component/hitbox_component.tscn" id="4_a2pal"]
+[ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://core/components/detection_component/detection_component.tscn" id="5_canff"]
+[ext_resource type="PackedScene" uid="uid://b8i8pjaicg6s5" path="res://core/state_machine/enemy/idle.tscn" id="8_txjwp"]
+[ext_resource type="PackedScene" uid="uid://d107dhbctc3u4" path="res://core/state_machine/enemy/wander.tscn" id="9_fnlxg"]
+[ext_resource type="PackedScene" uid="uid://h5j6ugdpn6l6" path="res://core/state_machine/enemy/engaged.tscn" id="10_d14tt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_artlf"]
+size = Vector2(8, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfgd4"]
+size = Vector2(8, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_82km4"]
+radius = 104.043
+
+[node name="Enemy Base" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "health_component", "weapon_component", "hitbox_component", "detection_component")]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_1iiva")
+sprite = NodePath("Sprite")
+health_component = NodePath("Components/HealthComponent")
+weapon_component = NodePath("Components/WeaponComponent")
+hitbox_component = NodePath("Components/HitBoxComponent")
+detection_component = NodePath("Components/DetectionComponent")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_artlf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_3dbfo")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="HealthComponent" parent="Components" instance=ExtResource("2_jcvyi")]
+
+[node name="WeaponComponent" parent="Components" instance=ExtResource("3_l3eid")]
+position = Vector2(0, 2)
+
+[node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("4_a2pal")]
+collision_layer = 2
+collision_mask = 3
+parent = NodePath("../..")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
+shape = SubResource("RectangleShape2D_hfgd4")
+
+[node name="DetectionComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_canff")]
+collision_layer = 2
+collision_mask = 3
+parent = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/DetectionComponent"]
+shape = SubResource("CircleShape2D_82km4")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_up2yn")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("8_txjwp")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/DetectionComponent")
+
+[node name="Wander" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("9_fnlxg")]
+parent = NodePath("../..")
+detection_component = NodePath("../../Components/DetectionComponent")
+
+[node name="Engaged" parent="StateMachine" node_paths=PackedStringArray("parent", "weapon_component", "detection_component") instance=ExtResource("10_d14tt")]
+parent = NodePath("../..")
+weapon_component = NodePath("../../Components/WeaponComponent")
+detection_component = NodePath("../../Components/DetectionComponent")

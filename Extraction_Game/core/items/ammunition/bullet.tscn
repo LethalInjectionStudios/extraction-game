@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqgpdlxki1xsq"]
+
+[ext_resource type="Script" path="res://core/items/ammunition/bullet.gd" id="1_305tf"]
+[ext_resource type="Script" path="res://core/items/ammunition/trail.gd" id="3_aw0th"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgm0b"]
+size = Vector2(2, 2)
+
+[sub_resource type="Curve" id="Curve_nytk0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_305tf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vgm0b")
+
+[node name="Trail" type="Line2D" parent="."]
+width = 1.0
+width_curve = SubResource("Curve_nytk0")
+script = ExtResource("3_aw0th")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

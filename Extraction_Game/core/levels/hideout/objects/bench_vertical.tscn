@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci8u1rfy0s2fi"]
+
+[ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://core/levels/hideout/spritesheets/bunker_atlas.png" id="1_4cdv4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3krf"]
+atlas = ExtResource("1_4cdv4")
+region = Rect2(80, 0, 16, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar5js"]
+size = Vector2(7, 48)
+
+[node name="Bench_Vertical" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_k3krf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ar5js")

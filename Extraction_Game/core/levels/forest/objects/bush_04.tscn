@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://upcwb7gc0uwr"]
+
+[ext_resource type="PackedScene" uid="uid://lmb0wtcj55e" path="res://core/common/scenery.tscn" id="1_ycqa1"]
+[ext_resource type="Texture2D" uid="uid://d1s3ks0qd8i4r" path="res://core/levels/forest/spritesheets/level_forest.png" id="2_70cps"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khgse"]
+atlas = ExtResource("2_70cps")
+region = Rect2(48, 96, 16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwiko"]
+size = Vector2(10, 3)
+
+[node name="Bush_01" instance=ExtResource("1_ycqa1")]
+collision_mask = 39
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_khgse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_iwiko")
