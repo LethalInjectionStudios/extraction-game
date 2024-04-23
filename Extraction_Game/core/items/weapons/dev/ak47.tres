@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://bnjbsrwsxd1uy"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://bnjbsrwsxd1uy"]
 
 [ext_resource type="Script" path="res://core/items/weapons/weapon.gd" id="1_bgrof"]
-[ext_resource type="Texture2D" uid="uid://b672grgmu0gki" path="res://core/items/weapons/doughnutdevguns/AK47.png" id="2_t6p8s"]
 
 [resource]
 script = ExtResource("1_bgrof")
@@ -20,7 +19,7 @@ scope_position = Vector2(0, 0)
 light_position = Vector2(0, 0)
 name = "Assault Rifle"
 type = 1
-sprite = ExtResource("2_t6p8s")
+sprite = "res://core/items/weapons/doughnutdevguns/AK47.png"
 value = 0
 weight = 20.0
 is_stackable = false

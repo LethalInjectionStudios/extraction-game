@@ -44,6 +44,8 @@ func _connect_signals() -> void:
 	
 	
 func _on_weapon_fired(projectile: Projectile) -> void:
+	for enemy in get_tree().get_nodes_in_group("Enemy"):
+		enemy
 	$Projectiles.add_child(projectile)	
 	
 

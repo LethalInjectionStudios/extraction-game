@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c8mk0l278efa4" path="res://core/state_machine/enemy/alert.tscn" id="3_bi5e6"]
 [ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://font/slkscr.ttf" id="4_g3wto"]
 
-[node name="Enemy Base" node_paths=PackedStringArray("engaged_state", "alert_state") instance=ExtResource("1_1i4ej")]
+[node name="Enemy Base" node_paths=PackedStringArray("engaged_state", "alert_state") groups=["Enemy"] instance=ExtResource("1_1i4ej")]
 engaged_state = NodePath("StateMachine/Engaged")
 alert_state = NodePath("StateMachine/Alert")
 _move_speed = 0.0

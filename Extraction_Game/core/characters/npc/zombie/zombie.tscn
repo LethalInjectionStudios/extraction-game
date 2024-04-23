@@ -25,7 +25,7 @@ radius = 141.089
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nq3n4"]
 size = Vector2(10, 16)
 
-[node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hitbox_component", "follow_state", "alert_state")]
+[node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hitbox_component", "follow_state", "alert_state") groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_sy7sg")

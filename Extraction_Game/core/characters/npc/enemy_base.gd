@@ -19,12 +19,12 @@ func _ready() -> void:
 
 	var weapon: InventoryItemWeapon = InventoryItemWeapon.new()
 	
-	var weapon_data: Weapon = load("res://resources/weapons/dev/ak47.tres")
+	var weapon_data: Weapon = load("res://core/items/weapons/dev/ak47.tres")
 
 	weapon.item_name = weapon_data.name
 	weapon.item_type = weapon_data.type
-	weapon.item_path = "res://resources/weapons/dev/ak47.tres"
-	weapon.ammo_type = "res://resources/ammunition/_762x39.tres"
+	weapon.item_path = "res://core/items/weapons/dev/ak47.tres"
+	weapon.ammo_type = "res://core/items/ammunition/resource/_762x39.tres"
 	weapon.ammo_count = 30
 	
 	weapon_component.equip_weapon(weapon)

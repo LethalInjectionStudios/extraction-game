@@ -573,7 +573,6 @@ point_of_interests = NodePath("PointOfInterests")
 extraction_points = NodePath("Extractions")
 tilemap = NodePath("TileMap")
 scenery = NodePath("Scenery")
-scenery_options = Array[PackedScene]([])
 metadata/_edit_lock_ = true
 
 [node name="TileMap" parent="." index="0"]
