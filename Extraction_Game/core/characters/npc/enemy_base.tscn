@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c02f4in5i58d0"]
+[gd_scene load_steps=15 format=3 uid="uid://c02f4in5i58d0"]
 
 [ext_resource type="Script" path="res://core/characters/npc/enemy_base.gd" id="1_1iiva"]
 [ext_resource type="Texture2D" uid="uid://dpo32atkvcjv6" path="res://core/characters/npc/enemy.png" id="2_3dbfo"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b8i8pjaicg6s5" path="res://core/state_machine/enemy/idle.tscn" id="8_txjwp"]
 [ext_resource type="PackedScene" uid="uid://d107dhbctc3u4" path="res://core/state_machine/enemy/wander.tscn" id="9_fnlxg"]
 [ext_resource type="PackedScene" uid="uid://h5j6ugdpn6l6" path="res://core/state_machine/enemy/engaged.tscn" id="10_d14tt"]
+[ext_resource type="PackedScene" uid="uid://c8mk0l278efa4" path="res://core/state_machine/enemy/alert.tscn" id="11_6nv6y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_artlf"]
 size = Vector2(8, 14)
@@ -20,7 +21,7 @@ size = Vector2(8, 14)
 [sub_resource type="CircleShape2D" id="CircleShape2D_82km4"]
 radius = 104.043
 
-[node name="Enemy Base" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "health_component", "weapon_component", "hitbox_component", "detection_component")]
+[node name="Enemy Base" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "health_component", "weapon_component", "hitbox_component", "detection_component", "idle_state", "wander_state", "engaged_state", "alert_state")]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_1iiva")
@@ -29,6 +30,10 @@ health_component = NodePath("Components/HealthComponent")
 weapon_component = NodePath("Components/WeaponComponent")
 hitbox_component = NodePath("Components/HitBoxComponent")
 detection_component = NodePath("Components/DetectionComponent")
+idle_state = NodePath("StateMachine/Idle")
+wander_state = NodePath("StateMachine/Wander")
+engaged_state = NodePath("StateMachine/Engaged")
+alert_state = NodePath("StateMachine/Alert")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_artlf")
@@ -43,11 +48,10 @@ texture = ExtResource("2_3dbfo")
 [node name="WeaponComponent" parent="Components" instance=ExtResource("3_l3eid")]
 position = Vector2(0, 2)
 
-[node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("4_a2pal")]
+[node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("4_a2pal")]
 collision_layer = 2
 collision_mask = 3
 parent = NodePath("../..")
-health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
 shape = SubResource("RectangleShape2D_hfgd4")
@@ -74,4 +78,8 @@ detection_component = NodePath("../../Components/DetectionComponent")
 [node name="Engaged" parent="StateMachine" node_paths=PackedStringArray("parent", "weapon_component", "detection_component") instance=ExtResource("10_d14tt")]
 parent = NodePath("../..")
 weapon_component = NodePath("../../Components/WeaponComponent")
+detection_component = NodePath("../../Components/DetectionComponent")
+
+[node name="Alert" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("11_6nv6y")]
+parent = NodePath("../..")
 detection_component = NodePath("../../Components/DetectionComponent")

@@ -116,7 +116,7 @@ func _get_input() -> void:
 		inventory_toggled.emit(self)
 
 	if Input.is_action_just_pressed("pause"):
-		get_tree().change_scene_to_file("res://interface/MainMenu/main_menu.tscn")
+		get_tree().change_scene_to_file("res://core/levels/MainMenu/main_menu.tscn")
 
 func _update_sprites() -> void:	
 	if get_global_mouse_position().x < position.x:

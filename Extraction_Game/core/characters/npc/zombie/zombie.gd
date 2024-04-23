@@ -3,13 +3,13 @@ extends Character
 
 @export var health_component: HealthComponent
 @export var hitbox_component: HitBoxComponent
+@export var idle_state: IdleZombie
 @export var follow_state: FollowZombie
 @export var alert_state: AlertZombie
 
 #NOTE Not Critical for Testing
 @onready var state: Label = $Label
 @onready var state_machine: StateMachine = $StateMachine
-
 
 func _ready() -> void:
 	_connect_signals()
@@ -29,6 +29,10 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
+
+func sound_heard(sound_position: Vector2) -> void:
+	alerted.emit(sound_position)
+	
 	
 func _connect_signals() -> void:
 	if health_component:
@@ -40,6 +44,11 @@ func _connect_signals() -> void:
 		hitbox_component.hit_taken.connect(_on_actor_hit_taken)
 	else:
 		push_error("Missing Hitbox Component on: ", self)
+		
+	if idle_state:
+		idle_state.alerted.connect(_on_actor_alerted)
+	else:
+		push_error("Missing Idle State on: ", self)
 		
 	if follow_state:
 		follow_state.alerted.connect(_on_actor_alerted)

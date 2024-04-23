@@ -1,6 +1,9 @@
 class_name IdleZombie
 extends State
 
+signal alerted(position: Vector2)
+
+const ALERT_STATE: String = "alert zombie"
 const WANDER_STATE: String = "wander zombie"
 const FOLLOW_STATE: String = "follow zombie"
 
@@ -10,7 +13,7 @@ const FOLLOW_STATE: String = "follow zombie"
 @onready var idle_timer: Timer = $IdleTimer
 
 func _ready() -> void:
-	_connect_signals()
+	_validate()
 
 
 func enter() -> void:
@@ -46,10 +49,16 @@ func set_wait_timer() -> void:
 func _actor_entered_nearby(body: Node2D) -> void:
 	if body._faction != parent._faction:
 		transitioned.emit(self, FOLLOW_STATE)
+		
+func _on_actor_alerted(position: Vector2) -> void:
+	alerted.emit(position)
+	transitioned.emit(self, ALERT_STATE)
 			
 			
-func _connect_signals() -> void:
-	if !parent:
+func _validate() -> void:
+	if parent:
+		parent.alerted.connect(_on_actor_alerted)
+	else:
 		push_error("Missing Parent on: ", self)
 	
 	if detection_component:

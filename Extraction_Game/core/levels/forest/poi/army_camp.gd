@@ -4,7 +4,7 @@ extends POI
 @export var spawn_points: Node2D
 @export var characters: Node2D
 
-const SOLDIER: PackedScene = preload("res://characters/npc/military/military_grunt.tscn")
+const SOLDIER: PackedScene = preload("res://core/characters/npc/military/military_grunt.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -6,6 +6,7 @@ var armor_penetration: int = 0
 var speed: int = 500
 var recoil: int
 var direction: Vector2 = Vector2.UP
+var sound_emmitted: int
 var parent: Character
 
 

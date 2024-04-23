@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c8835bxpjms8m"]
 
-[ext_resource type="Script" path="res://core/gui/MainMenu/main_menu.gd" id="1_gqq88"]
+[ext_resource type="Script" path="res://core/levels/MainMenu/main_menu.gd" id="1_gqq88"]
 [ext_resource type="PackedScene" uid="uid://dgx3nex6k6fbw" path="res://core/levels/hideout/hideout.tscn" id="2_aa2mw"]
 [ext_resource type="Texture2D" uid="uid://cqbrastis1vpg" path="res://core/gui/sprites/start.png" id="3_okdih"]
 [ext_resource type="Texture2D" uid="uid://dgebamiuairbm" path="res://core/gui/sprites/main_menu_logo.png" id="3_u63rl"]
