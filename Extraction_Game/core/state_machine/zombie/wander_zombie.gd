@@ -1,8 +1,11 @@
 class_name WanderZombie
 extends State
 
+signal alerted(position: Vector2)
+
 const IDLE_STATE: String = "idle zombie"
 const FOLLOW_STATE: String = "follow zombie"
+const ALERT_STATE: String = "alert zombie"
 
 @export var parent: Zombie
 @export var detection_component: DetectionComponent
@@ -49,10 +52,17 @@ func _on_wander_timer_timeout() -> void:
 		
 func _actor_entered_nearby(_body: Node2D) -> void:
 	transitioned.emit(self, FOLLOW_STATE)
-	
+
+
+func _on_actor_alerted(position: Vector2) -> void:
+	alerted.emit(position)
+	transitioned.emit(self, ALERT_STATE)
+		
 	
 func _connect_signals() -> void:
-	if !parent:
+	if parent:
+		parent.alerted.connect(_on_actor_alerted)
+	else:
 		push_error("Missing Parent on: ", self)
 	
 	if detection_component:

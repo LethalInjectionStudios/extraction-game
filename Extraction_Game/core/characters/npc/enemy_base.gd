@@ -6,9 +6,10 @@ extends Character
 @export var weapon_component: WeaponComponent
 @export var hitbox_component: HitBoxComponent
 @export var detection_component: DetectionComponent
+@export var idle_state: Idle
+@export var wander_state: Wander
 @export var engaged_state: Engaged
 @export var alert_state: Alert
-
 @onready var state: Label = $Label
 @onready var state_machine: StateMachine = $StateMachine
 
@@ -37,6 +38,9 @@ func _process(_delta: float) -> void:
 	
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
+	
+func sound_heard(sound_position: Vector2) -> void:
+	alerted.emit(sound_position)
 	
 
 func _update_sprites() -> void:	
@@ -67,6 +71,16 @@ func _validate() -> void:
 		weapon_component.connect("weapon_reloaded", _on_weapon_reloaded)
 	else:
 		push_error("Missing Weapon Component on: ", self)
+		
+	if idle_state:
+		idle_state.alerted.connect(_on_actor_alerted)
+	else:
+		push_error("Missing Idle State on: ", self)
+		
+	if wander_state:
+		wander_state.alerted.connect(_on_actor_alerted)
+	else:
+		push_error("Missing Idle State on: ", self)
 		
 	if engaged_state:
 		engaged_state.alerted.connect(_on_actor_alerted)

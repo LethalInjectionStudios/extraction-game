@@ -44,8 +44,9 @@ func _connect_signals() -> void:
 	
 	
 func _on_weapon_fired(projectile: Projectile) -> void:
-	for enemy in get_tree().get_nodes_in_group("Enemy"):
-		enemy
+	for enemy: Character in get_tree().get_nodes_in_group("Enemy"):
+		#if enemy.global_position.distance_to(projectile.global_position) <= projectile.sound_emmitted:
+		enemy.sound_heard(projectile.global_position)
 	$Projectiles.add_child(projectile)	
 	
 

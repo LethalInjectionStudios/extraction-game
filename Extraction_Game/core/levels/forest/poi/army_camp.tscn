@@ -28,34 +28,33 @@ position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_bx6jw")
 
 [node name="Tent" type="StaticBody2D" parent="." index="1"]
-position = Vector2(1, 0)
+position = Vector2(38, -6)
 collision_layer = 8
 collision_mask = 7
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tent" index="0"]
-position = Vector2(38, -37)
+position = Vector2(0, -24)
 rotation = -0.00435247
 shape = SubResource("RectangleShape2D_4gt1w")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tent" index="1"]
-position = Vector2(38, -30)
+position = Vector2(0, -17)
 texture = SubResource("AtlasTexture_fyoru")
 
 [node name="Tent2" type="StaticBody2D" parent="." index="2"]
-position = Vector2(34, 0)
+position = Vector2(73, -6)
 collision_layer = 8
 collision_mask = 7
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tent2" index="0"]
-position = Vector2(38, -37)
+position = Vector2(0, -24)
+rotation = -0.00435247
 shape = SubResource("RectangleShape2D_4gt1w")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tent2" index="1"]
-position = Vector2(38, -30)
+position = Vector2(0, -17)
 texture = SubResource("AtlasTexture_fyoru")
 
 [node name="SpawnPoints" type="Node2D" parent="." index="3"]
