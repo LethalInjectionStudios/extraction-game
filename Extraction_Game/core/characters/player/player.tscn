@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjrido4tn0mpu"]
+[gd_scene load_steps=13 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://core/characters/player/player.gd" id="1_85rfc"]
 [ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://core/characters/player/player.png" id="2_dlmfx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://core/components/hitbox_component/hitbox_component.tscn" id="6_0nf56"]
 [ext_resource type="PackedScene" uid="uid://bvu8recokdwk6" path="res://core/components/inventory_component/inventory_component.tscn" id="7_bdqos"]
 [ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://core/components/detection_component/detection_component.tscn" id="8_kfcyo"]
+[ext_resource type="PackedScene" uid="uid://ufso703mvhwe" path="res://core/components/armor_component/armor_component.tscn" id="9_hu28v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhi0"]
 size = Vector2(8, 4.86997)
@@ -19,10 +20,11 @@ size = Vector2(8, 14)
 radius = 6.0
 height = 20.0
 
-[node name="Player" type="CharacterBody2D" groups=["Character"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("armor_component") groups=["Character"]]
 scale = Vector2(0.991289, 1.0267)
 collision_mask = 31
 script = ExtResource("1_85rfc")
+armor_component = NodePath("Components/ArmorComponent")
 _faction = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -63,7 +65,6 @@ position = Vector2(0, -7)
 position = Vector2(0, 2)
 
 [node name="HealthComponent" parent="Components" instance=ExtResource("5_nnvca")]
-MAX_HEALTH = 1000
 
 [node name="HitBoxComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("6_0nf56")]
 collision_mask = 4
@@ -81,6 +82,8 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/InteractionDetectionComponent"]
 position = Vector2(0, 0.18204)
 shape = SubResource("CapsuleShape2D_ljbj2")
+
+[node name="ArmorComponent" parent="Components" instance=ExtResource("9_hu28v")]
 
 [connection signal="ui_changed" from="." to="HeadsUpDisplay" method="_on_player_ui_changed"]
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]

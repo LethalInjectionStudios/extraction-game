@@ -12,13 +12,13 @@ func _ready() -> void:
 	_health = MAX_HEALTH
 
 
-func damage(projectile: Projectile) -> void:
-	_health -= projectile.damage
+func damage(net_damage_taken: int) -> void:
+	_health -= net_damage_taken
 	check_health()
 
 
-func zombie_damage(damage_value: int) -> void:
-	_health -= damage_value
+func zombie_damage(net_damage_taken: int) -> void:
+	_health -= net_damage_taken
 	check_health()
 
 

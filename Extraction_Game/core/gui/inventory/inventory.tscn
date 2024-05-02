@@ -5,11 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://cgrkw7k580q26" path="res://core/gui/sprites/panel_metalBolts.png" id="3_sprj6"]
 [ext_resource type="PackedScene" uid="uid://cs8roo38svwit" path="res://core/gui/inventory/inventory_button.tscn" id="4_f5bdh"]
 
-[node name="Inventory" type="Control"]
+[node name="Inventory" type="Control" node_paths=PackedStringArray("equipped_armor")]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_od8su")
+equipped_armor = NodePath("CanvasLayer/EquippedGear/EquippedArmorButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -75,6 +76,9 @@ text = "Equipped
 "
 
 [node name="EquippedItemButton" parent="CanvasLayer/EquippedGear" instance=ExtResource("4_f5bdh")]
+layout_mode = 2
+
+[node name="EquippedArmorButton" parent="CanvasLayer/EquippedGear" instance=ExtResource("4_f5bdh")]
 layout_mode = 2
 
 [node name="Button" type="Button" parent="CanvasLayer"]

@@ -5,7 +5,7 @@ signal weapon_fired(projectile: Projectile)
 signal weapon_reloaded(ammo_type: Ammunition, magazine_capacity: int)
 signal noise_emitted(location: Vector2)
 signal weapon_added_to_inventory(weapon: InventoryItemWeapon)
-signal weapon_removed_from_inventory(weapon: InventoryComponent)
+signal weapon_removed_from_inventory(weapon: InventoryItemWeapon)
 
 const BULLET_SCENE: PackedScene = preload("res://core/items/ammunition/bullet.tscn")
 

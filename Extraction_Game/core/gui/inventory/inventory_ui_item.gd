@@ -18,5 +18,6 @@ func _on_button_pressed() -> void:
 	item_selected.emit(item)
 
 func _on_mouse_entered() -> void:
+	print(item.item_name)
 	audio_player.play()
 	

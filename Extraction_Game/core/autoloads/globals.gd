@@ -11,6 +11,12 @@ enum Caliber {
 	_762X51NATO
 }
 
+enum Armor_Status {
+	UNDAMAGED,
+	DAMAGED,
+	BROKEN
+}
+
 enum Faction {
 	NONE_ASSIGNED,
 	PLAYER,
@@ -26,7 +32,8 @@ enum Item_Type {
 	HEALTH,
 	FOOD,
 	WATER,
-	CRAFTING_MATERIAL
+	CRAFTING_MATERIAL,
+	ARMOR
 }
 
 enum Interactable_Type {

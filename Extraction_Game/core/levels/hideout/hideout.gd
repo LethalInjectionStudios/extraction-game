@@ -40,6 +40,10 @@ func _save_stash_data() -> void:
 				var save_item: InventoryItemWeapon = item as InventoryItemWeapon
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 				
+			if item.item_type == Globals.Item_Type.ARMOR:
+				var save_item: InventoryItemArmor = item as InventoryItemArmor
+				file.store_line(JSON.stringify((save_item.to_dictionary())))
+				
 			if item.item_type == Globals.Item_Type.HEALTH:
 				var save_item: InventoryItemConsumable = item as InventoryItemConsumable
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
@@ -64,10 +68,17 @@ func _load_stash_data() -> void:
 				var _item_instance: InventoryItemWeapon = InventoryItemWeapon.new()
 				_item_instance.from_dictionary(item_data)
 				stash.inventory_component._add_to_inventory(_item_instance)
+				
+			if item_data["item_type"] == Globals.Item_Type.ARMOR:
+				var _item_instance: InventoryItemArmor = InventoryItemArmor.new()
+				_item_instance.from_dictionary(item_data)
+				stash.inventory_component._add_to_inventory(_item_instance)
+				
 			if item_data["item_type"] == Globals.Item_Type.HEALTH:
 				var _item_instance: InventoryItemConsumable = InventoryItemConsumable.new()
 				_item_instance.from_dictionary(item_data)
 				stash.inventory_component._add_to_inventory(_item_instance)
+				
 			if item_data["item_type"] == Globals.Item_Type.AMMO:
 				var _item_instance: InventoryItemAmmo = InventoryItemAmmo.new()
 				_item_instance.from_dictionary(item_data)

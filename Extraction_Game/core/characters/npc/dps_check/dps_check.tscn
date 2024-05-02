@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhjllj36ujv0t"]
+
+[ext_resource type="Script" path="res://core/characters/npc/dps_check/dps_check.gd" id="1_2i1g5"]
+[ext_resource type="Texture2D" uid="uid://bp53jr8o5tel" path="res://core/characters/npc/npc.png" id="1_v2st7"]
+[ext_resource type="Script" path="res://core/components/hitbox_component/hitbox_component.gd" id="2_t7pv4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rabqc"]
+size = Vector2(8, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygl2o"]
+size = Vector2(10, 15)
+
+[node name="DPS Check" type="StaticBody2D"]
+script = ExtResource("1_2i1g5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+texture = ExtResource("1_v2st7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_rabqc")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="HitBoxComponent" type="Area2D" parent="Components" node_paths=PackedStringArray("parent")]
+script = ExtResource("2_t7pv4")
+parent = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HitBoxComponent"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_ygl2o")

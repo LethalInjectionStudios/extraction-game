@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_wgpn5")
 caliber = 1
-penetration = 0
+penetration = 16
 damage_modifier = 0
 accuracy_modifier = 0
 recoil_modifier = 0

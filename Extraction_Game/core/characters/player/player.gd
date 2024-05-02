@@ -25,6 +25,7 @@ var _interacting_object : Interactable
 @onready var inventory_component: InventoryComponent = $Components/InventoryComponent
 @onready var hitbox_component: HitBoxComponent = $Components/HitBoxComponent
 @onready var interaction_component: DetectionComponent = $Components/InteractionDetectionComponent
+@export var armor_component: ArmorComponent
 
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
 @onready var camera: Camera2D = $Camera2D
@@ -62,39 +63,46 @@ func _validate() -> void:
 		weapon_component.connect("weapon_removed_from_inventory", inventory_component._remove_from_inventory)
 		weapon_component.connect("weapon_reloaded", _on_weapon_reloaded)
 	else:
-		push_warning("Missing Weapon Component on: ", self)
+		push_error("Missing Weapon Component on: ", self)
 		
 	if hitbox_component:
-		hitbox_component.connect("hit_taken", health_component.damage)
+		hitbox_component.connect("hit_taken", armor_component.damage)
 		hitbox_component.connect("zombie_hit_taken", health_component.zombie_damage)
 	else:
-		push_warning("Missing Hitbox Component on: ", self)
+		push_error("Missing Hitbox Component on: ", self)
+		
+	if armor_component:
+		armor_component.net_damage_taken.connect(health_component.damage)
+		armor_component.armor_removed_from_inventory.connect(inventory_component._remove_from_inventory)
+		armor_component.armor_added_to_invetory.connect(inventory_component._add_to_inventory)
+	else:
+		push_error("Missing Armor Component on: ", self)
 		
 	if health_component:
 		health_component.connect("damage_taken", ui.update_display)
 		health_component.connect("destroyed", _player_death)
 	else:
-		push_warning("Missing Health Component on: ", self)
+		push_error("Missing Health Component on: ", self)
 		
 	if interaction_component:
 		interaction_component.connect("actor_entered", _start_interacting)
 		interaction_component.connect("actor_left", _stop_interacting)
 	else:
-		push_warning("Missing Interaction Component on: ", self)
+		push_error("Missing Interaction Component on: ", self)
 
 
 func _get_input() -> void:
 
-	if _in_raid:
-		if weapon_component.firing_mode == Globals.FireMode.FULL:
-			if Input.is_action_pressed("fire") and !menu_open:
-				weapon_component.fire_weapon(get_global_mouse_position())
-				ui_changed.emit()
+	#if _in_raid:
+	if weapon_component.firing_mode == Globals.FireMode.FULL:
+		if Input.is_action_pressed("fire") and !menu_open:
+			weapon_component.fire_weapon(get_global_mouse_position())
+			ui_changed.emit()
 
-		if weapon_component.firing_mode == Globals.FireMode.SEMI:
-			if Input.is_action_just_pressed("fire") and !menu_open:
-				weapon_component.fire_weapon(get_global_mouse_position())
-				ui_changed.emit()
+	if weapon_component.firing_mode == Globals.FireMode.SEMI:
+		if Input.is_action_just_pressed("fire") and !menu_open:
+			weapon_component.fire_weapon(get_global_mouse_position())
+			ui_changed.emit()
 
 	if Input.is_action_just_released("reload") and !menu_open:
 		weapon_component.reload_weapon()
@@ -117,6 +125,7 @@ func _get_input() -> void:
 
 	if Input.is_action_just_pressed("pause"):
 		get_tree().change_scene_to_file("res://core/levels/MainMenu/main_menu.tscn")
+
 
 func _update_sprites() -> void:	
 	if get_global_mouse_position().x < position.x:
@@ -145,6 +154,16 @@ func equip_weapon(weapon: InventoryItemWeapon) -> void:
 
 func unequip_weapon() -> void:
 	weapon_component.unequip_weapon()
+	ui_changed.emit()
+	
+
+func equip_armor(armor: InventoryItemArmor) -> void:
+	armor_component.equip_armor(armor)
+	ui_changed.emit()
+	
+
+func unequip_armor() -> void:
+	armor_component.unequip_armor()
 	ui_changed.emit()
 
 
@@ -196,6 +215,10 @@ func _save() -> void:
 			if item.item_type == Globals.Item_Type.WEAPON:
 				var save_item: InventoryItemWeapon = item as InventoryItemWeapon
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
+				
+			if item.item_type == Globals.Item_Type.ARMOR:
+				var save_item: InventoryItemArmor = item as InventoryItemArmor
+				file.store_line(JSON.stringify((save_item.to_dictionary())))
 
 			if item.item_type == Globals.Item_Type.HEALTH:
 				var save_item: InventoryItemConsumable = item as InventoryItemConsumable
@@ -212,8 +235,13 @@ func _save() -> void:
 		if weapon_component._weapon_inventory_item:
 			var save_item: InventoryItemWeapon = weapon_component._weapon_inventory_item as InventoryItemWeapon
 			file.store_line(JSON.stringify((save_item.to_dictionary())))
+		
+		
+		if armor_component._armor_inventory_item:
+			var save_item: InventoryItemArmor = armor_component._armor_inventory_item as InventoryItemArmor
+			file.store_line(JSON.stringify((save_item.to_dictionary())))
+			
 		file.close()
-
 	
 func _load_character_data() -> void:
 	inventory_component.inventory.clear()
@@ -232,6 +260,15 @@ func _load_character_data() -> void:
 
 				if item_data["equipped"]:
 					weapon_component.equip_weapon(_item_instance)
+					ui_changed.emit()
+					
+			if item_data["item_type"] == Globals.Item_Type.ARMOR:
+				var _item_instance: InventoryItemArmor = InventoryItemArmor.new()
+				_item_instance.from_dictionary(item_data)
+				inventory_component._add_to_inventory(_item_instance)
+				
+				if item_data["equipped"]:
+					armor_component.equip_armor(_item_instance)
 					ui_changed.emit()
 
 			if item_data["item_type"] == Globals.Item_Type.HEALTH:
@@ -255,4 +292,4 @@ func _player_death() -> void:
 
 
 func _return_to_hideout() -> void:
-	get_tree().change_scene_to_packed(load("res://levels/hideout/hideout.tscn"))
+	get_tree().change_scene_to_packed(load("res://core/levels/hideout/hideout.tscn"))
