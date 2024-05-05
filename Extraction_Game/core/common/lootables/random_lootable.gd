@@ -21,7 +21,7 @@ func _ready() -> void:
 
 				inventory_component._add_to_inventory(item)
 
-			if res.type == Globals.Item_Type.HEALTH:
+			if res.type == Globals.Item_Type.MEDICATION:
 				var item: InventoryItemConsumable = InventoryItemConsumable.new()
 
 				item.item_name = res.name

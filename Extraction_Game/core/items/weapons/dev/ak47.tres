@@ -19,6 +19,7 @@ scope_position = Vector2(0, 0)
 light_position = Vector2(0, 0)
 name = "Assault Rifle"
 type = 1
+description = "Test Description"
 sprite = "res://core/items/weapons/doughnutdevguns/AK47.png"
 value = 0
 weight = 20.0

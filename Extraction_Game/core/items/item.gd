@@ -7,6 +7,9 @@ extends Resource
 ## Type of item. See  [code]Globals.ItemType[/code]  for available values
 @export var type: Globals.Item_Type
 
+## Description of the item
+@export_multiline var description: String
+
 ## Path to the sprite for the item
 @export var sprite: String
 

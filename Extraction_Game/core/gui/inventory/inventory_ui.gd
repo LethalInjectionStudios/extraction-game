@@ -23,11 +23,12 @@ var player: Player
 
 @onready var player_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite
 @onready var weapon_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite/WeaponSprite
+@onready var item_description: ItemDescription = $CanvasLayer/ItemDescription
 
 const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventory_button.tscn")
 
 func _ready() -> void:
-	_setup_signals()
+	_setup_signals()	
 
 
 func _toggle_inventory_menu(_player: Player) -> void:
@@ -63,6 +64,8 @@ func open_inventory(_player: Player) -> void:
 
 		container.add_child(button)
 		button.connect("item_selected", _use_item)
+		button.item_hovered.connect(item_description.Show)
+		button.item_hover_ended.connect(item_description.Hide)
 
 	if _player.weapon_component.weapon:
 		equipped_weapon.item = _player.weapon_component._weapon_inventory_item
@@ -77,8 +80,6 @@ func open_inventory(_player: Player) -> void:
 		loaded_ammo.hide()
 		
 	if _player.armor_component.armor:
-		System.print("Equipped Armor: {0}", [_player.armor_component._armor_inventory_item.item_icon])
-		System.print("Icon: {0}", [equipped_armor.item_icon.texture])
 		equipped_armor.item = _player.armor_component._armor_inventory_item
 		equipped_armor.item_icon.texture = load(equipped_armor.item.item_icon)
 		equipped_armor.show()
@@ -108,7 +109,11 @@ func hide_window() -> void:
 
 func _setup_signals() -> void:
 	equipped_weapon.connect("item_selected", _unequip_item)
+	equipped_weapon.item_hovered.connect(item_description.Show)
+	equipped_weapon.item_hover_ended.connect(item_description.Hide)
 	equipped_armor.item_selected.connect(_unequip_item)
+	equipped_armor.item_hovered.connect(item_description.Show)
+	equipped_armor.item_hover_ended.connect(item_description.Hide)
 	loaded_ammo.connect("pressed", _on_loaded_ammo_pressed)
 
 
@@ -126,12 +131,11 @@ func _use_item(item: InventoryItem) -> void:
 			var armor: InventoryItemArmor = item as InventoryItemArmor
 			armor_equipped.emit(armor)
 				
-		Globals.Item_Type.HEALTH:
+		Globals.Item_Type.MEDICATION:
 			var health_pack: InventoryItemConsumable = item as InventoryItemConsumable
 			consumable_used.emit(health_pack)
 	_reload_inventory()
-
-
+	
 func _on_loaded_ammo_pressed() -> void:
 	var ammo_options: VBoxContainer = VBoxContainer.new()
 	loaded_ammo.add_child(ammo_options)

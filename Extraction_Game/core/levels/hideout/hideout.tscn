@@ -821,6 +821,7 @@ position = Vector2(668, 143)
 
 [node name="WeaponsCrate" parent="." index="38" instance=ExtResource("57_a2skr")]
 position = Vector2(421, 611)
+drops = Array[String](["res://core/items/armor/dev_armor.tres", "res://core/items/ammunition/resource/_762x39_AP.tres", "res://core/items/weapons/dev/ak47.tres"])
 
 [node name="DPS Check" parent="." index="39" instance=ExtResource("58_nuvlc")]
 visible = false
