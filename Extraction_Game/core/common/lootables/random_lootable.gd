@@ -21,7 +21,7 @@ func _ready() -> void:
 
 				inventory_component._add_to_inventory(item)
 
-			if res.type == Globals.Item_Type.HEALTH:
+			if res.type == Globals.Item_Type.MEDICATION:
 				var item: InventoryItemConsumable = InventoryItemConsumable.new()
 
 				item.item_name = res.name
@@ -32,8 +32,7 @@ func _ready() -> void:
 				inventory_component._add_to_inventory(item)
 				
 			if res.type == Globals.Item_Type.AMMO:
-				var item: InventoryItemAmmo = InventoryItemAmmo.new()
-				
+				var item: InventoryItemAmmo = InventoryItemAmmo.new()		
 				item.item_name = res.name
 				item.item_path = res.resource_path
 				item.item_type = res.type
@@ -53,3 +52,15 @@ func _ready() -> void:
 				item.quantity = randi_range(1, 25)
 
 				inventory_component._add_to_inventory(item)
+				
+			if res.type == Globals.Item_Type.ARMOR:
+				var item: InventoryItemArmor = InventoryItemArmor.new()
+				
+				item.item_name = res.name
+				item.item_path = res.resource_path
+				item.item_type = res.type
+				item.item_icon = res.sprite
+				
+				item.durability = randf_range(0.0, 100.0)
+				
+				inventory_component._add_to_inventory(item)			

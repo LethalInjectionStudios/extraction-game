@@ -3,19 +3,19 @@
 [ext_resource type="PackedScene" uid="uid://chugnt2esttqd" path="res://core/common/lootables/lootable.tscn" id="1_x6chj"]
 [ext_resource type="Texture2D" uid="uid://c6ximrxnbiubj" path="res://core/levels/hideout/spritesheets/bunker_atlas.png" id="2_4uklr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j2ad"]
-size = Vector2(32, 14)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_72knj"]
 atlas = ExtResource("2_4uklr")
 region = Rect2(48, 1, 32, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j2ad"]
+size = Vector2(32, 14)
 
 [node name="Stash" instance=ExtResource("1_x6chj")]
 collision_layer = 9
 collision_mask = 15
 
-[node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource("RectangleShape2D_0j2ad")
-
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="0"]
 texture = SubResource("AtlasTexture_72knj")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_0j2ad")

@@ -5,9 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c8mk0l278efa4" path="res://core/state_machine/enemy/alert.tscn" id="3_bi5e6"]
 [ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://font/slkscr.ttf" id="4_g3wto"]
 
-[node name="Enemy Base" node_paths=PackedStringArray("engaged_state", "alert_state") groups=["Enemy"] instance=ExtResource("1_1i4ej")]
-engaged_state = NodePath("StateMachine/Engaged")
-alert_state = NodePath("StateMachine/Alert")
+[node name="Enemy Base" groups=["Enemy"] instance=ExtResource("1_1i4ej")]
 _move_speed = 0.0
 _faction = 4
 
@@ -17,7 +15,7 @@ texture = ExtResource("2_jqecb")
 [node name="HitBoxComponent" parent="Components" index="2" node_paths=PackedStringArray("parent")]
 parent = NodePath(".")
 
-[node name="Alert" parent="StateMachine" index="3" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("3_bi5e6")]
+[node name="Alert2" parent="StateMachine" index="3" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("3_bi5e6")]
 parent = NodePath("../..")
 detection_component = NodePath("../../Components/DetectionComponent")
 

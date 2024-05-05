@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dgx3nex6k6fbw"]
+[gd_scene load_steps=64 format=3 uid="uid://dgx3nex6k6fbw"]
 
 [ext_resource type="PackedScene" uid="uid://rgumhnym5ugn" path="res://core/levels/level.tscn" id="1_rl74n"]
 [ext_resource type="Script" path="res://core/levels/hideout/hideout.gd" id="2_btv65"]
@@ -57,6 +57,7 @@
 [ext_resource type="PackedScene" uid="uid://ssw8i5gxbaog" path="res://core/levels/hideout/objects/innkeeper/alcohol_full_01.tscn" id="55_qmglg"]
 [ext_resource type="PackedScene" uid="uid://mxcebnpiwrls" path="res://core/levels/hideout/objects/innkeeper/alcohol_full_02.tscn" id="56_n2p86"]
 [ext_resource type="PackedScene" uid="uid://cmbet5yq7ojww" path="res://core/levels/forest/objects/weapons_crate_01.tscn" id="57_a2skr"]
+[ext_resource type="PackedScene" uid="uid://bhjllj36ujv0t" path="res://core/characters/npc/dps_check/dps_check.tscn" id="58_nuvlc"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fqjiv"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -373,6 +374,7 @@ position = Vector2(716, 507)
 
 [node name="ArmsDealer_FiringRangeTarget" parent="Scenery/ArmsDealer" index="10" instance=ExtResource("35_sitgg")]
 position = Vector2(708, 435)
+armor_value = 6
 
 [node name="Ak47" type="Sprite2D" parent="Scenery/ArmsDealer" index="11"]
 position = Vector2(606, 502)
@@ -819,6 +821,10 @@ position = Vector2(668, 143)
 
 [node name="WeaponsCrate" parent="." index="38" instance=ExtResource("57_a2skr")]
 position = Vector2(421, 611)
-drops = Array[String](["res://core/items/weapons/dev/ak47.tres", "res://core/items/weapons/dev/barrettM82.tres", "res://core/items/weapons/dev/minigun.tres", "res://core/items/ammunition/resource/_762x39.tres", "res://core/items/ammunition/resource/_762x39_AP.tres", "res://core/items/ammunition/resource/_762x39_HP.tres"])
+drops = Array[String](["res://core/items/armor/dev_armor.tres", "res://core/items/ammunition/resource/_762x39_AP.tres", "res://core/items/weapons/dev/ak47.tres"])
+
+[node name="DPS Check" parent="." index="39" instance=ExtResource("58_nuvlc")]
+visible = false
+position = Vector2(708, 459)
 
 [connection signal="body_entered" from="Exit" to="." method="_on_area_2d_body_entered"]

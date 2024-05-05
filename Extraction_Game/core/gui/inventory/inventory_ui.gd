@@ -4,6 +4,8 @@ extends Control
 signal weapon_equipped(item: InventoryItemWeapon)
 signal weapon_unequipped()
 signal weapon_ammo_changed(ammo: InventoryItemAmmo)
+signal armor_equipped(item: InventoryItemArmor)
+signal armor_unequipped()
 signal inventory_changed()
 signal ui_opened()
 signal ui_closed()
@@ -16,15 +18,17 @@ var player: Player
 @onready var container: GridContainer = $CanvasLayer/ScrollContainer/Inventory
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var equipped_weapon: InventoryUIButton = $CanvasLayer/EquippedGear/EquippedItemButton
+@export var equipped_armor: InventoryUIButton
 @onready var loaded_ammo: Button = $CanvasLayer/Button
 
 @onready var player_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite
 @onready var weapon_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite/WeaponSprite
+@onready var item_description: ItemDescription = $CanvasLayer/ItemDescription
 
 const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventory_button.tscn")
 
 func _ready() -> void:
-	_setup_signals()
+	_setup_signals()	
 
 
 func _toggle_inventory_menu(_player: Player) -> void:
@@ -60,6 +64,8 @@ func open_inventory(_player: Player) -> void:
 
 		container.add_child(button)
 		button.connect("item_selected", _use_item)
+		button.item_hovered.connect(item_description.Show)
+		button.item_hover_ended.connect(item_description.Hide)
 
 	if _player.weapon_component.weapon:
 		equipped_weapon.item = _player.weapon_component._weapon_inventory_item
@@ -72,6 +78,13 @@ func open_inventory(_player: Player) -> void:
 	else:
 		equipped_weapon.hide()
 		loaded_ammo.hide()
+		
+	if _player.armor_component.armor:
+		equipped_armor.item = _player.armor_component._armor_inventory_item
+		equipped_armor.item_icon.texture = load(equipped_armor.item.item_icon)
+		equipped_armor.show()
+	else:
+		equipped_armor.hide()
 
 
 func close_inventory() -> void:
@@ -96,6 +109,11 @@ func hide_window() -> void:
 
 func _setup_signals() -> void:
 	equipped_weapon.connect("item_selected", _unequip_item)
+	equipped_weapon.item_hovered.connect(item_description.Show)
+	equipped_weapon.item_hover_ended.connect(item_description.Hide)
+	equipped_armor.item_selected.connect(_unequip_item)
+	equipped_armor.item_hovered.connect(item_description.Show)
+	equipped_armor.item_hover_ended.connect(item_description.Hide)
 	loaded_ammo.connect("pressed", _on_loaded_ammo_pressed)
 
 
@@ -106,12 +124,18 @@ func _use_item(item: InventoryItem) -> void:
 				_unequip_item(equipped_weapon.item)
 			var weapon: InventoryItemWeapon = item as InventoryItemWeapon
 			weapon_equipped.emit(weapon)
-		Globals.Item_Type.HEALTH:
+			
+		Globals.Item_Type.ARMOR:
+			if equipped_armor.item:
+				_unequip_item(equipped_armor.item)
+			var armor: InventoryItemArmor = item as InventoryItemArmor
+			armor_equipped.emit(armor)
+				
+		Globals.Item_Type.MEDICATION:
 			var health_pack: InventoryItemConsumable = item as InventoryItemConsumable
 			consumable_used.emit(health_pack)
 	_reload_inventory()
-
-
+	
 func _on_loaded_ammo_pressed() -> void:
 	var ammo_options: VBoxContainer = VBoxContainer.new()
 	loaded_ammo.add_child(ammo_options)
@@ -150,7 +174,11 @@ func _unequip_item(item: InventoryItem) -> void:
 		Globals.Item_Type.WEAPON:
 			weapon_unequipped.emit()
 			equipped_weapon.item = null
-			_reload_inventory()
+		Globals.Item_Type.ARMOR:
+			armor_unequipped.emit()
+			equipped_armor.item = null
+	_reload_inventory()
+			
 
 
 func _reload_inventory() -> void:

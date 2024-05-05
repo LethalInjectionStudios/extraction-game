@@ -6,10 +6,12 @@ extends Character
 @export var weapon_component: WeaponComponent
 @export var hitbox_component: HitBoxComponent
 @export var detection_component: DetectionComponent
+@export var armor_component: ArmorComponent
 @export var idle_state: Idle
 @export var wander_state: Wander
 @export var engaged_state: Engaged
 @export var alert_state: Alert
+
 @onready var state: Label = $Label
 @onready var state_machine: StateMachine = $StateMachine
 
@@ -57,10 +59,13 @@ func _update_sprites() -> void:
 
 func _validate() -> void:
 	if hitbox_component:
-		hitbox_component.connect("hit_taken", health_component.damage)
+		hitbox_component.connect("hit_taken", armor_component.damage)
 		hitbox_component.connect("zombie_hit_taken", health_component.zombie_damage)
 	else:
 		push_error("Missing Hitbox Component on: ", self)
+		
+	if armor_component:
+		armor_component.net_damage_taken.connect(health_component.damage)
 		
 	if health_component:
 		health_component.connect("destroyed", _on_actor_death)

@@ -33,7 +33,6 @@ func _physics_process(_delta: float) -> void:
 func sound_heard(sound_position: Vector2) -> void:
 	alerted.emit(sound_position)
 	
-	
 func _connect_signals() -> void:
 	if health_component:
 		health_component.destroyed.connect(_on_actor_destroyed)
@@ -65,7 +64,7 @@ func _on_actor_destroyed() -> void:
 	
 	
 func _on_actor_hit_taken(projectile: Projectile) -> void:
-	health_component.damage(projectile)
+	health_component.damage(projectile.damage)
 
 
 func _on_actor_alerted(last_known_position: Vector2) -> void:

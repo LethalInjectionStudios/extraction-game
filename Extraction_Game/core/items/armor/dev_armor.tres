@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://m05q1hg23ar1"]
+
+[ext_resource type="Script" path="res://core/items/armor/armor.gd" id="1_tgieg"]
+
+[resource]
+script = ExtResource("1_tgieg")
+armor_class = 5
+name = "<dev>"
+type = 7
+description = "This is a description for a testing armor"
+sprite = "res://core/items/armor/dev_armor.png"
+value = 0
+weight = 0.0
+is_stackable = false
+stack_size = 0
