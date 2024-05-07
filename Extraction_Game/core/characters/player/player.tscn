@@ -49,7 +49,7 @@ autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -7)
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(5, 5)
 metadata/_edit_group_ = true
 
 [node name="HeadsUpDisplay" parent="." instance=ExtResource("3_deorf")]

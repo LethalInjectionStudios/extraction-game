@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=2 format=3 uid="uid://dajcero7uqhys"]
+
+[ext_resource type="Script" path="res://core/items/consumables/consumable.gd" id="1_dwb6g"]
+
+[resource]
+script = ExtResource("1_dwb6g")
+hunger_restoration_amount = 35
+thirst_restoration_amount = -15
+health_restoration_amount = 0
+time_to_use = 0.0
+name = "D's Nutz"
+type = 8
+description = "Only someone as nuts as D would eat D's Nutz"
+sprite = "res://core/items/consumables/ds_nutz.png"
+value = 0
+weight = 0.0
+is_stackable = false
+stack_size = 0

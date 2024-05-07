@@ -5,10 +5,13 @@
 [resource]
 resource_name = "Bandage"
 script = ExtResource("1_suebl")
-restoration_amount = 20
+food_restoration_amount = 0
+water_restoration_amount = 0
+health_restoration_amount = 20
 time_to_use = 0.0
 name = "Bandage"
-type = 3
+type = 8
+description = ""
 sprite = "res://core/items/consumables/bandage.png"
 value = 0
 weight = 0.1

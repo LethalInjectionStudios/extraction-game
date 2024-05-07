@@ -11,18 +11,22 @@ extends VBoxContainer
 @onready var _ammunition: VBoxContainer = $Ammunition
 @onready var _armor_penetration: ProgressBar = $Ammunition/AP_Container/ArmorPenetration
 
+#Weapon
+@onready var _loaded_ammo: Label = $Weapon/Loaded_Ammo
+
+
 func _ready() -> void:
 	clear()
 
 
 func Show(item: InventoryItem) -> void:
-	var _data: Item = load(item.item_path) as Item
+	var _data: Item = load(item.item_path) as Item	
 	
 	_name.text = item.item_name
 	_name.visible = true
 		
 	_type.text = Globals.get_item_type_as_string(item.item_type)
-	_type.visible = true
+	_type.visible = false
 	
 	_description.text = _data.description
 	_description.visible = true
@@ -35,7 +39,9 @@ func Show(item: InventoryItem) -> void:
 			_ammunition.visible = true
 		Globals.Item_Type.WEAPON:
 			var _weapon: Weapon = _data as Weapon
-			_name.text += " (" + Globals.get_caliber_as_string(_weapon.caliber) + ")"
+			var _ammo: Ammunition = load(item.ammo_type)
+			_name.text += " (" + _ammo.name + ")"
+			
 				
 	#position = get_global_mouse_position()
 	visible = true
@@ -52,6 +58,9 @@ func clear() -> void:
 
 	# Ammunition
 	_ammunition.visible = false
+	
+	# Weapon
+	_loaded_ammo.visible = false
 	
 	
 	
@@ -73,10 +82,6 @@ func clear() -> void:
 			#item_description.append_text(Globals.get_caliber_as_string(ammo.caliber))
 		#Globals.Item_Type.MEDICATION:
 			#item_description.append_text("Health")
-		#Globals.Item_Type.FOOD:
-			#item_description.append_text("Food")
-		#Globals.Item_Type.WATER:
-			#item_description.append_text("Food")
 		#Globals.Item_Type.CRAFTING_MATERIAL:
 			#item_description.append_text("Materials")
 		#Globals.Item_Type.ARMOR:

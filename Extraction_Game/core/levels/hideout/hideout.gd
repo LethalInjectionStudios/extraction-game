@@ -11,6 +11,9 @@ func _ready() -> void:
 	_load_stash_data()
 	audio_listener.make_current()
 	_connect_signals()
+	
+	var txt: String = "hello"
+	print(txt[4])
 
 
 func _process(_delta: float) -> void:
@@ -44,7 +47,7 @@ func _save_stash_data() -> void:
 				var save_item: InventoryItemArmor = item as InventoryItemArmor
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 				
-			if item.item_type == Globals.Item_Type.MEDICATION:
+			if item.item_type == Globals.Item_Type.CONSUMABLE:
 				var save_item: InventoryItemConsumable = item as InventoryItemConsumable
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 				
@@ -74,7 +77,7 @@ func _load_stash_data() -> void:
 				_item_instance.from_dictionary(item_data)
 				stash.inventory_component._add_to_inventory(_item_instance)
 				
-			if item_data["item_type"] == Globals.Item_Type.MEDICATION:
+			if item_data["item_type"] == Globals.Item_Type.CONSUMABLE:
 				var _item_instance: InventoryItemConsumable = InventoryItemConsumable.new()
 				_item_instance.from_dictionary(item_data)
 				stash.inventory_component._add_to_inventory(_item_instance)

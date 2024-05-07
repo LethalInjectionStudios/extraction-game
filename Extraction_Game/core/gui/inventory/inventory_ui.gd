@@ -15,17 +15,18 @@ signal consumable_used(item: InventoryItemConsumable)
 var _is_menu_open: bool = false
 var player: Player
 
-@onready var container: GridContainer = $CanvasLayer/ScrollContainer/Inventory
+@onready var container: GridContainer = $CanvasLayer/Background/ScrollContainer/Inventory
 @onready var canvas: CanvasLayer = $CanvasLayer
-@onready var equipped_weapon: InventoryUIButton = $CanvasLayer/EquippedGear/EquippedItemButton
+@onready var equipped_weapon: InventoryUIButton = $CanvasLayer/Background/EquippedWeaponButton
 @export var equipped_armor: InventoryUIButton
-@onready var loaded_ammo: Button = $CanvasLayer/Button
+@onready var loaded_ammo: Button = $CanvasLayer/Background/LoadedAmmo
 
-@onready var player_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite
-@onready var weapon_sprite: Sprite2D = $CanvasLayer/Player/PlayerSprite/WeaponSprite
-@onready var item_description: ItemDescription = $CanvasLayer/ItemDescription
+@onready var player_sprite: Sprite2D = $CanvasLayer/Background/Player/PlayerSprite
+@onready var weapon_sprite: Sprite2D = $CanvasLayer/Background/Player/PlayerSprite/WeaponSprite
+@onready var item_description: ItemDescription = $CanvasLayer/Background/ItemDescription
 
 const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventory_button.tscn")
+const AMMO_SWAP_BUTTON: PackedScene = preload("res://core/components/inventory_component/ammo_swap_button.tscn")
 
 func _ready() -> void:
 	_setup_signals()	
@@ -131,21 +132,25 @@ func _use_item(item: InventoryItem) -> void:
 			var armor: InventoryItemArmor = item as InventoryItemArmor
 			armor_equipped.emit(armor)
 				
-		Globals.Item_Type.MEDICATION:
-			var health_pack: InventoryItemConsumable = item as InventoryItemConsumable
-			consumable_used.emit(health_pack)
+		Globals.Item_Type.CONSUMABLE:
+			var consumable: InventoryItemConsumable = item as InventoryItemConsumable
+			consumable_used.emit(consumable)
 	_reload_inventory()
 	
 func _on_loaded_ammo_pressed() -> void:
+	if loaded_ammo.get_child_count() > 0:
+		return
+		
 	var ammo_options: VBoxContainer = VBoxContainer.new()
 	loaded_ammo.add_child(ammo_options)
+	ammo_options.position.y += 55
 
 	for item: InventoryItem in player.inventory_component.inventory:
 		if item is InventoryItemAmmo:
 			var ammo: Ammunition = load(item.item_path)
 			var weapon: Weapon = load(equipped_weapon.item.item_path)
 			if ammo.caliber == weapon.caliber and item.item_name != player.weapon_component._ammo_inventory_item.item_name:
-				var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
+				var button: AmmoSwapButton = AMMO_SWAP_BUTTON.instantiate()
 				button.text = item.item_name
 				button.item = InventoryItemAmmo.new()
 				

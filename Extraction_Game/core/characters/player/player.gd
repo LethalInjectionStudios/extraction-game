@@ -186,9 +186,11 @@ func remove_item_from_inventory(item: InventoryItem) -> void:
 
 
 func use_consumable(item: InventoryItemConsumable) -> void:
-	if item.item_type == Globals.Item_Type.MEDICATION:
+	if item.item_type == Globals.Item_Type.CONSUMABLE:
 		var _item: Consumable = load(item.item_path) as Consumable
-		health_component.heal(_item.restoration_amount)
+		health_component.heal(_item.health_restoration_amount)
+		_hunger += _item.hunger_restoration_amount
+		_thirst += _item.thirst_restoration_amount
 		inventory_component._remove_from_inventory(item)
 		ui_changed.emit()
 
@@ -220,7 +222,7 @@ func _save() -> void:
 				var save_item: InventoryItemArmor = item as InventoryItemArmor
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 
-			if item.item_type == Globals.Item_Type.MEDICATION:
+			if item.item_type == Globals.Item_Type.CONSUMABLE:
 				var save_item: InventoryItemConsumable = item as InventoryItemConsumable
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 				
@@ -271,7 +273,7 @@ func _load_character_data() -> void:
 					armor_component.equip_armor(_item_instance)
 					ui_changed.emit()
 
-			if item_data["item_type"] == Globals.Item_Type.MEDICATION:
+			if item_data["item_type"] == Globals.Item_Type.CONSUMABLE:
 				var _item_instance: InventoryItemConsumable = InventoryItemConsumable.new()
 				_item_instance.from_dictionary(item_data)
 				inventory_component._add_to_inventory(_item_instance)
