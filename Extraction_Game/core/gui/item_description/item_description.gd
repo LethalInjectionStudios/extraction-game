@@ -2,19 +2,25 @@ class_name ItemDescription
 extends VBoxContainer
 ## Description Box when [InventoryItem] is hovered will display information about that item
 
-#Base Values
+# Base Values
 @onready var _name: Label = $Name
 @onready var _type: Label = $Type
 @onready var _description: Label = $Description
 
-#Ammunition
+# Ammunition
 @onready var _ammunition: VBoxContainer = $Ammunition
 @onready var _armor_penetration: ProgressBar = $Ammunition/AP_Container/ArmorPenetration
 
-#Weapon
+# Weapon
 @onready var _weapon_container: VBoxContainer = $Weapon
 @onready var _loaded_ammo: Label = $Weapon/Loaded_Ammo
 @onready var _weapon_durability: ProgressBar = $Weapon/DurabilityContainer/WeaponDurability
+
+# Armor
+@onready var _armor_container: VBoxContainer = $Armor
+@onready var _ac_value: Label = $Armor/AC_Container/AC_Value
+@onready var _armor_durability: ProgressBar = $Armor/DurabilityContainer/ArmorDurability
+
 
 
 func _ready() -> void:
@@ -45,6 +51,11 @@ func Show(item: InventoryItem) -> void:
 			_name.text += " (" + _ammo.name + ")"
 			_weapon_durability.value = item.durability
 			_weapon_container.visible = true
+		Globals.Item_Type.ARMOR:
+			var _armor: Armor = _data as Armor
+			_ac_value.text = str(_armor.armor_class)
+			_armor_durability.value = item.durability
+			_armor_container.visible = true
 			
 			
 				
@@ -67,6 +78,9 @@ func clear() -> void:
 	# Weapon
 	_loaded_ammo.visible = false
 	_weapon_container.visible = false
+	
+	# Armor
+	_armor_container.visible = false
 	
 	
 	

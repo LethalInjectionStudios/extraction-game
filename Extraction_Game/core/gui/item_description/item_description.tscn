@@ -60,3 +60,31 @@ size_flags_vertical = 4
 value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="Armor" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AC_Container" type="HBoxContainer" parent="Armor"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Armor/AC_Container"]
+layout_mode = 2
+text = "Armor Class:"
+
+[node name="AC_Value" type="Label" parent="Armor/AC_Container"]
+layout_mode = 2
+
+[node name="DurabilityContainer" type="HBoxContainer" parent="Armor"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Armor/DurabilityContainer"]
+layout_mode = 2
+text = "Durability: "
+
+[node name="ArmorDurability" type="ProgressBar" parent="Armor/DurabilityContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
