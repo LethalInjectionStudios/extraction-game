@@ -16,8 +16,10 @@ layout_mode = 2
 text = "<item_type>"
 
 [node name="Description" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "<item_description>"
+autowrap_mode = 2
 
 [node name="Ammunition" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -42,3 +44,19 @@ layout_mode = 2
 
 [node name="Loaded_Ammo" type="Label" parent="Weapon"]
 layout_mode = 2
+text = "<loaded_ammo>"
+
+[node name="DurabilityContainer" type="HBoxContainer" parent="Weapon"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Weapon/DurabilityContainer"]
+layout_mode = 2
+text = "Durability: "
+
+[node name="WeaponDurability" type="ProgressBar" parent="Weapon/DurabilityContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true

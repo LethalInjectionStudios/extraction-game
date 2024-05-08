@@ -121,6 +121,7 @@ func _get_input() -> void:
 				#TODO Interact with Map
 
 	if Input.is_action_just_pressed("inventory"):
+		ui.toggle_visibility()
 		inventory_toggled.emit(self)
 
 	if Input.is_action_just_pressed("pause"):
@@ -168,7 +169,10 @@ func unequip_armor() -> void:
 
 
 func change_ammo(ammo: InventoryItemAmmo) -> void:
-	add_item_to_inventory(weapon_component.change_ammo(ammo))
+	var old_ammo: InventoryItemAmmo = weapon_component.change_ammo(ammo)
+	
+	if old_ammo.quantity > 0:
+		add_item_to_inventory(ammo)
 
 
 func _on_weapon_reloaded(ammo: Ammunition, magazine_capacity: int) -> void:

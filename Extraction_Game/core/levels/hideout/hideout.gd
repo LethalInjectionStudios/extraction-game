@@ -11,9 +11,6 @@ func _ready() -> void:
 	_load_stash_data()
 	audio_listener.make_current()
 	_connect_signals()
-	
-	var txt: String = "hello"
-	print(txt[4])
 
 
 func _process(_delta: float) -> void:

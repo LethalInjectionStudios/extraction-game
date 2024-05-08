@@ -6,6 +6,7 @@ var muzzle: String
 var ammo_type: String
 var ammo_count: int
 var equipped: bool
+var durability: int
 
 func to_dictionary() -> Dictionary:
 	var base_data: Dictionary = super.to_dictionary()
@@ -13,6 +14,7 @@ func to_dictionary() -> Dictionary:
 	base_data["ammo"] = ammo_count
 	base_data["ammo_type"] = ammo_type
 	base_data["equipped"] = equipped
+	base_data["durability"] = durability
 	return base_data
 
 func from_dictionary(data: Dictionary) -> void:
@@ -21,3 +23,4 @@ func from_dictionary(data: Dictionary) -> void:
 	ammo_count = data["ammo"]
 	ammo_type = data["ammo_type"]
 	equipped = data["equipped"]
+	durability = data["durability"]

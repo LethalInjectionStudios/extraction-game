@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://miigpbg6n0xu"]
+[gd_scene load_steps=6 format=3 uid="uid://miigpbg6n0xu"]
 
 [ext_resource type="Script" path="res://core/gui/inventory/inventory_ui.gd" id="1_od8su"]
 [ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://core/characters/player/player.png" id="2_5d7hq"]
+[ext_resource type="Texture2D" uid="uid://bxak47y1oog61" path="res://core/gui/inventory/inventory.png" id="2_ic7ra"]
 [ext_resource type="PackedScene" uid="uid://cs8roo38svwit" path="res://core/gui/inventory/inventory_button.tscn" id="4_f5bdh"]
 [ext_resource type="PackedScene" uid="uid://cno2fsp8ar0hf" path="res://core/gui/item_description/item_description.tscn" id="5_rl3q4"]
 
@@ -13,41 +14,21 @@ script = ExtResource("1_od8su")
 equipped_armor = NodePath("CanvasLayer/Background/EquippedArmorButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="Background" type="ColorRect" parent="CanvasLayer"]
-custom_minimum_size = Vector2(1440, 810)
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -720.0
+offset_top = -405.0
+offset_right = 720.0
+offset_bottom = 405.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.313726, 0.313726, 0.313726, 1)
-
-[node name="InventoryBackgroundHighlight" type="ColorRect" parent="CanvasLayer/Background"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 41.0
-offset_right = 559.0
-offset_bottom = 559.0
-color = Color(0.545098, 0.545098, 0.545098, 1)
-
-[node name="InventoryBackgroundShadow" type="ColorRect" parent="CanvasLayer/Background"]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 38.0
-offset_right = 556.0
-offset_bottom = 556.0
-color = Color(0.184314, 0.184314, 0.184314, 1)
-
-[node name="InventoryBackground" type="ColorRect" parent="CanvasLayer/Background"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 558.0
-offset_bottom = 558.0
-color = Color(0.215686, 0.215686, 0.215686, 1)
+texture = ExtResource("2_ic7ra")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Background"]
 layout_mode = 0
@@ -76,6 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PlayerSprite" type="Sprite2D" parent="CanvasLayer/Background/Player"]
+position = Vector2(-107, 0)
 scale = Vector2(15, 15)
 texture = ExtResource("2_5d7hq")
 
@@ -90,13 +72,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 480.0
-offset_top = -37.5
-offset_right = 555.0
-offset_bottom = 37.5
+offset_left = 375.0
+offset_top = 16.0
+offset_right = 475.0
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1)
+flat = true
+
+[node name="WeaponDurability" type="ProgressBar" parent="CanvasLayer/Background/EquippedWeaponButton"]
+layout_mode = 0
+offset_top = 104.0
+offset_right = 100.0
+offset_bottom = 109.0
+value = 75.0
+show_percentage = false
 
 [node name="LoadedAmmo" type="Button" parent="CanvasLayer/Background"]
 layout_mode = 1
@@ -105,10 +96,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 580.0
-offset_top = -37.5
-offset_right = 630.0
-offset_bottom = 12.5
+offset_left = 521.0
+offset_top = 30.0
+offset_right = 571.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_icon = true
@@ -120,20 +111,50 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -365.0
-offset_right = 207.0
-offset_bottom = 75.0
+offset_left = -677.0
+offset_top = 211.0
+offset_right = -350.0
+offset_bottom = 651.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="EquippedArmorButton" parent="CanvasLayer/Background" instance=ExtResource("4_f5bdh")]
-layout_mode = 2
-offset_left = 1620.0
-offset_top = 137.0
-offset_right = 1695.0
-offset_bottom = 212.0
+layout_mode = 0
+offset_left = 731.0
+offset_top = 421.0
+offset_right = 831.0
+offset_bottom = 521.0
 scale = Vector2(1, 1)
+flat = true
+
+[node name="ArmorDurability" type="ProgressBar" parent="CanvasLayer/Background/EquippedArmorButton"]
+layout_mode = 0
+offset_top = 103.0
+offset_right = 100.0
+offset_bottom = 108.0
+show_percentage = false
+
+[node name="Health" type="HBoxContainer" parent="CanvasLayer/Background"]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 40.0
+offset_right = 900.0
+offset_bottom = 90.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Background/Health"]
+layout_mode = 2
+text = "Health"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Background/Health"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Background/Health"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+show_percentage = false
 
 [node name="Weight" type="Label" parent="."]
 layout_mode = 0

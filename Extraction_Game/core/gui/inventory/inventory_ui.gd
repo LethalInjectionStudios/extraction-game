@@ -25,6 +25,10 @@ var player: Player
 @onready var weapon_sprite: Sprite2D = $CanvasLayer/Background/Player/PlayerSprite/WeaponSprite
 @onready var item_description: ItemDescription = $CanvasLayer/Background/ItemDescription
 
+@onready var progress_bar: ProgressBar = $CanvasLayer/Background/Health/ProgressBar
+@onready var armor_durability: ProgressBar = $CanvasLayer/Background/EquippedArmorButton/ArmorDurability
+@onready var weapon_durability: ProgressBar = $CanvasLayer/Background/EquippedWeaponButton/WeaponDurability
+
 const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventory_button.tscn")
 const AMMO_SWAP_BUTTON: PackedScene = preload("res://core/components/inventory_component/ammo_swap_button.tscn")
 
@@ -57,7 +61,7 @@ func open_inventory(_player: Player) -> void:
 		
 	for item: InventoryItem in _player.inventory_component.inventory:		
 		var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
-		button.item_icon.texture = load(item.item_icon)
+		button.icon = load(item.item_icon)
 		button.item = item
 
 		if item is InventoryItemAmmo or item is InventoryItemCraftingMaterial:
@@ -70,11 +74,12 @@ func open_inventory(_player: Player) -> void:
 
 	if _player.weapon_component.weapon:
 		equipped_weapon.item = _player.weapon_component._weapon_inventory_item
-		equipped_weapon.item_icon.texture = load(equipped_weapon.item.item_icon)
+		equipped_weapon.icon = load(equipped_weapon.item.item_icon)
 		if !equipped_weapon.item.ammo_type.is_empty():
 			var loaded_ammo_data: Ammunition = load(equipped_weapon.item.ammo_type)
 			loaded_ammo.icon = load(loaded_ammo_data.sprite)
 			equipped_weapon.show()
+		weapon_durability.value = equipped_weapon.item.durability
 		loaded_ammo.show()
 	else:
 		equipped_weapon.hide()
@@ -82,10 +87,13 @@ func open_inventory(_player: Player) -> void:
 		
 	if _player.armor_component.armor:
 		equipped_armor.item = _player.armor_component._armor_inventory_item
-		equipped_armor.item_icon.texture = load(equipped_armor.item.item_icon)
+		equipped_armor.icon = load(equipped_armor.item.item_icon)
+		armor_durability.value = equipped_armor.item.durability
 		equipped_armor.show()
 	else:
 		equipped_armor.hide()
+		
+	progress_bar.value = player.health_component.get_health()
 
 
 func close_inventory() -> void:
@@ -164,7 +172,7 @@ func _on_loaded_ammo_pressed() -> void:
 				button.connect("item_selected", _on_ammo_type_changed)
 
 
-func _on_ammo_type_changed(item: InventoryItem) -> void:
+func _on_ammo_type_changed(item: InventoryItemAmmo) -> void:
 	weapon_ammo_changed.emit(item)
 	loaded_ammo.icon = load(item.item_icon)
 	var options: Array[Node] = loaded_ammo.get_children()

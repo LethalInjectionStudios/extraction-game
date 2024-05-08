@@ -12,6 +12,10 @@ func _ready() -> void:
 	_health = MAX_HEALTH
 
 
+func get_health() -> int:
+	return _health
+	
+	
 func damage(net_damage_taken: int) -> void:
 	_health -= net_damage_taken
 	check_health()

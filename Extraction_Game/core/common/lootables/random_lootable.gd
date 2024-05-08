@@ -18,6 +18,7 @@ func _ready() -> void:
 				item.item_type = res.type
 				item.item_icon = res.sprite
 				item.ammo_type = Globals.get_ammo_from_caliber(weapon.caliber)
+				item.durability = randi_range(50, 100)
 
 
 				inventory_component._add_to_inventory(item)

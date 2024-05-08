@@ -1,13 +1,13 @@
 class_name AmmoSwapButton
 extends Button
 
-signal item_selected(item: InventoryItem)
+signal item_selected(item: InventoryItemAmmo)
 signal item_hovered(item: InventoryItem)
 signal item_hover_ended()
 
 @export var audio_player: AudioStreamPlayer2D
 
-var item: InventoryItem
+var item: InventoryItemAmmo
 
 func _ready() -> void:
 	connect("pressed", _on_button_pressed)

@@ -12,7 +12,9 @@ extends VBoxContainer
 @onready var _armor_penetration: ProgressBar = $Ammunition/AP_Container/ArmorPenetration
 
 #Weapon
+@onready var _weapon_container: VBoxContainer = $Weapon
 @onready var _loaded_ammo: Label = $Weapon/Loaded_Ammo
+@onready var _weapon_durability: ProgressBar = $Weapon/DurabilityContainer/WeaponDurability
 
 
 func _ready() -> void:
@@ -22,7 +24,7 @@ func _ready() -> void:
 func Show(item: InventoryItem) -> void:
 	var _data: Item = load(item.item_path) as Item	
 	
-	_name.text = item.item_name
+	_name.text = _data.name
 	_name.visible = true
 		
 	_type.text = Globals.get_item_type_as_string(item.item_type)
@@ -41,6 +43,9 @@ func Show(item: InventoryItem) -> void:
 			var _weapon: Weapon = _data as Weapon
 			var _ammo: Ammunition = load(item.ammo_type)
 			_name.text += " (" + _ammo.name + ")"
+			_weapon_durability.value = item.durability
+			_weapon_container.visible = true
+			
 			
 				
 	#position = get_global_mouse_position()
@@ -61,6 +66,7 @@ func clear() -> void:
 	
 	# Weapon
 	_loaded_ammo.visible = false
+	_weapon_container.visible = false
 	
 	
 	
