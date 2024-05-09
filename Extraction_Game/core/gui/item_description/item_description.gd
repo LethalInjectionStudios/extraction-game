@@ -21,6 +21,13 @@ extends VBoxContainer
 @onready var _ac_value: Label = $Armor/AC_Container/AC_Value
 @onready var _armor_durability: ProgressBar = $Armor/DurabilityContainer/ArmorDurability
 
+# Consumable
+@onready var _consumable_container: VBoxContainer = $Consumable
+@onready var _health_amount: Label = $Consumable/HealthAmount
+@onready var _hunger_amount: Label = $Consumable/HungerAmount
+@onready var _thirst_amount: Label = $Consumable/ThirstAmount
+
+
 
 
 func _ready() -> void:
@@ -56,9 +63,8 @@ func Show(item: InventoryItem) -> void:
 			_ac_value.text = str(_armor.armor_class)
 			_armor_durability.value = item.durability
 			_armor_container.visible = true
-			
-			
-				
+		Globals.Item_Type.CONSUMABLE:
+			pass			
 	#position = get_global_mouse_position()
 	visible = true
 	
