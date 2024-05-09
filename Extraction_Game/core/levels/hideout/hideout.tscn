@@ -811,6 +811,7 @@ position = Vector2(331, 558)
 metadata/_edit_lock_ = true
 
 [node name="AudioListener" parent="." index="7"]
+current = false
 metadata/_edit_lock_ = true
 
 [node name="Menu" parent="." index="8"]

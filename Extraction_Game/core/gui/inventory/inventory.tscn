@@ -14,6 +14,7 @@ script = ExtResource("1_od8su")
 equipped_armor = NodePath("CanvasLayer/Background/EquippedArmorButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Background" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8
