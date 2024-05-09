@@ -25,7 +25,10 @@ var player: Player
 @onready var weapon_sprite: Sprite2D = $CanvasLayer/Background/Player/PlayerSprite/WeaponSprite
 @onready var item_description: ItemDescription = $CanvasLayer/Background/ItemDescription
 
-@onready var progress_bar: ProgressBar = $CanvasLayer/Background/Health/ProgressBar
+@onready var _health_bar: ProgressBar = $CanvasLayer/Background/Health/ProgressBar
+@onready var _hunger_bar: ProgressBar = $CanvasLayer/Background/Hunger/ProgressBar
+@onready var _thirst_bar: ProgressBar = $CanvasLayer/Background/Thirst/ProgressBar
+
 @onready var armor_durability: ProgressBar = $CanvasLayer/Background/EquippedArmorButton/ArmorDurability
 @onready var weapon_durability: ProgressBar = $CanvasLayer/Background/EquippedWeaponButton/WeaponDurability
 
@@ -93,7 +96,9 @@ func open_inventory(_player: Player) -> void:
 	else:
 		equipped_armor.hide()
 		
-	progress_bar.value = player.health_component.get_health()
+	_health_bar.value = player.health_component.get_health()
+	_hunger_bar.value = player._hunger
+	_thirst_bar.value = player._thirst
 
 
 func close_inventory() -> void:

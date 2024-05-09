@@ -142,6 +142,7 @@ offset_right = 900.0
 offset_bottom = 90.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Background/Health"]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "Health"
 
@@ -150,6 +151,53 @@ layout_mode = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Background/Health"]
 modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+show_percentage = false
+
+[node name="Hunger" type="HBoxContainer" parent="CanvasLayer/Background"]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 63.0
+offset_right = 900.0
+offset_bottom = 113.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Background/Hunger"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Hunger
+"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Background/Hunger"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Background/Hunger"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+show_percentage = false
+
+[node name="Thirst" type="HBoxContainer" parent="CanvasLayer/Background"]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 86.0
+offset_right = 900.0
+offset_bottom = 136.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Background/Thirst"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Thirst   "
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Background/Thirst"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Background/Thirst"]
+modulate = Color(0, 0, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4

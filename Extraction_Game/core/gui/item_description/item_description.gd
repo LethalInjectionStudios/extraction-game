@@ -23,11 +23,12 @@ extends VBoxContainer
 
 # Consumable
 @onready var _consumable_container: VBoxContainer = $Consumable
-@onready var _health_amount: Label = $Consumable/HealthAmount
-@onready var _hunger_amount: Label = $Consumable/HungerAmount
-@onready var _thirst_amount: Label = $Consumable/ThirstAmount
-
-
+@onready var _health_container : HBoxContainer = $Consumable/Health
+@onready var _health_amount: Label = $Consumable/Health/HealthAmount
+@onready var _hunger_container: HBoxContainer = $Consumable/Hunger
+@onready var _hunger_amount: Label = $Consumable/Hunger/HungerAmount
+@onready var _thirst_container: HBoxContainer = $Consumable/Thirst
+@onready var _thirst_amount: Label = $Consumable/Thirst/ThirstAmount
 
 
 func _ready() -> void:
@@ -64,13 +65,41 @@ func Show(item: InventoryItem) -> void:
 			_armor_durability.value = item.durability
 			_armor_container.visible = true
 		Globals.Item_Type.CONSUMABLE:
-			pass			
-	#position = get_global_mouse_position()
+			var _consumable: Consumable = _data as Consumable
+	
+			if _consumable.health_restoration_amount != 0:
+				_health_amount.text = str(_consumable.health_restoration_amount)
+				if _consumable.health_restoration_amount > 0:
+					_health_amount.modulate = Color(0,1,0,1)
+				else:
+					_health_amount.modulate = Color(1,0,0,1)
+				_health_container.visible = true
+				
+			if _consumable.hunger_restoration_amount != 0:
+				_hunger_amount.text = str(_consumable.hunger_restoration_amount)
+				if _consumable.hunger_restoration_amount > 0:
+					_hunger_amount.modulate = Color(0,1,0,1)
+				else:
+					_hunger_amount.modulate = Color(1,0,0,1)
+				_hunger_container.visible = true
+				
+			if _consumable.thirst_restoration_amount != 0:
+				_thirst_amount.text = str(_consumable.thirst_restoration_amount)
+				if _consumable.thirst_restoration_amount > 0:
+					_thirst_amount.modulate = Color(0,1,0,1)
+				else:
+					_thirst_amount.modulate = Color(1,0,0,1)
+				_thirst_container.visible = true
+				
+			_consumable_container.visible = true
+						
 	visible = true
+
 	
 func Hide() -> void:
 	clear()
 	visible = false
+
 
 func clear() -> void:
 	# Base Values
@@ -87,6 +116,12 @@ func clear() -> void:
 	
 	# Armor
 	_armor_container.visible = false
+	
+	# Consumable
+	_consumable_container.visible = false
+	_health_container.visible = false
+	_hunger_container.visible = false
+	_thirst_container.visible = false
 	
 	
 	

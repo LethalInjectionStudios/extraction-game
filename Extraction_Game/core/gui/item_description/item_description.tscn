@@ -61,14 +61,64 @@ value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
+[node name="Armor" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AC_Container" type="HBoxContainer" parent="Armor"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Armor/AC_Container"]
+layout_mode = 2
+text = "Armor Class: "
+
+[node name="AC_Value" type="Label" parent="Armor/AC_Container"]
+layout_mode = 2
+text = "Armor Class: "
+
+[node name="DurabilityContainer" type="HBoxContainer" parent="Armor"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Armor/DurabilityContainer"]
+layout_mode = 2
+text = "Durability: "
+
+[node name="ArmorDurability" type="ProgressBar" parent="Armor/DurabilityContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
 [node name="Consumable" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="HealthAmount" type="Label" parent="Consumable"]
+[node name="Health" type="HBoxContainer" parent="Consumable"]
 layout_mode = 2
 
-[node name="HungerAmount" type="Label" parent="Consumable"]
+[node name="Label" type="Label" parent="Consumable/Health"]
+layout_mode = 2
+text = "Health: "
+
+[node name="HealthAmount" type="Label" parent="Consumable/Health"]
 layout_mode = 2
 
-[node name="ThirstAmount" type="Label" parent="Consumable"]
+[node name="Hunger" type="HBoxContainer" parent="Consumable"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Consumable/Hunger"]
+layout_mode = 2
+text = "Hunger:"
+
+[node name="HungerAmount" type="Label" parent="Consumable/Hunger"]
+layout_mode = 2
+
+[node name="Thirst" type="HBoxContainer" parent="Consumable"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Consumable/Thirst"]
+layout_mode = 2
+text = "Thirst:"
+
+[node name="ThirstAmount" type="Label" parent="Consumable/Thirst"]
 layout_mode = 2
