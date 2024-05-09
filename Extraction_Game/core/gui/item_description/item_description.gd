@@ -2,27 +2,47 @@ class_name ItemDescription
 extends VBoxContainer
 ## Description Box when [InventoryItem] is hovered will display information about that item
 
-#Base Values
+# Base Values
 @onready var _name: Label = $Name
 @onready var _type: Label = $Type
 @onready var _description: Label = $Description
 
-#Ammunition
+# Ammunition
 @onready var _ammunition: VBoxContainer = $Ammunition
 @onready var _armor_penetration: ProgressBar = $Ammunition/AP_Container/ArmorPenetration
+
+# Weapon
+@onready var _weapon_container: VBoxContainer = $Weapon
+@onready var _loaded_ammo: Label = $Weapon/Loaded_Ammo
+@onready var _weapon_durability: ProgressBar = $Weapon/DurabilityContainer/WeaponDurability
+
+# Armor
+@onready var _armor_container: VBoxContainer = $Armor
+@onready var _ac_value: Label = $Armor/AC_Container/AC_Value
+@onready var _armor_durability: ProgressBar = $Armor/DurabilityContainer/ArmorDurability
+
+# Consumable
+@onready var _consumable_container: VBoxContainer = $Consumable
+@onready var _health_container : HBoxContainer = $Consumable/Health
+@onready var _health_amount: Label = $Consumable/Health/HealthAmount
+@onready var _hunger_container: HBoxContainer = $Consumable/Hunger
+@onready var _hunger_amount: Label = $Consumable/Hunger/HungerAmount
+@onready var _thirst_container: HBoxContainer = $Consumable/Thirst
+@onready var _thirst_amount: Label = $Consumable/Thirst/ThirstAmount
+
 
 func _ready() -> void:
 	clear()
 
 
 func Show(item: InventoryItem) -> void:
-	var _data: Item = load(item.item_path) as Item
+	var _data: Item = load(item.item_path) as Item	
 	
-	_name.text = item.item_name
+	_name.text = _data.name
 	_name.visible = true
 		
 	_type.text = Globals.get_item_type_as_string(item.item_type)
-	_type.visible = true
+	_type.visible = false
 	
 	_description.text = _data.description
 	_description.visible = true
@@ -35,14 +55,51 @@ func Show(item: InventoryItem) -> void:
 			_ammunition.visible = true
 		Globals.Item_Type.WEAPON:
 			var _weapon: Weapon = _data as Weapon
-			_name.text += " (" + Globals.get_caliber_as_string(_weapon.caliber) + ")"
+			var _ammo: Ammunition = load(item.ammo_type)
+			_name.text += " (" + _ammo.name + ")"
+			_weapon_durability.value = item.durability
+			_weapon_container.visible = true
+		Globals.Item_Type.ARMOR:
+			var _armor: Armor = _data as Armor
+			_ac_value.text = str(_armor.armor_class)
+			_armor_durability.value = item.durability
+			_armor_container.visible = true
+		Globals.Item_Type.CONSUMABLE:
+			var _consumable: Consumable = _data as Consumable
+	
+			if _consumable.health_restoration_amount != 0:
+				_health_amount.text = str(_consumable.health_restoration_amount)
+				if _consumable.health_restoration_amount > 0:
+					_health_amount.modulate = Color(0,1,0,1)
+				else:
+					_health_amount.modulate = Color(1,0,0,1)
+				_health_container.visible = true
 				
-	#position = get_global_mouse_position()
+			if _consumable.hunger_restoration_amount != 0:
+				_hunger_amount.text = str(_consumable.hunger_restoration_amount)
+				if _consumable.hunger_restoration_amount > 0:
+					_hunger_amount.modulate = Color(0,1,0,1)
+				else:
+					_hunger_amount.modulate = Color(1,0,0,1)
+				_hunger_container.visible = true
+				
+			if _consumable.thirst_restoration_amount != 0:
+				_thirst_amount.text = str(_consumable.thirst_restoration_amount)
+				if _consumable.thirst_restoration_amount > 0:
+					_thirst_amount.modulate = Color(0,1,0,1)
+				else:
+					_thirst_amount.modulate = Color(1,0,0,1)
+				_thirst_container.visible = true
+				
+			_consumable_container.visible = true
+						
 	visible = true
+
 	
 func Hide() -> void:
 	clear()
 	visible = false
+
 
 func clear() -> void:
 	# Base Values
@@ -52,6 +109,19 @@ func clear() -> void:
 
 	# Ammunition
 	_ammunition.visible = false
+	
+	# Weapon
+	_loaded_ammo.visible = false
+	_weapon_container.visible = false
+	
+	# Armor
+	_armor_container.visible = false
+	
+	# Consumable
+	_consumable_container.visible = false
+	_health_container.visible = false
+	_hunger_container.visible = false
+	_thirst_container.visible = false
 	
 	
 	
@@ -73,10 +143,6 @@ func clear() -> void:
 			#item_description.append_text(Globals.get_caliber_as_string(ammo.caliber))
 		#Globals.Item_Type.MEDICATION:
 			#item_description.append_text("Health")
-		#Globals.Item_Type.FOOD:
-			#item_description.append_text("Food")
-		#Globals.Item_Type.WATER:
-			#item_description.append_text("Food")
 		#Globals.Item_Type.CRAFTING_MATERIAL:
 			#item_description.append_text("Materials")
 		#Globals.Item_Type.ARMOR:

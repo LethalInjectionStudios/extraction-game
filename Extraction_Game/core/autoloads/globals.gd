@@ -23,6 +23,22 @@ func get_caliber_as_string(caliber: Caliber) -> String:
 			caliber_string = "7.52 x 51 NATO"
 	
 	return caliber_string
+	
+func get_ammo_from_caliber(caliber: Caliber) -> String:
+	var ammo_path: String = String()
+	
+	match caliber:
+		Globals.Caliber._9MM:
+			push_warning("Ammo Path not set for 9mm")
+		Globals.Caliber._762X39:
+			ammo_path = "res://core/items/ammunition/resource/_762x39_ps.tres"
+		Globals.Caliber._762X51NATO:
+			push_warning("Ammo Path not set for 7.62x39 NATO")
+		_:
+			push_warning("Caliber Does not have a case created")
+
+	
+	return ammo_path
 
 enum Armor_Status {
 	UNDAMAGED,
@@ -56,10 +72,11 @@ enum Item_Type {
 	WEAPON,
 	AMMO,
 	MEDICATION,
-	FOOD,
-	WATER,
+	DEPRECATED_FOOD,
+	DEPRECATED_WATER,
 	CRAFTING_MATERIAL,
-	ARMOR
+	ARMOR,
+	CONSUMABLE
 }
 
 func get_item_type_as_string(type: Item_Type) -> String:
@@ -74,14 +91,12 @@ func get_item_type_as_string(type: Item_Type) -> String:
 			item_type_string = "Ammo"
 		Globals.Item_Type.MEDICATION:
 			item_type_string = "Medication"
-		Globals.Item_Type.FOOD:
-			item_type_string = "Consumable"
-		Globals.Item_Type.WATER:
-			item_type_string = "Consumable"
 		Globals.Item_Type.CRAFTING_MATERIAL:
 			item_type_string = "Material"
 		Globals.Item_Type.ARMOR:
 			item_type_string = "Armor"
+		Globals.Item_Type.CONSUMABLE:
+			item_type_string = "Consumable"
 			
 	return item_type_string
 

@@ -43,7 +43,9 @@ func _process(_delta: float) -> void:
 	_update_sprites()
 	_get_input()
 	z_index = position.y as int
-	move_and_slide()
+	
+	if not menu_open:
+		move_and_slide()
 
 
 func _physics_process(_delta: float) -> void:
@@ -121,9 +123,11 @@ func _get_input() -> void:
 				#TODO Interact with Map
 
 	if Input.is_action_just_pressed("inventory"):
+		ui.toggle_visibility()
 		inventory_toggled.emit(self)
 
 	if Input.is_action_just_pressed("pause"):
+		menu_open = true
 		get_tree().change_scene_to_file("res://core/levels/MainMenu/main_menu.tscn")
 
 
@@ -168,7 +172,10 @@ func unequip_armor() -> void:
 
 
 func change_ammo(ammo: InventoryItemAmmo) -> void:
-	add_item_to_inventory(weapon_component.change_ammo(ammo))
+	var old_ammo: InventoryItemAmmo = weapon_component.change_ammo(ammo)
+	
+	if old_ammo.quantity > 0:
+		add_item_to_inventory(ammo)
 
 
 func _on_weapon_reloaded(ammo: Ammunition, magazine_capacity: int) -> void:
@@ -186,9 +193,11 @@ func remove_item_from_inventory(item: InventoryItem) -> void:
 
 
 func use_consumable(item: InventoryItemConsumable) -> void:
-	if item.item_type == Globals.Item_Type.MEDICATION:
+	if item.item_type == Globals.Item_Type.CONSUMABLE:
 		var _item: Consumable = load(item.item_path) as Consumable
-		health_component.heal(_item.restoration_amount)
+		health_component.heal(_item.health_restoration_amount)
+		_hunger += _item.hunger_restoration_amount
+		_thirst += _item.thirst_restoration_amount
 		inventory_component._remove_from_inventory(item)
 		ui_changed.emit()
 
@@ -220,7 +229,7 @@ func _save() -> void:
 				var save_item: InventoryItemArmor = item as InventoryItemArmor
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 
-			if item.item_type == Globals.Item_Type.MEDICATION:
+			if item.item_type == Globals.Item_Type.CONSUMABLE:
 				var save_item: InventoryItemConsumable = item as InventoryItemConsumable
 				file.store_line(JSON.stringify((save_item.to_dictionary())))
 				
@@ -271,7 +280,7 @@ func _load_character_data() -> void:
 					armor_component.equip_armor(_item_instance)
 					ui_changed.emit()
 
-			if item_data["item_type"] == Globals.Item_Type.MEDICATION:
+			if item_data["item_type"] == Globals.Item_Type.CONSUMABLE:
 				var _item_instance: InventoryItemConsumable = InventoryItemConsumable.new()
 				_item_instance.from_dictionary(item_data)
 				inventory_component._add_to_inventory(_item_instance)

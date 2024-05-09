@@ -11,17 +11,29 @@ func _ready() -> void:
 
 			if res.type == Globals.Item_Type.WEAPON:
 				var item: InventoryItemWeapon = InventoryItemWeapon.new()
+				var weapon: Weapon = load(res.resource_path) as Weapon
 
 				item.item_name = res.name
 				item.item_path = res.resource_path
 				item.item_type = res.type
 				item.item_icon = res.sprite
-				item.ammo_type = String()
+				item.ammo_type = Globals.get_ammo_from_caliber(weapon.caliber)
+				item.durability = randi_range(50, 100)
 
 
 				inventory_component._add_to_inventory(item)
 
 			if res.type == Globals.Item_Type.MEDICATION:
+				var item: InventoryItemConsumable = InventoryItemConsumable.new()
+
+				item.item_name = res.name
+				item.item_path = res.resource_path
+				item.item_type = res.type
+				item.item_icon = res.sprite
+
+				inventory_component._add_to_inventory(item)
+				
+			if res.type == Globals.Item_Type.CONSUMABLE:
 				var item: InventoryItemConsumable = InventoryItemConsumable.new()
 
 				item.item_name = res.name

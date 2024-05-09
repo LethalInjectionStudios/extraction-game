@@ -24,5 +24,9 @@ func update_display()-> void:
 	thirst_text.text = "Thirst: " + str(parent._thirst)
 
 
+func toggle_visibility() -> void:
+	$CanvasLayer.visible = !$CanvasLayer.visible
+
+
 func _on_player_ui_changed() -> void:
 	update_display()
