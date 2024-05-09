@@ -43,7 +43,9 @@ func _process(_delta: float) -> void:
 	_update_sprites()
 	_get_input()
 	z_index = position.y as int
-	move_and_slide()
+	
+	if not menu_open:
+		move_and_slide()
 
 
 func _physics_process(_delta: float) -> void:
@@ -125,6 +127,7 @@ func _get_input() -> void:
 		inventory_toggled.emit(self)
 
 	if Input.is_action_just_pressed("pause"):
+		menu_open = true
 		get_tree().change_scene_to_file("res://core/levels/MainMenu/main_menu.tscn")
 
 

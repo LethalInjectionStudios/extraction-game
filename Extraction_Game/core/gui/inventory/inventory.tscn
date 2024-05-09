@@ -14,7 +14,6 @@ script = ExtResource("1_od8su")
 equipped_armor = NodePath("CanvasLayer/Background/EquippedArmorButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Background" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8
@@ -79,7 +78,6 @@ offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1)
-flat = true
 
 [node name="WeaponDurability" type="ProgressBar" parent="CanvasLayer/Background/EquippedWeaponButton"]
 layout_mode = 0
@@ -125,13 +123,13 @@ offset_top = 421.0
 offset_right = 831.0
 offset_bottom = 521.0
 scale = Vector2(1, 1)
-flat = true
 
 [node name="ArmorDurability" type="ProgressBar" parent="CanvasLayer/Background/EquippedArmorButton"]
 layout_mode = 0
 offset_top = 103.0
 offset_right = 100.0
 offset_bottom = 108.0
+value = 70.0
 show_percentage = false
 
 [node name="Health" type="HBoxContainer" parent="CanvasLayer/Background"]
