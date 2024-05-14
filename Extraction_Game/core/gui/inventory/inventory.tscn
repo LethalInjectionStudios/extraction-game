@@ -14,6 +14,7 @@ script = ExtResource("1_od8su")
 equipped_armor = NodePath("CanvasLayer/Background/EquippedArmorButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Background" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8
@@ -102,20 +103,6 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_icon = true
 
-[node name="ItemDescription" parent="CanvasLayer/Background" instance=ExtResource("5_rl3q4")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -677.0
-offset_top = 211.0
-offset_right = -350.0
-offset_bottom = 651.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="EquippedArmorButton" parent="CanvasLayer/Background" instance=ExtResource("4_f5bdh")]
 layout_mode = 0
 offset_left = 731.0
@@ -134,10 +121,10 @@ show_percentage = false
 
 [node name="Health" type="HBoxContainer" parent="CanvasLayer/Background"]
 layout_mode = 0
-offset_left = 600.0
-offset_top = 40.0
-offset_right = 900.0
-offset_bottom = 90.0
+offset_left = 45.0
+offset_top = 631.0
+offset_right = 345.0
+offset_bottom = 681.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Background/Health"]
 custom_minimum_size = Vector2(60, 0)
@@ -157,10 +144,10 @@ show_percentage = false
 
 [node name="Hunger" type="HBoxContainer" parent="CanvasLayer/Background"]
 layout_mode = 0
-offset_left = 600.0
-offset_top = 63.0
-offset_right = 900.0
-offset_bottom = 113.0
+offset_left = 45.0
+offset_top = 654.0
+offset_right = 345.0
+offset_bottom = 704.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Background/Hunger"]
 custom_minimum_size = Vector2(60, 0)
@@ -181,10 +168,10 @@ show_percentage = false
 
 [node name="Thirst" type="HBoxContainer" parent="CanvasLayer/Background"]
 layout_mode = 0
-offset_left = 600.0
-offset_top = 86.0
-offset_right = 900.0
-offset_bottom = 136.0
+offset_left = 45.0
+offset_top = 677.0
+offset_right = 345.0
+offset_bottom = 727.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Background/Thirst"]
 custom_minimum_size = Vector2(60, 0)
@@ -201,6 +188,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 50.0
 show_percentage = false
+
+[node name="ItemDescription" parent="CanvasLayer/Background" instance=ExtResource("5_rl3q4")]
+layout_mode = 1
 
 [node name="Weight" type="Label" parent="."]
 layout_mode = 0

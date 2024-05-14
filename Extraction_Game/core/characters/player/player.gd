@@ -115,6 +115,7 @@ func _get_input() -> void:
 	
 	if Input.is_action_just_pressed("interact"):
 		if _interacting_object:
+			ui.toggle_visibility()
 			if _interacting_object is Lootable:
 				var _lootbox: Lootable = _interacting_object as Lootable
 				interacted_with_lootable.emit(self, _lootbox)
@@ -296,6 +297,7 @@ func _load_character_data() -> void:
 				inventory_component._add_to_inventory(_item_instance)
 
 
+#TODO Make a Death screen and not just kick back to hideout
 func _player_death() -> void:
 	call_deferred("_return_to_hideout")
 

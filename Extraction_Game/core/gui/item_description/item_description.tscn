@@ -1,37 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://cno2fsp8ar0hf"]
+[gd_scene load_steps=3 format=3 uid="uid://cno2fsp8ar0hf"]
 
 [ext_resource type="Script" path="res://core/gui/item_description/item_description.gd" id="1_4nhu1"]
+[ext_resource type="Texture2D" uid="uid://d3rcj7q5eiwyu" path="res://core/gui/item_description/item_description.png" id="2_0o70w"]
 
-[node name="ItemDescription" type="VBoxContainer"]
-offset_right = 164.0
-offset_bottom = 77.0
+[node name="ItemDescription" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_4nhu1")
 
-[node name="Name" type="Label" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 217.0
+texture = ExtResource("2_0o70w")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 227.0
+offset_bottom = 303.0
+
+[node name="Name" type="Label" parent="Container"]
 layout_mode = 2
 text = "<item_name>"
 
-[node name="Type" type="Label" parent="."]
+[node name="Type" type="Label" parent="Container"]
 layout_mode = 2
 text = "<item_type>"
 
-[node name="Description" type="Label" parent="."]
+[node name="Description" type="Label" parent="Container"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "<item_description>"
 autowrap_mode = 2
 
-[node name="Ammunition" type="VBoxContainer" parent="."]
+[node name="Ammunition" type="VBoxContainer" parent="Container"]
 layout_mode = 2
 
-[node name="AP_Container" type="HBoxContainer" parent="Ammunition"]
+[node name="AP_Container" type="HBoxContainer" parent="Container/Ammunition"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Ammunition/AP_Container"]
+[node name="Label" type="Label" parent="Container/Ammunition/AP_Container"]
 layout_mode = 2
 text = "AP: "
 
-[node name="ArmorPenetration" type="ProgressBar" parent="Ammunition/AP_Container"]
+[node name="ArmorPenetration" type="ProgressBar" parent="Container/Ammunition/AP_Container"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -39,21 +53,21 @@ value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="Weapon" type="VBoxContainer" parent="."]
+[node name="Weapon" type="VBoxContainer" parent="Container"]
 layout_mode = 2
 
-[node name="Loaded_Ammo" type="Label" parent="Weapon"]
+[node name="Loaded_Ammo" type="Label" parent="Container/Weapon"]
 layout_mode = 2
 text = "<loaded_ammo>"
 
-[node name="DurabilityContainer" type="HBoxContainer" parent="Weapon"]
+[node name="DurabilityContainer" type="HBoxContainer" parent="Container/Weapon"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Weapon/DurabilityContainer"]
+[node name="Label" type="Label" parent="Container/Weapon/DurabilityContainer"]
 layout_mode = 2
 text = "Durability: "
 
-[node name="WeaponDurability" type="ProgressBar" parent="Weapon/DurabilityContainer"]
+[node name="WeaponDurability" type="ProgressBar" parent="Container/Weapon/DurabilityContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -61,28 +75,28 @@ value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="Armor" type="VBoxContainer" parent="."]
+[node name="Armor" type="VBoxContainer" parent="Container"]
 layout_mode = 2
 
-[node name="AC_Container" type="HBoxContainer" parent="Armor"]
+[node name="AC_Container" type="HBoxContainer" parent="Container/Armor"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Armor/AC_Container"]
-layout_mode = 2
-text = "Armor Class: "
-
-[node name="AC_Value" type="Label" parent="Armor/AC_Container"]
+[node name="Label" type="Label" parent="Container/Armor/AC_Container"]
 layout_mode = 2
 text = "Armor Class: "
 
-[node name="DurabilityContainer" type="HBoxContainer" parent="Armor"]
+[node name="AC_Value" type="Label" parent="Container/Armor/AC_Container"]
+layout_mode = 2
+text = "<armor_class>"
+
+[node name="DurabilityContainer" type="HBoxContainer" parent="Container/Armor"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Armor/DurabilityContainer"]
+[node name="Label" type="Label" parent="Container/Armor/DurabilityContainer"]
 layout_mode = 2
 text = "Durability: "
 
-[node name="ArmorDurability" type="ProgressBar" parent="Armor/DurabilityContainer"]
+[node name="ArmorDurability" type="ProgressBar" parent="Container/Armor/DurabilityContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -90,35 +104,35 @@ value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="Consumable" type="VBoxContainer" parent="."]
+[node name="Consumable" type="VBoxContainer" parent="Container"]
 layout_mode = 2
 
-[node name="Health" type="HBoxContainer" parent="Consumable"]
+[node name="Health" type="HBoxContainer" parent="Container/Consumable"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Consumable/Health"]
+[node name="Label" type="Label" parent="Container/Consumable/Health"]
 layout_mode = 2
 text = "Health: "
 
-[node name="HealthAmount" type="Label" parent="Consumable/Health"]
+[node name="HealthAmount" type="Label" parent="Container/Consumable/Health"]
 layout_mode = 2
 
-[node name="Hunger" type="HBoxContainer" parent="Consumable"]
+[node name="Hunger" type="HBoxContainer" parent="Container/Consumable"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Consumable/Hunger"]
+[node name="Label" type="Label" parent="Container/Consumable/Hunger"]
 layout_mode = 2
 text = "Hunger:"
 
-[node name="HungerAmount" type="Label" parent="Consumable/Hunger"]
+[node name="HungerAmount" type="Label" parent="Container/Consumable/Hunger"]
 layout_mode = 2
 
-[node name="Thirst" type="HBoxContainer" parent="Consumable"]
+[node name="Thirst" type="HBoxContainer" parent="Container/Consumable"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Consumable/Thirst"]
+[node name="Label" type="Label" parent="Container/Consumable/Thirst"]
 layout_mode = 2
 text = "Thirst:"
 
-[node name="ThirstAmount" type="Label" parent="Consumable/Thirst"]
+[node name="ThirstAmount" type="Label" parent="Container/Consumable/Thirst"]
 layout_mode = 2
