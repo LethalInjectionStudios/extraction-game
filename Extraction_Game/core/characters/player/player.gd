@@ -30,10 +30,10 @@ var _interacting_object : Interactable
 @onready var ui: HeadsUpDisplay = $HeadsUpDisplay
 @onready var camera: Camera2D = $Camera2D
 
+
 func _ready() -> void:
 	_hunger = MAX_HUNGER
 	_thirst = MAX_THIRST
-	
 	ui_changed.emit()
 
 	_validate()
@@ -216,7 +216,7 @@ func _on_thirst_timer_timeout() -> void:
 		ui_changed.emit()
 	thirst_timer.start()
 	
-	
+#region Save/Load	
 func _save() -> void:
 	var save_path: String = "user://inventory.save"
 	var file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)
@@ -295,7 +295,7 @@ func _load_character_data() -> void:
 				var _item_instance: InventoryItemCraftingMaterial = InventoryItemCraftingMaterial.new()
 				_item_instance.from_dictionary(item_data)
 				inventory_component._add_to_inventory(_item_instance)
-
+#endregion
 
 #TODO Make a Death screen and not just kick back to hideout
 func _player_death() -> void:

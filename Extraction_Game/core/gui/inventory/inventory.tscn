@@ -34,8 +34,8 @@ texture = ExtResource("2_ic7ra")
 layout_mode = 0
 offset_left = 40.0
 offset_top = 40.0
-offset_right = 556.0
-offset_bottom = 556.0
+offset_right = 558.0
+offset_bottom = 558.0
 
 [node name="Inventory" type="GridContainer" parent="CanvasLayer/Background/ScrollContainer"]
 layout_mode = 2

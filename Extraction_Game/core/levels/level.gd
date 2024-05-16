@@ -42,6 +42,10 @@ func _connect_signals() -> void:
 	lootbox_ui.connect("lootbox_changed", _on_lootbox_changed)
 	lootbox_ui.connect("ui_opened", _on_menu_opened)
 	lootbox_ui.connect("ui_closed", _on_menu_closed)
+	lootbox_ui.armor_equipped.connect(_player.equip_armor)
+	lootbox_ui.armor_unequipped.connect(_player.unequip_armor)
+	lootbox_ui.weapon_equipped.connect(_player.equip_weapon)
+	lootbox_ui.weapon_unequipped.connect(_player.unequip_weapon)
 
 	
 	

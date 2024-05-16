@@ -22,5 +22,8 @@ extends Resource
 ## If [code]true[/code] the item can be stacked in the inventory
 @export var is_stackable: bool
 
+## If [code]true[/code] the item can be equipped to the player
+@export var is_equipable: bool
+
 ## How large a stack of items can be
 @export var stack_size: int

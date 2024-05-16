@@ -24,4 +24,5 @@ sprite = "res://core/items/weapons/automatic_rifles/jk47.png"
 value = 0
 weight = 20.0
 is_stackable = false
+is_equipable = true
 stack_size = 0

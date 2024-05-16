@@ -29,7 +29,7 @@ func _load_scene() -> void:
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	call_deferred("_load_scene")
 
-	
+#region Stash Save/Load
 func _save_stash_data() -> void:
 	var save_path: String = "user://stash.save"
 	var file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)
@@ -86,3 +86,4 @@ func _load_stash_data() -> void:
 			
 	else:
 		push_warning("Save File not Found")
+#endregion

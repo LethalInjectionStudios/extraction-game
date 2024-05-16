@@ -132,6 +132,7 @@ layer_0/tile_data = PackedInt32Array(458756, 0, 0, 458755, 0, 0, 524291, 0, 0, 5
 
 [node name="Stash" parent="Objects" index="0" instance=ExtResource("4_hp52x")]
 position = Vector2(311, 580)
+is_sortable = true
 
 [node name="Bed" parent="Objects" index="1" instance=ExtResource("6_5ifhv")]
 position = Vector2(308, 635)
