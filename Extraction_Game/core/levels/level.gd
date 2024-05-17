@@ -88,4 +88,4 @@ func _on_item_moved_lootbox_player(lootbox: String, item: InventoryItem) -> void
 func _on_lootbox_changed(lootbox: String) -> void:
 	var _lootbox: Node = get_node(lootbox)
 
-	lootbox_ui._open_menu(_player, _lootbox)
+	lootbox_ui._open_menu()

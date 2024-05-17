@@ -14,6 +14,7 @@ mouse_filter = 1
 script = ExtResource("1_xit76")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Background" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8

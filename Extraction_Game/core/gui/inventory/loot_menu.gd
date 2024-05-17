@@ -1,6 +1,14 @@
 class_name LootMenu
 extends Control
 
+enum SORT_STATE {
+	ALL,
+	WEAPONS,
+	AMMUNITION,
+	ARMOR,
+	CONSUMABLES
+}
+
 signal ui_opened()
 signal ui_closed()
 signal lootbox_changed()
@@ -14,8 +22,12 @@ signal armor_unequipped()
 var _is_menu_open: bool = false
 var _lootbox: String
 var _lootbox_inventory: InventoryComponent
+var _lootbox_sorted: Array[InventoryItem]
 var _player_inventory: InventoryComponent
 var _focused_item: InventoryItem
+var _player: Player
+var _loot: Lootable
+var _sort_state: SORT_STATE = SORT_STATE.ALL
 
 const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventory_button.tscn")
 
@@ -40,6 +52,11 @@ const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventor
 @onready var _player_equip: Button = $CanvasLayer/Background/PlayerOptions/Equip
 
 @onready var _sort_options: HBoxContainer = $CanvasLayer/Background/SortOptions
+@onready var _sort_by_all: Button = $CanvasLayer/Background/SortOptions/All
+@onready var _sort_by_weapons: Button = $CanvasLayer/Background/SortOptions/Weapons
+@onready var _sort_by_ammunition: Button = $CanvasLayer/Background/SortOptions/Ammunition
+@onready var _sort_by_armor: Button = $CanvasLayer/Background/SortOptions/Armor
+@onready var _sort_by_consumables: Button = $CanvasLayer/Background/SortOptions/Consumables
 
 
 func _ready() -> void:
@@ -49,18 +66,29 @@ func _ready() -> void:
 func _toggle_loot_menu(player: Player, lootbox: Lootable) -> void:
 
 	if !_is_menu_open:
+		_sort_state = SORT_STATE.ALL
+		_lootbox_inventory = lootbox.inventory_component
+		_lootbox_sorted = _lootbox_inventory.inventory
+		_player_inventory = player.inventory_component
+		_player = player
+		_loot = lootbox
+		
 		_lootbox = lootbox.get_path()
 		ui_opened.emit()
 		_is_menu_open = true
 		
 		if lootbox.is_sortable:
 			_sort_options.visible = true
+			$CanvasLayer/Background/Loot.text = "Stash"
 		else:
 			_sort_options.visible = false
+			$CanvasLayer/Background/Loot.text = "Loot"
 			
 		canvas.show()
-		_open_menu(player, lootbox)
+		_open_menu()
 	else:
+		_lootbox_inventory = null
+		_player_inventory = null
 		ui_closed.emit()
 		_is_menu_open = false
 		canvas.hide()
@@ -77,18 +105,20 @@ func _setup_signals() -> void:
 	
 	_loot_move.button_down.connect(_on_move_item_lootbox_to_player)
 	_loot_equip.button_down.connect(_on_equip_from_lootbox)
+	_sort_by_all.button_down.connect(_on_sort_by_all)
+	_sort_by_weapons.button_down.connect(_on_sort_by_weapons)
+	_sort_by_ammunition.button_down.connect(_on_sort_by_ammunition)
+	_sort_by_armor.button_down.connect(_on_sort_by_armor)
+	_sort_by_consumables.button_down.connect(_on_sort_by_consumable)
 	
 	_player_move.button_down.connect(_on_move_item_player_to_lootbox)
 	_player_equip.button_down.connect(_on_equip_from_inventory)
 
 
-func _open_menu(player: Player, lootbox: Lootable) -> void:	
-	_lootbox_inventory = lootbox.inventory_component
-	_player_inventory = player.inventory_component
-	
-	if player.weapon_component.weapon:
-		_weapon_sprite.texture = player.weapon_component.weapon_sprite.texture
-		_equipped_weapon.item = player.weapon_component._weapon_inventory_item
+func _open_menu() -> void:	
+	if _player.weapon_component.weapon:
+		_weapon_sprite.texture = _player.weapon_component.weapon_sprite.texture
+		_equipped_weapon.item = _player.weapon_component._weapon_inventory_item
 		_equipped_weapon.icon = load(_equipped_weapon.item.item_icon)
 		_equipped_weapon.show()
 		_weapon_durability.value = _equipped_weapon.item.durability
@@ -96,8 +126,8 @@ func _open_menu(player: Player, lootbox: Lootable) -> void:
 		_equipped_weapon.hide()
 		_weapon_sprite.texture = null
 		
-	if player.armor_component.armor:
-		_equipped_armor.item = player.armor_component._armor_inventory_item
+	if _player.armor_component.armor:
+		_equipped_armor.item = _player.armor_component._armor_inventory_item
 		_equipped_armor.icon = load(_equipped_armor.item.item_icon)
 		_armor_durability.value = _equipped_armor.item.durability
 		_equipped_armor.show()
@@ -105,7 +135,7 @@ func _open_menu(player: Player, lootbox: Lootable) -> void:
 		_equipped_armor.hide()
 	
 		
-	for item: InventoryItem in player.inventory_component.inventory:
+	for item: InventoryItem in _player.inventory_component.inventory:
 		var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
 		button.icon = load(item.item_icon)
 		button.item = item
@@ -117,9 +147,22 @@ func _open_menu(player: Player, lootbox: Lootable) -> void:
 		button.item_hovered.connect(_on_item_hover_enter)
 		button.item_hover_ended.connect(_on_item_hover_exit)
 		player_container.add_child(button)
-
-
-	for item: InventoryItem in lootbox.inventory_component.inventory:
+	
+	match _sort_state:
+		SORT_STATE.ALL:
+			_sort_all()
+		SORT_STATE.WEAPONS:
+			_sort_weapons()
+		SORT_STATE.AMMUNITION:
+			_sort_ammunition()
+		SORT_STATE.ARMOR:
+			_sort_armor()
+		SORT_STATE.CONSUMABLES:
+			_sort_consumable()
+		_:
+			_sort_all()
+		
+	for item: InventoryItem in _lootbox_sorted:
 		var button: InventoryUIButton = INVENTORY_BUTTON.instantiate()
 		button.icon = load(item.item_icon)
 		button.item = item
@@ -173,6 +216,8 @@ func _on_item_hover_exit() -> void:
 #region Lootbox to Player
 func _on_lootbox_item_pressed(item: InventoryItem) -> void:
 	if Input.is_key_label_pressed(KEY_CTRL):
+			var _index: int = _lootbox_sorted.find(item)
+			_lootbox_sorted.remove_at(_index)
 			item_moved_lootbox_to_player.emit(_lootbox, item)
 			_reload_menu()
 			return
@@ -183,7 +228,7 @@ func _on_lootbox_item_pressed(item: InventoryItem) -> void:
 	else:
 		_loot_equip.visible = false
 				
-	var _item_index: int = _lootbox_inventory.inventory.find(item)
+	var _item_index: int = _lootbox_sorted.find(item)
 	var _button: InventoryUIButton = lootbox_container.get_child(_item_index)
 	_focused_item = item
 	
@@ -193,6 +238,8 @@ func _on_lootbox_item_pressed(item: InventoryItem) -> void:
 
 
 func _on_move_item_lootbox_to_player() -> void:
+	var _index: int = _lootbox_sorted.find(_focused_item)
+	_lootbox_sorted.remove_at(_index)
 	item_moved_lootbox_to_player.emit(_lootbox, _focused_item)
 	_reload_menu()
 	
@@ -212,6 +259,7 @@ func _on_equip_from_lootbox() -> void:
 
 	_reload_menu()
 #endregion
+
 
 #region Player to Lootbox
 func _on_inventory_item_pressed(item: InventoryItem) -> void:
@@ -237,11 +285,12 @@ func _on_inventory_item_pressed(item: InventoryItem) -> void:
 	
 func _on_move_item_player_to_lootbox() -> void:
 	item_moved_player_to_lootbox.emit(_lootbox, _focused_item)
-	_reload_menu()
 	
-	_loot_options.visible = false
+	_player_options.visible = false
 	_focused_item = null
 	
+	_reload_menu()	
+
 
 func _on_equip_from_inventory() -> void:
 	if _focused_item.item_type == Globals.Item_Type.WEAPON:
@@ -252,4 +301,65 @@ func _on_equip_from_inventory() -> void:
 		armor_equipped.emit(armor)
 
 	_reload_menu()
+#endregion
+
+
+#region Sorting
+func _on_sort_by_all() -> void:
+	_sort_state = SORT_STATE.ALL
+	_reload_menu()
+	
+func _sort_all() -> void:
+	_lootbox_sorted = _lootbox_inventory.inventory
+	
+func _on_sort_by_weapons() -> void:
+	_sort_state = SORT_STATE.WEAPONS
+	_reload_menu()
+	
+
+func _sort_weapons() -> void:
+	var _sorted_inventory: Array[InventoryItem] = []
+	for item: InventoryItem in _lootbox_inventory.inventory:
+		if item is InventoryItemWeapon:
+			_sorted_inventory.append(item)
+	_lootbox_sorted = _sorted_inventory
+	
+
+func _on_sort_by_ammunition() -> void:
+	_sort_state = SORT_STATE.AMMUNITION
+	_reload_menu()
+	
+
+func _sort_ammunition() -> void:
+	var _sorted_inventory: Array[InventoryItem] = []
+	for item: InventoryItem in _lootbox_inventory.inventory:
+		if item is InventoryItemAmmo:
+			_sorted_inventory.append(item)
+	_lootbox_sorted = _sorted_inventory
+	
+	
+func _on_sort_by_armor() -> void:
+	_sort_state = SORT_STATE.ARMOR
+	_reload_menu()
+	
+	
+func _sort_armor() -> void:
+	var _sorted_inventory: Array[InventoryItem] = []
+	for item: InventoryItem in _lootbox_inventory.inventory:
+		if item is InventoryItemArmor:
+			_sorted_inventory.append(item)
+	_lootbox_sorted = _sorted_inventory	
+	
+	
+func _on_sort_by_consumable() -> void:
+	_sort_state = SORT_STATE.CONSUMABLES
+	_reload_menu()
+	
+	
+func _sort_consumable() -> void:
+	var _sorted_inventory: Array[InventoryItem] = []
+	for item: InventoryItem in _lootbox_inventory.inventory:
+		if item is InventoryItemConsumable:
+			_sorted_inventory.append(item)
+	_lootbox_sorted = _sorted_inventory	
 #endregion
