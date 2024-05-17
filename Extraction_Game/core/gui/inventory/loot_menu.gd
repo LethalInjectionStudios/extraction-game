@@ -46,10 +46,12 @@ const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventor
 @onready var _loot_options: VBoxContainer = $CanvasLayer/Background/LootOptions
 @onready var _loot_move: Button = $CanvasLayer/Background/LootOptions/Move
 @onready var _loot_equip: Button = $CanvasLayer/Background/LootOptions/Equip
+@onready var _loot_consume: Button = $CanvasLayer/Background/LootOptions/Consume
 
 @onready var _player_options: VBoxContainer = $CanvasLayer/Background/PlayerOptions
 @onready var _player_move: Button = $CanvasLayer/Background/PlayerOptions/Move
 @onready var _player_equip: Button = $CanvasLayer/Background/PlayerOptions/Equip
+@onready var _player_consume: Button = $CanvasLayer/Background/PlayerOptions/Consume
 
 @onready var _sort_options: HBoxContainer = $CanvasLayer/Background/SortOptions
 @onready var _sort_by_all: Button = $CanvasLayer/Background/SortOptions/All
@@ -227,6 +229,12 @@ func _on_lootbox_item_pressed(item: InventoryItem) -> void:
 		_loot_equip.visible = true
 	else:
 		_loot_equip.visible = false
+		
+	if _data.is_consumable:
+		_loot_consume.visible = true
+	else:
+		_loot_consume.visible = false
+		
 				
 	var _item_index: int = _lootbox_sorted.find(item)
 	var _button: InventoryUIButton = lootbox_container.get_child(_item_index)
@@ -257,6 +265,7 @@ func _on_equip_from_lootbox() -> void:
 		armor_equipped.emit(armor)
 		_lootbox_inventory._remove_from_inventory(armor)
 
+	_loot_options.visible = false
 	_reload_menu()
 #endregion
 
@@ -273,6 +282,11 @@ func _on_inventory_item_pressed(item: InventoryItem) -> void:
 		_player_equip.visible = true
 	else:
 		_player_equip.visible = false
+		
+	if _data.is_consumable:
+		_player_consume.visible = true
+	else:
+		_player_consume.visible = false
 				
 	var _item_index: int = _player_inventory.inventory.find(item)
 	var _button: InventoryUIButton = player_container.get_child(_item_index)
@@ -300,6 +314,7 @@ func _on_equip_from_inventory() -> void:
 		var armor: InventoryItemArmor = _focused_item as InventoryItemArmor
 		armor_equipped.emit(armor)
 
+	_player_options.visible = false
 	_reload_menu()
 #endregion
 

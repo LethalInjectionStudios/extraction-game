@@ -5,8 +5,8 @@
 [resource]
 resource_name = "Bandage"
 script = ExtResource("1_suebl")
-food_restoration_amount = 0
-water_restoration_amount = 0
+hunger_restoration_amount = 0
+thirst_restoration_amount = 0
 health_restoration_amount = 20
 time_to_use = 0.0
 name = "Bandage"
@@ -16,4 +16,6 @@ sprite = "res://core/items/consumables/bandage.png"
 value = 0
 weight = 0.1
 is_stackable = false
+is_equipable = false
+is_consumable = true
 stack_size = 0

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://lnpyq0wr320h"]
+[gd_scene load_steps=6 format=3 uid="uid://lnpyq0wr320h"]
 
 [ext_resource type="Script" path="res://core/gui/inventory/loot_menu.gd" id="1_xit76"]
 [ext_resource type="Texture2D" uid="uid://g61vogbv11e" path="res://core/gui/lootbox.png" id="2_j0uir"]
 [ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://core/characters/player/player.png" id="3_08lla"]
 [ext_resource type="PackedScene" uid="uid://cs8roo38svwit" path="res://core/gui/inventory/inventory_button.tscn" id="4_mfc05"]
 [ext_resource type="PackedScene" uid="uid://cno2fsp8ar0hf" path="res://core/gui/item_description/item_description.tscn" id="5_g5s6l"]
-[ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://font/slkscr.ttf" id="6_06wqp"]
 
 [node name="LootMenu" type="Control"]
 layout_mode = 3
@@ -125,8 +124,6 @@ offset_bottom = 108.0
 value = 70.0
 show_percentage = false
 
-[node name="ItemDescription" parent="CanvasLayer/Background" instance=ExtResource("5_g5s6l")]
-
 [node name="LootOptions" type="VBoxContainer" parent="CanvasLayer/Background"]
 visible = false
 layout_mode = 0
@@ -144,6 +141,11 @@ visible = false
 layout_mode = 2
 text = "Equip"
 
+[node name="Consume" type="Button" parent="CanvasLayer/Background/LootOptions"]
+visible = false
+layout_mode = 2
+text = "Use"
+
 [node name="PlayerOptions" type="VBoxContainer" parent="CanvasLayer/Background"]
 visible = false
 layout_mode = 0
@@ -158,6 +160,11 @@ text = "Move"
 visible = false
 layout_mode = 2
 text = "Equip"
+
+[node name="Consume" type="Button" parent="CanvasLayer/Background/PlayerOptions"]
+visible = false
+layout_mode = 2
+text = "Use"
 
 [node name="SortOptions" type="HBoxContainer" parent="CanvasLayer/Background"]
 layout_mode = 0
@@ -191,7 +198,6 @@ offset_left = 42.0
 offset_top = 558.0
 offset_right = 143.0
 offset_bottom = 581.0
-theme_override_fonts/font = ExtResource("6_06wqp")
 text = "Inventory"
 
 [node name="Loot" type="Label" parent="CanvasLayer/Background"]
@@ -200,5 +206,6 @@ offset_left = 884.0
 offset_top = 558.0
 offset_right = 926.0
 offset_bottom = 581.0
-theme_override_fonts/font = ExtResource("6_06wqp")
 text = "Loot"
+
+[node name="ItemDescription" parent="CanvasLayer/Background" instance=ExtResource("5_g5s6l")]
