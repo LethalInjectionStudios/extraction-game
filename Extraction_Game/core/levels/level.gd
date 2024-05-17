@@ -46,6 +46,7 @@ func _connect_signals() -> void:
 	lootbox_ui.armor_unequipped.connect(_player.unequip_armor)
 	lootbox_ui.weapon_equipped.connect(_player.equip_weapon)
 	lootbox_ui.weapon_unequipped.connect(_player.unequip_weapon)
+	lootbox_ui.consumable_used.connect(_player.use_consumable)
 
 	
 	

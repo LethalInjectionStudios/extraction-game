@@ -1,14 +1,6 @@
 class_name LootMenu
 extends Control
 
-enum SORT_STATE {
-	ALL,
-	WEAPONS,
-	AMMUNITION,
-	ARMOR,
-	CONSUMABLES
-}
-
 signal ui_opened()
 signal ui_closed()
 signal lootbox_changed()
@@ -18,6 +10,17 @@ signal weapon_equipped(item: InventoryItemWeapon)
 signal weapon_unequipped()
 signal armor_equipped(item: InventoryItemArmor)
 signal armor_unequipped()
+signal consumable_used(item: InventoryItemConsumable)
+
+enum SORT_STATE {
+	ALL,
+	WEAPONS,
+	AMMUNITION,
+	ARMOR,
+	CONSUMABLES
+}
+
+const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventory_button.tscn")
 
 var _is_menu_open: bool = false
 var _lootbox: String
@@ -28,8 +31,6 @@ var _focused_item: InventoryItem
 var _player: Player
 var _loot: Lootable
 var _sort_state: SORT_STATE = SORT_STATE.ALL
-
-const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventory_button.tscn")
 
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var _item_description: ItemDescription = $CanvasLayer/Background/ItemDescription
@@ -86,6 +87,9 @@ func _toggle_loot_menu(player: Player, lootbox: Lootable) -> void:
 			_sort_options.visible = false
 			$CanvasLayer/Background/Loot.text = "Loot"
 			
+		_loot_options.visible = false
+		_player_options.visible = false
+		
 		canvas.show()
 		_open_menu()
 	else:
@@ -107,6 +111,7 @@ func _setup_signals() -> void:
 	
 	_loot_move.button_down.connect(_on_move_item_lootbox_to_player)
 	_loot_equip.button_down.connect(_on_equip_from_lootbox)
+	_loot_consume.button_down.connect(_on_consume_from_lootbox)
 	_sort_by_all.button_down.connect(_on_sort_by_all)
 	_sort_by_weapons.button_down.connect(_on_sort_by_weapons)
 	_sort_by_ammunition.button_down.connect(_on_sort_by_ammunition)
@@ -115,6 +120,7 @@ func _setup_signals() -> void:
 	
 	_player_move.button_down.connect(_on_move_item_player_to_lootbox)
 	_player_equip.button_down.connect(_on_equip_from_inventory)
+	_player_consume.button_down.connect(_on_consume_from_player)
 
 
 func _open_menu() -> void:	
@@ -267,6 +273,14 @@ func _on_equip_from_lootbox() -> void:
 
 	_loot_options.visible = false
 	_reload_menu()
+	
+	
+func _on_consume_from_lootbox() -> void:
+	if _focused_item.item_type == Globals.Item_Type.CONSUMABLE:
+		consumable_used.emit(_focused_item)
+		_lootbox_inventory._remove_from_inventory(_focused_item)
+		_loot_options.visible = false
+		_reload_menu()
 #endregion
 
 
@@ -316,6 +330,13 @@ func _on_equip_from_inventory() -> void:
 
 	_player_options.visible = false
 	_reload_menu()
+	
+	
+func _on_consume_from_player() -> void:
+	if _focused_item.item_type == Globals.Item_Type.CONSUMABLE:
+		consumable_used.emit(_focused_item)
+		_player_options.visible = false
+		_reload_menu()
 #endregion
 
 
