@@ -40,6 +40,10 @@ window/stretch/mode="viewport"
 import/blender/enabled=false
 import/fbx/enabled=false
 
+[gui]
+
+theme/custom_font="res://font/slkscr.ttf"
+
 [input]
 
 move_left={

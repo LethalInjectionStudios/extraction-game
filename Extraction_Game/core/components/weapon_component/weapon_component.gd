@@ -83,6 +83,7 @@ func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 	if weapon:
 		unequip_weapon()
 		
+	#WARNING This is causing issues when equipping an item directly from a lootbox, temporary fix in inventory in place but probably should be fixed
 	weapon_removed_from_inventory.emit(_weapon)
 
 	weapon = load(_weapon.item_path) as Weapon

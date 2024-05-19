@@ -1,42 +1,46 @@
 class_name ItemDescription
-extends VBoxContainer
+extends Control
 ## Description Box when [InventoryItem] is hovered will display information about that item
 
 # Base Values
-@onready var _name: Label = $Name
-@onready var _type: Label = $Type
-@onready var _description: Label = $Description
+@onready var _name: Label = $Container/Name
+@onready var _type: Label = $Container/Type
+@onready var _description: Label = $Container/Description
 
 # Ammunition
-@onready var _ammunition: VBoxContainer = $Ammunition
-@onready var _armor_penetration: ProgressBar = $Ammunition/AP_Container/ArmorPenetration
+@onready var _ammunition: VBoxContainer = $Container/Ammunition
+@onready var _armor_penetration: ProgressBar = $Container/Ammunition/AP_Container/ArmorPenetration
 
 # Weapon
-@onready var _weapon_container: VBoxContainer = $Weapon
-@onready var _loaded_ammo: Label = $Weapon/Loaded_Ammo
-@onready var _weapon_durability: ProgressBar = $Weapon/DurabilityContainer/WeaponDurability
+@onready var _weapon_container: VBoxContainer = $Container/Weapon
+@onready var _loaded_ammo: Label = $Container/Weapon/Loaded_Ammo
+@onready var _weapon_durability: ProgressBar = $Container/Weapon/DurabilityContainer/WeaponDurability
 
 # Armor
-@onready var _armor_container: VBoxContainer = $Armor
-@onready var _ac_value: Label = $Armor/AC_Container/AC_Value
-@onready var _armor_durability: ProgressBar = $Armor/DurabilityContainer/ArmorDurability
+@onready var _armor_container: VBoxContainer = $Container/Armor
+@onready var _ac_value: Label = $Container/Armor/AC_Container/AC_Value
+@onready var _armor_durability: ProgressBar = $Container/Armor/DurabilityContainer/ArmorDurability
 
 # Consumable
-@onready var _consumable_container: VBoxContainer = $Consumable
-@onready var _health_container : HBoxContainer = $Consumable/Health
-@onready var _health_amount: Label = $Consumable/Health/HealthAmount
-@onready var _hunger_container: HBoxContainer = $Consumable/Hunger
-@onready var _hunger_amount: Label = $Consumable/Hunger/HungerAmount
-@onready var _thirst_container: HBoxContainer = $Consumable/Thirst
-@onready var _thirst_amount: Label = $Consumable/Thirst/ThirstAmount
+@onready var _consumable_container: VBoxContainer = $Container/Consumable
+@onready var _health_container : HBoxContainer = $Container/Consumable/Health
+@onready var _health_amount: Label = $Container/Consumable/Health/HealthAmount
+@onready var _hunger_container: HBoxContainer = $Container/Consumable/Hunger
+@onready var _hunger_amount: Label = $Container/Consumable/Hunger/HungerAmount
+@onready var _thirst_container: HBoxContainer = $Container/Consumable/Thirst
+@onready var _thirst_amount: Label = $Container/Consumable/Thirst/ThirstAmount
 
 
 func _ready() -> void:
 	clear()
+	
+func _process(_delta: float) -> void:
+	if visible:
+		global_position = get_global_mouse_position() + Vector2(15, 15)
 
 
 func Show(item: InventoryItem) -> void:
-	var _data: Item = load(item.item_path) as Item	
+	var _data: 	Item = load(item.item_path) as Item					
 	
 	_name.text = _data.name
 	_name.visible = true

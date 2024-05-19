@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://lnpyq0wr320h"]
+[gd_scene load_steps=6 format=3 uid="uid://lnpyq0wr320h"]
 
 [ext_resource type="Script" path="res://core/gui/inventory/loot_menu.gd" id="1_xit76"]
+[ext_resource type="Texture2D" uid="uid://g61vogbv11e" path="res://core/gui/lootbox.png" id="2_j0uir"]
+[ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://core/characters/player/player.png" id="3_08lla"]
+[ext_resource type="PackedScene" uid="uid://cs8roo38svwit" path="res://core/gui/inventory/inventory_button.tscn" id="4_mfc05"]
+[ext_resource type="PackedScene" uid="uid://cno2fsp8ar0hf" path="res://core/gui/item_description/item_description.tscn" id="5_g5s6l"]
 
 [node name="LootMenu" type="Control"]
 layout_mode = 3
@@ -11,28 +15,197 @@ script = ExtResource("1_xit76")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -720.0
+offset_top = -300.0
+offset_right = 720.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.313726, 0.313726, 0.313726, 1)
+texture = ExtResource("2_j0uir")
 
-[node name="PlayerInventory" type="GridContainer" parent="CanvasLayer"]
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 144.0
-offset_bottom = 110.0
+[node name="Player" type="Control" parent="CanvasLayer/Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -720.0
+offset_top = -300.0
+offset_right = -720.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerSprite" type="Sprite2D" parent="CanvasLayer/Background/Player"]
+position = Vector2(720, 292)
+scale = Vector2(15, 15)
+texture = ExtResource("3_08lla")
+
+[node name="WeaponSprite" type="Sprite2D" parent="CanvasLayer/Background/Player/PlayerSprite"]
+position = Vector2(0, 2)
+scale = Vector2(0.5, 0.5)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Background"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 558.0
+offset_bottom = 558.0
+
+[node name="PlayerInventory" type="GridContainer" parent="CanvasLayer/Background/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 35
+theme_override_constants/v_separation = 13
 columns = 5
 
-[node name="LootInventory" type="GridContainer" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -300.0
-offset_top = 100.0
-offset_right = -256.0
-offset_bottom = 110.0
-grow_horizontal = 0
+[node name="ScrollContainer2" type="ScrollContainer" parent="CanvasLayer/Background"]
+layout_mode = 0
+offset_left = 882.0
+offset_top = 40.0
+offset_right = 1400.0
+offset_bottom = 558.0
+
+[node name="LootInventory" type="GridContainer" parent="CanvasLayer/Background/ScrollContainer2"]
+layout_mode = 2
+theme_override_constants/h_separation = 35
+theme_override_constants/v_separation = 13
 columns = 5
+
+[node name="EquippedWeaponButton" parent="CanvasLayer/Background" instance=ExtResource("4_mfc05")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = 158.0
+offset_right = 51.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1)
+
+[node name="WeaponDurability" type="ProgressBar" parent="CanvasLayer/Background/EquippedWeaponButton"]
+layout_mode = 0
+offset_top = 104.0
+offset_right = 100.0
+offset_bottom = 109.0
+value = 75.0
+show_percentage = false
+
+[node name="EquippedArmorButton" parent="CanvasLayer/Background" instance=ExtResource("4_mfc05")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -260.0
+offset_right = 50.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1)
+
+[node name="ArmorDurability" type="ProgressBar" parent="CanvasLayer/Background/EquippedArmorButton"]
+layout_mode = 0
+offset_top = 103.0
+offset_right = 100.0
+offset_bottom = 108.0
+value = 70.0
+show_percentage = false
+
+[node name="LootOptions" type="VBoxContainer" parent="CanvasLayer/Background"]
+visible = false
+layout_mode = 0
+offset_left = 818.0
+offset_top = 189.0
+offset_right = 858.0
+offset_bottom = 229.0
+
+[node name="Move" type="Button" parent="CanvasLayer/Background/LootOptions"]
+layout_mode = 2
+text = "Move"
+
+[node name="Equip" type="Button" parent="CanvasLayer/Background/LootOptions"]
+visible = false
+layout_mode = 2
+text = "Equip"
+
+[node name="Consume" type="Button" parent="CanvasLayer/Background/LootOptions"]
+visible = false
+layout_mode = 2
+text = "Use"
+
+[node name="PlayerOptions" type="VBoxContainer" parent="CanvasLayer/Background"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Move" type="Button" parent="CanvasLayer/Background/PlayerOptions"]
+layout_mode = 2
+text = "Move"
+
+[node name="Equip" type="Button" parent="CanvasLayer/Background/PlayerOptions"]
+visible = false
+layout_mode = 2
+text = "Equip"
+
+[node name="Consume" type="Button" parent="CanvasLayer/Background/PlayerOptions"]
+visible = false
+layout_mode = 2
+text = "Use"
+
+[node name="SortOptions" type="HBoxContainer" parent="CanvasLayer/Background"]
+layout_mode = 0
+offset_left = 882.0
+offset_right = 1400.0
+offset_bottom = 40.0
+
+[node name="All" type="Button" parent="CanvasLayer/Background/SortOptions"]
+layout_mode = 2
+text = "All"
+
+[node name="Weapons" type="Button" parent="CanvasLayer/Background/SortOptions"]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Ammunition" type="Button" parent="CanvasLayer/Background/SortOptions"]
+layout_mode = 2
+text = "Ammunition"
+
+[node name="Armor" type="Button" parent="CanvasLayer/Background/SortOptions"]
+layout_mode = 2
+text = "Armor"
+
+[node name="Consumables" type="Button" parent="CanvasLayer/Background/SortOptions"]
+layout_mode = 2
+text = "Consumable"
+
+[node name="Inventory" type="Label" parent="CanvasLayer/Background"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 558.0
+offset_right = 143.0
+offset_bottom = 581.0
+text = "Inventory"
+
+[node name="Loot" type="Label" parent="CanvasLayer/Background"]
+layout_mode = 0
+offset_left = 884.0
+offset_top = 558.0
+offset_right = 926.0
+offset_bottom = 581.0
+text = "Loot"
+
+[node name="ItemDescription" parent="CanvasLayer/Background" instance=ExtResource("5_g5s6l")]

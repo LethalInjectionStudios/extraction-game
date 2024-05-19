@@ -42,6 +42,11 @@ func _connect_signals() -> void:
 	lootbox_ui.connect("lootbox_changed", _on_lootbox_changed)
 	lootbox_ui.connect("ui_opened", _on_menu_opened)
 	lootbox_ui.connect("ui_closed", _on_menu_closed)
+	lootbox_ui.armor_equipped.connect(_player.equip_armor)
+	lootbox_ui.armor_unequipped.connect(_player.unequip_armor)
+	lootbox_ui.weapon_equipped.connect(_player.equip_weapon)
+	lootbox_ui.weapon_unequipped.connect(_player.unequip_weapon)
+	lootbox_ui.consumable_used.connect(_player.use_consumable)
 
 	
 	
@@ -84,4 +89,4 @@ func _on_item_moved_lootbox_player(lootbox: String, item: InventoryItem) -> void
 func _on_lootbox_changed(lootbox: String) -> void:
 	var _lootbox: Node = get_node(lootbox)
 
-	lootbox_ui._open_menu(_player, _lootbox)
+	lootbox_ui._open_menu()

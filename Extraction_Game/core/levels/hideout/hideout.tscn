@@ -77,6 +77,7 @@ texture = ExtResource("3_lumjq")
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
 3:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_fqjiv")
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -132,6 +133,7 @@ layer_0/tile_data = PackedInt32Array(458756, 0, 0, 458755, 0, 0, 524291, 0, 0, 5
 
 [node name="Stash" parent="Objects" index="0" instance=ExtResource("4_hp52x")]
 position = Vector2(311, 580)
+is_sortable = true
 
 [node name="Bed" parent="Objects" index="1" instance=ExtResource("6_5ifhv")]
 position = Vector2(308, 635)

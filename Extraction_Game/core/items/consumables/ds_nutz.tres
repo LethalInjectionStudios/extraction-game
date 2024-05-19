@@ -15,4 +15,6 @@ sprite = "res://core/items/consumables/ds_nutz.png"
 value = 0
 weight = 0.0
 is_stackable = false
+is_equipable = false
+is_consumable = true
 stack_size = 0

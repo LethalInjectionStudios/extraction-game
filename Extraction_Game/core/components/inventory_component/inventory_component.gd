@@ -33,7 +33,8 @@ func _add_to_inventory(new_item: InventoryItem) -> void:
 	
 func _remove_from_inventory(item: InventoryItem) -> void:
 	var item_index: int = inventory.find(item)
-	inventory.remove_at(item_index)
+	if item_index != -1:
+		inventory.remove_at(item_index)
 	
 
 func remove_ammo(type: Ammunition, amount: int) -> int:
