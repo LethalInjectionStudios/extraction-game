@@ -54,7 +54,7 @@ func _toggle_inventory_menu(_player: Player) -> void:
 
 
 func open_inventory(_player: Player) -> void:
-	_player.player_sprite.texture = _player.player_sprite.texture
+	player_sprite.texture = _player.player_sprite.texture
 	player = _player
 	
 	if _player.weapon_component.weapon:
@@ -80,7 +80,7 @@ func open_inventory(_player: Player) -> void:
 		equipped_weapon.icon = load(equipped_weapon.item.item_icon)
 		if !equipped_weapon.item.ammo_type.is_empty():
 			var loaded_ammo_data: Ammunition = load(equipped_weapon.item.ammo_type)
-			loaded_ammo.icon = load(loaded_ammo_data.sprite)
+			loaded_ammo.icon = load(loaded_ammo_data.icon)
 			equipped_weapon.show()
 		weapon_durability.value = equipped_weapon.item.durability
 		loaded_ammo.show()

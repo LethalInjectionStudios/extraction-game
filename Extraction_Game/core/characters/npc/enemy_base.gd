@@ -14,6 +14,7 @@ extends Character
 
 @onready var state: Label = $Label
 @onready var state_machine: StateMachine = $StateMachine
+@onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	_validate()
@@ -36,6 +37,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_update_sprites()
 	state.text = state_machine.current_state.to_string()
+	
+	if velocity == Vector2.ZERO:
+		_animation_player.play("idle")
+		
+	if velocity != Vector2.ZERO:
+		_animation_player.play("walk")
 
 	
 func _physics_process(_delta: float) -> void:
@@ -48,13 +55,16 @@ func sound_heard(sound_position: Vector2) -> void:
 func _update_sprites() -> void:	
 	z_index = global_position.y as int
 			
-	if state_machine.current_state.name.to_lower() != "engaged":	
+	if state_machine.current_state.name.to_lower() != "engaged":
+		weapon_component.weapon_sprite.rotation = 0	
 		if velocity.x < 0:
 			sprite.flip_h = true
 			weapon_component.weapon_sprite.flip_h = true
+			weapon_component.weapon_sprite.z_index = sprite.z_index - 1
 		if velocity.x > 0:
 			sprite.flip_h = false
 			weapon_component.weapon_sprite.flip_h = false
+			weapon_component.weapon_sprite.z_index = sprite.z_index + 1
 
 
 func _validate() -> void:

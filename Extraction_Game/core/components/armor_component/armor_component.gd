@@ -45,10 +45,10 @@ func equip_armor(new_armor: InventoryItemArmor) -> void:
 		
 	armor_removed_from_inventory.emit(new_armor)	
 	
-	armor = load(new_armor.item_path)
+	armor = load(new_armor.item_path) as Armor
 	_armor_inventory_item = new_armor
 	_armor_inventory_item.equipped = true
-	
+
 	
 func unequip_armor() -> void:
 	_armor_inventory_item.equipped = false

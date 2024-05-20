@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://c02f4in5i58d0"]
+[gd_scene load_steps=19 format=3 uid="uid://c02f4in5i58d0"]
 
 [ext_resource type="Script" path="res://core/characters/npc/enemy_base.gd" id="1_1iiva"]
-[ext_resource type="Texture2D" uid="uid://dpo32atkvcjv6" path="res://core/characters/npc/enemy.png" id="2_3dbfo"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://core/components/health_component/health_component.tscn" id="2_jcvyi"]
 [ext_resource type="PackedScene" uid="uid://dp6ou45cf0br8" path="res://core/state_machine/state_machine.tscn" id="2_up2yn"]
 [ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://core/components/weapon_component/weapon_component.tscn" id="3_l3eid"]
@@ -22,6 +21,59 @@ size = Vector2(8, 14)
 [sub_resource type="CircleShape2D" id="CircleShape2D_82km4"]
 radius = 104.043
 
+[sub_resource type="Animation" id="Animation_vr6rp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p0io7"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r8fdt"]
+resource_name = "walk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ouwc"]
+_data = {
+"RESET": SubResource("Animation_vr6rp"),
+"idle": SubResource("Animation_p0io7"),
+"walk": SubResource("Animation_r8fdt")
+}
+
 [node name="Enemy Base" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "health_component", "weapon_component", "hitbox_component", "detection_component", "armor_component", "idle_state", "wander_state", "engaged_state", "alert_state")]
 collision_layer = 2
 collision_mask = 15
@@ -41,7 +93,8 @@ alert_state = NodePath("StateMachine/Alert")
 shape = SubResource("RectangleShape2D_artlf")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_3dbfo")
+hframes = 4
+vframes = 2
 
 [node name="Components" type="Node2D" parent="."]
 
@@ -87,3 +140,8 @@ detection_component = NodePath("../../Components/DetectionComponent")
 [node name="Alert" parent="StateMachine" node_paths=PackedStringArray("parent", "detection_component") instance=ExtResource("11_6nv6y")]
 parent = NodePath("../..")
 detection_component = NodePath("../../Components/DetectionComponent")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3ouwc")
+}

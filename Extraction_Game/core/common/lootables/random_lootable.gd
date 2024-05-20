@@ -16,7 +16,7 @@ func _ready() -> void:
 				item.item_name = res.name
 				item.item_path = res.resource_path
 				item.item_type = res.type
-				item.item_icon = res.sprite
+				item.item_icon = res.icon
 				item.ammo_type = Globals.get_ammo_from_caliber(weapon.caliber)
 				item.durability = randi_range(50, 100)
 
@@ -29,7 +29,7 @@ func _ready() -> void:
 				item.item_name = res.name
 				item.item_path = res.resource_path
 				item.item_type = res.type
-				item.item_icon = res.sprite
+				item.item_icon = res.icon
 
 				inventory_component._add_to_inventory(item)
 				
@@ -39,7 +39,7 @@ func _ready() -> void:
 				item.item_name = res.name
 				item.item_path = res.resource_path
 				item.item_type = res.type
-				item.item_icon = res.sprite
+				item.item_icon = res.icon
 
 				inventory_component._add_to_inventory(item)
 				
@@ -48,7 +48,7 @@ func _ready() -> void:
 				item.item_name = res.name
 				item.item_path = res.resource_path
 				item.item_type = res.type
-				item.item_icon = res.sprite
+				item.item_icon = res.icon
 				item.quantity = randi_range(50, 100)
 
 				inventory_component._add_to_inventory(item)
@@ -60,7 +60,7 @@ func _ready() -> void:
 				item.item_name = res.name
 				item.item_path = res.resource_path
 				item.item_type = res.type
-				item.item_icon = res.sprite
+				item.item_icon = res.icon
 				item.quantity = randi_range(1, 25)
 
 				inventory_component._add_to_inventory(item)
@@ -71,7 +71,7 @@ func _ready() -> void:
 				item.item_name = res.name
 				item.item_path = res.resource_path
 				item.item_type = res.type
-				item.item_icon = res.sprite
+				item.item_icon = res.icon
 				
 				item.durability = randf_range(0.0, 100.0)
 				

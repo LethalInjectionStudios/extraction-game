@@ -101,7 +101,7 @@ func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 	_ammo_inventory_item.item_name = _ammo_data.name	
 	_ammo_inventory_item.item_path = _ammo_data.resource_path	
 	_ammo_inventory_item.item_type = _ammo_data.type
-	_ammo_inventory_item.item_icon = _ammo_data.sprite
+	_ammo_inventory_item.item_icon = _ammo_data.icon
 	
 	rate_of_fire = weapon.rate_of_fire
 	rate_of_fire_timer.wait_time = rate_of_fire
@@ -114,7 +114,7 @@ func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 
 	_weapon_inventory_item.equipped = true
 
-	weapon_sprite.texture = load(weapon.sprite)
+	weapon_sprite.texture = load(weapon.icon)
 	if _weapon.muzzle:
 		muzzle_sprite.texture = load(_weapon.muzzle)
 	

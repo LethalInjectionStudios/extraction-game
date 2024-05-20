@@ -10,8 +10,8 @@ extends Resource
 ## Description of the item
 @export_multiline var description: String
 
-## Path to the sprite for the item
-@export var sprite: String
+## Path to the sprite of the icon for the item
+@export var icon: String
 
 ## Monetary value of the item
 @export var value: int
