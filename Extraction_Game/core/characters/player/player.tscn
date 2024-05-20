@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjrido4tn0mpu"]
+[gd_scene load_steps=17 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://core/characters/player/player.gd" id="1_85rfc"]
 [ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://core/characters/player/player.png" id="2_dlmfx"]
@@ -20,20 +20,76 @@ size = Vector2(8, 14)
 radius = 6.0
 height = 20.0
 
+[sub_resource type="Animation" id="Animation_6ytcy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pmctu"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mytb5"]
+resource_name = "walk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b260c"]
+_data = {
+"RESET": SubResource("Animation_6ytcy"),
+"idle": SubResource("Animation_pmctu"),
+"walk": SubResource("Animation_mytb5")
+}
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("armor_component") groups=["Character"]]
 scale = Vector2(0.991289, 1.0267)
 collision_mask = 31
 script = ExtResource("1_85rfc")
 armor_component = NodePath("Components/ArmorComponent")
-_faction = 1
+_faction = 4
+_default_character_sprite = "res://core/characters/player/player.png"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3.40898)
 shape = SubResource("RectangleShape2D_wvhi0")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -8.76595)
 texture = ExtResource("2_dlmfx")
+hframes = 4
+vframes = 2
 
 [node name="Timers" type="Node" parent="."]
 
@@ -54,9 +110,11 @@ metadata/_edit_group_ = true
 
 [node name="HeadsUpDisplay" parent="." instance=ExtResource("3_deorf")]
 offset_left = -240.091
-offset_top = -116.879
+offset_top = -121.749
 offset_right = 141.909
-offset_bottom = 99.1204
+offset_bottom = 94.2501
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Components" type="Node2D" parent="."]
 position = Vector2(0, -7)
@@ -84,6 +142,11 @@ position = Vector2(0, 0.18204)
 shape = SubResource("CapsuleShape2D_ljbj2")
 
 [node name="ArmorComponent" parent="Components" instance=ExtResource("9_hu28v")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b260c")
+}
 
 [connection signal="ui_changed" from="." to="HeadsUpDisplay" method="_on_player_ui_changed"]
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_hunger_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dftd2vf2itifk"]
+[gd_scene load_steps=21 format=3 uid="uid://dftd2vf2itifk"]
 
 [ext_resource type="Script" path="res://core/characters/npc/zombie/zombie.gd" id="1_sy7sg"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://core/components/health_component/health_component.tscn" id="2_d0wex"]
@@ -25,6 +25,59 @@ radius = 141.089
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nq3n4"]
 size = Vector2(10, 16)
 
+[sub_resource type="Animation" id="Animation_vs2xy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vh4ro"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lrd4h"]
+resource_name = "walk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5yp8u"]
+_data = {
+"RESET": SubResource("Animation_vs2xy"),
+"idle": SubResource("Animation_vh4ro"),
+"walk": SubResource("Animation_lrd4h")
+}
+
 [node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "hitbox_component", "idle_state", "follow_state", "alert_state") groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 15
@@ -41,6 +94,8 @@ shape = SubResource("RectangleShape2D_obvnu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_olkfi")
+hframes = 4
+vframes = 2
 
 [node name="Components" type="Node2D" parent="."]
 
@@ -103,3 +158,8 @@ offset_bottom = -8.0
 theme_override_fonts/font = ExtResource("11_aeho0")
 theme_override_font_sizes/font_size = 8
 text = "TEST"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5yp8u")
+}

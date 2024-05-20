@@ -10,6 +10,7 @@ extends Character
 #NOTE Not Critical for Testing
 @onready var state: Label = $Label
 @onready var state_machine: StateMachine = $StateMachine
+@onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	_connect_signals()
@@ -18,10 +19,16 @@ func _ready() -> void:
 
 	
 func _process(_delta: float) -> void:
-	if velocity.x < 0:
-		$Sprite.flip_h = true
-	if velocity.x > 0:
-		$Sprite.flip_h = false
+		
+	if velocity == Vector2.ZERO:
+		_animation_player.play("idle")
+		
+	if velocity != Vector2.ZERO:
+		_animation_player.play("walk")
+		if velocity.x < 0:
+			$Sprite.flip_h = true
+		if velocity.x > 0:
+			$Sprite.flip_h = false
 		
 	state.text = state_machine.current_state.to_string()
 

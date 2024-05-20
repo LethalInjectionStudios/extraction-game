@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bur48tdj8wnns"]
 
 [ext_resource type="PackedScene" uid="uid://c02f4in5i58d0" path="res://core/characters/npc/enemy_base.tscn" id="1_1i4ej"]
-[ext_resource type="Texture2D" uid="uid://bp53jr8o5tel" path="res://core/characters/npc/npc.png" id="2_jqecb"]
+[ext_resource type="Texture2D" uid="uid://dsixkvtw8lynm" path="res://core/characters/npc/military_grunt.png" id="2_b8tsp"]
 [ext_resource type="PackedScene" uid="uid://c8mk0l278efa4" path="res://core/state_machine/enemy/alert.tscn" id="3_bi5e6"]
 [ext_resource type="FontFile" uid="uid://54myjfbrogqp" path="res://font/slkscr.ttf" id="4_g3wto"]
 
@@ -10,7 +10,7 @@ _move_speed = 0.0
 _faction = 4
 
 [node name="Sprite" parent="." index="1"]
-texture = ExtResource("2_jqecb")
+texture = ExtResource("2_b8tsp")
 
 [node name="HitBoxComponent" parent="Components" index="2" node_paths=PackedStringArray("parent")]
 parent = NodePath(".")

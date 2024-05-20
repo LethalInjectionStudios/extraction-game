@@ -7,7 +7,7 @@ signal interacted_with_lootable(player: Player, loot: Lootable)
 
 const MAX_HUNGER: int = 100
 const MAX_THIRST: int = 100
-const FACTION: Globals.Faction = Globals.Faction.PLAYER
+#const FACTION: Globals.Faction = Globals.Faction.PLAYER
 
 var menu_open: bool = false
 
@@ -19,6 +19,7 @@ var _interacting_object : Interactable
 @onready var player_sprite: Sprite2D = $Sprite
 @onready var hunger_timer: Timer = $Timers/HungerTimer
 @onready var thirst_timer: Timer = $Timers/ThirstTimer
+@onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var weapon_component: WeaponComponent = $Components/WeaponComponent
 @onready var health_component: HealthComponent = $Components/HealthComponent
@@ -43,6 +44,12 @@ func _process(_delta: float) -> void:
 	_update_sprites()
 	_get_input()
 	z_index = position.y as int
+	
+	if velocity == Vector2.ZERO:
+		_animation_player.play("idle")
+		
+	if velocity != Vector2.ZERO:
+		_animation_player.play("walk")
 	
 	if not menu_open:
 		move_and_slide()
@@ -136,9 +143,11 @@ func _update_sprites() -> void:
 	if get_global_mouse_position().x < position.x:
 		player_sprite.flip_h = true
 		weapon_component.weapon_sprite.scale.y = Globals.negative_weapon_component_scale
+		weapon_component.weapon_sprite.z_index = player_sprite.z_index - 1
 	else:
 		player_sprite.flip_h = false
 		weapon_component.weapon_sprite.scale.y = Globals.positive_weapon_component_scale
+		weapon_component.weapon_sprite.z_index = player_sprite.z_index + 1
 		
 	weapon_component.weapon_sprite.look_at(get_global_mouse_position())
 
@@ -164,11 +173,14 @@ func unequip_weapon() -> void:
 
 func equip_armor(armor: InventoryItemArmor) -> void:
 	armor_component.equip_armor(armor)
+	var res: Armor = load(armor.item_path) as Armor
+	player_sprite.texture = load(res.character_sprite)
 	ui_changed.emit()
 	
 
 func unequip_armor() -> void:
 	armor_component.unequip_armor()
+	player_sprite.texture = load(_default_character_sprite)
 	ui_changed.emit()
 
 
@@ -279,6 +291,8 @@ func _load_character_data() -> void:
 				
 				if item_data["equipped"]:
 					armor_component.equip_armor(_item_instance)
+					var armor_res: Armor = load(_item_instance.item_path) as Armor
+					player_sprite.texture = load(armor_res.character_sprite)
 					ui_changed.emit()
 
 			if item_data["item_type"] == Globals.Item_Type.CONSUMABLE:

@@ -60,6 +60,8 @@ grow_vertical = 2
 position = Vector2(-107, 0)
 scale = Vector2(15, 15)
 texture = ExtResource("2_5d7hq")
+hframes = 4
+vframes = 2
 
 [node name="WeaponSprite" type="Sprite2D" parent="CanvasLayer/Background/Player/PlayerSprite"]
 position = Vector2(0, 2)

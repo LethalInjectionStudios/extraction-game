@@ -5,12 +5,14 @@
 [resource]
 script = ExtResource("1_tgieg")
 armor_class = 5
+character_sprite = "res://core/characters/npc/military_grunt.png"
 name = "<dev>"
 type = 7
 description = "This is a description for a testing armor"
-sprite = "res://core/items/armor/dev_armor.png"
+icon = "res://core/items/armor/dev_armor.png"
 value = 0
 weight = 0.0
 is_stackable = false
 is_equipable = true
+is_consumable = false
 stack_size = 0
