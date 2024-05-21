@@ -83,7 +83,7 @@ func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 	if weapon:
 		unequip_weapon()
 		
-	#WARNING This is causing issues when equipping an item directly from a lootbox, temporary fix in inventory in place but probably should be fixed
+	#BUG This is causing issues when equipping an item directly from a lootbox, temporary fix in inventory in place but probably should be fixed
 	weapon_removed_from_inventory.emit(_weapon)
 
 	weapon = load(_weapon.item_path) as Weapon
@@ -91,7 +91,7 @@ func equip_weapon(_weapon: InventoryItemWeapon) -> void:
 
 	var _ammo_data: Ammunition = load(_weapon.ammo_type)
 	
-	#WARNING Note for a known bug
+	#BUG Note for a known bug
 	if _ammo_data == null:
 		push_error("Missing ammo type. Check Save File. Weapons currently are not being created with this data
 					This is a known bug to be fixed, for testing manually set ammo type path in save file and
