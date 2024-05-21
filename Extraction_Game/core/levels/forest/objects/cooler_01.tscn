@@ -1,19 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://vala8kv61myo"]
 
 [ext_resource type="PackedScene" uid="uid://bc2dvwv57unpv" path="res://core/common/lootables/random_lootable.tscn" id="1_dfn83"]
-[ext_resource type="Texture2D" uid="uid://d1s3ks0qd8i4r" path="res://core/levels/forest/spritesheets/level_forest.png" id="2_hoqv5"]
+[ext_resource type="Texture2D" uid="uid://frdpxu235l4v" path="res://core/levels/forest/spritesheets/poi_forest_camp.png" id="2_78vc6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cnowi"]
-atlas = ExtResource("2_hoqv5")
-region = Rect2(49, 148, 13, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvp1y"]
+atlas = ExtResource("2_78vc6")
+region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7vi5"]
-size = Vector2(14, 12)
+size = Vector2(13, 10)
 
 [node name="StaticBody2D" instance=ExtResource("1_dfn83")]
+box_name = "Cooler"
 
 [node name="Sprite2D" parent="." index="0"]
-texture = SubResource("AtlasTexture_cnowi")
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_xvp1y")
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.5, -5)
 shape = SubResource("RectangleShape2D_n7vi5")

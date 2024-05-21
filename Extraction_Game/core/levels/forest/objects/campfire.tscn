@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://8lrsny8242gc"]
+
+[ext_resource type="Script" path="res://core/levels/forest/objects/campfire.gd" id="1_dw3pa"]
+[ext_resource type="Texture2D" uid="uid://frdpxu235l4v" path="res://core/levels/forest/spritesheets/poi_forest_camp.png" id="1_jxmkq"]
+[ext_resource type="PackedScene" uid="uid://dcpgt7twsvxna" path="res://core/particles/particles_fire.tscn" id="2_4tq11"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frixt"]
+size = Vector2(14, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51o8o"]
+atlas = ExtResource("1_jxmkq")
+region = Rect2(32, 0, 16, 16)
+
+[node name="Campfire" type="StaticBody2D" node_paths=PackedStringArray("_particle_fire")]
+position = Vector2(16, -4)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_dw3pa")
+_particle_fire = NodePath("Fire")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_frixt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_51o8o")
+
+[node name="Fire" parent="." instance=ExtResource("2_4tq11")]
+position = Vector2(0, 2)
+amount = 100
+emission_sphere_radius = 5.0
+gravity = Vector2(0, -100)
+radial_accel_min = -20.0
+radial_accel_max = -10.0

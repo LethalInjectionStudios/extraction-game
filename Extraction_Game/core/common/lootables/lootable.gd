@@ -5,6 +5,7 @@ extends Interactable
 
 ## if [code]true[/code] Sorting tabs will be shown on the loot menu
 @export var is_sortable: bool
+@export var box_name: String
 
 func _ready() -> void:
 	interactable_type = Globals.Interactable_Type.LOOTABLE

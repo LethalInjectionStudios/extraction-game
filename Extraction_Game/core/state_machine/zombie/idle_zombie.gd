@@ -47,8 +47,9 @@ func set_wait_timer() -> void:
 	
 
 func _actor_entered_nearby(body: Node2D) -> void:
-	if body._faction != parent._faction:
-		transitioned.emit(self, FOLLOW_STATE)
+	if body is Character:
+		if body._faction != parent._faction:
+			transitioned.emit(self, FOLLOW_STATE)
 		
 func _on_actor_alerted(position: Vector2) -> void:
 	alerted.emit(position)

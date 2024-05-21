@@ -5,6 +5,9 @@ extends Lootable
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	z_index = global_position.y
+	print("Cooler z index: ", z_index)
+	
 	if !drops.is_empty():
 		for i: int in range(randi_range(0,5)):
 			var res: Item = load(drops[randi_range(0, drops.size() - 1)])

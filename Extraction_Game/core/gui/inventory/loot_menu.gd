@@ -82,10 +82,10 @@ func _toggle_loot_menu(player: Player, lootbox: Lootable) -> void:
 		
 		if lootbox.is_sortable:
 			_sort_options.visible = true
-			$CanvasLayer/Background/Loot.text = "Stash"
 		else:
 			_sort_options.visible = false
-			$CanvasLayer/Background/Loot.text = "Loot"
+		
+		$CanvasLayer/Background/Loot.text = lootbox.box_name
 			
 		_loot_options.visible = false
 		_player_options.visible = false

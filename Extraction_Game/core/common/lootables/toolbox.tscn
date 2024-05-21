@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ws7gmjpvwuku"]
+
+[ext_resource type="PackedScene" uid="uid://bc2dvwv57unpv" path="res://core/common/lootables/random_lootable.tscn" id="1_d37cm"]
+[ext_resource type="Texture2D" uid="uid://frdpxu235l4v" path="res://core/levels/forest/spritesheets/poi_forest_camp.png" id="2_tabbt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cadn3"]
+atlas = ExtResource("2_tabbt")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqx1w"]
+size = Vector2(16, 5)
+
+[node name="Toolbox" instance=ExtResource("1_d37cm")]
+drops = Array[String]([])
+is_sortable = false
+box_name = ""
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_cadn3")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_bqx1w")

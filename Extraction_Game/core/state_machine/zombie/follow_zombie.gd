@@ -51,8 +51,9 @@ func _find_closest_target() -> void:
 
 
 func _add_nearby_actor(body: Node2D) -> void:
-	if body._faction != parent._faction:
-		nearby_actors[body.name.to_lower()] = body
+	if body is Character:
+		if body._faction != parent._faction:
+			nearby_actors[body.name.to_lower()] = body
 	
 	
 func _remove_nearby_actor(body: Node2D) -> void:
@@ -64,8 +65,9 @@ func _remove_nearby_actor(body: Node2D) -> void:
 	
 		
 func _fight_nearby_actor(body: Node2D) -> void:
-	if body._faction != parent._faction:
-		transitioned.emit(self, ATTACK_STATE)
+	if body is Character:
+		if body._faction != parent._faction:
+			transitioned.emit(self, ATTACK_STATE)
 	
 
 func _connect_signals() -> void:

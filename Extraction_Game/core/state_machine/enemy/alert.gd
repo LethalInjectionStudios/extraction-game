@@ -31,8 +31,9 @@ func physics_update(_delta: float) -> void:
 	
 		
 func _actor_entered_nearby(body: Node2D) -> void:
-	if body._faction != parent._faction:
-		transitioned.emit(self, ENGAGEMENT_STATE)
+	if body is Character:
+		if body._faction != parent._faction:
+			transitioned.emit(self, ENGAGEMENT_STATE)
 	
 	
 func _validate() -> void:
