@@ -1,7 +1,7 @@
 class_name Scenery
 extends StaticBody2D
 
-@onready var sprite: Sprite2D = $Sprite2D
+@export var sprite: Sprite2D
 
 func _ready() -> void:
 	calculate_z_index(global_position.y)

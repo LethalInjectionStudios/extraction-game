@@ -11,8 +11,6 @@ region = Rect2(0, 32, 32, 16)
 size = Vector2(20, 6)
 
 [node name="DuffleBag" instance=ExtResource("1_k6ode")]
-is_sortable = false
-box_name = ""
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -8)

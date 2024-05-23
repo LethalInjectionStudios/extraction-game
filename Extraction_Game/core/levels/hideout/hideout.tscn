@@ -134,6 +134,7 @@ layer_0/tile_data = PackedInt32Array(458756, 0, 0, 458755, 0, 0, 524291, 0, 0, 5
 [node name="Stash" parent="Objects" index="0" instance=ExtResource("4_hp52x")]
 position = Vector2(311, 580)
 is_sortable = true
+box_name = "Stash"
 
 [node name="Bed" parent="Objects" index="1" instance=ExtResource("6_5ifhv")]
 position = Vector2(308, 635)
@@ -824,8 +825,9 @@ metadata/_edit_group_ = true
 position = Vector2(562, 658)
 
 [node name="WeaponsCrate" parent="." index="10" instance=ExtResource("57_a2skr")]
-position = Vector2(421, 611)
+position = Vector2(419, 642)
 drops = Array[String](["res://core/items/armor/dev_armor.tres", "res://core/items/ammunition/resource/_762x39_AP.tres", "res://core/items/weapons/dev/ak47.tres", "res://core/items/ammunition/resource/_762x39_ps.tres", "res://core/items/consumables/ds_nutz.tres"])
+box_name = "Lootbox"
 
 [node name="DPS Check" parent="." index="11" instance=ExtResource("58_nuvlc")]
 visible = false

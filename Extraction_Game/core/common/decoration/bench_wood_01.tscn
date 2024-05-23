@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://e0w4lcjp20mt"]
+
+[ext_resource type="PackedScene" uid="uid://ceyms2cqkbund" path="res://core/common/decoration/decoration.tscn" id="1_urbs2"]
+[ext_resource type="Texture2D" uid="uid://frdpxu235l4v" path="res://core/levels/forest/spritesheets/poi_forest_camp.png" id="2_68kgh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yqu3"]
+atlas = ExtResource("2_68kgh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnwh6"]
+size = Vector2(16, 4)
+
+[node name="Bench_Wood_01" instance=ExtResource("1_urbs2")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_5yqu3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_jnwh6")

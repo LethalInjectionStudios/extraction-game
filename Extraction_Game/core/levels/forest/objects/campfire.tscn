@@ -12,23 +12,22 @@ atlas = ExtResource("1_jxmkq")
 region = Rect2(32, 0, 16, 16)
 
 [node name="Campfire" type="StaticBody2D" node_paths=PackedStringArray("_particle_fire")]
-position = Vector2(16, -4)
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_dw3pa")
 _particle_fire = NodePath("Fire")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4.5)
+position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_frixt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_51o8o")
 
 [node name="Fire" parent="." instance=ExtResource("2_4tq11")]
-position = Vector2(0, 2)
+z_as_relative = false
+position = Vector2(0, -7)
 amount = 100
 emission_sphere_radius = 5.0
 gravity = Vector2(0, -100)
-radial_accel_min = -20.0
-radial_accel_max = -10.0
