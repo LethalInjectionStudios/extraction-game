@@ -32,6 +32,18 @@ func _ready() -> void:
 	weapon.ammo_count = 30
 	
 	weapon_component.equip_weapon(weapon)
+	
+	var armor: InventoryItemArmor = InventoryItemArmor.new()
+	
+	var armor_data: Armor = load("res://core/items/armor/military_bdu.tres") as Armor
+	
+	armor.item_name = armor_data.name
+	armor.item_type = armor_data.type
+	armor.item_path = "res://core/items/armor/military_bdu.tres"
+	
+	sprite.texture = load(armor_data.character_sprite)
+	
+
 
 	
 func _process(_delta: float) -> void:

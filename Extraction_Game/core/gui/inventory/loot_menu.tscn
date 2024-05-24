@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://lnpyq0wr320h"]
+[gd_scene load_steps=5 format=3 uid="uid://lnpyq0wr320h"]
 
 [ext_resource type="Script" path="res://core/gui/inventory/loot_menu.gd" id="1_xit76"]
 [ext_resource type="Texture2D" uid="uid://g61vogbv11e" path="res://core/gui/lootbox.png" id="2_j0uir"]
-[ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://core/characters/player/player.png" id="3_08lla"]
 [ext_resource type="PackedScene" uid="uid://cs8roo38svwit" path="res://core/gui/inventory/inventory_button.tscn" id="4_mfc05"]
 [ext_resource type="PackedScene" uid="uid://cno2fsp8ar0hf" path="res://core/gui/item_description/item_description.tscn" id="5_g5s6l"]
 
@@ -46,8 +45,7 @@ grow_vertical = 2
 [node name="PlayerSprite" type="Sprite2D" parent="CanvasLayer/Background/Player"]
 position = Vector2(720, 292)
 scale = Vector2(15, 15)
-texture = ExtResource("3_08lla")
-hframes = 4
+hframes = 6
 vframes = 2
 
 [node name="WeaponSprite" type="Sprite2D" parent="CanvasLayer/Background/Player/PlayerSprite"]

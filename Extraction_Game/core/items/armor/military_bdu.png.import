@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brav6pjmgim1s"
-path="res://.godot/imported/player.png-6316ef82da5a3b01ea0b87e45a012f4d.ctex"
+uid="uid://c1duvycc8rgwa"
+path="res://.godot/imported/military_bdu.png-9232531546c9cb7d8ed1aaee15c65af5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/characters/player/player.png"
-dest_files=["res://.godot/imported/player.png-6316ef82da5a3b01ea0b87e45a012f4d.ctex"]
+source_file="res://core/items/armor/military_bdu.png"
+dest_files=["res://.godot/imported/military_bdu.png-9232531546c9cb7d8ed1aaee15c65af5.ctex"]
 
 [params]
 
