@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://bjrido4tn0mpu"]
 
 [ext_resource type="Script" path="res://core/characters/player/player.gd" id="1_85rfc"]
-[ext_resource type="Texture2D" uid="uid://deyf3uqcf8s7c" path="res://core/characters/player/player_concept.png" id="2_3ga6w"]
+[ext_resource type="Texture2D" uid="uid://fd21g7s5m2yj" path="res://core/characters/player/player.png" id="2_glvl8"]
 [ext_resource type="PackedScene" uid="uid://bapo66esnpgr5" path="res://core/gui/heads_up_display/heads_up_display.tscn" id="3_deorf"]
 [ext_resource type="PackedScene" uid="uid://cjvu6egrx3dx1" path="res://core/components/weapon_component/weapon_component.tscn" id="4_lsato"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://core/components/health_component/health_component.tscn" id="5_nnvca"]
@@ -88,7 +88,7 @@ shape = SubResource("RectangleShape2D_wvhi0")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("2_3ga6w")
+texture = ExtResource("2_glvl8")
 hframes = 6
 vframes = 2
 
