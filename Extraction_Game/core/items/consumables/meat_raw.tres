@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=2 format=3 uid="uid://o32ced7uts6p"]
+
+[ext_resource type="Script" path="res://core/items/consumables/consumable.gd" id="1_jinmq"]
+
+[resource]
+script = ExtResource("1_jinmq")
+hunger_restoration_amount = 10
+thirst_restoration_amount = 0
+health_restoration_amount = -10
+time_to_use = 0.0
+name = "Raw Meat"
+type = 8
+description = "A raw peice of meat, can help in a tight situation"
+icon = "res://core/items/consumables/sprites/meat_raw.png"
+value = 0
+weight = 0.0
+is_stackable = false
+is_equipable = false
+is_consumable = true
+stack_size = 0

@@ -5,11 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://cs8roo38svwit" path="res://core/gui/inventory/inventory_button.tscn" id="4_mfc05"]
 [ext_resource type="PackedScene" uid="uid://cno2fsp8ar0hf" path="res://core/gui/item_description/item_description.tscn" id="5_g5s6l"]
 
-[node name="LootMenu" type="Control"]
+[node name="LootMenu" type="Control" node_paths=PackedStringArray("_player_sprite")]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_xit76")
+_player_sprite = NodePath("CanvasLayer/Background/Player/PlayerSprite")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false

@@ -22,6 +22,8 @@ enum SORT_STATE {
 
 const INVENTORY_BUTTON: PackedScene = preload("res://core/gui/inventory/inventory_button.tscn")
 
+@export var _player_sprite: Sprite2D
+
 var _is_menu_open: bool = false
 var _lootbox: String
 var _lootbox_inventory: InventoryComponent
@@ -123,7 +125,9 @@ func _setup_signals() -> void:
 	_player_consume.button_down.connect(_on_consume_from_player)
 
 
-func _open_menu() -> void:	
+func _open_menu() -> void:		
+	_player_sprite.texture = _player.player_sprite.texture
+	
 	if _player.weapon_component.weapon:
 		_weapon_sprite.texture = _player.weapon_component.weapon_sprite.texture
 		_equipped_weapon.item = _player.weapon_component._weapon_inventory_item
@@ -137,7 +141,7 @@ func _open_menu() -> void:
 	if _player.armor_component.armor:
 		_equipped_armor.item = _player.armor_component._armor_inventory_item
 		_equipped_armor.icon = load(_equipped_armor.item.item_icon)
-		_armor_durability.value = _equipped_armor.item.durability
+		_armor_durability.value = _equipped_armor.item.durability	
 		_equipped_armor.show()
 	else:
 		_equipped_armor.hide()

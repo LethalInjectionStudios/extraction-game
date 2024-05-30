@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0bjjkatndl8u"]
+[gd_scene load_steps=11 format=3 uid="uid://b0bjjkatndl8u"]
 
 [ext_resource type="PackedScene" uid="uid://dcl4tdb6fvlkp" path="res://core/point_of_interests/poi.tscn" id="1_5w1ih"]
+[ext_resource type="Script" path="res://core/levels/forest/poi/campsite.gd" id="2_dcoy5"]
 [ext_resource type="PackedScene" uid="uid://c10wwolqx5huo" path="res://core/common/decoration/tent_1.tscn" id="3_401am"]
 [ext_resource type="PackedScene" uid="uid://bq3qx3wixwrd0" path="res://core/common/lootables/cooler_01.tscn" id="3_clnaf"]
 [ext_resource type="PackedScene" uid="uid://8lrsny8242gc" path="res://core/levels/forest/objects/campfire.tscn" id="4_qm1j3"]
@@ -12,7 +13,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anhum"]
 size = Vector2(77, 135.25)
 
-[node name="Campsite" instance=ExtResource("1_5w1ih")]
+[node name="Campsite" node_paths=PackedStringArray("lootables") instance=ExtResource("1_5w1ih")]
+script = ExtResource("2_dcoy5")
+lootables = [NodePath("Cooler_01"), NodePath("DuffleBag"), NodePath("Toolbox")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-20.5, 33.375)
@@ -38,3 +41,4 @@ position = Vector2(-18, 54)
 
 [node name="Toolbox" parent="." index="7" instance=ExtResource("8_v13bo")]
 position = Vector2(-48, 0)
+drops = Array[String]([""])

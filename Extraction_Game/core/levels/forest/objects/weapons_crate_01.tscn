@@ -12,7 +12,7 @@ size = Vector2(32, 16)
 
 [node name="WeaponsCrate" instance=ExtResource("1_jc6yx")]
 scale = Vector2(1, 1.00262)
-drops = Array[String](["res://core/items/armor/dev_armor.tres"])
+box_name = "Weapon Crate"
 
 [node name="Sprite2D" parent="." index="0"]
 texture = SubResource("AtlasTexture_n00gb")

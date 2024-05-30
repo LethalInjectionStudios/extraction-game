@@ -10,8 +10,9 @@ size = Vector2(8, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygl2o"]
 size = Vector2(10, 15)
 
-[node name="DPS Check" type="StaticBody2D"]
+[node name="DPS Check" type="StaticBody2D" node_paths=PackedStringArray("hitbox_component")]
 script = ExtResource("1_2i1g5")
+hitbox_component = NodePath("Components/HitBoxComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
