@@ -41,4 +41,3 @@ position = Vector2(-18, 54)
 
 [node name="Toolbox" parent="." index="7" instance=ExtResource("8_v13bo")]
 position = Vector2(-48, 0)
-drops = Array[String]([""])
