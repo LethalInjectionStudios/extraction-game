@@ -8,7 +8,8 @@ enum FireMode {
 enum Caliber {
 	_9MM,
 	_762X39,
-	_762X51NATO
+	_762X51NATO,
+	_556X45NATO
 }
 
 func get_caliber_as_string(caliber: Caliber) -> String:
@@ -21,6 +22,8 @@ func get_caliber_as_string(caliber: Caliber) -> String:
 			caliber_string = "7.62 x 39"
 		Globals.Caliber._762X51NATO:
 			caliber_string = "7.52 x 51 NATO"
+		Globals.Caliber._556X45NATO:
+			caliber_string = "5.56 x 45 NATO"
 	
 	return caliber_string
 	
@@ -34,6 +37,8 @@ func get_ammo_from_caliber(caliber: Caliber) -> String:
 			ammo_path = "res://core/items/ammunition/resource/_762x39_ps.tres"
 		Globals.Caliber._762X51NATO:
 			push_warning("Ammo Path not set for 7.62x39 NATO")
+		Globals.Caliber._556X45NATO:
+			push_warning("Ammo Path not set for 5.56x45 NATO")
 		_:
 			push_warning("Caliber Does not have a case created")
 
