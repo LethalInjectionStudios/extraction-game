@@ -1,5 +1,5 @@
 class_name Interactable
-extends Node
+extends Node2D
 
 var interactable_type: Globals.Interactable_Type
 

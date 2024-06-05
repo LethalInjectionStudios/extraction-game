@@ -119,6 +119,9 @@ func _get_input() -> void:
 		
 	if Input.is_key_pressed(KEY_P):
 		_save()
+		
+	if Input.is_key_pressed(KEY_L):
+		System.print("Player Z Index: {0}, Sprite Z Index: {1}, Y Posiiton: {2}", [z_index, player_sprite.z_index, global_position.y])
 	
 	if Input.is_action_just_pressed("interact"):
 		if _interacting_object:

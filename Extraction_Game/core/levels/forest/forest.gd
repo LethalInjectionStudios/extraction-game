@@ -27,7 +27,8 @@ const SCENERY_OPTIONS: Array[PackedScene] = [
 		]
 				
 const POI_OPTIONS: Array[PackedScene] = [
-			preload("res://core/levels/forest/poi/army_camp.tscn")
+			preload("res://core/levels/forest/poi/army_camp.tscn"),
+			preload("res://core/levels/forest/poi/campsite.tscn")
 		]
 
 func _ready() -> void:
@@ -67,9 +68,14 @@ func generate_world() -> void:
 		scenery.add_child(scenery_instance)
 		scenery_instance.calculate_z_index(scenery_instance.global_position.y)
 
-	var poi_instance: POI = POI_OPTIONS[0].instantiate() as POI
+	var poi_instance: POI = POI_OPTIONS[1].instantiate() as POI
 	poi_instance.position = Vector2(1000,1000)
 	point_of_interests.add_child(poi_instance)
+	
+	
+	var poi_instance2: POI = POI_OPTIONS[0].instantiate() as POI
+	poi_instance2.position = Vector2(1200,1200)
+	point_of_interests.add_child(poi_instance2)
 
 	#var poi_instance2: POI = preload(poi2).instantiate() as POI
 	#poi_instance2.position = Vector2(1000,1000)

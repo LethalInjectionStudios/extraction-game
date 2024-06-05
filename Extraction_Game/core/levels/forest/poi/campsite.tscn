@@ -1,45 +1,43 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0bjjkatndl8u"]
+[gd_scene load_steps=11 format=3 uid="uid://b0bjjkatndl8u"]
 
 [ext_resource type="PackedScene" uid="uid://dcl4tdb6fvlkp" path="res://core/point_of_interests/poi.tscn" id="1_5w1ih"]
-[ext_resource type="Texture2D" uid="uid://d1s3ks0qd8i4r" path="res://core/levels/forest/spritesheets/level_forest.png" id="2_eoed3"]
-[ext_resource type="PackedScene" uid="uid://vala8kv61myo" path="res://core/levels/forest/objects/cooler_01.tscn" id="3_f555w"]
+[ext_resource type="Script" path="res://core/levels/forest/poi/campsite.gd" id="2_dcoy5"]
+[ext_resource type="PackedScene" uid="uid://c10wwolqx5huo" path="res://core/common/decoration/tent_1.tscn" id="3_401am"]
+[ext_resource type="PackedScene" uid="uid://bq3qx3wixwrd0" path="res://core/common/lootables/cooler_01.tscn" id="3_clnaf"]
+[ext_resource type="PackedScene" uid="uid://8lrsny8242gc" path="res://core/levels/forest/objects/campfire.tscn" id="4_qm1j3"]
+[ext_resource type="PackedScene" uid="uid://e0w4lcjp20mt" path="res://core/common/decoration/bench_wood_01.tscn" id="5_8hy7s"]
+[ext_resource type="PackedScene" uid="uid://dsjkt5ilhex2h" path="res://core/common/lootables/duffle_bag.tscn" id="6_qiiap"]
+[ext_resource type="PackedScene" uid="uid://b23wa0xrvncoe" path="res://core/common/decoration/stool_log_01.tscn" id="7_eex56"]
+[ext_resource type="PackedScene" uid="uid://ws7gmjpvwuku" path="res://core/common/lootables/toolbox.tscn" id="8_v13bo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anhum"]
-size = Vector2(70, 65)
+size = Vector2(77, 135.25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hodod"]
-size = Vector2(32, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_en6wk"]
-atlas = ExtResource("2_eoed3")
-region = Rect2(0, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b5s22"]
-atlas = ExtResource("2_eoed3")
-region = Rect2(32, 128, 16, 16)
-
-[node name="Campsite" instance=ExtResource("1_5w1ih")]
+[node name="Campsite" node_paths=PackedStringArray("lootables") instance=ExtResource("1_5w1ih")]
+script = ExtResource("2_dcoy5")
+lootables = [NodePath("Cooler_01"), NodePath("DuffleBag"), NodePath("Toolbox")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(-7, 1)
+position = Vector2(-20.5, 33.375)
 shape = SubResource("RectangleShape2D_anhum")
 
-[node name="Tent" type="StaticBody2D" parent="." index="1"]
+[node name="Cooler_01" parent="." index="1" instance=ExtResource("3_clnaf")]
+position = Vector2(-14, 31)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tent" index="0"]
-position = Vector2(-16, -8.5)
-shape = SubResource("RectangleShape2D_hodod")
+[node name="Tent_01" parent="." index="2" instance=ExtResource("3_401am")]
+position = Vector2(-24, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Tent" index="1"]
-position = Vector2(-16, -16)
-texture = SubResource("AtlasTexture_en6wk")
+[node name="Campfire" parent="." index="3" instance=ExtResource("4_qm1j3")]
+position = Vector2(-42, 51)
 
-[node name="Campfire" type="StaticBody2D" parent="." index="2"]
-position = Vector2(16, -4)
+[node name="Bench_Wood_01" parent="." index="4" instance=ExtResource("5_8hy7s")]
+position = Vector2(-46, 27)
 
-[node name="Sprite2D" type="Sprite2D" parent="Campfire" index="0"]
-position = Vector2(-8, 12)
-texture = SubResource("AtlasTexture_b5s22")
+[node name="DuffleBag" parent="." index="5" instance=ExtResource("6_qiiap")]
+position = Vector2(2, 0)
 
-[node name="StaticBody2D" parent="." index="3" instance=ExtResource("3_f555w")]
-position = Vector2(-25, 6)
+[node name="Stool_Log_01" parent="." index="6" instance=ExtResource("7_eex56")]
+position = Vector2(-18, 54)
+
+[node name="Toolbox" parent="." index="7" instance=ExtResource("8_v13bo")]
+position = Vector2(-48, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1xb8ky4ou37o"
-path="res://.godot/imported/bandage.png-ab5b3e2d9c32a0ec2401f220fbb7c1bb.ctex"
+uid="uid://i1exavlo2fth"
+path="res://.godot/imported/n16.png-881f7d86d2f528bcdc0c5874987608f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/items/consumables/bandage.png"
-dest_files=["res://.godot/imported/bandage.png-ab5b3e2d9c32a0ec2401f220fbb7c1bb.ctex"]
+source_file="res://core/items/weapons/automatic_rifles/n16.png"
+dest_files=["res://.godot/imported/n16.png-881f7d86d2f528bcdc0c5874987608f4.ctex"]
 
 [params]
 

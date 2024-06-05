@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://miigpbg6n0xu"]
+[gd_scene load_steps=5 format=3 uid="uid://miigpbg6n0xu"]
 
 [ext_resource type="Script" path="res://core/gui/inventory/inventory_ui.gd" id="1_od8su"]
-[ext_resource type="Texture2D" uid="uid://brav6pjmgim1s" path="res://core/characters/player/player.png" id="2_5d7hq"]
 [ext_resource type="Texture2D" uid="uid://bxak47y1oog61" path="res://core/gui/inventory/inventory.png" id="2_ic7ra"]
 [ext_resource type="PackedScene" uid="uid://cs8roo38svwit" path="res://core/gui/inventory/inventory_button.tscn" id="4_f5bdh"]
 [ext_resource type="PackedScene" uid="uid://cno2fsp8ar0hf" path="res://core/gui/item_description/item_description.tscn" id="5_rl3q4"]
@@ -59,8 +58,7 @@ grow_vertical = 2
 [node name="PlayerSprite" type="Sprite2D" parent="CanvasLayer/Background/Player"]
 position = Vector2(-107, 0)
 scale = Vector2(15, 15)
-texture = ExtResource("2_5d7hq")
-hframes = 4
+hframes = 6
 vframes = 2
 
 [node name="WeaponSprite" type="Sprite2D" parent="CanvasLayer/Background/Player/PlayerSprite"]
@@ -129,15 +127,13 @@ offset_right = 345.0
 offset_bottom = 681.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Background/Health"]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Health"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Background/Health"]
-layout_mode = 2
-
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Background/Health"]
 modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -152,16 +148,14 @@ offset_right = 345.0
 offset_bottom = 704.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Background/Hunger"]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Hunger
 "
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Background/Hunger"]
-layout_mode = 2
-
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Background/Hunger"]
 modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -176,15 +170,13 @@ offset_right = 345.0
 offset_bottom = 727.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Background/Thirst"]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Thirst   "
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Background/Thirst"]
-layout_mode = 2
-
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Background/Thirst"]
 modulate = Color(0, 0, 1, 1)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4

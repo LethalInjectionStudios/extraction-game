@@ -56,7 +56,7 @@
 [ext_resource type="PackedScene" uid="uid://cvtjpl21ndvp5" path="res://core/levels/hideout/objects/innkeeper/inn_spoon.tscn" id="54_76xdm"]
 [ext_resource type="PackedScene" uid="uid://ssw8i5gxbaog" path="res://core/levels/hideout/objects/innkeeper/alcohol_full_01.tscn" id="55_qmglg"]
 [ext_resource type="PackedScene" uid="uid://mxcebnpiwrls" path="res://core/levels/hideout/objects/innkeeper/alcohol_full_02.tscn" id="56_n2p86"]
-[ext_resource type="PackedScene" uid="uid://cmbet5yq7ojww" path="res://core/levels/forest/objects/weapons_crate_01.tscn" id="57_a2skr"]
+[ext_resource type="PackedScene" uid="uid://bq3qx3wixwrd0" path="res://core/common/lootables/cooler_01.tscn" id="58_i3tyb"]
 [ext_resource type="PackedScene" uid="uid://bhjllj36ujv0t" path="res://core/characters/npc/dps_check/dps_check.tscn" id="58_nuvlc"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fqjiv"]
@@ -134,6 +134,7 @@ layer_0/tile_data = PackedInt32Array(458756, 0, 0, 458755, 0, 0, 524291, 0, 0, 5
 [node name="Stash" parent="Objects" index="0" instance=ExtResource("4_hp52x")]
 position = Vector2(311, 580)
 is_sortable = true
+box_name = "Stash"
 
 [node name="Bed" parent="Objects" index="1" instance=ExtResource("6_5ifhv")]
 position = Vector2(308, 635)
@@ -823,12 +824,12 @@ metadata/_edit_group_ = true
 [node name="Marker2D" type="Marker2D" parent="SpawnPoints" index="0"]
 position = Vector2(562, 658)
 
-[node name="WeaponsCrate" parent="." index="10" instance=ExtResource("57_a2skr")]
-position = Vector2(421, 611)
-drops = Array[String](["res://core/items/armor/dev_armor.tres", "res://core/items/ammunition/resource/_762x39_AP.tres", "res://core/items/weapons/dev/ak47.tres", "res://core/items/ammunition/resource/_762x39_ps.tres", "res://core/items/consumables/ds_nutz.tres"])
-
-[node name="DPS Check" parent="." index="11" instance=ExtResource("58_nuvlc")]
+[node name="DPS Check" parent="." index="10" instance=ExtResource("58_nuvlc")]
 visible = false
 position = Vector2(708, 459)
+
+[node name="Cooler_01" parent="." index="11" instance=ExtResource("58_i3tyb")]
+position = Vector2(427, 637)
+drops = Array[String](["res://core/items/weapons/automatic_rifles/n16.tres", "res://core/items/consumables/ds_nutz.tres"])
 
 [connection signal="body_entered" from="Exit" to="." method="_on_area_2d_body_entered"]

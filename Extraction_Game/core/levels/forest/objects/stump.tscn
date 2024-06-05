@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnlvfjjrq1ifl"]
+
+[ext_resource type="Texture2D" uid="uid://frdpxu235l4v" path="res://core/levels/forest/spritesheets/poi_forest_camp.png" id="1_m7mki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlwcv"]
+atlas = ExtResource("1_m7mki")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7lce"]
+size = Vector2(8, 6)
+
+[node name="Stump" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_wlwcv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_i7lce")

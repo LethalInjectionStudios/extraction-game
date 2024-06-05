@@ -5,6 +5,8 @@ extends Lootable
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super._ready()
+	
 	if !drops.is_empty():
 		for i: int in range(randi_range(0,5)):
 			var res: Item = load(drops[randi_range(0, drops.size() - 1)])

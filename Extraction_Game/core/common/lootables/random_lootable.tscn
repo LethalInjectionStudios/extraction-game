@@ -5,4 +5,4 @@
 
 [node name="StaticBody2D" instance=ExtResource("1_dbbh1")]
 script = ExtResource("2_dmf0e")
-drops = Array[String](["res://resources/weapons/dev/ak47.tres", "res://resources/weapons/dev/barrettM82.tres"])
+drops = Array[String]([])

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_tgieg")
 armor_class = 5
-character_sprite = "res://core/characters/npc/military_grunt.png"
+character_sprite = "res://core/items/armor/military_bdu.png"
 name = "<dev>"
 type = 7
 description = "This is a description for a testing armor"

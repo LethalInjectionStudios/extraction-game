@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://b1484vcjlwk68"]
+
+[ext_resource type="Script" path="res://core/items/armor/armor.gd" id="1_jqlaa"]
+
+[resource]
+script = ExtResource("1_jqlaa")
+armor_class = 0
+character_sprite = "res://core/items/armor/military_bdu.png"
+name = "Military BDU"
+type = 7
+description = "Standard Issue Military BDU"
+icon = "res://core/items/armor/dev_armor.png"
+value = 0
+weight = 0.0
+is_stackable = false
+is_equipable = true
+is_consumable = false
+stack_size = 0

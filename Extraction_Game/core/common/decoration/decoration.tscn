@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceyms2cqkbund"]
+
+[ext_resource type="Script" path="res://core/common/decoration/decoration.gd" id="1_fu4nq"]
+
+[node name="Decoration" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_fu4nq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b23wa0xrvncoe"]
+
+[ext_resource type="PackedScene" uid="uid://ceyms2cqkbund" path="res://core/common/decoration/decoration.tscn" id="1_ey5fw"]
+[ext_resource type="Texture2D" uid="uid://frdpxu235l4v" path="res://core/levels/forest/spritesheets/poi_forest_camp.png" id="2_i3uci"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1sb5"]
+atlas = ExtResource("2_i3uci")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kexwa"]
+size = Vector2(10, 5)
+
+[node name="Stool_Log_01" instance=ExtResource("1_ey5fw")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_x1sb5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_kexwa")
