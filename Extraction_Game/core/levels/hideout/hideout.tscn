@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dgx3nex6k6fbw"]
+[gd_scene load_steps=64 format=3 uid="uid://dgx3nex6k6fbw"]
 
 [ext_resource type="PackedScene" uid="uid://rgumhnym5ugn" path="res://core/levels/level.tscn" id="1_rl74n"]
 [ext_resource type="Script" path="res://core/levels/hideout/hideout.gd" id="2_btv65"]
@@ -56,6 +56,7 @@
 [ext_resource type="PackedScene" uid="uid://cvtjpl21ndvp5" path="res://core/levels/hideout/objects/innkeeper/inn_spoon.tscn" id="54_76xdm"]
 [ext_resource type="PackedScene" uid="uid://ssw8i5gxbaog" path="res://core/levels/hideout/objects/innkeeper/alcohol_full_01.tscn" id="55_qmglg"]
 [ext_resource type="PackedScene" uid="uid://mxcebnpiwrls" path="res://core/levels/hideout/objects/innkeeper/alcohol_full_02.tscn" id="56_n2p86"]
+[ext_resource type="PackedScene" uid="uid://bq3qx3wixwrd0" path="res://core/common/lootables/cooler_01.tscn" id="58_i3tyb"]
 [ext_resource type="PackedScene" uid="uid://bhjllj36ujv0t" path="res://core/characters/npc/dps_check/dps_check.tscn" id="58_nuvlc"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fqjiv"]
@@ -826,5 +827,9 @@ position = Vector2(562, 658)
 [node name="DPS Check" parent="." index="10" instance=ExtResource("58_nuvlc")]
 visible = false
 position = Vector2(708, 459)
+
+[node name="Cooler_01" parent="." index="11" instance=ExtResource("58_i3tyb")]
+position = Vector2(427, 637)
+drops = Array[String](["res://core/items/weapons/automatic_rifles/n16.tres", "res://core/items/consumables/ds_nutz.tres"])
 
 [connection signal="body_entered" from="Exit" to="." method="_on_area_2d_body_entered"]

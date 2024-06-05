@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://wmj7conqb4en"]
+
+[ext_resource type="Script" path="res://core/items/weapons/weapon.gd" id="1_a1dt0"]
+
+[resource]
+script = ExtResource("1_a1dt0")
+damage = 35
+rate_of_fire = 0.07
+magazine_size = 30
+firing_mode = 1
+caliber = 1
+sound = 0
+stock_position = Vector2(0, 0)
+grip_position = Vector2(0, 0)
+barrel_position = Vector2(0, 0)
+muzzle_position = Vector2(0, 0)
+magazine_position = Vector2(0, 0)
+scope_position = Vector2(0, 0)
+light_position = Vector2(0, 0)
+name = "N-16"
+type = 1
+description = "Standard issue rifle for the Green Army"
+icon = "res://core/items/weapons/automatic_rifles/n16.png"
+value = 0
+weight = 0.0
+is_stackable = false
+is_equipable = true
+is_consumable = false
+stack_size = 0
