@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb0w6nd15sr2j"
-path="res://.godot/imported/mock17.png-953a4b749412fadc180833b63fbd9ed3.ctex"
+uid="uid://cx6n785kb46xk"
+path="res://.godot/imported/makarol.png-52ee496e7a6c81a9a1b86ddc5ffac9e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/items/weapons/automatic_rifles/mock17.png"
-dest_files=["res://.godot/imported/mock17.png-953a4b749412fadc180833b63fbd9ed3.ctex"]
+source_file="res://core/items/weapons/automatic_rifles/makarol.png"
+dest_files=["res://.godot/imported/makarol.png-52ee496e7a6c81a9a1b86ddc5ffac9e0.ctex"]
 
 [params]
 
