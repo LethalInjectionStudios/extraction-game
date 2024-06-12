@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxqwkng5l0mh8"
-path="res://.godot/imported/RPG7.png-db958cb77fc86774bccecabea23c3d2e.ctex"
+uid="uid://dhcas78j6726u"
+path="res://.godot/imported/lh15.png-a129843833e85885b92f38332b806cbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/items/weapons/doughnutdevguns/RPG7.png"
-dest_files=["res://.godot/imported/RPG7.png-db958cb77fc86774bccecabea23c3d2e.ctex"]
+source_file="res://core/items/weapons/semi_automatic_rifles/lh15.png"
+dest_files=["res://.godot/imported/lh15.png-a129843833e85885b92f38332b806cbf.ctex"]
 
 [params]
 

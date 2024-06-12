@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwr3ipt3685ex"
-path="res://.godot/imported/FNP90.png-a9be9ba03b5c307210f76624f9851b29.ctex"
+uid="uid://cdsiud4hb5hs6"
+path="res://.godot/imported/n9.png-8b683852808e8df8839ac9ff3ad3a029.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/items/weapons/doughnutdevguns/FNP90.png"
-dest_files=["res://.godot/imported/FNP90.png-a9be9ba03b5c307210f76624f9851b29.ctex"]
+source_file="res://core/items/weapons/pistols/n9.png"
+dest_files=["res://.godot/imported/n9.png-8b683852808e8df8839ac9ff3ad3a029.ctex"]
 
 [params]
 

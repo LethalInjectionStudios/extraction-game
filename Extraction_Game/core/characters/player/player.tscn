@@ -75,7 +75,6 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("armor_component") groups=["Character"]]
-scale = Vector2(0.991289, 1.0267)
 collision_mask = 31
 script = ExtResource("1_85rfc")
 armor_component = NodePath("Components/ArmorComponent")
