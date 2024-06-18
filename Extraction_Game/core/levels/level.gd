@@ -7,6 +7,7 @@ const PLAYER: PackedScene = preload("res://core/characters/player/player.tscn")
 @onready var inventory_ui: InventoryUI = $Menu/Inventory
 @onready var lootbox_ui: LootMenu = $Menu/LootMenu
 @onready var spawn_points: Node2D = $SpawnPoints
+@onready var logger: Logger = $Menu/Logger
 
 var _player: Player
 
@@ -15,6 +16,7 @@ func _ready() -> void:
 	add_child(_player)
 	var _spawn_point: Node = spawn_points.get_child(randi() % spawn_points.get_child_count())
 	_player.global_position = _spawn_point.global_position
+	
 
 	_player._in_raid = true
 
@@ -26,6 +28,7 @@ func _connect_signals() -> void:
 	_player.connect("inventory_toggled", inventory_ui._toggle_inventory_menu)
 	_player.connect("interacted_with_lootable", lootbox_ui._toggle_loot_menu)
 	_player.connect("ui_changed", _player.ui.update_display)
+	_player.toggle_log.connect(_on_toggle_log)
 
 	inventory_ui.connect("weapon_equipped", _player.equip_weapon)
 	inventory_ui.connect("weapon_unequipped", _player.unequip_weapon)
@@ -70,6 +73,10 @@ func _on_menu_opened() -> void:
 
 func _on_menu_closed() -> void:
 	_player.menu_open = false
+	
+
+func _on_toggle_log() -> void:
+	logger.toggle_log()
 
 
 func _on_item_moved_player_lootbox(lootbox: String, item: InventoryItem) -> void:

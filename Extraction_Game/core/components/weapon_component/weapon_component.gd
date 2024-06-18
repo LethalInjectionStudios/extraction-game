@@ -73,6 +73,7 @@ func fire_weapon(target: Vector2) -> void:
 			rate_of_fire_timer.start()
 			noise_emitted.emit(global_position)
 			_create_bullet(target)
+			System.log("Weapon fired: {0}", [global_position])
 
 		else:
 			if not empty_magazine_audio.playing:

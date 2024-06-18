@@ -22,20 +22,22 @@ func damage(projectile: Projectile) -> void:
 	if armor and _armor_inventory_item.status != Globals.Armor_Status.BROKEN:
 		var penetration_modifer: int = projectile.armor_penetration - armor.armor_class * 10
 		if _armor_inventory_item.status == Globals.Armor_Status.DAMAGED:
-			print("Armor Broken")
+			System.log("Armor Broken")
 			penetration_modifer += 15
 		if clamp((randi_range(0, 100) + penetration_modifer), 10, 90) >= 50:
 			_armor_inventory_item.durability -= (projectile.damage * .25)
 			net_damage_taken.emit(projectile.damage)
+			System.log("Penetrated")
 		else:
 			_armor_inventory_item.durability -= (projectile.damage * .15)
+			System.log("defelcted")
 		
-		print(_armor_inventory_item.durability)		
+		System.log(str(_armor_inventory_item.durability))		
 		_check_armor_status()
 		
 	else:
 		net_damage_taken.emit(projectile.damage)
-		print("No Armor")
+		System.log("No Armor")
 			
 	
 func equip_armor(new_armor: InventoryItemArmor) -> void:

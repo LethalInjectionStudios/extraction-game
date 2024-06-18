@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 func setup(base_damage: int, bullet: Ammunition, 
 			spawn_position: Vector2, spawn_rotation: float, direction_fired: Vector2, ) -> void:
 	damage = base_damage + (base_damage * bullet.damage_modifier)
-	armor_penetration = bullet.penetration
+	armor_penetration = bullet.armor_penetration
 	global_position = spawn_position
 	global_rotation = spawn_rotation
 	direction = direction_fired

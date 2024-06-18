@@ -40,6 +40,9 @@ func _ready() -> void:
 	armor.item_name = armor_data.name
 	armor.item_type = armor_data.type
 	armor.item_path = "res://core/items/armor/military_bdu.tres"
+	armor.durability = 100
+	
+	armor_component.equip_armor(armor)
 	
 	sprite.texture = load(armor_data.character_sprite)
 	

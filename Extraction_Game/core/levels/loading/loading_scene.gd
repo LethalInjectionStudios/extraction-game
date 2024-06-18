@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 		#$Timer.start(1)
 		#is_loaded = true
 		var packed_scene: PackedScene = ResourceLoader.load_threaded_get(Globals.next_scene)
-		System.print(Globals.next_scene)
+		System.log(Globals.next_scene)
 		get_tree().change_scene_to_packed(packed_scene)
 		
 		

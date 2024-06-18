@@ -55,7 +55,7 @@ func Show(item: InventoryItem) -> void:
 		Globals.Item_Type.AMMO:
 			var _ammo: Ammunition = _data as Ammunition
 			_description.visible = false
-			_armor_penetration.value = _ammo.penetration
+			_armor_penetration.value = _ammo.armor_penetration
 			_ammunition.visible = true
 		Globals.Item_Type.WEAPON:
 			var _weapon: Weapon = _data as Weapon

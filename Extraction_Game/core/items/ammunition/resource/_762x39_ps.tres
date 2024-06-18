@@ -5,15 +5,15 @@
 [resource]
 script = ExtResource("1_17cnv")
 caliber = 1
-penetration = 60
-damage_modifier = 0
+armor_penetration = 0
+damage_modifier = 2
 accuracy_modifier = 0
 recoil_modifier = 0
-durability_penalty = 0
+durability_burn = 0
 sound_modifier = 0
 name = "7.62x39 PS"
 type = 2
-description = "Standard 7.26x39 round with no inheriant bonuses"
+description = "Standard 7.26x39 round with no inherent bonuses"
 icon = "res://core/items/ammunition/sprites/bullet.png"
 value = 0
 weight = 0.001

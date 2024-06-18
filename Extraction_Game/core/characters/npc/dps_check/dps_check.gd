@@ -13,4 +13,4 @@ func _validate() -> void:
 		
 
 func _on_actor_hit(projectile: Projectile) -> void:
-	System.print("{0} hit with {1} damage", [self, projectile.damage])
+	System.log("{0} hit with {1} damage", [self, projectile.damage])
