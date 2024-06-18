@@ -1,4 +1,12 @@
-	var file: FileAccess = FileAccess.open("C:\\Users\\jeffr\\OneDrive\\Desktop\\Items - Weapons.csv", FileAccess.READ)
+@tool
+extends Control
+
+# Do NOT change the order of the columns in the csv file or this will break
+
+@onready var file_path: TextEdit = $"VBoxContainer/File Path"
+
+func _on_import_button_down() -> void:
+	var file: FileAccess = FileAccess.open(file_path.text, FileAccess.READ)
 	if file:
 		var counter: int = 0
 		while file.get_position() < file.get_length():
@@ -6,13 +14,7 @@
 			var item: PackedStringArray = content.split(",")
 			if counter == 1:
 				var res: Weapon = load(item[3]) as Weapon
-				print(res.name)
-				res.name = 'test'
+				res.name = item[0]
 				print(res.name)
 				ResourceSaver.save(res)
 			counter += 1
-			
-			
-			
-			
-/home/jeffrey/Desktop/Weapons.csv
