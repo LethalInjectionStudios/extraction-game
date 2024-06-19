@@ -6,24 +6,29 @@ enum FireMode {
 }
 
 enum Caliber {
-	_9MM,
-	_762X39,
-	_762X51NATO,
-	_556X45NATO
+	MISSING,
+	_762x39,
+	_9x18,
+	_9x19,
+	_57x28,
+	_545x39,
+	_556x45,
+	_762x25,
+	_12GAUGE
 }
 
 func get_caliber_as_string(caliber: Caliber) -> String:
 	var caliber_string: String = String()
 	
-	match caliber:
-		Globals.Caliber._9MM:
-			caliber_string = "9mm"
-		Globals.Caliber._762X39:
-			caliber_string = "7.62 x 39"
-		Globals.Caliber._762X51NATO:
-			caliber_string = "7.52 x 51 NATO"
-		Globals.Caliber._556X45NATO:
-			caliber_string = "5.56 x 45 NATO"
+	#match caliber:
+		#Globals.Caliber._9MM:
+			#caliber_string = "9mm"
+		#Globals.Caliber._762X39:
+			#caliber_string = "7.62 x 39"
+		#Globals.Caliber._762X51NATO:
+			#caliber_string = "7.52 x 51 NATO"
+		#Globals.Caliber._556X45NATO:
+			#caliber_string = "5.56 x 45 NATO"
 	
 	return caliber_string
 	
@@ -31,14 +36,14 @@ func get_ammo_from_caliber(caliber: Caliber) -> String:
 	var ammo_path: String = String()
 	
 	match caliber:
-		Globals.Caliber._9MM:
-			push_warning("Ammo Path not set for 9mm")
-		Globals.Caliber._762X39:
-			ammo_path = "res://core/items/ammunition/resource/_762x39_ps.tres"
-		Globals.Caliber._762X51NATO:
-			push_warning("Ammo Path not set for 7.62x39 NATO")
-		Globals.Caliber._556X45NATO:
-			push_warning("Ammo Path not set for 5.56x45 NATO")
+		#Globals.Caliber._9MM:
+			#push_warning("Ammo Path not set for 9mm")
+		#Globals.Caliber._762X39:
+			#ammo_path = "res://core/items/ammunition/resource/_762x39_ps.tres"
+		#Globals.Caliber._762X51NATO:
+			#push_warning("Ammo Path not set for 7.62x39 NATO")
+		#Globals.Caliber._556X45NATO:
+			#push_warning("Ammo Path not set for 5.56x45 NATO")
 		_:
 			push_warning("Caliber Does not have a case created")
 
