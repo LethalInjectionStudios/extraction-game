@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bb0w6nd15sr2j"
-path="res://.godot/imported/mock17.png-279a9c7797fcf36297e78bdf8d1555b0.ctex"
+path="res://.godot/imported/mok17.png-44bd8f1ca98ae9858a523c07d9eedf1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/items/weapons/pistols/mock17.png"
-dest_files=["res://.godot/imported/mock17.png-279a9c7797fcf36297e78bdf8d1555b0.ctex"]
+source_file="res://core/items/weapons/pistols/mok17.png"
+dest_files=["res://.godot/imported/mok17.png-44bd8f1ca98ae9858a523c07d9eedf1a.ctex"]
 
 [params]
 

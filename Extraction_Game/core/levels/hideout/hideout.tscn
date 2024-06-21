@@ -39,7 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://db7jn221bt0p5" path="res://core/items/weapons/pistols/makarol.png" id="37_6bmwo"]
 [ext_resource type="Texture2D" uid="uid://bprjxsj2te0qx" path="res://core/items/weapons/automatic_rifles/jk74.png" id="38_f7gx5"]
 [ext_resource type="Texture2D" uid="uid://p2tkjv5a8xcx" path="res://core/items/weapons/submachine/seb90.png" id="39_qdwr6"]
-[ext_resource type="Texture2D" uid="uid://bb0w6nd15sr2j" path="res://core/items/weapons/pistols/mock17.png" id="40_b13qd"]
+[ext_resource type="Texture2D" uid="uid://bb0w6nd15sr2j" path="res://core/items/weapons/pistols/mok17.png" id="40_ph300"]
 [ext_resource type="Texture2D" uid="uid://bswv5a30j37fd" path="res://core/items/weapons/submachine/fp7.png" id="41_4wbsl"]
 [ext_resource type="Texture2D" uid="uid://i1exavlo2fth" path="res://core/items/weapons/automatic_rifles/n16.png" id="42_nn506"]
 [ext_resource type="PackedScene" uid="uid://b0n68okydvgrn" path="res://core/levels/hideout/objects/arms_dealer/armsDealer_gunSafe_01.tscn" id="43_js8fc"]
@@ -404,7 +404,7 @@ texture = ExtResource("39_qdwr6")
 [node name="Mock17" type="Sprite2D" parent="Scenery/ArmsDealer" index="15"]
 position = Vector2(654, 505)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("40_b13qd")
+texture = ExtResource("40_ph300")
 
 [node name="FP7" type="Sprite2D" parent="Scenery/ArmsDealer" index="16"]
 position = Vector2(667, 505)
@@ -831,7 +831,7 @@ position = Vector2(708, 459)
 
 [node name="Cooler_01" parent="." index="11" instance=ExtResource("58_i3tyb")]
 position = Vector2(427, 637)
-drops = Array[String](["res://core/items/weapons/automatic_rifles/jk47.tres", "res://core/items/ammunition/resource/_762x39_ps.tres", "res://core/items/ammunition/resource/_762x39_HP.tres", "res://core/items/ammunition/resource/_762x39_AP.tres"])
+drops = Array[String](["res://core/items/weapons/automatic_rifles/jk47.tres", "res://core/items/ammunition/resource/762x39_BP.tres", "res://core/items/ammunition/resource/762x39_HP.tres", "res://core/items/ammunition/resource/762x39_PS.tres", "res://core/items/ammunition/resource/762x39_SUBSONIC.tres", "res://core/items/armor/military_bdu.tres"])
 
 [node name="Enemy Base" parent="." index="12" instance=ExtResource("59_whyj5")]
 position = Vector2(629, 628)

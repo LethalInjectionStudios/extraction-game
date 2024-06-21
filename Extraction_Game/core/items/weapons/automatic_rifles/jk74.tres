@@ -1,18 +1,18 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://co0k22451ywn6"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://yumtudwiaetk"]
 
-[ext_resource type="Script" path="res://core/items/weapons/weapon.gd" id="1_110ii"]
+[ext_resource type="Script" path="res://core/items/weapons/weapon.gd" id="1_86vcf"]
 
 [resource]
-script = ExtResource("1_110ii")
-damage = 20
+script = ExtResource("1_86vcf")
+damage = 22
 accuracy = 1
 recoil = 1
 ergonomics = 1
 sound = 1
-rate_of_fire = 0.1
-caliber = 1
-firing_mode = 1
-magazine_size = 30
+rate_of_fire = 0.09
+caliber = 5
+firing_mode = 0
+magazine_size = 0
 stock_swappable = true
 stock_required = false
 stock_position = Vector2(0, 0)
@@ -31,16 +31,16 @@ magazine_position = Vector2(0, 0)
 muzzle_swappable = false
 muzzle_required = false
 muzzle_position = Vector2(0, 0)
-scope_swappable = true
-scope_required = false
+scope_swappable = false
+scope_required = true
 scope_position = Vector2(0, 0)
-name = "JK-47"
+name = "JK-74"
 type = 1
-description = "Standard issue rifle for the Red Army"
-icon = "res://core/items/weapons/automatic_rifles/jk74.png"
+description = ""
+icon = ""
 value = 0
-weight = 3.47
+weight = 3.07
 is_stackable = false
-is_equipable = true
+is_equipable = false
 is_consumable = false
 stack_size = 0

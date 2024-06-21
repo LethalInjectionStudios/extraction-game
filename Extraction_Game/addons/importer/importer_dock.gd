@@ -42,21 +42,37 @@ func _import_weapons() -> void:
 					integrity_check += 1
 				
 				if item[3] != "":					
-					var res: Weapon = load(item[3]) as Weapon
+					var weapon: Weapon = load(item[3]) as Weapon
 										
-					res.name = item[0]
-					res.damage = item[4] as int
-					res.accuracy = item[5] as int
-					res.recoil = item[6] as int
-					res.ergonomics = item[7] as int
-					res.sound = item[8] as int
-					res.rate_of_fire = item[9] as float
-					res.caliber = _get_caliber_from_string(item[10])
-					if res.caliber == Globals.Caliber.MISSING:
+					weapon.name = item[0]
+					weapon.type = Globals.Item_Type.WEAPON
+					
+					weapon.damage = item[4] as int
+					weapon.accuracy = item[5] as int
+					weapon.recoil = item[6] as int
+					weapon.ergonomics = item[7] as int
+					weapon.sound = item[8] as int
+					weapon.rate_of_fire = item[9] as float
+					weapon.caliber = _get_caliber_from_string(item[10])
+					if weapon.caliber == Globals.Caliber.MISSING:
 						push_error("Row ", counter + 1, " Missing Caliber, _get_caliber_from_string() likely out of sync")
-					res.weight = item[11] as float
-					ResourceSaver.save(res)
-					print(res.name, " has been successfully updated")
+					weapon.weight = item[11] as float
+					weapon.stock_swappable = _parse_bool(item[13])
+					weapon.stock_required = _parse_bool(item[14])
+					weapon.handguard_swappable = _parse_bool(item[15])
+					weapon.handguard_required = _parse_bool(item[16])
+					weapon.grip_swappable = _parse_bool(item[17])
+					weapon.grip_required = _parse_bool(item[18])
+					weapon.barrel_swappable = _parse_bool(item[19])
+					weapon.barrel_required = _parse_bool(item[20])
+					weapon.magazine_swappable = _parse_bool(item[21])
+					weapon.magazine_required = _parse_bool(item[22])
+					weapon.muzzle_required = _parse_bool(item[23])
+					weapon.muzzle_required = _parse_bool(item[24])
+					weapon.scope_swappable = _parse_bool(item[25])
+					weapon.scope_required = _parse_bool(item[26])
+					ResourceSaver.save(weapon)
+					print(weapon.name, " has been successfully updated")
 				else:
 					push_error("Row ", counter + 1, " missing file path")				
 			counter += 1
@@ -81,17 +97,20 @@ func _import_ammo() -> void:
 					integrity_check += 1
 				
 				if item[1] != "":
-					var res: Ammunition = load(item[1]) as Ammunition
+					var ammo: Ammunition = load(item[1]) as Ammunition
+					print(item[0])
 					
-					res.name = item[0]
-					res.caliber = _get_caliber_from_string(item[2])
-					res.weight = item[3] as float
-					res.armor_penetration = item[4] as int
-					res.damage_modifier = item[5] as int
-					res.accuracy_modifier = item[6] as int
-					res.recoil_modifier = item[7] as int
-					res.durability_burn = item[8] as float
-					res.sound_modifier = item[9] as int
+					ammo.name = item[0]
+					ammo.type = Globals.Item_Type.AMMO
+					ammo.caliber = _get_caliber_from_string(item[2])
+					ammo.weight = item[3] as float
+					ammo.armor_penetration = item[4] as int
+					ammo.damage_modifier = item[5] as int
+					ammo.accuracy_modifier = item[6] as int
+					ammo.recoil_modifier = item[7] as int
+					ammo.durability_burn = item[8] as float
+					ammo.sound_modifier = item[9] as int
+					ResourceSaver.save(ammo)
 			counter += 1
 
 					
@@ -116,3 +135,14 @@ func _get_caliber_from_string(caliber: String) -> Globals.Caliber:
 		_:
 			return Globals.Caliber.MISSING
 	
+
+func _parse_bool(bool_string: String) -> bool:
+	var result: bool
+	
+	match bool_string:
+		"TRUE":
+			result = true
+		"FALSE":
+			result = false
+			
+	return result

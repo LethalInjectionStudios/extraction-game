@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ammunition" load_steps=2 format=3 uid="uid://sarvgpqhxv8u"]
+
+[ext_resource type="Script" path="res://core/items/ammunition/resource/ammunition.gd" id="1_joqy6"]
+
+[resource]
+script = ExtResource("1_joqy6")
+caliber = 5
+armor_penetration = 12
+damage_modifier = 18
+accuracy_modifier = 0
+recoil_modifier = 0
+durability_burn = 0
+sound_modifier = 0
+name = "5.45 x 39 HP"
+type = 2
+description = ""
+icon = ""
+value = 0
+weight = 0.01
+is_stackable = false
+is_equipable = false
+is_consumable = false
+stack_size = 0

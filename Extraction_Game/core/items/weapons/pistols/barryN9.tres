@@ -1,18 +1,18 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://wmj7conqb4en"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://bnvcc5dolaauk"]
 
-[ext_resource type="Script" path="res://core/items/weapons/weapon.gd" id="1_a1dt0"]
+[ext_resource type="Script" path="res://core/items/weapons/weapon.gd" id="1_212y0"]
 
 [resource]
-script = ExtResource("1_a1dt0")
-damage = 22
+script = ExtResource("1_212y0")
+damage = 14
 accuracy = 1
 recoil = 1
 ergonomics = 1
 sound = 1
-rate_of_fire = 0.08
-caliber = 0
-firing_mode = 1
-magazine_size = 30
+rate_of_fire = 0.13
+caliber = 3
+firing_mode = 0
+magazine_size = 0
 stock_swappable = false
 stock_required = false
 stock_position = Vector2(0, 0)
@@ -34,13 +34,13 @@ muzzle_position = Vector2(0, 0)
 scope_swappable = false
 scope_required = false
 scope_position = Vector2(0, 0)
-name = "N16"
+name = "Barry N9"
 type = 1
-description = "Standard issue rifle for the Green Army"
-icon = "res://core/items/weapons/automatic_rifles/n16.png"
+description = ""
+icon = ""
 value = 0
-weight = 2.89
+weight = 0.96
 is_stackable = false
-is_equipable = true
+is_equipable = false
 is_consumable = false
 stack_size = 0

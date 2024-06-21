@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ammunition" load_steps=2 format=3 uid="uid://siq5236f7kij"]
+
+[ext_resource type="Script" path="res://core/items/ammunition/resource/ammunition.gd" id="1_s85hm"]
+
+[resource]
+script = ExtResource("1_s85hm")
+caliber = 4
+armor_penetration = 29
+damage_modifier = -5
+accuracy_modifier = 0
+recoil_modifier = 0
+durability_burn = 0.02
+sound_modifier = 0
+name = "5.7 x 28 SS190"
+type = 2
+description = ""
+icon = ""
+value = 0
+weight = 0.006
+is_stackable = false
+is_equipable = false
+is_consumable = false
+stack_size = 0
