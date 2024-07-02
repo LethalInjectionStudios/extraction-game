@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dgx3nex6k6fbw"]
+[gd_scene load_steps=65 format=3 uid="uid://dgx3nex6k6fbw"]
 
 [ext_resource type="PackedScene" uid="uid://rgumhnym5ugn" path="res://core/levels/level.tscn" id="1_rl74n"]
 [ext_resource type="Script" path="res://core/levels/hideout/hideout.gd" id="2_btv65"]
@@ -32,16 +32,16 @@
 [ext_resource type="PackedScene" uid="uid://c8ftdfafao18" path="res://core/levels/hideout/objects/bookshelf_metal.tscn" id="29_ahqnv"]
 [ext_resource type="PackedScene" uid="uid://c2nmwquhk6nve" path="res://core/levels/hideout/objects/counter_wood_left.tscn" id="31_j28o6"]
 [ext_resource type="PackedScene" uid="uid://k2d4umy533oa" path="res://core/levels/hideout/objects/counter_wood_middle.tscn" id="32_en1k5"]
-[ext_resource type="Texture2D" uid="uid://b672grgmu0gki" path="res://core/items/weapons/doughnutdevguns/AK47.png" id="33_64qke"]
 [ext_resource type="PackedScene" uid="uid://2svm2e3x0cls" path="res://core/levels/hideout/objects/counter_wood_right.tscn" id="33_vrlou"]
 [ext_resource type="PackedScene" uid="uid://vc4ynh35gmxa" path="res://core/levels/hideout/objects/bookshelf_wood.tscn" id="34_64dpw"]
 [ext_resource type="PackedScene" uid="uid://ctcnkaayfwsli" path="res://core/levels/hideout/objects/arms_dealer/armsDealer_firingRangeTarget.tscn" id="35_sitgg"]
-[ext_resource type="Texture2D" uid="uid://dwu8v5t0t736b" path="res://core/items/weapons/doughnutdevguns/Deagle.png" id="37_xi38r"]
-[ext_resource type="Texture2D" uid="uid://2m36qfq5rpsj" path="res://core/items/weapons/doughnutdevguns/Famas.png" id="38_h34ky"]
-[ext_resource type="Texture2D" uid="uid://dlrty51lcmcp4" path="res://core/items/weapons/doughnutdevguns/FNScar.png" id="39_mdas8"]
-[ext_resource type="Texture2D" uid="uid://drduv7ep62t3f" path="res://core/items/weapons/doughnutdevguns/Mac10.png" id="40_skbh3"]
-[ext_resource type="Texture2D" uid="uid://v2f2xqvephr4" path="res://core/items/weapons/doughnutdevguns/MP5.png" id="41_0bfth"]
-[ext_resource type="Texture2D" uid="uid://bru7c8vm2jlgg" path="res://core/items/weapons/doughnutdevguns/Minigun.png" id="42_6vgmn"]
+[ext_resource type="Texture2D" uid="uid://r2ix7lfu7gtu" path="res://core/items/weapons/automatic_rifles/jk47.png" id="36_oumk3"]
+[ext_resource type="Texture2D" uid="uid://db7jn221bt0p5" path="res://core/items/weapons/pistols/makarol.png" id="37_6bmwo"]
+[ext_resource type="Texture2D" uid="uid://bprjxsj2te0qx" path="res://core/items/weapons/automatic_rifles/jk74.png" id="38_f7gx5"]
+[ext_resource type="Texture2D" uid="uid://p2tkjv5a8xcx" path="res://core/items/weapons/submachine/seb90.png" id="39_qdwr6"]
+[ext_resource type="Texture2D" uid="uid://bb0w6nd15sr2j" path="res://core/items/weapons/pistols/mok17.png" id="40_ph300"]
+[ext_resource type="Texture2D" uid="uid://bswv5a30j37fd" path="res://core/items/weapons/submachine/fp7.png" id="41_4wbsl"]
+[ext_resource type="Texture2D" uid="uid://i1exavlo2fth" path="res://core/items/weapons/automatic_rifles/n16.png" id="42_nn506"]
 [ext_resource type="PackedScene" uid="uid://b0n68okydvgrn" path="res://core/levels/hideout/objects/arms_dealer/armsDealer_gunSafe_01.tscn" id="43_js8fc"]
 [ext_resource type="PackedScene" uid="uid://cqv0algdawk0k" path="res://core/levels/hideout/objects/barrel.tscn" id="44_cnkks"]
 [ext_resource type="PackedScene" uid="uid://cfsvl7de6g0vy" path="res://core/levels/hideout/objects/innkeeper/inn_beer_full.tscn" id="44_eql2x"]
@@ -58,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://mxcebnpiwrls" path="res://core/levels/hideout/objects/innkeeper/alcohol_full_02.tscn" id="56_n2p86"]
 [ext_resource type="PackedScene" uid="uid://bq3qx3wixwrd0" path="res://core/common/lootables/cooler_01.tscn" id="58_i3tyb"]
 [ext_resource type="PackedScene" uid="uid://bhjllj36ujv0t" path="res://core/characters/npc/dps_check/dps_check.tscn" id="58_nuvlc"]
+[ext_resource type="PackedScene" uid="uid://bur48tdj8wnns" path="res://core/characters/npc/military/military_grunt.tscn" id="59_whyj5"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fqjiv"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -380,40 +381,40 @@ position = Vector2(716, 507)
 position = Vector2(708, 435)
 armor_value = 6
 
-[node name="Ak47" type="Sprite2D" parent="Scenery/ArmsDealer" index="11"]
+[node name="JK47" type="Sprite2D" parent="Scenery/ArmsDealer" index="11"]
 position = Vector2(606, 502)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("33_64qke")
+texture = ExtResource("36_oumk3")
 
-[node name="Deagle" type="Sprite2D" parent="Scenery/ArmsDealer" index="12"]
+[node name="Makorel" type="Sprite2D" parent="Scenery/ArmsDealer" index="12"]
 position = Vector2(633, 501)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("37_xi38r")
+texture = ExtResource("37_6bmwo")
 
-[node name="Famas" type="Sprite2D" parent="Scenery/ArmsDealer" index="13"]
+[node name="JK74" type="Sprite2D" parent="Scenery/ArmsDealer" index="13"]
 position = Vector2(660, 485)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("38_h34ky")
+texture = ExtResource("38_f7gx5")
 
-[node name="FnScar" type="Sprite2D" parent="Scenery/ArmsDealer" index="14"]
+[node name="B90" type="Sprite2D" parent="Scenery/ArmsDealer" index="14"]
 position = Vector2(660, 495)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("39_mdas8")
+texture = ExtResource("39_qdwr6")
 
-[node name="Mac10" type="Sprite2D" parent="Scenery/ArmsDealer" index="15"]
+[node name="Mock17" type="Sprite2D" parent="Scenery/ArmsDealer" index="15"]
 position = Vector2(654, 505)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("40_skbh3")
+texture = ExtResource("40_ph300")
 
-[node name="Mp5" type="Sprite2D" parent="Scenery/ArmsDealer" index="16"]
-position = Vector2(665, 505)
+[node name="FP7" type="Sprite2D" parent="Scenery/ArmsDealer" index="16"]
+position = Vector2(667, 505)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("41_0bfth")
+texture = ExtResource("41_4wbsl")
 
-[node name="Minigun" type="Sprite2D" parent="Scenery/ArmsDealer" index="17"]
+[node name="N16" type="Sprite2D" parent="Scenery/ArmsDealer" index="17"]
 position = Vector2(660, 473)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("42_6vgmn")
+texture = ExtResource("42_nn506")
 
 [node name="ArmsDealer_GunSafe_01" parent="Scenery/ArmsDealer" index="18" instance=ExtResource("43_js8fc")]
 position = Vector2(607, 445)
@@ -830,6 +831,9 @@ position = Vector2(708, 459)
 
 [node name="Cooler_01" parent="." index="11" instance=ExtResource("58_i3tyb")]
 position = Vector2(427, 637)
-drops = Array[String](["res://core/items/weapons/automatic_rifles/n16.tres", "res://core/items/consumables/ds_nutz.tres"])
+drops = Array[String](["res://core/items/weapons/automatic_rifles/jk47.tres", "res://core/items/ammunition/resource/762x39_BP.tres", "res://core/items/ammunition/resource/762x39_HP.tres", "res://core/items/ammunition/resource/762x39_PS.tres", "res://core/items/ammunition/resource/762x39_SUBSONIC.tres", "res://core/items/armor/military_bdu.tres"])
+
+[node name="Enemy Base" parent="." index="12" instance=ExtResource("59_whyj5")]
+position = Vector2(629, 628)
 
 [connection signal="body_entered" from="Exit" to="." method="_on_area_2d_body_entered"]

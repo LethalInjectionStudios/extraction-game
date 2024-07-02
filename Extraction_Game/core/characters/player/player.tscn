@@ -75,7 +75,6 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("armor_component") groups=["Character"]]
-scale = Vector2(0.991289, 1.0267)
 collision_mask = 31
 script = ExtResource("1_85rfc")
 armor_component = NodePath("Components/ArmorComponent")
@@ -121,7 +120,7 @@ metadata/_edit_lock_ = true
 position = Vector2(0, -7)
 
 [node name="WeaponComponent" parent="Components" instance=ExtResource("4_lsato")]
-position = Vector2(0, 2)
+position = Vector2(0, 3)
 
 [node name="HealthComponent" parent="Components" instance=ExtResource("5_nnvca")]
 

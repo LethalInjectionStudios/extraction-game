@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://d0710ki2y7ena"]
+
+[ext_resource type="Script" path="res://core/items/weapons/weapon.gd" id="1_pg8tt"]
+
+[resource]
+script = ExtResource("1_pg8tt")
+damage = 50
+accuracy = 1
+recoil = 1
+ergonomics = 1
+sound = 1
+rate_of_fire = 0.17
+caliber = 8
+firing_mode = 0
+magazine_size = 0
+stock_swappable = false
+stock_required = false
+stock_position = Vector2(0, 0)
+handguard_swappable = false
+handguard_required = false
+handguard_position = Vector2(0, 0)
+grip_swappable = false
+grip_required = false
+grip_position = Vector2(0, 0)
+barrel_swappable = false
+barrel_required = false
+barrel_position = Vector2(0, 0)
+magazine_swappable = false
+magazine_required = false
+magazine_position = Vector2(0, 0)
+muzzle_swappable = false
+muzzle_required = false
+muzzle_position = Vector2(0, 0)
+scope_swappable = false
+scope_required = false
+scope_position = Vector2(0, 0)
+name = "Ante-12"
+type = 1
+description = "<decription>"
+icon = "res://core/items/weapons/shotguns/ante12.png"
+value = 0
+weight = 3.6
+is_equipable = true
+is_consumable = false
+is_stackable = false
+stack_size = 0

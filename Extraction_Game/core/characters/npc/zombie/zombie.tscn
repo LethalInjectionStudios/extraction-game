@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://core/characters/npc/zombie/zombie.gd" id="1_sy7sg"]
 [ext_resource type="PackedScene" uid="uid://bfwvi3vhluxg8" path="res://core/components/health_component/health_component.tscn" id="2_d0wex"]
-[ext_resource type="Texture2D" uid="uid://xl30b4lhv0aa" path="res://core/characters/npc/zombie.png" id="2_olkfi"]
+[ext_resource type="Texture2D" uid="uid://hqfugyfs3bk4" path="res://core/characters/npc/zombie/zombie.png" id="2_tehsn"]
 [ext_resource type="PackedScene" uid="uid://bmuncemftwocl" path="res://core/components/hitbox_component/hitbox_component.tscn" id="3_6hq8e"]
 [ext_resource type="PackedScene" uid="uid://cuybe7jvy7a7w" path="res://core/components/detection_component/detection_component.tscn" id="5_ruhmd"]
 [ext_resource type="PackedScene" uid="uid://dp6ou45cf0br8" path="res://core/state_machine/state_machine.tscn" id="6_fto4f"]
@@ -42,6 +42,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_vh4ro"]
 resource_name = "idle"
+length = 0.8
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -49,15 +51,15 @@ tracks/0/path = NodePath("Sprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 0), Vector2i(0, 0)]
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_lrd4h"]
 resource_name = "walk"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -65,10 +67,10 @@ tracks/0/path = NodePath("Sprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5yp8u"]
@@ -93,8 +95,8 @@ _faction = 2
 shape = SubResource("RectangleShape2D_obvnu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_olkfi")
-hframes = 4
+texture = ExtResource("2_tehsn")
+hframes = 6
 vframes = 2
 
 [node name="Components" type="Node2D" parent="."]

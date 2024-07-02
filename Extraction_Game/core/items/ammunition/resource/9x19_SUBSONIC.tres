@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ammunition" load_steps=2 format=3 uid="uid://83jtdqhsr8a7"]
+
+[ext_resource type="Script" path="res://core/items/ammunition/resource/ammunition.gd" id="1_djimn"]
+
+[resource]
+script = ExtResource("1_djimn")
+caliber = 3
+armor_penetration = 7
+damage_modifier = -10
+accuracy_modifier = 0
+recoil_modifier = 0
+durability_burn = 0.005
+sound_modifier = 0
+name = "9 x 19 SUBSONIC"
+type = 2
+description = "<decription>"
+icon = "res://core/items/ammunition/sprites/9x19_SS.png"
+value = 0
+weight = 0.01
+is_equipable = false
+is_consumable = false
+is_stackable = false
+stack_size = 0

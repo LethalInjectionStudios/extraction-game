@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ammunition" load_steps=2 format=3 uid="uid://hnf3dni6iqlu"]
+
+[ext_resource type="Script" path="res://core/items/ammunition/resource/ammunition.gd" id="1_brmck"]
+
+[resource]
+script = ExtResource("1_brmck")
+caliber = 6
+armor_penetration = 45
+damage_modifier = -18
+accuracy_modifier = 0
+recoil_modifier = 0
+durability_burn = 0.1
+sound_modifier = 0
+name = "5.56 x 45 M995"
+type = 2
+description = "<decription>"
+icon = "res://core/items/ammunition/sprites/556x45_M995.png"
+value = 0
+weight = 0.012
+is_equipable = false
+is_consumable = false
+is_stackable = false
+stack_size = 0

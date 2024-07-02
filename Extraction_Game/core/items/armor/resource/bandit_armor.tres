@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://drkbbwdfcjara"]
+
+[ext_resource type="Script" path="res://core/items/armor/armor.gd" id="1_26414"]
+
+[resource]
+script = ExtResource("1_26414")
+armor_class = 3
+fragility = 0
+character_sprite = ""
+name = "Bandit Armor"
+type = 7
+description = ""
+icon = ""
+value = 0
+weight = 0.0
+is_equipable = true
+is_consumable = false
+is_stackable = false
+stack_size = 0

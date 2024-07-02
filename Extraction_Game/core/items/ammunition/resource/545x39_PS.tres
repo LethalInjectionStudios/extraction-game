@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ammunition" load_steps=2 format=3 uid="uid://4r6hpemjb26i"]
+
+[ext_resource type="Script" path="res://core/items/ammunition/resource/ammunition.gd" id="1_r4oj8"]
+
+[resource]
+script = ExtResource("1_r4oj8")
+caliber = 5
+armor_penetration = 25
+damage_modifier = 0
+accuracy_modifier = 0
+recoil_modifier = 0
+durability_burn = 0.03
+sound_modifier = 0
+name = "5.45 x 39 PS"
+type = 2
+description = "<decription>"
+icon = "res://core/items/ammunition/sprites/545x39_PS.png"
+value = 0
+weight = 0.01
+is_equipable = false
+is_consumable = false
+is_stackable = false
+stack_size = 0

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ammunition" load_steps=2 format=3 uid="uid://cs8lwier0f56c"]
+
+[ext_resource type="Script" path="res://core/items/ammunition/resource/ammunition.gd" id="1_30s1j"]
+
+[resource]
+script = ExtResource("1_30s1j")
+caliber = 2
+armor_penetration = 12
+damage_modifier = 0
+accuracy_modifier = 0
+recoil_modifier = 0
+durability_burn = 0.015
+sound_modifier = 0
+name = "9 x 18 PS"
+type = 2
+description = "<decription>"
+icon = "res://core/items/ammunition/sprites/9x18_PS.png"
+value = 0
+weight = 0.01
+is_equipable = false
+is_consumable = false
+is_stackable = false
+stack_size = 0

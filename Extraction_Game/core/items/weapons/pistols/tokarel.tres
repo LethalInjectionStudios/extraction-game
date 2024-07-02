@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://c37cs8o70kb0g"]
+
+[ext_resource type="Script" path="res://core/items/weapons/weapon.gd" id="1_agtup"]
+
+[resource]
+script = ExtResource("1_agtup")
+damage = 14
+accuracy = 1
+recoil = 1
+ergonomics = 1
+sound = 1
+rate_of_fire = 0.13
+caliber = 1
+firing_mode = 0
+magazine_size = 0
+stock_swappable = false
+stock_required = false
+stock_position = Vector2(0, 0)
+handguard_swappable = false
+handguard_required = false
+handguard_position = Vector2(0, 0)
+grip_swappable = false
+grip_required = false
+grip_position = Vector2(0, 0)
+barrel_swappable = false
+barrel_required = false
+barrel_position = Vector2(0, 0)
+magazine_swappable = false
+magazine_required = false
+magazine_position = Vector2(0, 0)
+muzzle_swappable = false
+muzzle_required = false
+muzzle_position = Vector2(0, 0)
+scope_swappable = false
+scope_required = false
+scope_position = Vector2(0, 0)
+name = "Tokarel"
+type = 1
+description = "<decription>"
+icon = "res://core/items/weapons/pistols/tokarel.png"
+value = 0
+weight = 0.85
+is_equipable = true
+is_consumable = false
+is_stackable = false
+stack_size = 0

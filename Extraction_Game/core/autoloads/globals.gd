@@ -6,39 +6,63 @@ enum FireMode {
 }
 
 enum Caliber {
-	_9MM,
-	_762X39,
-	_762X51NATO,
-	_556X45NATO
+	MISSING,
+	_762x39,
+	_9x18,
+	_9x19,
+	_57x28,
+	_545x39,
+	_556x45,
+	_762x25,
+	_12GAUGE
 }
 
 func get_caliber_as_string(caliber: Caliber) -> String:
 	var caliber_string: String = String()
 	
 	match caliber:
-		Globals.Caliber._9MM:
-			caliber_string = "9mm"
-		Globals.Caliber._762X39:
-			caliber_string = "7.62 x 39"
-		Globals.Caliber._762X51NATO:
-			caliber_string = "7.52 x 51 NATO"
-		Globals.Caliber._556X45NATO:
-			caliber_string = "5.56 x 45 NATO"
+		Globals.Caliber._762x39:
+			caliber_string = "7.62x39"
+		Globals.Caliber._9x18:
+			caliber_string = "9x18"
+		Globals.Caliber._9x19:
+			caliber_string = "9x19"
+		Globals.Caliber._57x28:
+			caliber_string = "5.7x28"
+		Globals.Caliber._545x39:
+			caliber_string = "5.45x39"
+		Globals.Caliber._556x45:
+			caliber_string = "5.56x45"
+		Globals.Caliber._762x25:
+			caliber_string = "7.62x25"
+		Globals.Caliber._12GAUGE:
+			caliber_string = "12 Gauge"
+		_:
+			push_warning("Caliber Does not have a case created")
 	
 	return caliber_string
 	
 func get_ammo_from_caliber(caliber: Caliber) -> String:
 	var ammo_path: String = String()
 	
+	push_warning("get_ammo_from_caliber() does not randomize ammo")
 	match caliber:
-		Globals.Caliber._9MM:
-			push_warning("Ammo Path not set for 9mm")
-		Globals.Caliber._762X39:
-			ammo_path = "res://core/items/ammunition/resource/_762x39_ps.tres"
-		Globals.Caliber._762X51NATO:
-			push_warning("Ammo Path not set for 7.62x39 NATO")
-		Globals.Caliber._556X45NATO:
-			push_warning("Ammo Path not set for 5.56x45 NATO")
+		Globals.Caliber._762x39:
+			ammo_path = "res://core/items/ammunition/resource/762x39_PS.tres"
+		Globals.Caliber._9x18:
+			ammo_path = "res://core/items/ammunition/resource/9x18_PS.tres"
+		Globals.Caliber._9x19:
+			ammo_path = "res://core/items/ammunition/resource/9x19_PSO.tres"
+		Globals.Caliber._57x28:
+			ammo_path = "res://core/items/ammunition/resource/57x28_R37F.tres"
+		Globals.Caliber._545x39:
+			ammo_path = "res://core/items/ammunition/resource/545x39_PS.tres"
+		Globals.Caliber._556x45:
+			ammo_path = "res://core/items/ammunition/resource/556x45_M855.tres"
+		Globals.Caliber._762x25:
+			ammo_path = "res://core/items/ammunition/resource/762x25_FMJ.tres"
+		Globals.Caliber._12GAUGE:
+			ammo_path = "res://core/items/ammunition/resource/12Gauge_BS.tres"
 		_:
 			push_warning("Caliber Does not have a case created")
 

@@ -23,7 +23,7 @@ func _connect_signals() -> void:
 func _load_scene() -> void:
 	_player._save()
 	_save_stash_data()
-	System.print(selected_raid)
+	System.log(selected_raid)
 	get_tree().change_scene_to_packed(load(selected_raid))
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:

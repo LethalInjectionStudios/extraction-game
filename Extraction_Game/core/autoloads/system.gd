@@ -1,6 +1,10 @@
 extends Node
 
-func print(value: String, args: Array[Variant] = []) -> void:
+signal log_updated(log_data: String)
+
+var _logger: Array[String]
+	
+func log(value: String, args: Array[Variant] = []) -> void:
 	var new_string: String = ""
 	var split: PackedStringArray = value.split(" ")
 	for val: String in split:
@@ -12,5 +16,7 @@ func print(value: String, args: Array[Variant] = []) -> void:
 				new_string += str(args[int(val[1])]) + " "
 		else:
 			new_string += val + " "
-			
+	
 	print(new_string)
+	_logger.append(new_string)
+	log_updated.emit(new_string)

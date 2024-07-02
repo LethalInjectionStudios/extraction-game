@@ -18,9 +18,9 @@ func _connect_signals() -> void:
 	
 func _on_hit_taken(projectile: Projectile) -> void:
 	var penetration_modifer: int = projectile.armor_penetration - armor_value * 10
-	System.print("AP: {0} - Armor: {1} - Pen_Modifier: {2}", [projectile.armor_penetration, armor_value * 10, penetration_modifer])
+	System.log("AP: {0} - Armor: {1} - Pen_Modifier: {2}", [projectile.armor_penetration, armor_value * 10, penetration_modifer])
 	if randi_range(0, 100) + penetration_modifer >= 50:
-		System.print("Bullet Penetrated")
+		System.log("Bullet Penetrated")
 	else:
-		System.print("Failed to Penetrate")
-	#System.print("{0} took {1} damage", [self, projectile.damage])
+		System.log("Failed to Penetrate")
+	#System.log("{0} took {1} damage", [self, projectile.damage])
