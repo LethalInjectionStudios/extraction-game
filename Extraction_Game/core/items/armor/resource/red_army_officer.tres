@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://b0fjiww2gqwec"]
+
+[ext_resource type="Script" path="res://core/items/armor/armor.gd" id="1_dnl8r"]
+
+[resource]
+script = ExtResource("1_dnl8r")
+armor_class = 2
+fragility = 0
+character_sprite = ""
+name = "Red Army Officer"
+type = 7
+description = ""
+icon = ""
+value = 0
+weight = 0.0
+is_equipable = true
+is_consumable = false
+is_stackable = false
+stack_size = 0

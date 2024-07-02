@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2wsnx4awrby1"
-path="res://.godot/imported/gun_powder.png-59512570b31fd772ec2c0b3e661d78cb.ctex"
+uid="uid://6s5geei8mvv8"
+path="res://.godot/imported/762x39_HP.png-3e6035ecb0d0e790960e6d40606e20f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/items/crafting_material/gun_powder.png"
-dest_files=["res://.godot/imported/gun_powder.png-59512570b31fd772ec2c0b3e661d78cb.ctex"]
+source_file="res://core/items/ammunition/sprites/762x39_HP.png"
+dest_files=["res://.godot/imported/762x39_HP.png-3e6035ecb0d0e790960e6d40606e20f1.ctex"]
 
 [params]
 

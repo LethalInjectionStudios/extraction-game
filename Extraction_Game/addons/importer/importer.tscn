@@ -21,11 +21,15 @@ placeholder_text = "insert path..."
 
 [node name="Import Type" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
-item_count = 2
+item_count = 4
 popup/item_0/text = "Weapons"
 popup/item_0/id = 0
 popup/item_1/text = "Ammo"
 popup/item_1/id = 1
+popup/item_2/text = "Armor"
+popup/item_2/id = 2
+popup/item_3/text = "Junk"
+popup/item_3/id = 3
 
 [node name="Import" type="Button" parent="VBoxContainer"]
 layout_mode = 2
